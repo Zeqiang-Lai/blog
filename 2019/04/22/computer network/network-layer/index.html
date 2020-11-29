@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="zh-tw,en,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="The Network Layer 网络层需要负责将packet从源一路送到目标地点。区别于数据链路层，只需要把packet从这个点送到下一个地点。 为此，网络层需要决定从源到目的的传输路线。 下面以Internet及其网络层协议IP为例，介绍网络层遇到的问题和解决方案。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Network Layer">
+<meta property="og:url" content="http://yoursite.com/2019/04/22/computer%20network/network-layer/index.html">
+<meta property="og:site_name" content="ANOTHER BLOG">
+<meta property="og:description" content="The Network Layer 网络层需要负责将packet从源一路送到目标地点。区别于数据链路层，只需要把packet从这个点送到下一个地点。 为此，网络层需要决定从源到目的的传输路线。 下面以Internet及其网络层协议IP为例，介绍网络层遇到的问题和解决方案。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://raw.githubusercontent.com/Zeqiang-Lai/Blog_img/master/img/network-layer1.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Zeqiang-Lai/Blog_img/master/img/network-layer2.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/04/22/images/image-20190514143022213.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/22/images/image-20190520155625287.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/22/images/image-20190520162842611.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/22/images/image-20190520164123409.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/22/images/image-20190520164212823.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/22/images/image-20190520184045196.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/22/images/image-20190520184642760.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/22/images/image-20190520184707249.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/22/images/image-20190520184922754.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/22/images/image-20190520212557992.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/22/images/image-20190520213050475.png">
+<meta property="article:published_time" content="2019-04-22T08:45:39.000Z">
+<meta property="article:modified_time" content="2019-06-13T11:17:09.070Z">
+<meta property="article:author" content="Ze">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Zeqiang-Lai/Blog_img/master/img/network-layer1.jpg">
+
+
+<link rel="canonical" href="http://yoursite.com/2019/04/22/computer%20network/network-layer/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+<title>Network Layer | ANOTHER BLOG</title>
+  
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">ANOTHER BLOG</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Cogito, ergo sum</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-NETWORK-LAYER-DESIGN-ISSUES"><span class="nav-number">1.</span> <span class="nav-text">1 NETWORK LAYER DESIGN ISSUES</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Store-and-Forward-Packet-Switching"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Store-and-Forward Packet Switching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Services-Provided-to-the-Transport-Layer"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Services Provided to the Transport Layer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-Comparison-of-Virtual-Circuit-and-Datagram-Networks"><span class="nav-number">1.3.</span> <span class="nav-text">1.5 Comparison of Virtual-Circuit and Datagram Networks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-ROUTING-ALGORITHMS"><span class="nav-number">2.</span> <span class="nav-text">2 ROUTING ALGORITHMS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-The-Optimality-Principle"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 The Optimality Principle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Shortest-Path-Algorithm"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 Shortest Path Algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Flooding"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 Flooding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-Distance-Vector-Routing"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 Distance Vector Routing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-CONGESTION-CONTROL-ALGORITHMS"><span class="nav-number">3.</span> <span class="nav-text">3 CONGESTION CONTROL ALGORITHMS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Approaches-to-Congestion-Control"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 Approaches to Congestion Control</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-QUALITY-OF-SERVICE"><span class="nav-number">4.</span> <span class="nav-text">4 QUALITY OF SERVICE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-THE-NETWORK-LAYER-IN-THE-INTERNET"><span class="nav-number">5.</span> <span class="nav-text">6 THE NETWORK LAYER IN THE INTERNET</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-IPv4"><span class="nav-number">5.1.</span> <span class="nav-text">6.1 IPv4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-IP-Address"><span class="nav-number">5.2.</span> <span class="nav-text">6.2 IP Address</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Subnets"><span class="nav-number">5.2.1.</span> <span class="nav-text">Subnets</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CIDR%E2%80%94Classless-InterDomain-Routing"><span class="nav-number">5.2.2.</span> <span class="nav-text">CIDR—Classless InterDomain Routing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Classful-and-Special-Addressing"><span class="nav-number">5.2.3.</span> <span class="nav-text">Classful and Special Addressing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NAT%E2%80%94Network-Address-Translation"><span class="nav-number">5.2.4.</span> <span class="nav-text">NAT—Network Address Translation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-IPv6"><span class="nav-number">5.3.</span> <span class="nav-text">6.3 IPv6</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-Main-IPv6-Header"><span class="nav-number">5.3.1.</span> <span class="nav-text">The Main IPv6 Header</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Extension-Headers"><span class="nav-number">5.3.2.</span> <span class="nav-text">Extension Headers</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-Internet-Control-Protocols"><span class="nav-number">5.4.</span> <span class="nav-text">6.4 Internet Control Protocols</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#IMCP%E2%80%94The-Internet-Control-Message-Protocol"><span class="nav-number">5.4.1.</span> <span class="nav-text">IMCP—The Internet Control Message Protocol</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ARP%E2%80%94The-Address-Resolution-Protocol"><span class="nav-number">5.4.2.</span> <span class="nav-text">ARP—The Address Resolution Protocol</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DHCP%E2%80%94The-Dynamic-Host-Configuration-Protocol"><span class="nav-number">5.4.3.</span> <span class="nav-text">DHCP—The Dynamic Host Configuration Protocol</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-5-Label-Switching-and-MPLS"><span class="nav-number">5.5.</span> <span class="nav-text">6.5 Label Switching and MPLS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-6-OSPF%E2%80%94An-Interior-Gateway-Routing-Protocol"><span class="nav-number">5.6.</span> <span class="nav-text">6.6 OSPF—An Interior Gateway Routing Protocol</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-7-BGP%E2%80%94The-Exterior-Gateway-Routing-Protocol"><span class="nav-number">5.7.</span> <span class="nav-text">6.7 BGP—The Exterior Gateway Routing Protocol</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-8-Internet-Multicasting"><span class="nav-number">5.8.</span> <span class="nav-text">6.8 Internet Multicasting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-9-Mobile-IP"><span class="nav-number">5.9.</span> <span class="nav-text">6.9 Mobile IP</span></a></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ze</p>
+  <div class="site-description" itemprop="description">Tips,Thoughts,Notes.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/22/computer%20network/network-layer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ze">
+      <meta itemprop="description" content="Tips,Thoughts,Notes.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ANOTHER BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Network Layer
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-04-22 16:45:39" itemprop="dateCreated datePublished" datetime="2019-04-22T16:45:39+08:00">2019-04-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2019-06-13 19:17:09" itemprop="dateModified" datetime="2019-06-13T19:17:09+08:00">2019-06-13</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>The Network Layer 网络层需要负责将packet从源一路送到目标地点。区别于数据链路层，只需要把packet从这个点送到下一个地点。</p>
+<p>为此，网络层需要决定从源到目的的传输路线。</p>
+<p>下面以Internet及其网络层协议IP为例，介绍网络层遇到的问题和解决方案。</p>
+<a id="more"></a>
+
+<h2 id="1-NETWORK-LAYER-DESIGN-ISSUES"><a href="#1-NETWORK-LAYER-DESIGN-ISSUES" class="headerlink" title="1 NETWORK LAYER DESIGN ISSUES"></a>1 NETWORK LAYER DESIGN ISSUES</h2><p>下面介绍一些网络层需要解决的主要问题，主要包括</p>
+<ol>
+<li>网络层需要提供给传输层（Transport Layer）什么接口。</li>
+<li>网络层该如何设计。</li>
+</ol>
+<h3 id="1-1-Store-and-Forward-Packet-Switching"><a href="#1-1-Store-and-Forward-Packet-Switching" class="headerlink" title="1.1 Store-and-Forward Packet Switching"></a>1.1 Store-and-Forward Packet Switching</h3><p>在讲网络层协议之前，有必要先讲一下网络层是在什么东西上工作的。</p>
+<p>如图5-1所示，不同的的计算机通过许多router进行通信，当一个计算机发送出一个packet之后，这个packet将沿着ISP提供的许多设备（router），通过存储转发（Store-and-Forward），一步一步送到目标计算机。</p>
+<p><img src="https://raw.githubusercontent.com/Zeqiang-Lai/Blog_img/master/img/network-layer1.jpg"></p>
+<h3 id="1-2-Services-Provided-to-the-Transport-Layer"><a href="#1-2-Services-Provided-to-the-Transport-Layer" class="headerlink" title="1.2 Services Provided to the Transport Layer"></a>1.2 Services Provided to the Transport Layer</h3><p>网络层提供给传输层的服务，应基于如下三个原则：</p>
+<ol>
+<li><p>The services should be independent of the router technology.</p>
+</li>
+<li><p>The transport layer should be shielded from the number, type, and topology of the routers present.</p>
+</li>
+<li><p>The network addresses made available to the transport layer should use a uniform numbering plan, even across LANs and WANs.</p>
+</li>
+</ol>
+<p>基于上述原则产生了两种不同的服务方式：</p>
+<ol>
+<li>connectionless service （无连接）</li>
+<li>connection-oriented service （有连接）</li>
+</ol>
+<p>无连接的packet通常称为<strong>datagram</strong>，对应的网络称为<strong>datagram network</strong>。</p>
+<p>有连接的网络通常称为<strong>virtual-circuit network</strong>， 对应的连接称为<strong>virtual-circuit</strong>。</p>
+<p>====</p>
+<p>1.3 Implementation of Connectionless Service</p>
+<p>1.4 Implementation of Connection-Oriented Service</p>
+<h3 id="1-5-Comparison-of-Virtual-Circuit-and-Datagram-Networks"><a href="#1-5-Comparison-of-Virtual-Circuit-and-Datagram-Networks" class="headerlink" title="1.5 Comparison of Virtual-Circuit and Datagram Networks"></a>1.5 Comparison of Virtual-Circuit and Datagram Networks</h3><p><img src="https://raw.githubusercontent.com/Zeqiang-Lai/Blog_img/master/img/network-layer2.jpg" alt="image-20190422173154363"></p>
+<h2 id="2-ROUTING-ALGORITHMS"><a href="#2-ROUTING-ALGORITHMS" class="headerlink" title="2 ROUTING ALGORITHMS"></a>2 ROUTING ALGORITHMS</h2><blockquote>
+<p>The routing algorithm is that part of the network layer software responsible for deciding which output line an incoming packet should be transmitted on.</p>
+</blockquote>
+<ul>
+<li>如果是使用datagram的网络，即无连接的网络，则对每个packet都需要重新用Routing算法计算一遍。</li>
+<li>如果是使用virtual circuit的网络，即有连接的网络，则只要在virtual circuit建立的时候算一遍就行了。这种情况的route也被叫做<strong>session routing</strong>。</li>
+</ul>
+<p><strong>Forwarding和Routing的区别？</strong></p>
+<ol>
+<li>Forwarding 是讲data packet存储转发的过程，中间需要查routing表。</li>
+<li>Routing 则存在于更新routing表的过程中。</li>
+</ol>
+<p><strong>Routing Algorithm</strong></p>
+<ol>
+<li>Nonadpative, static: 提前算好routing表。</li>
+<li>Adaptive, dynamic: 动态更新计算routing表。</li>
+</ol>
+<h3 id="2-1-The-Optimality-Principle"><a href="#2-1-The-Optimality-Principle" class="headerlink" title="2.1 The Optimality Principle"></a>2.1 The Optimality Principle</h3><p>这个原则就是：</p>
+<blockquote>
+<p>如果A在B到C的最优路径上，那么A到C的最优路径也在B到C的最优路径上。</p>
+</blockquote>
+<p><strong>推论：</strong></p>
+<p>对于一个网络，从一个源点出发到其他节点的最优路径构成一棵树，Sink Tree。</p>
+<p><img src="../../images/image-20190514143022213.png" alt="image-20190514143022213"></p>
+<p>不严格证明：</p>
+<ul>
+<li>树其实只有一个要求，没有环。</li>
+<li>那么如果有环的话，即有最优路径绕回到源点。</li>
+<li>这是不可能的，B-C的最优路径不可能为B-A-B-C。</li>
+</ul>
+<h3 id="2-2-Shortest-Path-Algorithm"><a href="#2-2-Shortest-Path-Algorithm" class="headerlink" title="2.2 Shortest Path Algorithm"></a>2.2 Shortest Path Algorithm</h3><p>当整个网络的拓扑结构已知的情况，可以用最短路算法计算最优路径。</p>
+<p>算法举例：Dijkstra，SPFA，Bellman-Ford…</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Dijkstra算法: 使用标记的方法进行计算。</span></span><br><span class="line">Mark 源点</span><br><span class="line">Select 距离源点最近 <span class="keyword">and</span> 未访问过 <span class="keyword">from</span> <span class="built_in">set</span>(标记的点)</span><br><span class="line">Update 与该点相邻的所有点距离源点的距离(除掉已经标记的)，并标记这些点</span><br><span class="line">Set 该点为访问过。</span><br><span class="line">循环进行，直到所有点都被标记。</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-Flooding"><a href="#2-3-Flooding" class="headerlink" title="2.3 Flooding"></a>2.3 Flooding</h3><p>当complete picture of the network不可用的时候，就只能依赖local knowledge来设计routing算法。一种简单的方案就是<strong>flooding</strong>。</p>
+<p>Flooding 的思路简单粗暴：每接受一个data packet，就往所有相邻的router发过去，除了发这个packet的router。</p>
+<h3 id="2-4-Distance-Vector-Routing"><a href="#2-4-Distance-Vector-Routing" class="headerlink" title="2.4 Distance Vector Routing"></a>2.4 Distance Vector Routing</h3><p>每个router都有一个distance vector保存从这个router到其他所有router的最短距离。</p>
+<p>distance vector的计算是渐进式的：</p>
+<ul>
+<li>每一个循环，所有router都把自己的distance vector发送给相邻的routers。</li>
+<li>然后每个router根据相邻的distance vector更新自己的vector。</li>
+</ul>
+<p>存在循环计算的问题（<strong>count-to-infinity</strong>）</p>
+<h2 id="3-CONGESTION-CONTROL-ALGORITHMS"><a href="#3-CONGESTION-CONTROL-ALGORITHMS" class="headerlink" title="3 CONGESTION CONTROL ALGORITHMS"></a>3 CONGESTION CONTROL ALGORITHMS</h2><blockquote>
+<p>Too many packets present in (a part of) the network causes packet delay and loss that degrades performance. This situation is called <strong>congestion</strong>.</p>
+</blockquote>
+<p>处理congestion的职责为网络层和传输层共同分担。</p>
+<p>congestion发生在网络层，而congestion产生的原因在于传输层（传送过多数据到网络层）。</p>
+<p><strong>flow control</strong>: 是指当前计算机处理不了那么多数据，需要的control。</p>
+<p><strong>congestion control</strong>：是指网络处理不了那么多数据，需要的control。</p>
+<h3 id="3-1-Approaches-to-Congestion-Control"><a href="#3-1-Approaches-to-Congestion-Control" class="headerlink" title="3.1 Approaches to Congestion Control"></a>3.1 Approaches to Congestion Control</h3><p>处理的方法无非两种：</p>
+<ul>
+<li>增加网络资源</li>
+<li>减少流量</li>
+</ul>
+<p><strong>Traffic-aware routing</strong> : 已经网络流量分布的情况下，均匀routing流量到各个路径上。</p>
+<p><strong>Admission control</strong>：当流量过大，且无法增加资源的情况下，拒绝某些网络使用者网络请求，如连接式服务，拒绝用户的连接请求。</p>
+<h2 id="4-QUALITY-OF-SERVICE"><a href="#4-QUALITY-OF-SERVICE" class="headerlink" title="4 QUALITY OF SERVICE"></a>4 QUALITY OF SERVICE</h2><p>不同的应用对网络有不同的要求，因此有了<strong>Application Requirements</strong>。</p>
+<p><strong>Traffic shaping</strong></p>
+<blockquote>
+<p> Traffic shaping is a technique for regulating the average rate and burstiness of a flow of data that enters the network.</p>
+</blockquote>
+<h2 id="6-THE-NETWORK-LAYER-IN-THE-INTERNET"><a href="#6-THE-NETWORK-LAYER-IN-THE-INTERNET" class="headerlink" title="6 THE NETWORK LAYER IN THE INTERNET"></a>6 THE NETWORK LAYER IN THE INTERNET</h2><p>网络层协议（Internet Protocol）运行过程如下：</p>
+<ol>
+<li>Sender把datagram输入网络层，</li>
+<li>网络层将datagram拆分成frame后进行发送，</li>
+<li>中间会经过一大堆router，</li>
+<li>Receiver接受到frame之后，重新组装成datagram送入传输层。</li>
+</ol>
+<h3 id="6-1-IPv4"><a href="#6-1-IPv4" class="headerlink" title="6.1 IPv4"></a>6.1 IPv4</h3><p>IPv4的datagram如下图所示：</p>
+<p><img src="../../images/image-20190520155625287.png" alt="image-20190520155625287"></p>
+<p>传输顺序从左到右，从高到低。采用大端传输，也就是version的高字节先传输。</p>
+<p>各个部分的含义如下：</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Version</td>
+<td>版本（4，5，6）</td>
+</tr>
+<tr>
+<td>IHL</td>
+<td>Header length，以32Bit（字）为单位。</td>
+</tr>
+<tr>
+<td>Differentiated services</td>
+<td>比较复杂</td>
+</tr>
+<tr>
+<td>Total length</td>
+<td>整个datagram的长度，包含header，data</td>
+</tr>
+<tr>
+<td>Identification</td>
+<td>标示这个frame属于哪个packet。重新组装的时候要用。</td>
+</tr>
+<tr>
+<td>DF</td>
+<td>比较复杂</td>
+</tr>
+<tr>
+<td>MF</td>
+<td>比较复杂</td>
+</tr>
+<tr>
+<td>Fragment offset</td>
+<td>指示当前frame在原datagram的哪个位置。</td>
+</tr>
+<tr>
+<td>TtL</td>
+<td>Time to live，该frame能存在的时间</td>
+</tr>
+<tr>
+<td>Protocol</td>
+<td>告诉传输层这个packet是哪个协议的packet，TCP？UDP？</td>
+</tr>
+<tr>
+<td>Header checksum</td>
+<td>校验码</td>
+</tr>
+<tr>
+<td>Source address</td>
+<td>源IP地址</td>
+</tr>
+<tr>
+<td>Destination address</td>
+<td>目标IP地址</td>
+</tr>
+</tbody></table>
+<p>Option不说了。</p>
+<h3 id="6-2-IP-Address"><a href="#6-2-IP-Address" class="headerlink" title="6.2 IP Address"></a>6.2 IP Address</h3><p>IPv4的地址是32位的。</p>
+<blockquote>
+<p>It is important to note that an IP address does not actually refer to a host. It really refers to a network interface, so if a host is on two networks, it must have two IP addresses.</p>
+</blockquote>
+<p>比如说，一台电脑同时连接了网线和wifi，这时候这台电脑就有两个IP地址。</p>
+<p><img src="../../images/image-20190520162842611.png" alt="image-20190520162842611"></p>
+<p>属于同一个网络的IP地址具有相同的前缀。<code>128.208.0.0/24</code> 中的24表示有24位用于区分network。</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li>router的routing table可以变得小很多。</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>每个host的IP地址取决于其所在的网络。</li>
+<li>层次结构没有设计好，可能会浪费掉许多IP地址。</li>
+</ul>
+<h4 id="Subnets"><a href="#Subnets" class="headerlink" title="Subnets"></a>Subnets</h4><p>Network Number 由一个非盈利组织进行分配，ICANN (Internet Corporation for Assigned Names and Numbers)。</p>
+<p>这个组织给每个国家分配一部分地址，然后国家内部再自己分配subnets。</p>
+<p><img src="../../images/image-20190520164123409.png" alt="image-20190520164123409"></p>
+<p>以上图为例，大学的network number都是 <code>1000 0000 1101 0000</code>，内部每个学院自己再做区分。</p>
+<p><img src="../../images/image-20190520164212823.png" alt="image-20190520164212823"></p>
+<h4 id="CIDR—Classless-InterDomain-Routing"><a href="#CIDR—Classless-InterDomain-Routing" class="headerlink" title="CIDR—Classless InterDomain Routing"></a>CIDR—Classless InterDomain Routing</h4><p>问题：router table还是太大。router要知道一大堆2^24网络的routing策略。</p>
+<p>基本思路是一个router从自己这出去的线路做一个聚合，以下图为例：</p>
+<ul>
+<li>London这个router把<code>192.24.0....</code>，<code>192.24.16...</code>，<code>192.24.8...</code> 聚合成一个<code>192.24.0</code>前缀，(Todo：这里的地址可能有点问题)</li>
+<li>然后告诉其他router，所有以这个前缀开头的地址都送到我这来。</li>
+</ul>
+<p><img src="../../images/image-20190520184045196.png" alt="image-20190520184045196"></p>
+<p>这么做的话，有个问题，那就是如果有些以192.24.0开头的，不是要送到London的话，那就会有问题。</p>
+<p>这时候，使用<strong>longest matching prefix</strong>，最长匹配原则进行匹配。</p>
+<h4 id="Classful-and-Special-Addressing"><a href="#Classful-and-Special-Addressing" class="headerlink" title="Classful and Special Addressing"></a>Classful and Special Addressing</h4><p>传统的IPv4地址分类结构如下图所示：</p>
+<p><img src="../../images/image-20190520184642760.png" alt="image-20190520184642760"></p>
+<p>然后，会有一些特殊的地址。</p>
+<p><img src="../../images/image-20190520184707249.png" alt="image-20190520184707249"></p>
+<h4 id="NAT—Network-Address-Translation"><a href="#NAT—Network-Address-Translation" class="headerlink" title="NAT—Network Address Translation"></a>NAT—Network Address Translation</h4><p>IPv4地址数量有限，NAT就是为了解决地址不够用的问题。</p>
+<p>其基本思路是利用TCP和UDP协议中的端口。</p>
+<p><img src="../../images/image-20190520184922754.png" alt="image-20190520184922754"></p>
+<ul>
+<li>对于一个家庭的所有设备，其对外使用同一个IP地址。</li>
+<li>在家庭内部，每个设备具有独立的IP地址。</li>
+<li>当一个设备需要发送消息时，NAT对设备地址和端口进行重新映射。</li>
+</ul>
+<p><strong>例如：</strong></p>
+<p>有两个设备，都从5544端口收发信息，那么经过NAT，这两台设备会分配到相同的IP地址，但是是不同的端口（NAT的端口）。</p>
+<h3 id="6-3-IPv6"><a href="#6-3-IPv6" class="headerlink" title="6.3 IPv6"></a>6.3 IPv6</h3><p>IPv6主要就是要解决IPv4地址不够用的问题。</p>
+<p>其他的改进包括：</p>
+<ol>
+<li>header更加简化。</li>
+<li>一种更高效的option header的表示方式。</li>
+<li>更安全。</li>
+</ol>
+<h4 id="The-Main-IPv6-Header"><a href="#The-Main-IPv6-Header" class="headerlink" title="The Main IPv6 Header"></a>The Main IPv6 Header</h4><p>IPv6的header长这样。</p>
+<p>主要讲一下地址，IPv6的地址是128位的，使用16进制表示，每4个数用一个冒号分隔。</p>
+<p><code>8000:0000:0000:0000:0123:4567:89AB:CDEF</code></p>
+<p>可以使用以下方法简化：</p>
+<ol>
+<li>每组最前面的0可以省略。</li>
+<li>多组0可以用冒号代替。</li>
+</ol>
+<p>上面的地址化简后如下：</p>
+<p><code>8000::123:4567:89AB:CDEF</code></p>
+<p><img src="../../images/image-20190520212557992.png" alt="image-20190520212557992"></p>
+<h4 id="Extension-Headers"><a href="#Extension-Headers" class="headerlink" title="Extension Headers"></a>Extension Headers</h4><p>next header指示了接下来的header是什么。常见的extension header有这些：</p>
+<p><img src="../../images/image-20190520213050475.png" alt="image-20190520213050475"></p>
+<h3 id="6-4-Internet-Control-Protocols"><a href="#6-4-Internet-Control-Protocols" class="headerlink" title="6.4 Internet Control Protocols"></a>6.4 Internet Control Protocols</h3><p>一些控制协议。</p>
+<h4 id="IMCP—The-Internet-Control-Message-Protocol"><a href="#IMCP—The-Internet-Control-Message-Protocol" class="headerlink" title="IMCP—The Internet Control Message Protocol"></a>IMCP—The Internet Control Message Protocol</h4><p>简单的说，就是定义了一些特殊的IP数据包，这些数据包具有特殊的含义。如</p>
+<table>
+<thead>
+<tr>
+<th>Message type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Destination unreachable</td>
+<td>Packet could not be delivered</td>
+</tr>
+<tr>
+<td>Time exceeded</td>
+<td>Time to live field hit 0</td>
+</tr>
+<tr>
+<td>Echo and echo reply</td>
+<td>Check if a machine is alive</td>
+</tr>
+</tbody></table>
+<h4 id="ARP—The-Address-Resolution-Protocol"><a href="#ARP—The-Address-Resolution-Protocol" class="headerlink" title="ARP—The Address Resolution Protocol"></a>ARP—The Address Resolution Protocol</h4><p>数据链路层使用Ethernet地址进行数据传送，仅仅使用IP地址无法完成实际的数据传输。因此需要根据接收方的IP地址，找到其真实的Ethernet地址。</p>
+<p>ARP协议的基本思路是：</p>
+<ul>
+<li>广播问网络中的所有设备，”这个IP地址是你的吗？”。</li>
+<li>IP地址所有者再广播，”这个IP地址的Ethernet是xxxx”。</li>
+</ul>
+<p>ARP Cache的更新。</p>
+<p>对于找不到对应ethernet地址的ip地址，frame会被送往default gateway （路由器通常是）。</p>
+<p>proxy ARP</p>
+<h4 id="DHCP—The-Dynamic-Host-Configuration-Protocol"><a href="#DHCP—The-Dynamic-Host-Configuration-Protocol" class="headerlink" title="DHCP—The Dynamic Host Configuration Protocol"></a>DHCP—The Dynamic Host Configuration Protocol</h4><p>ARP假设了设备知道它自己的IP地址，DHCP则没有这个假设。</p>
+<ul>
+<li>DHCP使用一个DHCP服务器，</li>
+<li>所有设备广播一个DHCP DISCOVER数据包，</li>
+<li>服务器接受到之后，传输一个DHCP OFFER告诉requester其IP地址。</li>
+</ul>
+<p>IP地址的分配具有时效性，设备必须在超时前再申请一遍，防止其失效。</p>
+<h3 id="6-5-Label-Switching-and-MPLS"><a href="#6-5-Label-Switching-and-MPLS" class="headerlink" title="6.5 Label Switching and MPLS"></a>6.5 Label Switching and MPLS</h3><p>另一种传输packets的方法，广泛用于各类网络提供商。</p>
+<h3 id="6-6-OSPF—An-Interior-Gateway-Routing-Protocol"><a href="#6-6-OSPF—An-Interior-Gateway-Routing-Protocol" class="headerlink" title="6.6 OSPF—An Interior Gateway Routing Protocol"></a>6.6 OSPF—An Interior Gateway Routing Protocol</h3><p>内网routing协议。</p>
+<h3 id="6-7-BGP—The-Exterior-Gateway-Routing-Protocol"><a href="#6-7-BGP—The-Exterior-Gateway-Routing-Protocol" class="headerlink" title="6.7 BGP—The Exterior Gateway Routing Protocol"></a>6.7 BGP—The Exterior Gateway Routing Protocol</h3><p>外网routing协议。</p>
+<h3 id="6-8-Internet-Multicasting"><a href="#6-8-Internet-Multicasting" class="headerlink" title="6.8 Internet Multicasting"></a>6.8 Internet Multicasting</h3><p>IP协议是如何进行广播的？</p>
+<h3 id="6-9-Mobile-IP"><a href="#6-9-Mobile-IP" class="headerlink" title="6.9 Mobile IP"></a>6.9 Mobile IP</h3><p>移动设备如何使用同一个IP？</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/04/21/computer%20network/mac-sublayer/" rel="prev" title="Medium Access Control Sublayer">
+                  <i class="fa fa-chevron-left"></i> Medium Access Control Sublayer
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/04/27/compiler/parsing/" rel="next" title="语法分析">
+                  语法分析 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ze</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+</body>
+</html>
