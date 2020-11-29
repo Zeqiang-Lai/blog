@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>物理 on Zeqiang Lai</title>
-    <link>https://example.com/tags/%E7%89%A9%E7%90%86/</link>
-    <description>Recent content in 物理 on Zeqiang Lai</description>
+    <title>物理 on Ze&#39;s Blog</title>
+    <link>https://zeqiang-lai.github.io/blog/tags/%E7%89%A9%E7%90%86/</link>
+    <description>Recent content in 物理 on Ze&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 17 Dec 2017 21:33:22 +0000</lastBuildDate><atom:link href="https://example.com/tags/%E7%89%A9%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 Dec 2017 21:33:22 +0000</lastBuildDate><atom:link href="https://zeqiang-lai.github.io/blog/tags/%E7%89%A9%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>洛伦兹变换</title>
-      <link>https://example.com/posts/misc/%E6%B4%9B%E4%BC%A6%E5%85%B9%E5%8F%98%E6%8D%A2/</link>
+      <link>https://zeqiang-lai.github.io/blog/posts/misc/%E6%B4%9B%E4%BC%A6%E5%85%B9%E5%8F%98%E6%8D%A2/</link>
       <pubDate>Sun, 17 Dec 2017 21:33:22 +0000</pubDate>
       
-      <guid>https://example.com/posts/misc/%E6%B4%9B%E4%BC%A6%E5%85%B9%E5%8F%98%E6%8D%A2/</guid>
+      <guid>https://zeqiang-lai.github.io/blog/posts/misc/%E6%B4%9B%E4%BC%A6%E5%85%B9%E5%8F%98%E6%8D%A2/</guid>
       <description>&lt;p&gt;洛伦兹变换是从光速不变原理推出的，不同坐标系坐标之间的转换关系。&lt;/p&gt;</description>
     </item>
     
