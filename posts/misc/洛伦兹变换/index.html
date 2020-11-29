@@ -22,7 +22,28 @@ Made with Book Theme
 https://github.com/alex-shpak/hugo-book
 -->
 
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
   
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+  
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 <body dir=>
@@ -375,13 +396,6 @@ $$</p>
 
 
 
-
-  <div>
-    <a class="flex align-center" href="https://github.com/Zeqiang-Lai/blog/edit/master//content/posts/misc/%e6%b4%9b%e4%bc%a6%e5%85%b9%e5%8f%98%e6%8d%a2.md" target="_blank" rel="noopener">
-      <img src="/blog/svg/edit.svg" class="book-icon" alt="Edit" />
-      <span>Edit this page</span>
-    </a>
-  </div>
 
 </div>
 
