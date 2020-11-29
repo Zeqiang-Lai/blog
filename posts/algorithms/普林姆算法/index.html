@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.79.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="普林姆算法也是用来求最小生成树的，与克鲁斯卡尔算法遍历边不同，普林姆遍历的是点。
+普林姆算法同样基于贪心，以任意点为初始点，每次选取与已选点相连的边中权值最小的边，并把与这条边相连的点加入已选点集合。">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="普林姆算法" />
+<meta property="og:description" content="普林姆算法也是用来求最小生成树的，与克鲁斯卡尔算法遍历边不同，普林姆遍历的是点。
+普林姆算法同样基于贪心，以任意点为初始点，每次选取与已选点相连的边中权值最小的边，并把与这条边相连的点加入已选点集合。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/posts/algorithms/%E6%99%AE%E6%9E%97%E5%A7%86%E7%AE%97%E6%B3%95/" />
+<meta property="article:published_time" content="2018-04-15T14:03:00+00:00" />
+<meta property="article:modified_time" content="2018-04-15T14:03:00+00:00" />
+<title>普林姆算法 | Zeqiang Lai</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.bc0c488a5b75d86a0b26e03b107da2596ba38349d05ef30a4bb03eae0aca1a4d.css" integrity="sha256-vAxIilt12GoLJuA7EH2iWWujg0nQXvMKS7A&#43;rgrKGk0=">
+<script defer src="/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js" integrity="sha256-dKi7B/C&#43;6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>Zeqiang Lai</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/" >
+        Posts
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/Zeqiang-Lai" target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://zeqiang-lai.github.io/" target="_blank" rel="noopener">
+        Profile
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>普林姆算法</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#算法实现">算法实现</a></li>
+        <li><a href="#优化">优化</a></li>
+        <li><a href="#时间复杂度分析">时间复杂度分析</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+<article class="markdown">
+  <h1>
+    <a href="/posts/algorithms/%E6%99%AE%E6%9E%97%E5%A7%86%E7%AE%97%E6%B3%95/">普林姆算法</a>
+  </h1>
+  
+  <h5>April 15, 2018</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+  
+
+  
+
+
+  <p><p>普林姆算法也是用来求最小生成树的，与克鲁斯卡尔算法遍历边不同，普林姆遍历的是点。</p>
+<p>普林姆算法同样基于贪心，以任意点为初始点，每次选取<code>与已选点相连的边</code>中<code>权值最小</code>的边，并把与这条边相连的点加入已选点集合。</p>
+<h2 id="算法实现">
+  算法实现
+  <a class="anchor" href="#%e7%ae%97%e6%b3%95%e5%ae%9e%e7%8e%b0">#</a>
+</h2>
+<ol>
+<li>维护一个数组 minEdge[i]</li>
+</ol>
+<p>含义为<code>已选点集合中到第i个点</code> <code>最小权值的边</code>的终点，没有边则为无穷大。</p>
+<ol start="2">
+<li>每次选minEdge中最小的点加入已选点集合，并更新minEdge数组。</li>
+<li>重复操作，直到所有点加入已选点集合。</li>
+</ol>
+<h2 id="优化">
+  优化
+  <a class="anchor" href="#%e4%bc%98%e5%8c%96">#</a>
+</h2>
+<ol>
+<li>使用优先队列维护minEdge</li>
+</ol>
+<p>每往已选点集合加入点时，就把与该点相连的所有边都加入优先队列。而当取边时，需要判断一下边的终点是否在已选点集合中（可以使用一个标记数组）。</p>
+<h2 id="时间复杂度分析">
+  时间复杂度分析
+  <a class="anchor" href="#%e6%97%b6%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6%e5%88%86%e6%9e%90">#</a>
+</h2>
+<ol>
+<li><strong>非优先队列法</strong></li>
+</ol>
+<ul>
+<li>在minEdge中找最小的时间复杂度为O(n)。</li>
+<li>更新数组时间复杂度总和为O(e) —— 每个点都会更新与它相连的边，所有边加起来为e。</li>
+<li>一共要进行n次在minEdge中找最小的操作。</li>
+</ul>
+<p>故总的时间复杂度为<strong>O(n^2+e)</strong>。</p>
+<ol start="2">
+<li><strong>优先队列法</strong></li>
+</ol>
+<p>优先队列加边出边的时间复杂度都是O(loge)。</p>
+<ul>
+<li>所有边都会进入优先队列至少一次，至多两次。时间复杂度为O(eloge)。</li>
+<li>出边次数最少为n次，最多为e次，时间复杂度也是O(eloge)。</li>
+</ul>
+<p>故总的时间复杂度为<strong>O(eloge)</strong>。</p>
+<p><strong>分析：</strong> 当边数达到cn^2或以上时，用非优先队列法要好，反之可以使用优先队列法。</p>
+<p>当e = n^2 , <code> O(eloge) = O(n^2logn)</code>  , <code>O(n^2+e) = O(n^2)</code> 。</p></p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/alex-shpak/hugo-book/edit/master/exampleSite/content/posts/algorithms/%e6%99%ae%e6%9e%97%e5%a7%86%e7%ae%97%e6%b3%95.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#算法实现">算法实现</a></li>
+        <li><a href="#优化">优化</a></li>
+        <li><a href="#时间复杂度分析">时间复杂度分析</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

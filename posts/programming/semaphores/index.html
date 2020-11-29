@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.79.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Semaphores是一种同步机制（Concurrency Mechanisms），它用来协调各个进程访问公共资源。其基本思想如下所述：
+
+两个或多个进程通过一个信号量进行协调，当一个进程需要某个资源时，它需要申请并等待一个信号，如果信号没有来临则等待。
+">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Semaphores(信号量)" />
+<meta property="og:description" content="Semaphores是一种同步机制（Concurrency Mechanisms），它用来协调各个进程访问公共资源。其基本思想如下所述：
+
+两个或多个进程通过一个信号量进行协调，当一个进程需要某个资源时，它需要申请并等待一个信号，如果信号没有来临则等待。
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/posts/programming/semaphores/" />
+<meta property="article:published_time" content="2018-10-16T13:52:51+00:00" />
+<meta property="article:modified_time" content="2018-10-16T13:52:51+00:00" />
+<title>Semaphores(信号量) | Zeqiang Lai</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.bc0c488a5b75d86a0b26e03b107da2596ba38349d05ef30a4bb03eae0aca1a4d.css" integrity="sha256-vAxIilt12GoLJuA7EH2iWWujg0nQXvMKS7A&#43;rgrKGk0=">
+<script defer src="/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js" integrity="sha256-dKi7B/C&#43;6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>Zeqiang Lai</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/" >
+        Posts
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/Zeqiang-Lai" target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://zeqiang-lai.github.io/" target="_blank" rel="noopener">
+        Profile
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Semaphores(信号量)</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#general-semaphores">General Semaphores</a></li>
+        <li><a href="#binary-semaphore">Binary Semaphore</a></li>
+        <li><a href="#优缺点">优缺点</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+<article class="markdown">
+  <h1>
+    <a href="/posts/programming/semaphores/">Semaphores(信号量)</a>
+  </h1>
+  
+  <h5>October 16, 2018</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>, 
+      <a href="/tags/%E5%90%8C%E6%AD%A5/">同步</a>
+  </div>
+  
+
+
+  <p><p>Semaphores是一种同步机制（Concurrency Mechanisms），它用来协调各个进程访问公共资源。其基本思想如下所述：</p>
+<blockquote>
+<p>两个或多个进程通过一个信号量进行协调，当一个进程需要某个资源时，它需要申请并等待一个信号，如果信号没有来临则等待。</p>
+</blockquote>
+<h2 id="general-semaphores">
+  General Semaphores
+  <a class="anchor" href="#general-semaphores">#</a>
+</h2>
+<p>general semaphore的一种实现。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">semahpore</span> {
+    <span style="color:#66d9ef">int</span> count;
+    queueType queue;
+};
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">semWait</span>(semaphore a)
+{
+    s.count<span style="color:#f92672">--</span>;
+    <span style="color:#66d9ef">if</span> (s.count <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#75715e">/* place this process in s.queue. */</span>
+        <span style="color:#75715e">/* block this process. */</span>
+    }
+}
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">semSignal</span>(semaphore a)
+{
+    s.count<span style="color:#f92672">++</span>;
+    <span style="color:#66d9ef">if</span>(s.count <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#75715e">/* remove a process from s.queue. */</span>
+        <span style="color:#75715e">/* place process p on ready list. */</span>
+    }
+}
+</code></pre></div><ul>
+<li>
+<p>count的含义</p>
+<ul>
+<li>大于0时：指示当前可以加进来的进程数。</li>
+<li>小于等于0时：绝对值指示当前想加入还未加入的进程数。</li>
+</ul>
+</li>
+<li>
+<p>队列里存储的就是等待加入的进程。</p>
+</li>
+</ul>
+<h2 id="binary-semaphore">
+  Binary Semaphore
+  <a class="anchor" href="#binary-semaphore">#</a>
+</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">binary_semaphore</span> {
+    <span style="color:#66d9ef">enum</span> {zero, one} value;
+    queueType queue;
+};
+<span style="color:#75715e">// B: Binary
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">semWaitB</span>(binary_semaphore s)
+{
+    <span style="color:#66d9ef">if</span> (s.value <span style="color:#f92672">==</span> one)
+        s.value <span style="color:#f92672">=</span> zero;
+    <span style="color:#66d9ef">else</span> {
+        <span style="color:#75715e">/* place this process in s.queue. */</span>
+        <span style="color:#75715e">/* block this process. */</span>
+    }
+}
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">semSignalB</span>(semaphore s)
+{
+    <span style="color:#66d9ef">if</span> (s.queue is empty())
+        s.value <span style="color:#f92672">=</span> one;
+    <span style="color:#66d9ef">else</span> {
+        <span style="color:#75715e">/* remove a process P from s.queue. */</span>
+        <span style="color:#75715e">/* place process P on ready list. */</span>
+    }
+}
+</code></pre></div><h2 id="优缺点">
+  优缺点
+  <a class="anchor" href="#%e4%bc%98%e7%bc%ba%e7%82%b9">#</a>
+</h2>
+<ul>
+<li>比较难编程，当需要同时使用多个semaphore的时候，需要仔细安排semaphore调用顺序等，否则容易出现死锁。</li>
+</ul>
+<p>例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">/* program producersonsumer */</span>
+	semaphore n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, s <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">producer</span>()
+    {
+        <span style="color:#66d9ef">while</span> (true) {
+            produce();
+            semWait(s);
+            append();
+            semSignal(s);
+            semSignal(n);
+        }
+    }
+	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">consumer</span>()
+    {
+        <span style="color:#66d9ef">while</span>(true) {
+            semWait(n);
+            semWait(s);
+            take();
+            semSignal(s);
+            consume();
+        }
+	}
+	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>()
+    {
+        parbegin (producer, consumer);
+    }
+</code></pre></div><ul>
+<li>这里 <code>semaphore n</code> 用于防止consumer消耗空buffer，<code>s</code>用于buffer的mutual exclusion。</li>
+<li>如果buffer为空，且consumer的 <code>semWait(n);</code> 与 <code>semWait(s);</code> 互换，则第一个semWait能成功进入，但会在第二semWait被阻塞。</li>
+<li>这时由于，buffer被consumer占用，producer无法生产新的product加入buffer， <code>semWait(s);</code>将被一直阻塞，产生死锁。</li>
+</ul></p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/alex-shpak/hugo-book/edit/master/exampleSite/content/posts/programming/semaphores.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#general-semaphores">General Semaphores</a></li>
+        <li><a href="#binary-semaphore">Binary Semaphore</a></li>
+        <li><a href="#优缺点">优缺点</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

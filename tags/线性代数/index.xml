@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>线性代数 on Zeqiang Lai</title>
+    <link>https://example.com/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/</link>
+    <description>Recent content in 线性代数 on Zeqiang Lai</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 08 Jan 2018 12:45:04 +0000</lastBuildDate><atom:link href="https://example.com/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Principal component analysis</title>
+      <link>https://example.com/posts/machine-learning/Principal-component-analysis/</link>
+      <pubDate>Mon, 08 Jan 2018 12:45:04 +0000</pubDate>
+      
+      <guid>https://example.com/posts/machine-learning/Principal-component-analysis/</guid>
+      <description>&lt;p&gt;PCA (Principal component analysis) 是一种给数据降维的方法。&lt;/p&gt;
+&lt;p&gt;利用PCA，能将一堆高维空间的数据映射到一个低维空间，并最大限度保持它们之间的可区分性。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

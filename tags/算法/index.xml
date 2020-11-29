@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>算法 on Zeqiang Lai</title>
+    <link>https://example.com/tags/%E7%AE%97%E6%B3%95/</link>
+    <description>Recent content in 算法 on Zeqiang Lai</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 30 Sep 2017 15:25:28 +0000</lastBuildDate><atom:link href="https://example.com/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>快速幂算法</title>
+      <link>https://example.com/posts/algorithms/%E5%BF%AB%E9%80%9F%E5%B9%82/</link>
+      <pubDate>Sat, 30 Sep 2017 15:25:28 +0000</pubDate>
+      
+      <guid>https://example.com/posts/algorithms/%E5%BF%AB%E9%80%9F%E5%B9%82/</guid>
+      <description>&lt;p&gt;在c，c++语言中，并没有提供求幂的基本运算，通常我们需要自己写函数或者调用STL提供的函数。&lt;/p&gt;
+&lt;p&gt;一般情况下，我们写的求幂函数基本上都是循环累乘，时间复杂度为O(n)。虽说是线性的时间复杂度，但求幂运算作为基础运算，往往调用频繁，这时候即使是线性的时间复杂度也将变得难也接受。&lt;/p&gt;
+&lt;p&gt;利用快速幂可以快速计算底数的n次幂。其时间复杂度为 O(logn)&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

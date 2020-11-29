@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Introduction on Zeqiang Lai</title>
+    <link>https://example.com/</link>
+    <description>Recent content in Introduction on Zeqiang Lai</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Semaphores(信号量)</title>
+      <link>https://example.com/posts/programming/semaphores/</link>
+      <pubDate>Tue, 16 Oct 2018 13:52:51 +0000</pubDate>
+      
+      <guid>https://example.com/posts/programming/semaphores/</guid>
+      <description>&lt;p&gt;Semaphores是一种同步机制（Concurrency Mechanisms），它用来协调各个进程访问公共资源。其基本思想如下所述：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;两个或多个进程通过一个信号量进行协调，当一个进程需要某个资源时，它需要申请并等待一个信号，如果信号没有来临则等待。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>错误检测-海(汉)明码</title>
+      <link>https://example.com/posts/algorithms/%E6%B5%B7%E6%98%8E%E7%A0%81/</link>
+      <pubDate>Mon, 15 Oct 2018 17:08:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/algorithms/%E6%B5%B7%E6%98%8E%E7%A0%81/</guid>
+      <description>&lt;p&gt;Hamming code，海明码，汉明码都是一个东西。它是一种编码方式，通常用在网络信息传输中，通过这种编码方式编码出来的二进制数据具有检测一位错误位的能力。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>How genralized linear model work?</title>
+      <link>https://example.com/posts/machine-learning/Generalized-Linear-Model/</link>
+      <pubDate>Sat, 12 May 2018 08:24:04 +0000</pubDate>
+      
+      <guid>https://example.com/posts/machine-learning/Generalized-Linear-Model/</guid>
+      <description>&lt;p&gt;本文将简单的讲述：GLM是如何工作的？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>克鲁斯卡尔算法</title>
+      <link>https://example.com/posts/algorithms/%E5%85%8B%E9%B2%81%E6%96%AF%E5%8D%A1%E5%B0%94%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Sun, 15 Apr 2018 14:03:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/algorithms/%E5%85%8B%E9%B2%81%E6%96%AF%E5%8D%A1%E5%B0%94%E7%AE%97%E6%B3%95/</guid>
+      <description>&lt;p&gt;首先，克鲁斯卡尔算法是用来求最小生成树的。另一种求最小生成树的算法叫普林姆算法（Prim）。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>普林姆算法</title>
+      <link>https://example.com/posts/algorithms/%E6%99%AE%E6%9E%97%E5%A7%86%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Sun, 15 Apr 2018 14:03:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/algorithms/%E6%99%AE%E6%9E%97%E5%A7%86%E7%AE%97%E6%B3%95/</guid>
+      <description>&lt;p&gt;普林姆算法也是用来求最小生成树的，与克鲁斯卡尔算法遍历边不同，普林姆遍历的是点。&lt;/p&gt;
+&lt;p&gt;普林姆算法同样基于贪心，以任意点为初始点，每次选取&lt;code&gt;与已选点相连的边&lt;/code&gt;中&lt;code&gt;权值最小&lt;/code&gt;的边，并把与这条边相连的点加入已选点集合。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>并查集</title>
+      <link>https://example.com/posts/algorithms/%E5%B9%B6%E6%9F%A5%E9%9B%86/</link>
+      <pubDate>Sun, 15 Apr 2018 12:03:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/algorithms/%E5%B9%B6%E6%9F%A5%E9%9B%86/</guid>
+      <description>&lt;p&gt;使用并查集可以快速判断两个元素是否属于同一个集合。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Principal component analysis</title>
+      <link>https://example.com/posts/machine-learning/Principal-component-analysis/</link>
+      <pubDate>Mon, 08 Jan 2018 12:45:04 +0000</pubDate>
+      
+      <guid>https://example.com/posts/machine-learning/Principal-component-analysis/</guid>
+      <description>&lt;p&gt;PCA (Principal component analysis) 是一种给数据降维的方法。&lt;/p&gt;
+&lt;p&gt;利用PCA，能将一堆高维空间的数据映射到一个低维空间，并最大限度保持它们之间的可区分性。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>洛伦兹变换</title>
+      <link>https://example.com/posts/misc/%E6%B4%9B%E4%BC%A6%E5%85%B9%E5%8F%98%E6%8D%A2/</link>
+      <pubDate>Sun, 17 Dec 2017 21:33:22 +0000</pubDate>
+      
+      <guid>https://example.com/posts/misc/%E6%B4%9B%E4%BC%A6%E5%85%B9%E5%8F%98%E6%8D%A2/</guid>
+      <description>&lt;p&gt;洛伦兹变换是从光速不变原理推出的，不同坐标系坐标之间的转换关系。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Fibonacci数的迭代算法</title>
+      <link>https://example.com/posts/algorithms/Fibonacci%E6%95%B0%E7%9A%84%E8%BF%AD%E4%BB%A3%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Sat, 30 Sep 2017 16:01:39 +0000</pubDate>
+      
+      <guid>https://example.com/posts/algorithms/Fibonacci%E6%95%B0%E7%9A%84%E8%BF%AD%E4%BB%A3%E7%AE%97%E6%B3%95/</guid>
+      <description>&lt;p&gt;使用迭代算法求斐波那契数列，&lt;/p&gt;
+&lt;p&gt;时间复杂度O(n)，空间复杂度O(1)。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>快速幂算法</title>
+      <link>https://example.com/posts/algorithms/%E5%BF%AB%E9%80%9F%E5%B9%82/</link>
+      <pubDate>Sat, 30 Sep 2017 15:25:28 +0000</pubDate>
+      
+      <guid>https://example.com/posts/algorithms/%E5%BF%AB%E9%80%9F%E5%B9%82/</guid>
+      <description>&lt;p&gt;在c，c++语言中，并没有提供求幂的基本运算，通常我们需要自己写函数或者调用STL提供的函数。&lt;/p&gt;
+&lt;p&gt;一般情况下，我们写的求幂函数基本上都是循环累乘，时间复杂度为O(n)。虽说是线性的时间复杂度，但求幂运算作为基础运算，往往调用频繁，这时候即使是线性的时间复杂度也将变得难也接受。&lt;/p&gt;
+&lt;p&gt;利用快速幂可以快速计算底数的n次幂。其时间复杂度为 O(logn)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>位运算的妙用</title>
+      <link>https://example.com/posts/algorithms/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E5%A6%99%E7%94%A8/</link>
+      <pubDate>Wed, 27 Sep 2017 13:52:51 +0000</pubDate>
+      
+      <guid>https://example.com/posts/algorithms/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E5%A6%99%E7%94%A8/</guid>
+      <description>&lt;p&gt;对于一些特定问题，巧妙运用位运算能使解法异常&lt;strong&gt;简洁&lt;/strong&gt;和&lt;strong&gt;高效&lt;/strong&gt;，同时，适当运用位运算也能对程序进行&lt;strong&gt;优化&lt;/strong&gt;。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>筛法求素数</title>
+      <link>https://example.com/posts/algorithms/%E7%AD%9B%E6%B3%95%E6%B1%82%E7%B4%A0%E6%95%B0/</link>
+      <pubDate>Fri, 15 Sep 2017 21:33:22 +0000</pubDate>
+      
+      <guid>https://example.com/posts/algorithms/%E7%AD%9B%E6%B3%95%E6%B1%82%E7%B4%A0%E6%95%B0/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;假设要求n以内的素数&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;筛法求素数是用一个大小为n的数组，作为标记数组，如果没被标记到则为素数。&lt;/p&gt;
+&lt;p&gt;开始均为未标记。&lt;/p&gt;
+&lt;p&gt;从2开始，2没被标记，将2存入一个存素数的地方，然后筛掉小于n的，2的所有倍数。然后是3，筛掉3的所有倍数，依此类推，直到n-1。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>贪心生成最优编码的思路分析</title>
+      <link>https://example.com/posts/algorithms/%E8%B4%AA%E5%BF%83%E7%94%9F%E6%88%90%E6%9C%80%E4%BC%98%E7%BC%96%E7%A0%81%E7%9A%84%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/algorithms/%E8%B4%AA%E5%BF%83%E7%94%9F%E6%88%90%E6%9C%80%E4%BC%98%E7%BC%96%E7%A0%81%E7%9A%84%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/</guid>
+      <description>&lt;h2 id=&#34;贪心生成最优编码的思路分析&#34;&gt;
+  贪心生成最优编码的思路分析
+  &lt;a class=&#34;anchor&#34; href=&#34;#%e8%b4%aa%e5%bf%83%e7%94%9f%e6%88%90%e6%9c%80%e4%bc%98%e7%bc%96%e7%a0%81%e7%9a%84%e6%80%9d%e8%b7%af%e5%88%86%e6%9e%90&#34;&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;目标&lt;/strong&gt;：求字符编码&lt;/p&gt;
+&lt;p&gt;首先得先想到用二叉树表示编码，节点即为字符，边为编码。&lt;/p&gt;
+&lt;p&gt;然后优化目标（目标函数）即为： &lt;code&gt;f(x) = w(x)*l(x)&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;w(x) 为 字符x的频率&lt;/li&gt;
+&lt;li&gt;l(x) 为 字符编码的长度&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

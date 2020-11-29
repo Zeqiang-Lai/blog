@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>同步 on Zeqiang Lai</title>
+    <link>https://example.com/tags/%E5%90%8C%E6%AD%A5/</link>
+    <description>Recent content in 同步 on Zeqiang Lai</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 16 Oct 2018 13:52:51 +0000</lastBuildDate><atom:link href="https://example.com/tags/%E5%90%8C%E6%AD%A5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Semaphores(信号量)</title>
+      <link>https://example.com/posts/programming/semaphores/</link>
+      <pubDate>Tue, 16 Oct 2018 13:52:51 +0000</pubDate>
+      
+      <guid>https://example.com/posts/programming/semaphores/</guid>
+      <description>&lt;p&gt;Semaphores是一种同步机制（Concurrency Mechanisms），它用来协调各个进程访问公共资源。其基本思想如下所述：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;两个或多个进程通过一个信号量进行协调，当一个进程需要某个资源时，它需要申请并等待一个信号，如果信号没有来临则等待。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
