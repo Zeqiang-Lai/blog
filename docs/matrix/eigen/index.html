@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.79.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Created: Decemenber, 1, 2020 首先明确一点，特征值和特征向量是针对方阵来说的，我们说某个矩阵A有什么特征值和特征向量时，我们实际上暗示了矩阵A是一个方阵。
+定义 #  任何满足下列条件的标量和向量分别成为矩阵A的特征值和特征向量。1
+$$ Ax = \lambda x $$
+Intuition #  将一个矩阵A与一个向量x相乘，我们实际上在对向量x做一个 线性变换，特征向量实际上就是经过这个变换与原向量仍然平行的那些向量，特征值就是前后两个向量长度的一个比值。
+ 显然，零向量满足条件，那它是任何矩阵的特征向量吗？
+不是，我们显示将特征向量定义为非零向量。
+ 求解 #  根据定义，有
+$$ (A-\lambda I)x = 0 $$
+这个等式要有非零解，$(A-\lambda I)$必须是singular（不可逆）的，特征值要等于0：
+$$ Det(A-\lambda I) = 0 $$
+于是：
+ 求行列式，解方程即可求出特征值。 对于特征向量，我们回带特征值，解$(A-\lambda I)=0$这个方程。  显然，特征向量有无穷多个，我们只需要给出一个就行了。    性质 #   $\sum \lambda = trace(A)$ : 矩阵A的所有特征值之和等于矩阵A的 trace（对角线元素之和）。 $\prod \lambda = det(A)$ : 矩阵A的所有特征值的乘积等于矩阵A的行列式。 三角矩阵的特征值就是对角线上的元素。    由特征向量的定义，显然A必须要个方阵，若不是，A与x相乘，x维数就变了。 &#x21a9;&#xfe0e;">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="特征值&amp;&amp;特征向量" />
+<meta property="og:description" content="Created: Decemenber, 1, 2020 首先明确一点，特征值和特征向量是针对方阵来说的，我们说某个矩阵A有什么特征值和特征向量时，我们实际上暗示了矩阵A是一个方阵。
+定义 #  任何满足下列条件的标量和向量分别成为矩阵A的特征值和特征向量。1
+$$ Ax = \lambda x $$
+Intuition #  将一个矩阵A与一个向量x相乘，我们实际上在对向量x做一个 线性变换，特征向量实际上就是经过这个变换与原向量仍然平行的那些向量，特征值就是前后两个向量长度的一个比值。
+ 显然，零向量满足条件，那它是任何矩阵的特征向量吗？
+不是，我们显示将特征向量定义为非零向量。
+ 求解 #  根据定义，有
+$$ (A-\lambda I)x = 0 $$
+这个等式要有非零解，$(A-\lambda I)$必须是singular（不可逆）的，特征值要等于0：
+$$ Det(A-\lambda I) = 0 $$
+于是：
+ 求行列式，解方程即可求出特征值。 对于特征向量，我们回带特征值，解$(A-\lambda I)=0$这个方程。  显然，特征向量有无穷多个，我们只需要给出一个就行了。    性质 #   $\sum \lambda = trace(A)$ : 矩阵A的所有特征值之和等于矩阵A的 trace（对角线元素之和）。 $\prod \lambda = det(A)$ : 矩阵A的所有特征值的乘积等于矩阵A的行列式。 三角矩阵的特征值就是对角线上的元素。    由特征向量的定义，显然A必须要个方阵，若不是，A与x相乘，x维数就变了。 &#x21a9;&#xfe0e;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zeqiang-lai.github.io/blog/docs/matrix/eigen/" />
+
+<title>特征值&amp;&amp;特征向量 | Ze&#39;s Blog</title>
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="icon" href="/blog/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/blog/book.min.33a4720181e3b00e582df6418e6f00e8f60639c211af0edbd38cdd6ba1ef4152.css" integrity="sha256-M6RyAYHjsA5YLfZBjm8A6PYGOcIRrw7b04zda6HvQVI=">
+<script defer src="/blog/sw.min.be1e3b3f88e332c359acd5e967344f6f6c1d04e690ab8dda0c12abe7c950a1d2.js" integrity="sha256-vh47P4jjMsNZrNXpZzRPb2wdBOaQq43aDBKr58lQodI="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      },
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/blog"><span>Ze&#39;s Blog</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+  <a href="/blog/docs/matrix/">Matrix</a></li>
+<li>
+  <a href="/blog/docs/notes/">Notes</a></li>
+<li>
+  <a href="/blog/posts/">Posts</a>
+<br /></li>
+</ul>
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="https://zeqiang-lai.github.io/Algorithms/" target="_blank" rel="noopener">
+        Algorithms
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/Zeqiang-Lai" target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://zeqiang-lai.github.io/" target="_blank" rel="noopener">
+        Profile
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/blog/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>特征值&amp;&amp;特征向量</strong>
+
+  <label for="toc-control">
+    
+    <img src="/blog/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#定义">定义</a></li>
+        <li><a href="#intuition">Intuition</a></li>
+        <li><a href="#求解">求解</a></li>
+        <li><a href="#性质">性质</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+<article class="markdown">
+  <h1>
+    <a href="/blog/docs/matrix/eigen/">特征值&amp;&amp;特征向量</a>
+  </h1>
+  
+
+
+  
+
+  
+
+
+  <p><h5>Created: Decemenber, 1, 2020</h5>
+<p>首先明确一点，特征值和特征向量是<strong>针对方阵</strong>来说的，我们说某个矩阵A有什么特征值和特征向量时，我们实际上暗示了矩阵A是一个方阵。</p>
+<h2 id="定义">
+  定义
+  <a class="anchor" href="#%e5%ae%9a%e4%b9%89">#</a>
+</h2>
+<p>任何满足下列条件的标量和向量分别成为矩阵A的特征值和特征向量。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>$$
+Ax = \lambda x
+$$</p>
+<h2 id="intuition">
+  Intuition
+  <a class="anchor" href="#intuition">#</a>
+</h2>
+<p>将一个矩阵A与一个向量x相乘，我们实际上在对向量x做一个
+  <a href="/blog/">线性变换</a>，特征向量实际上就是经过这个变换与原向量仍然平行的那些向量，特征值就是前后两个向量长度的一个比值。</p>
+<blockquote>
+<p>显然，零向量满足条件，那它是任何矩阵的特征向量吗？</p>
+<p><strong>不是</strong>，我们显示将特征向量定义为非零向量。</p>
+</blockquote>
+<h2 id="求解">
+  求解
+  <a class="anchor" href="#%e6%b1%82%e8%a7%a3">#</a>
+</h2>
+<p>根据定义，有</p>
+<p>$$
+(A-\lambda I)x = 0
+$$</p>
+<p>这个等式要有非零解，$(A-\lambda I)$必须是singular（不可逆）的，特征值要等于0：</p>
+<p>$$
+Det(A-\lambda I) = 0
+$$</p>
+<p>于是：</p>
+<ul>
+<li>求行列式，解方程即可求出<strong>特征值</strong>。</li>
+<li>对于特征向量，我们回带特征值，解$(A-\lambda I)=0$这个方程。
+<ul>
+<li>显然，特征向量有无穷多个，我们只需要给出一个就行了。</li>
+</ul>
+</li>
+</ul>
+<h2 id="性质">
+  性质
+  <a class="anchor" href="#%e6%80%a7%e8%b4%a8">#</a>
+</h2>
+<ul>
+<li>$\sum \lambda = trace(A)$ : 矩阵A的所有特征值之和等于矩阵A的
+  <a href="https://en.wikipedia.org/wiki/Trace_%28linear_algebra%29">trace</a>（对角线元素之和）。</li>
+<li>$\prod \lambda = det(A)$ : 矩阵A的所有特征值的乘积等于矩阵A的行列式。</li>
+<li>三角矩阵的特征值就是对角线上的元素。</li>
+</ul>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>由特征向量的定义，显然A必须要个方阵，若不是，A与x相乘，x维数就变了。 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#定义">定义</a></li>
+        <li><a href="#intuition">Intuition</a></li>
+        <li><a href="#求解">求解</a></li>
+        <li><a href="#性质">性质</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.79.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Hugo-Book Shortcodes Usages">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Hugo-Book Shortcodes Usages" />
+<meta property="og:description" content="Hugo-Book Shortcodes Usages" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zeqiang-lai.github.io/blog/posts/misc/hugo-book/" />
+<meta property="article:published_time" content="2020-12-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-12-01T00:00:00+00:00" />
+<title>Hugo-Book Shortcodes Usages | Ze&#39;s Blog</title>
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="icon" href="/blog/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/blog/book.min.33a4720181e3b00e582df6418e6f00e8f60639c211af0edbd38cdd6ba1ef4152.css" integrity="sha256-M6RyAYHjsA5YLfZBjm8A6PYGOcIRrw7b04zda6HvQVI=">
+<script defer src="/blog/sw.min.be1e3b3f88e332c359acd5e967344f6f6c1d04e690ab8dda0c12abe7c950a1d2.js" integrity="sha256-vh47P4jjMsNZrNXpZzRPb2wdBOaQq43aDBKr58lQodI="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      },
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/blog"><span>Ze&#39;s Blog</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+  <a href="/blog/docs/matrix/">Matrix</a></li>
+<li>
+  <a href="/blog/docs/notes/">Notes</a></li>
+<li>
+  <a href="/blog/posts/">Posts</a>
+<br /></li>
+</ul>
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="https://zeqiang-lai.github.io/Algorithms/" target="_blank" rel="noopener">
+        Algorithms
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/Zeqiang-Lai" target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://zeqiang-lai.github.io/" target="_blank" rel="noopener">
+        Profile
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/blog/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Hugo-Book Shortcodes Usages</strong>
+
+  <label for="toc-control">
+    
+    <img src="/blog/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#buttons">Buttons</a></li>
+        <li><a href="#columns">Columns</a>
+          <ul>
+            <li><a href="#example">Example</a></li>
+          </ul>
+        </li>
+        <li><a href="#details">Details</a>
+          <ul>
+            <li><a href="#example-1">Example</a></li>
+          </ul>
+        </li>
+        <li><a href="#expand">Expand</a>
+          <ul>
+            <li><a href="#example-2">Example</a></li>
+          </ul>
+        </li>
+        <li><a href="#hints">Hints</a>
+          <ul>
+            <li><a href="#example-3">Example</a></li>
+          </ul>
+        </li>
+        <li><a href="#mermaid-chart">Mermaid Chart</a>
+          <ul>
+            <li><a href="#example-4">Example</a></li>
+          </ul>
+        </li>
+        <li><a href="#tabs">Tabs</a>
+          <ul>
+            <li><a href="#example-5">Example</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+<article class="markdown">
+  <h1>
+    <a href="/blog/posts/misc/hugo-book/">Hugo-Book Shortcodes Usages</a>
+  </h1>
+  
+  <h5>December 1, 2020</h5>
+
+
+
+  
+
+  
+  <div>
+    
+      <a href="/blog/tags/Hugo/">Hugo</a>
+  </div>
+  
+
+
+  <p><p>Hugo-Book Shortcodes Usages</p>
+<blockquote class="book-hint warning">
+  <ul>
+<li>如果公式里出现矩阵，需要用div将$$包括起来，否则无法正常显。见<a href="https://github.com/gohugoio/hugo/issues/2893">Link</a></li>
+<li>如果公式需要换行，需要用六个斜杠\\\，见<a href="https://github.com/wowchemy/wowchemy-hugo-modules/issues/291">Link</a></li>
+</ul>
+
+</blockquote>
+
+<h2 id="buttons">
+  Buttons
+  <a class="anchor" href="#buttons">#</a>
+</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tpl" data-lang="tpl"><span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">button</span> <span style="color:#a6e22e">relref</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/&#34;</span> <span style="color:#f92672">[</span><span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;...&#34;</span><span style="color:#f92672">]</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span>Get Home<span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">button</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span>
+<span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">button</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://github.com/alex-shpak/hugo-book&#34;</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span>Contribute<span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">button</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span>
+</code></pre></div><p>
+
+
+
+  
+
+<a  href="/blog/"   class="book-btn">
+  Get Home
+</a>
+
+
+
+
+  
+  
+
+
+<a  href="https://github.com/alex-shpak/hugo-book"   target="_blank"  class="book-btn">
+  Contribute
+</a>
+</p>
+<h2 id="columns">
+  Columns
+  <a class="anchor" href="#columns">#</a>
+</h2>
+<p>Columns help organize shorter pieces of content horizontally for readability.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{{&lt; <span style="color:#f92672">columns</span> &gt;}} <span style="color:#75715e">&lt;!-- begin columns block --&gt;</span>
+# Left Content
+Lorem markdownum insigne...
+
+&lt;<span style="color:#f92672">---</span>&gt; <span style="color:#75715e">&lt;!-- magic separator, between columns --&gt;</span>
+
+# Mid Content
+Lorem markdownum insigne...
+
+&lt;<span style="color:#f92672">---</span>&gt; <span style="color:#75715e">&lt;!-- magic separator, between columns --&gt;</span>
+
+# Right Content
+Lorem markdownum insigne...
+{{&lt; /<span style="color:#f92672">columns</span> &gt;}}
+</code></pre></div><h3 id="example">
+  Example
+  <a class="anchor" href="#example">#</a>
+</h3>
+<div class="book-columns flex flex-wrap">
+  
+  <div class="flex-even markdown-inner">
+    <h3 id="left-content">Left Content</h3>
+<p>Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat
+stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa
+protulit, sed sed aere valvis inhaesuro Pallas animam: qui <em>quid</em>, ignes.
+Miseratus fonte Ditis conubia.
+  </div>
+  
+  <div class="flex-even markdown-inner">
+    <h3 id="mid-content">Mid Content</h3>
+<p>Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat
+stringit, frustra Saturnius uteroque inter!
+  </div>
+  
+  <div class="flex-even markdown-inner">
+    <h3 id="right-content">Right Content</h3>
+<p>Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat
+stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa
+protulit, sed sed aere valvis inhaesuro Pallas animam: qui <em>quid</em>, ignes.
+Miseratus fonte Ditis conubia.
+  </div>
+  
+</div>
+
+<h2 id="details">
+  Details
+  <a class="anchor" href="#details">#</a>
+</h2>
+<p>Details shortcode is a helper for <code>details</code> html5 element. It is going to replace <code>expand</code> shortcode.</p>
+<h3 id="example-1">
+  Example
+  <a class="anchor" href="#example-1">#</a>
+</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tpl" data-lang="tpl"><span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">details</span> <span style="color:#e6db74">&#34;Title&#34;</span> <span style="color:#f92672">[</span><span style="color:#a6e22e">open</span><span style="color:#f92672">]</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span>
+## Markdown content
+Lorem markdownum insigne...
+<span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">details</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tpl" data-lang="tpl"><span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">details</span> <span style="color:#a6e22e">title</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Title&#34;</span> <span style="color:#a6e22e">open</span><span style="color:#f92672">=</span><span style="color:#66d9ef">true</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span>
+## Markdown content
+Lorem markdownum insigne...
+<span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">details</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span>
+</code></pre></div><details open>
+  <summary>Title</summary>
+  <div class="markdown-inner">
+    <h3 id="markdown-content">Markdown content</h3>
+<p>Lorem markdownum insigne&hellip;
+  </div>
+</details>
+
+<h2 id="expand">
+  Expand
+  <a class="anchor" href="#expand">#</a>
+</h2>
+<p>Expand shortcode can help to decrease clutter on screen by hiding part of text. Expand content by clicking on it.</p>
+<h3 id="example-2">
+  Example
+  <a class="anchor" href="#example-2">#</a>
+</h3>
+<h4 id="default">
+  Default
+  <a class="anchor" href="#default">#</a>
+</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tpl" data-lang="tpl"><span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">expand</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span>
+## Markdown content
+Lorem markdownum insigne...
+<span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">expand</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span>
+</code></pre></div>
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>Expand</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      <h3 id="markdown-content">Markdown content</h3>
+<p>Lorem markdownum insigne&hellip;
+    </div>
+  </label>
+</div>
+
+<h4 id="with-custom-label">
+  With Custom Label
+  <a class="anchor" href="#with-custom-label">#</a>
+</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tpl" data-lang="tpl"><span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">expand</span> <span style="color:#e6db74">&#34;Custom Label&#34;</span> <span style="color:#e6db74">&#34;...&#34;</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span>
+## Markdown content
+Lorem markdownum insigne...
+<span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">expand</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span>
+</code></pre></div>
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>Custom Label</span>
+      <span>...</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      <h3 id="markdown-content">Markdown content</h3>
+<p>Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat
+stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa
+protulit, sed sed aere valvis inhaesuro Pallas animam: qui <em>quid</em>, ignes.
+Miseratus fonte Ditis conubia.
+    </div>
+  </label>
+</div>
+
+<h2 id="hints">
+  Hints
+  <a class="anchor" href="#hints">#</a>
+</h2>
+<p>Hint shortcode can be used as hint/alerts/notification block.<br>
+There are 3 colors to choose: <code>info</code>, <code>warning</code> and <code>danger</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tpl" data-lang="tpl"><span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">hint</span> <span style="color:#f92672">[</span><span style="color:#a6e22e">info</span><span style="color:#f92672">|</span><span style="color:#a6e22e">warning</span><span style="color:#f92672">|</span><span style="color:#a6e22e">danger</span><span style="color:#f92672">]</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span>
+**Markdown content**  
+Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat
+stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa
+<span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">hint</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span>
+</code></pre></div><h3 id="example-3">
+  Example
+  <a class="anchor" href="#example-3">#</a>
+</h3>
+<blockquote class="book-hint info">
+  <strong>Markdown content</strong><br>
+Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat
+stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa
+</blockquote>
+
+<blockquote class="book-hint warning">
+  <strong>Markdown content</strong><br>
+Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat
+stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa
+</blockquote>
+
+<blockquote class="book-hint danger">
+  <strong>Markdown content</strong><br>
+Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat
+stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa
+</blockquote>
+
+<h2 id="mermaid-chart">
+  Mermaid Chart
+  <a class="anchor" href="#mermaid-chart">#</a>
+</h2>
+<p>
+  <a href="https://mermaidjs.github.io/">Mermaid</a> is library for generating svg charts and diagrams from text.</p>
+<h3 id="example-4">
+  Example
+  <a class="anchor" href="#example-4">#</a>
+</h3>
+<div class="book-columns flex flex-wrap">
+  
+  <div class="flex-even markdown-inner">
+    <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tpl" data-lang="tpl"><span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">mermaid</span> <span style="color:#f92672">[</span><span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-center&#34;</span><span style="color:#f92672">]&gt;</span><span style="color:#75715e">}}</span>
+sequenceDiagram
+    Alice-&gt;&gt;Bob: Hello Bob, how are you?
+    alt is sick
+        Bob-&gt;&gt;Alice: Not so good :(
+    else is well
+        Bob-&gt;&gt;Alice: Feeling fresh like a daisy
+    end
+    opt Extra response
+        Bob-&gt;&gt;Alice: Thanks for asking
+    end
+<span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">mermaid</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span>
+</code></pre></div>
+  </div>
+  
+  <div class="flex-even markdown-inner">
+    <script src="/blog/mermaid.min.js"></script>
+  <script>mermaid.initialize({
+  "flowchart": {
+    "useMaxWidth":true
+  },
+  "theme": "default"
+}
+)</script>
+<p class="mermaid">
+sequenceDiagram
+    Alice->>Bob: Hello Bob, how are you?
+    alt is sick
+        Bob->>Alice: Not so good :(
+    else is well
+        Bob->>Alice: Feeling fresh like a daisy
+    end
+    opt Extra response
+        Bob->>Alice: Thanks for asking
+    end
+  </div>
+  
+</div>
+
+<h2 id="tabs">
+  Tabs
+  <a class="anchor" href="#tabs">#</a>
+</h2>
+<p>Tabs let you organize content by context, for example installation instructions for each supported platform.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tpl" data-lang="tpl"><span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">tabs</span> <span style="color:#e6db74">&#34;uniqueid&#34;</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span>
+<span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">tab</span> <span style="color:#e6db74">&#34;MacOS&#34;</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span> # MacOS Content <span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">tab</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span>
+<span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">tab</span> <span style="color:#e6db74">&#34;Linux&#34;</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span> # Linux Content <span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">tab</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span>
+<span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">tab</span> <span style="color:#e6db74">&#34;Windows&#34;</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span> # Windows Content <span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">tab</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span>
+<span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">tabs</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span>
+</code></pre></div><h3 id="example-5">
+  Example
+  <a class="anchor" href="#example-5">#</a>
+</h3>
+
+
+
+
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-0" checked="checked" />
+  <label for="tabs-uniqueid-0">MacOS</label>
+  <div class="book-tabs-content markdown-inner"><h2 id="macos">MacOS</h2>
+<p>This is tab <strong>MacOS</strong> content.</p>
+<p>Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat
+stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa
+protulit, sed sed aere valvis inhaesuro Pallas animam: qui <em>quid</em>, ignes.
+Miseratus fonte Ditis conubia.</p>
+</div><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-1"  />
+  <label for="tabs-uniqueid-1">Linux</label>
+  <div class="book-tabs-content markdown-inner"><h2 id="linux">Linux</h2>
+<p>This is tab <strong>Linux</strong> content.</p>
+<p>Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat
+stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa
+protulit, sed sed aere valvis inhaesuro Pallas animam: qui <em>quid</em>, ignes.
+Miseratus fonte Ditis conubia.</p>
+</div><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-2"  />
+  <label for="tabs-uniqueid-2">Windows</label>
+  <div class="book-tabs-content markdown-inner"><h2 id="windows">Windows</h2>
+<p>This is tab <strong>Windows</strong> content.</p>
+<p>Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat
+stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa
+protulit, sed sed aere valvis inhaesuro Pallas animam: qui <em>quid</em>, ignes.
+Miseratus fonte Ditis conubia.</p>
+</div></div></p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#buttons">Buttons</a></li>
+        <li><a href="#columns">Columns</a>
+          <ul>
+            <li><a href="#example">Example</a></li>
+          </ul>
+        </li>
+        <li><a href="#details">Details</a>
+          <ul>
+            <li><a href="#example-1">Example</a></li>
+          </ul>
+        </li>
+        <li><a href="#expand">Expand</a>
+          <ul>
+            <li><a href="#example-2">Example</a></li>
+          </ul>
+        </li>
+        <li><a href="#hints">Hints</a>
+          <ul>
+            <li><a href="#example-3">Example</a></li>
+          </ul>
+        </li>
+        <li><a href="#mermaid-chart">Mermaid Chart</a>
+          <ul>
+            <li><a href="#example-4">Example</a></li>
+          </ul>
+        </li>
+        <li><a href="#tabs">Tabs</a>
+          <ul>
+            <li><a href="#example-5">Example</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

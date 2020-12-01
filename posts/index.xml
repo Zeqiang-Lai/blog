@@ -6,6 +6,15 @@
     <description>Recent content in Posts on Ze&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator><atom:link href="https://zeqiang-lai.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Hugo-Book Shortcodes Usages</title>
+      <link>https://zeqiang-lai.github.io/blog/posts/misc/hugo-book/</link>
+      <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/posts/misc/hugo-book/</guid>
+      <description>&lt;p&gt;Hugo-Book Shortcodes Usages&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Semaphores(信号量)</title>
       <link>https://zeqiang-lai.github.io/blog/posts/programming/semaphores/</link>
       <pubDate>Tue, 16 Oct 2018 13:52:51 +0000</pubDate>

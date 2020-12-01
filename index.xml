@@ -6,6 +6,15 @@
     <description>Recent content in Introduction on Ze&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator><atom:link href="https://zeqiang-lai.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Hugo-Book Shortcodes Usages</title>
+      <link>https://zeqiang-lai.github.io/blog/posts/misc/hugo-book/</link>
+      <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/posts/misc/hugo-book/</guid>
+      <description>&lt;p&gt;Hugo-Book Shortcodes Usages&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Semaphores(信号量)</title>
       <link>https://zeqiang-lai.github.io/blog/posts/programming/semaphores/</link>
       <pubDate>Tue, 16 Oct 2018 13:52:51 +0000</pubDate>
@@ -124,6 +133,36 @@
 &lt;p&gt;筛法求素数是用一个大小为n的数组，作为标记数组，如果没被标记到则为素数。&lt;/p&gt;
 &lt;p&gt;开始均为未标记。&lt;/p&gt;
 &lt;p&gt;从2开始，2没被标记，将2存入一个存素数的地方，然后筛掉小于n的，2的所有倍数。然后是3，筛掉3的所有倍数，依此类推，直到n-1。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>特征值&amp;&amp;特征向量</title>
+      <link>https://zeqiang-lai.github.io/blog/docs/matrix/eigen/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/docs/matrix/eigen/</guid>
+      <description>Created: Decemenber, 1, 2020 首先明确一点，特征值和特征向量是针对方阵来说的，我们说某个矩阵A有什么特征值和特征向量时，我们实际上暗示了矩阵A是一个方阵。
+定义 #  任何满足下列条件的标量和向量分别成为矩阵A的特征值和特征向量。1
+$$ Ax = \lambda x $$
+Intuition #  将一个矩阵A与一个向量x相乘，我们实际上在对向量x做一个 线性变换，特征向量实际上就是经过这个变换与原向量仍然平行的那些向量，特征值就是前后两个向量长度的一个比值。
+ 显然，零向量满足条件，那它是任何矩阵的特征向量吗？
+不是，我们显示将特征向量定义为非零向量。
+ 求解 #  根据定义，有
+$$ (A-\lambda I)x = 0 $$
+这个等式要有非零解，$(A-\lambda I)$必须是singular（不可逆）的，特征值要等于0：
+$$ Det(A-\lambda I) = 0 $$
+于是：
+ 求行列式，解方程即可求出特征值。 对于特征向量，我们回带特征值，解$(A-\lambda I)=0$这个方程。  显然，特征向量有无穷多个，我们只需要给出一个就行了。    性质 #   $\sum \lambda = trace(A)$ : 矩阵A的所有特征值之和等于矩阵A的 trace（对角线元素之和）。 $\prod \lambda = det(A)$ : 矩阵A的所有特征值的乘积等于矩阵A的行列式。 三角矩阵的特征值就是对角线上的元素。    由特征向量的定义，显然A必须要个方阵，若不是，A与x相乘，x维数就变了。 &amp;#x21a9;&amp;#xfe0e;</description>
+    </item>
+    
+    <item>
+      <title>矩阵对角化</title>
+      <link>https://zeqiang-lai.github.io/blog/docs/matrix/diagonalization/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/docs/matrix/diagonalization/</guid>
+      <description>Created: Decemenber, 1, 2020  To be continue.  Keypoint: 一些矩阵可以对角化 $S^{-1}AS = \Lambda$。其中S为特征向量(列向量)构成的矩阵，$\Lambda$为特征值构成的对角矩阵。
+ 什么样的矩阵可以？ S要可逆 &amp;lt;-&amp;gt; A拥有n个线性无关的特征向量。   推导 #   $$ \begin{equation} \begin{aligned} AS &amp;= A[x_1, x_2, ..., x_n] = [Ax_1, Ax_2, ..., Ax_n] = [\lambda_1 x_1, \lambda_1 x_2, ..., \lambda_1 x_n] \\\\\\ &amp;= [x_1, x_2, ..., x_n] \begin{bmatrix} \lambda_1 &amp; 0 &amp; \cdots &amp; 0\\ 0 &amp; \lambda_2 &amp; \cdots &amp; 0\\ \vdots &amp; \vdots &amp; \ddots &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; \lambda_n\\ \end{bmatrix} = S\Lambda \end{aligned} \end{equation} $$  左右两边同时乘S的逆，即可得到：</description>
     </item>
     
     <item>

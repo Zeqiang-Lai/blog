@@ -3,8 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zeqiang-lai.github.io/blog/docs/matrix/</loc>
+  </url>
+  
+  <url>
     <loc>https://zeqiang-lai.github.io/blog/docs/notes/</loc>
     <lastmod>2020-11-30T09:37:37+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zeqiang-lai.github.io/blog/tags/Hugo/</loc>
+    <lastmod>2020-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zeqiang-lai.github.io/blog/posts/misc/hugo-book/</loc>
+    <lastmod>2020-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zeqiang-lai.github.io/blog/tags/</loc>
+    <lastmod>2020-12-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -15,11 +34,6 @@
   <url>
     <loc>https://zeqiang-lai.github.io/blog/posts/programming/semaphores/</loc>
     <lastmod>2020-11-29T23:04:58+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zeqiang-lai.github.io/blog/tags/</loc>
-    <lastmod>2020-11-29T23:40:26+08:00</lastmod>
   </url>
   
   <url>
@@ -150,6 +164,14 @@
   <url>
     <loc>https://zeqiang-lai.github.io/blog/posts/</loc>
     <lastmod>2020-11-29T16:25:47+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zeqiang-lai.github.io/blog/docs/matrix/eigen/</loc>
+  </url>
+  
+  <url>
+    <loc>https://zeqiang-lai.github.io/blog/docs/matrix/diagonalization/</loc>
   </url>
   
   <url>
