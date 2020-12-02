@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Created: Decemenber, 1, 2020 首先明确一点，特征值和特征向量是针对方阵来说的，我们说某个矩阵A有什么特征值和特征向量时，我们实际上暗示了矩阵A是一个方阵。
-定义 #  任何满足下列条件的标量和向量分别成为矩阵A的特征值和特征向量。1
+定义 #  任何满足下列条件的标量和向量分别为矩阵A的特征值和特征向量。1
 $$ Ax = \lambda x $$
 Intuition #  将一个矩阵A与一个向量x相乘，我们实际上在对向量x做一个 线性变换，特征向量实际上就是经过这个变换与原向量仍然平行的那些向量，特征值就是前后两个向量长度的一个比值。
  显然，零向量满足条件，那它是任何矩阵的特征向量吗？
@@ -16,10 +16,10 @@ $$ (A-\lambda I)x = 0 $$
 这个等式要有非零解，$(A-\lambda I)$必须是singular（不可逆）的，特征值要等于0：
 $$ Det(A-\lambda I) = 0 $$
 于是：
- 求行列式，解方程即可求出特征值。 对于特征向量，我们回带特征值，解$(A-\lambda I)=0$这个方程。  显然，特征向量有无穷多个，我们只需要给出一个就行了。    性质 #   $\sum \lambda = trace(A)$ : 矩阵A的所有特征值之和等于矩阵A的 trace（对角线元素之和）。 $\prod \lambda = det(A)$ : 矩阵A的所有特征值的乘积等于矩阵A的行列式。 三角矩阵的特征值就是对角线上的元素。    由特征向量的定义，显然A必须要个方阵，若不是，A与x相乘，x维数就变了。 &#x21a9;&#xfe0e;">
+ 求行列式并解方程即可求出特征值。 对于特征向量，我们回代特征值，解$(A-\lambda I)x=0$这个方程。  因为$(A-\lambda I)$不可逆，所以解有无穷多个，即特征向量有无穷多个，这时候我们只需要给出一个就行了。    性质 #   $\sum \lambda = trace(A)$ : 矩阵A的所有特征值之和等于矩阵A的 trace（对角线元素之和）。 $\prod \lambda = det(A)$ : 矩阵A的所有特征值的乘积等于矩阵A的行列式。 三角矩阵的特征值就是对角线上的元素。 对称矩阵的特征向量是正交的。  证明：对称矩阵的特征向量是正交的 To be done     由特征向量的定义，显然A必须要个方阵，若不是，A与x相乘，x维数就变了。 &#x21a9;&#xfe0e;">
 <meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="特征值&amp;&amp;特征向量" />
 <meta property="og:description" content="Created: Decemenber, 1, 2020 首先明确一点，特征值和特征向量是针对方阵来说的，我们说某个矩阵A有什么特征值和特征向量时，我们实际上暗示了矩阵A是一个方阵。
-定义 #  任何满足下列条件的标量和向量分别成为矩阵A的特征值和特征向量。1
+定义 #  任何满足下列条件的标量和向量分别为矩阵A的特征值和特征向量。1
 $$ Ax = \lambda x $$
 Intuition #  将一个矩阵A与一个向量x相乘，我们实际上在对向量x做一个 线性变换，特征向量实际上就是经过这个变换与原向量仍然平行的那些向量，特征值就是前后两个向量长度的一个比值。
  显然，零向量满足条件，那它是任何矩阵的特征向量吗？
@@ -29,7 +29,7 @@ $$ (A-\lambda I)x = 0 $$
 这个等式要有非零解，$(A-\lambda I)$必须是singular（不可逆）的，特征值要等于0：
 $$ Det(A-\lambda I) = 0 $$
 于是：
- 求行列式，解方程即可求出特征值。 对于特征向量，我们回带特征值，解$(A-\lambda I)=0$这个方程。  显然，特征向量有无穷多个，我们只需要给出一个就行了。    性质 #   $\sum \lambda = trace(A)$ : 矩阵A的所有特征值之和等于矩阵A的 trace（对角线元素之和）。 $\prod \lambda = det(A)$ : 矩阵A的所有特征值的乘积等于矩阵A的行列式。 三角矩阵的特征值就是对角线上的元素。    由特征向量的定义，显然A必须要个方阵，若不是，A与x相乘，x维数就变了。 &#x21a9;&#xfe0e;" />
+ 求行列式并解方程即可求出特征值。 对于特征向量，我们回代特征值，解$(A-\lambda I)x=0$这个方程。  因为$(A-\lambda I)$不可逆，所以解有无穷多个，即特征向量有无穷多个，这时候我们只需要给出一个就行了。    性质 #   $\sum \lambda = trace(A)$ : 矩阵A的所有特征值之和等于矩阵A的 trace（对角线元素之和）。 $\prod \lambda = det(A)$ : 矩阵A的所有特征值的乘积等于矩阵A的行列式。 三角矩阵的特征值就是对角线上的元素。 对称矩阵的特征向量是正交的。  证明：对称矩阵的特征向量是正交的 To be done     由特征向量的定义，显然A必须要个方阵，若不是，A与x相乘，x维数就变了。 &#x21a9;&#xfe0e;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zeqiang-lai.github.io/blog/docs/matrix/eigen/" />
 
@@ -43,29 +43,7 @@ Made with Book Theme
 https://github.com/alex-shpak/hugo-book
 -->
 
-  <script>
-    MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$','$$'], ['\\[', '\\]']],
-        processEscapes: true,
-        processEnvironments: true,
-      },
-      options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-      },
-    };
   
-    window.addEventListener('load', (event) => {
-        document.querySelectorAll("mjx-container").forEach(function(x){
-          x.parentElement.classList += 'has-jax'})
-      });
-</script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script type="text/javascript" id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-
 </head>
 
 <body dir=>
@@ -205,7 +183,7 @@ https://github.com/alex-shpak/hugo-book
   定义
   <a class="anchor" href="#%e5%ae%9a%e4%b9%89">#</a>
 </h2>
-<p>任何满足下列条件的标量和向量分别成为矩阵A的特征值和特征向量。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>任何满足下列条件的标量和向量分别为矩阵A的特征值和特征向量。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <p>$$
 Ax = \lambda x
 $$</p>
@@ -233,10 +211,10 @@ Det(A-\lambda I) = 0
 $$</p>
 <p>于是：</p>
 <ul>
-<li>求行列式，解方程即可求出<strong>特征值</strong>。</li>
-<li>对于特征向量，我们回带特征值，解$(A-\lambda I)=0$这个方程。
+<li>求行列式并解方程即可求出<strong>特征值</strong>。</li>
+<li>对于<strong>特征向量</strong>，我们回代特征值，解$(A-\lambda I)x=0$这个方程。
 <ul>
-<li>显然，特征向量有无穷多个，我们只需要给出一个就行了。</li>
+<li>因为$(A-\lambda I)$不可逆，所以解有无穷多个，即特征向量有无穷多个，这时候我们只需要给出一个就行了。</li>
 </ul>
 </li>
 </ul>
@@ -249,7 +227,15 @@ $$</p>
   <a href="https://en.wikipedia.org/wiki/Trace_%28linear_algebra%29">trace</a>（对角线元素之和）。</li>
 <li>$\prod \lambda = det(A)$ : 矩阵A的所有特征值的乘积等于矩阵A的行列式。</li>
 <li>三角矩阵的特征值就是对角线上的元素。</li>
+<li>对称矩阵的特征向量是正交的。</li>
 </ul>
+<details >
+  <summary>证明：对称矩阵的特征向量是正交的</summary>
+  <div class="markdown-inner">
+    To be done
+  </div>
+</details>
+
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -274,7 +260,29 @@ $$</p>
 </div>
 
  
-        
+        <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      },
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
       </footer>
 
       

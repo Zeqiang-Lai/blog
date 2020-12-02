@@ -6,10 +6,12 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Created: Decemenber, 1, 2020  To be continue.  Keypoint: 一些矩阵可以对角化 $S^{-1}AS = \Lambda$。其中S为特征向量(列向量)构成的矩阵，$\Lambda$为特征值构成的对角矩阵。
- 什么样的矩阵可以？ S要可逆 &lt;-&gt; A拥有n个线性无关的特征向量。   推导 #   $$ \begin{equation} \begin{aligned} AS &= A[x_1, x_2, ..., x_n] = [Ax_1, Ax_2, ..., Ax_n] = [\lambda_1 x_1, \lambda_1 x_2, ..., \lambda_1 x_n] \\\\\\ &= [x_1, x_2, ..., x_n] \begin{bmatrix} \lambda_1 & 0 & \cdots & 0\\ 0 & \lambda_2 & \cdots & 0\\ \vdots & \vdots & \ddots & 0 \\ 0 & 0 & 0 & \lambda_n\\ \end{bmatrix} = S\Lambda \end{aligned} \end{equation} $$  左右两边同时乘S的逆，即可得到：">
+ 什么样的矩阵可以？ 因为定义里S要可逆，所以A必须拥有n个线性无关的特征向量。   关于矩阵对角化，我们其实可以从两个角度理解：
+ 一些矩阵可以对角化$S^{-1}AS = \Lambda$。 或一些矩阵可以化成三个矩阵的乘积：$A = S\Lambda S^{-1}$  推导 #   $$ \begin{equation} \begin{aligned} AS &= A[x_1, x_2, ..., x_n] = [Ax_1, Ax_2, ..., Ax_n] = [\lambda_1 x_1, \lambda_1 x_2, ..., \lambda_1 x_n] \\\\\\ &= [x_1, x_2, ..., x_n] \begin{bmatrix} \lambda_1 & 0 & \cdots & 0\\ 0 & \lambda_2 & \cdots & 0\\ \vdots & \vdots & \ddots & 0 \\ 0 & 0 & 0 & \lambda_n\\ \end{bmatrix} = S\Lambda \end{aligned} \end{equation} $$  左右两边同时乘S的逆，即可得到：">
 <meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="矩阵对角化" />
 <meta property="og:description" content="Created: Decemenber, 1, 2020  To be continue.  Keypoint: 一些矩阵可以对角化 $S^{-1}AS = \Lambda$。其中S为特征向量(列向量)构成的矩阵，$\Lambda$为特征值构成的对角矩阵。
- 什么样的矩阵可以？ S要可逆 &lt;-&gt; A拥有n个线性无关的特征向量。   推导 #   $$ \begin{equation} \begin{aligned} AS &= A[x_1, x_2, ..., x_n] = [Ax_1, Ax_2, ..., Ax_n] = [\lambda_1 x_1, \lambda_1 x_2, ..., \lambda_1 x_n] \\\\\\ &= [x_1, x_2, ..., x_n] \begin{bmatrix} \lambda_1 & 0 & \cdots & 0\\ 0 & \lambda_2 & \cdots & 0\\ \vdots & \vdots & \ddots & 0 \\ 0 & 0 & 0 & \lambda_n\\ \end{bmatrix} = S\Lambda \end{aligned} \end{equation} $$  左右两边同时乘S的逆，即可得到：" />
+ 什么样的矩阵可以？ 因为定义里S要可逆，所以A必须拥有n个线性无关的特征向量。   关于矩阵对角化，我们其实可以从两个角度理解：
+ 一些矩阵可以对角化$S^{-1}AS = \Lambda$。 或一些矩阵可以化成三个矩阵的乘积：$A = S\Lambda S^{-1}$  推导 #   $$ \begin{equation} \begin{aligned} AS &= A[x_1, x_2, ..., x_n] = [Ax_1, Ax_2, ..., Ax_n] = [\lambda_1 x_1, \lambda_1 x_2, ..., \lambda_1 x_n] \\\\\\ &= [x_1, x_2, ..., x_n] \begin{bmatrix} \lambda_1 & 0 & \cdots & 0\\ 0 & \lambda_2 & \cdots & 0\\ \vdots & \vdots & \ddots & 0 \\ 0 & 0 & 0 & \lambda_n\\ \end{bmatrix} = S\Lambda \end{aligned} \end{equation} $$  左右两边同时乘S的逆，即可得到：" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zeqiang-lai.github.io/blog/docs/matrix/diagonalization/" />
 
@@ -23,29 +25,7 @@ Made with Book Theme
 https://github.com/alex-shpak/hugo-book
 -->
 
-  <script>
-    MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$','$$'], ['\\[', '\\]']],
-        processEscapes: true,
-        processEnvironments: true,
-      },
-      options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-      },
-    };
   
-    window.addEventListener('load', (event) => {
-        document.querySelectorAll("mjx-container").forEach(function(x){
-          x.parentElement.classList += 'has-jax'})
-      });
-</script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script type="text/javascript" id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-
 </head>
 
 <body dir=>
@@ -151,6 +131,7 @@ https://github.com/alex-shpak/hugo-book
     <li>
       <ul>
         <li><a href="#推导">推导</a></li>
+        <li><a href="#特殊情况">特殊情况</a></li>
       </ul>
     </li>
   </ul>
@@ -183,11 +164,16 @@ https://github.com/alex-shpak/hugo-book
 <blockquote class="book-hint info">
   <p><strong>Keypoint</strong>: 一些矩阵可以对角化 $S^{-1}AS = \Lambda$。其中S为特征向量(列向量)构成的矩阵，$\Lambda$为特征值构成的对角矩阵。</p>
 <ul>
-<li>什么样的矩阵可以？ S要可逆 &lt;-&gt; A拥有n个线性无关的特征向量。</li>
+<li>什么样的矩阵可以？ 因为定义里S要可逆，所以A必须拥有n个线性无关的特征向量。</li>
 </ul>
 
 </blockquote>
 
+<p>关于矩阵对角化，我们其实可以<strong>从两个角度理解</strong>：</p>
+<ol>
+<li>一些矩阵可以对角化$S^{-1}AS = \Lambda$。</li>
+<li>或一些矩阵可以化成三个矩阵的乘积：$A = S\Lambda S^{-1}$</li>
+</ol>
 <h2 id="推导">
   推导
   <a class="anchor" href="#%e6%8e%a8%e5%af%bc">#</a>
@@ -213,6 +199,23 @@ $$
 <p>$$
 S^{-1}AS = \Lambda
 $$</p>
+<h2 id="特殊情况">
+  特殊情况
+  <a class="anchor" href="#%e7%89%b9%e6%ae%8a%e6%83%85%e5%86%b5">#</a>
+</h2>
+<p>当矩阵A是对称矩阵时，其特征向量是正交的<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。因此，对角化可以写成</p>
+<p>$$
+Q^{T}AQ = \Lambda
+$$</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>
+  <a href="/blog/docs/matrix/eigen/#%e6%80%a7%e8%b4%a8">证明</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
 </p>
 </article>
  
@@ -229,7 +232,29 @@ $$</p>
 </div>
 
  
-        
+        <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      },
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
       </footer>
 
       
@@ -247,6 +272,7 @@ $$</p>
     <li>
       <ul>
         <li><a href="#推导">推导</a></li>
+        <li><a href="#特殊情况">特殊情况</a></li>
       </ul>
     </li>
   </ul>
