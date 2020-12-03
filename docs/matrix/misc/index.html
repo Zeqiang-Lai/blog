@@ -6,13 +6,21 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Created: Decemenber, 1, 2020 Spectrum(谱) #  矩阵中有谱（spectrum）这个概念，例如谱分解，谱范数等等。
-这个谱其实说的就是特征值，特征向量，它是从光学里借过来的说法。光学中光是由各种pure light构成的，光谱就是各个成分的占比。而在矩阵中，矩阵由各个pure的component，特征值特征向量构成。">
+这个谱其实说的就是特征值，特征向量，它是从光学里借过来的说法。光学中光是由各种pure light构成的，光谱就是各个成分的占比。而在矩阵中，矩阵由各个pure的component，特征值特征向量构成。
+进一步来说，我们看矩阵对角化，我们知道任何一个对称矩阵A都可以对角化成$Q\Lambda Q^{T}$，其中Q为特征向量组成的矩阵。
+我们进一步把这个式子拆开，我们设A的特征向量为$q_i$, 则
+$$ A = Q\Lambda Q^{T} = \lambda_1 q_1 q_1^T &#43; \lambda_2 q_2 q_2^T &#43; &hellip; &#43; \lambda_n q_n q_n^T $$
+$q_i$是一个列向量，$q_1 q_1^T$是一个矩阵，因此A实际上就化成了n个矩阵的线性组合，第i个矩阵是$q_i q_i^T$，系数是特征值$\lambda_i$。">
 <meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="杂七杂八" />
 <meta property="og:description" content="Created: Decemenber, 1, 2020 Spectrum(谱) #  矩阵中有谱（spectrum）这个概念，例如谱分解，谱范数等等。
-这个谱其实说的就是特征值，特征向量，它是从光学里借过来的说法。光学中光是由各种pure light构成的，光谱就是各个成分的占比。而在矩阵中，矩阵由各个pure的component，特征值特征向量构成。" />
+这个谱其实说的就是特征值，特征向量，它是从光学里借过来的说法。光学中光是由各种pure light构成的，光谱就是各个成分的占比。而在矩阵中，矩阵由各个pure的component，特征值特征向量构成。
+进一步来说，我们看矩阵对角化，我们知道任何一个对称矩阵A都可以对角化成$Q\Lambda Q^{T}$，其中Q为特征向量组成的矩阵。
+我们进一步把这个式子拆开，我们设A的特征向量为$q_i$, 则
+$$ A = Q\Lambda Q^{T} = \lambda_1 q_1 q_1^T &#43; \lambda_2 q_2 q_2^T &#43; &hellip; &#43; \lambda_n q_n q_n^T $$
+$q_i$是一个列向量，$q_1 q_1^T$是一个矩阵，因此A实际上就化成了n个矩阵的线性组合，第i个矩阵是$q_i q_i^T$，系数是特征值$\lambda_i$。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zeqiang-lai.github.io/blog/docs/matrix/misc/" />
-
+<meta property="article:modified_time" content="2020-12-02T11:20:13+08:00" />
 <title>杂七杂八 | Ze&#39;s Blog</title>
 <link rel="manifest" href="/blog/manifest.json">
 <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
@@ -161,6 +169,12 @@ https://github.com/alex-shpak/hugo-book
 </h2>
 <p>矩阵中有谱（spectrum）这个概念，例如谱分解，谱范数等等。</p>
 <p>这个谱其实说的就是特征值，特征向量，它是从光学里借过来的说法。光学中光是由各种pure light构成的，光谱就是各个成分的占比。而在矩阵中，矩阵由各个pure的component，特征值特征向量构成。</p>
+<p>进一步来说，我们看矩阵对角化，我们知道任何一个对称矩阵A都可以对角化成$Q\Lambda Q^{T}$，其中Q为特征向量组成的矩阵。</p>
+<p>我们进一步把这个式子拆开，我们设A的特征向量为$q_i$, 则</p>
+<p>$$
+A = Q\Lambda Q^{T} = \lambda_1 q_1 q_1^T + \lambda_2 q_2 q_2^T + &hellip; + \lambda_n q_n q_n^T
+$$</p>
+<p>$q_i$是一个列向量，$q_1 q_1^T$是一个矩阵，因此A实际上就化成了n个矩阵的线性组合，第i个矩阵是$q_i q_i^T$，系数是特征值$\lambda_i$。</p>
 </p>
 </article>
  
@@ -171,6 +185,12 @@ https://github.com/alex-shpak/hugo-book
   <div class="flex flex-wrap justify-between">
 
 
+
+  <div><a class="flex align-center" href="https://github.com/Zeqiang-Lai/blog/commit/e96159ad91a03551cebdd48f638fe630abbb3587" title='Last modified by Zeqiang-Lai | December 2, 2020' target="_blank" rel="noopener">
+      <img src="/blog/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>December 2, 2020</span>
+    </a>
+  </div>
 
 
 

@@ -5,12 +5,22 @@
   <meta name="generator" content="Hugo 0.79.0" />
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Created: Decemenber, 1, 2020 ">
+<meta name="description" content="Created: Decemenber, 1, 2020
+所有矩阵都可以分解成：正交矩阵 * 对角矩阵 * 正交矩阵，这个分解叫奇异值分解。
+$$
+A = U\Sigma V^T
+$$
+其中A是一个m*n的矩阵，V是一个n*n的矩阵，U是一个m*m的矩阵，$\Sigma$是一个m*n的矩阵。">
 <meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="奇异值分解" />
-<meta property="og:description" content="Created: Decemenber, 1, 2020 " />
+<meta property="og:description" content="Created: Decemenber, 1, 2020
+所有矩阵都可以分解成：正交矩阵 * 对角矩阵 * 正交矩阵，这个分解叫奇异值分解。
+$$
+A = U\Sigma V^T
+$$
+其中A是一个m*n的矩阵，V是一个n*n的矩阵，U是一个m*m的矩阵，$\Sigma$是一个m*n的矩阵。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zeqiang-lai.github.io/blog/docs/matrix/svd/" />
-
+<meta property="article:modified_time" content="2020-12-02T11:20:13+08:00" />
 <title>奇异值分解 | Ze&#39;s Blog</title>
 <link rel="manifest" href="/blog/manifest.json">
 <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
@@ -122,7 +132,16 @@ https://github.com/alex-shpak/hugo-book
   
   <aside class="hidden clearfix">
     
-  <nav id="TableOfContents"></nav>
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#intuition---几何含义">Intuition - 几何含义</a></li>
+        <li><a href="#求解">求解</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
 
   </aside>
@@ -145,7 +164,74 @@ https://github.com/alex-shpak/hugo-book
 
 
   <p><h5>Created: Decemenber, 1, 2020</h5>
-</p>
+<p><strong>所有矩阵</strong>都可以分解成：<strong>正交矩阵 * 对角矩阵 * 正交矩阵</strong>，这个分解叫<strong>奇异值分解</strong>。</p>
+<p>$$
+A = U\Sigma V^T
+$$</p>
+<p>其中A是一个m*n的矩阵，V是一个n*n的矩阵，U是一个m*m的矩阵，$\Sigma$是一个m*n的矩阵。</p>
+<p>在一些特殊情况下，如A是对称矩阵，它的特征向量是正交的，奇异值分解退化为矩阵对角化，设Q是是A的特征向量（列向量）构成的矩阵。则有</p>
+<p>$$
+A = U\Sigma V^T = Q \Lambda Q^T
+$$</p>
+<h2 id="intuition---几何含义">
+  Intuition - 几何含义
+  <a class="anchor" href="#intuition---%e5%87%a0%e4%bd%95%e5%90%ab%e4%b9%89">#</a>
+</h2>
+<hr>
+<p>当我们在做奇异值分解的时候，我们实际上是在做什么？</p>
+<ul>
+<li>在MIT Linear Algebra
+  <a href="https://www.youtube.com/watch?v=TX_vooSnhm8&amp;list=PL221E2BBF13BECF6C&amp;index=63">第29讲</a>，Strang教授给了我们一个很生动的解释。</li>
+</ul>
+<details >
+  <summary>详细解释</summary>
+  <div class="markdown-inner">
+    <p><em>Revision needed</em></p>
+<p>考虑两个线性空间$R^n$和$R^m$, 其中$V=[v_1,v_2,&hellip;,v_n]$是$R^n$的一组标准正交基，我们希望对这个基底做一个线性变换得到$R^m$空间的一组基底，这个基底也是正交的。</p>
+<p>这个新基底是$R^m$空间下某个标准正交基乘上某个系数矩阵，用矩阵的语言来说，我们实际有这个等式：</p>
+<p>$$
+AV = U\Sigma
+$$</p>
+<p>其中A表示线性变换，V是$R^n$的一组标准正交基，U是$R^m$的一组标准正交基，$\Sigma$是系数对角阵。</p>
+<p>换句话说，对每一个m*n的矩阵，它其实都是其行空间$R^n$和列空间$R^m$某两个正交基底的变换矩阵，奇异值分解其实就要找到这两个基底。</p>
+
+  </div>
+</details>
+
+<h2 id="求解">
+  求解
+  <a class="anchor" href="#%e6%b1%82%e8%a7%a3">#</a>
+</h2>
+<hr>
+<p>简单来说：</p>
+<ul>
+<li>V是$A^TA$的特征向量构成的矩阵。</li>
+<li>U是$AA^T$的特征向量构成的矩阵。</li>
+<li>$\Sigma$是$A^TA$和$AA^T$的特征值（二者特征值一致）。</li>
+</ul>
+<details >
+  <summary>详细推导</summary>
+  <div class="markdown-inner">
+    <p>直接求解下式，并不好求，因为它同时包含很多个未知量。</p>
+<p>$$
+A = U\Sigma V^T
+$$</p>
+<p>我们知道$A^TA$具有很好的性质，考虑</p>
+<p>$$
+A^TA = V\Sigma^T U^TU\Sigma V^T = V\Sigma^T\Sigma V^T
+$$</p>
+<p>我们知道$A^TA$是对称矩阵，而对称矩阵的特征向量是正交的，而我们正好要求V是一个正交矩阵！因此，我们知道$A^TA$的特征向量构成的矩阵就是（满足要求，但唯一性需要证明）我们要求的V。$\Sigma^T\Sigma$则是$A^TA$的特征值。</p>
+<p>类似的，考虑$AA^T$，我们有</p>
+<p>$$
+AA^T = U\Sigma^T V^TV\Sigma U^T = U\Sigma^T\Sigma U^T
+$$</p>
+<p>即U是$AA^T$的特征向量构成的矩阵，$\Sigma^T\Sigma$则是$AA^T$的特征值。</p>
+<blockquote class="book-hint info">
+  我们这时候其实得到了一个附属结论，那就是$AA^T$和$A^TA$的特征值是相同的。
+</blockquote>
+
+  </div>
+</details></p>
 </article>
  
       
@@ -155,6 +241,12 @@ https://github.com/alex-shpak/hugo-book
   <div class="flex flex-wrap justify-between">
 
 
+
+  <div><a class="flex align-center" href="https://github.com/Zeqiang-Lai/blog/commit/e96159ad91a03551cebdd48f638fe630abbb3587" title='Last modified by Zeqiang-Lai | December 2, 2020' target="_blank" rel="noopener">
+      <img src="/blog/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>December 2, 2020</span>
+    </a>
+  </div>
 
 
 
@@ -196,7 +288,16 @@ https://github.com/alex-shpak/hugo-book
     
     <aside class="book-toc">
       
-  <nav id="TableOfContents"></nav>
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#intuition---几何含义">Intuition - 几何含义</a></li>
+        <li><a href="#求解">求解</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
  
     </aside>

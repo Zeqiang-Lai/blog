@@ -136,12 +136,12 @@
     </item>
     
     <item>
-      <title>各种矩阵的定义</title>
+      <title>各种矩阵</title>
       <link>https://zeqiang-lai.github.io/blog/docs/matrix/types/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://zeqiang-lai.github.io/blog/docs/matrix/types/</guid>
-      <description>Created: Decemenber, 1, 2020 对称矩阵 #  实对称矩阵的特征值都是实数 证明：
+      <description>Created: Decemenber, 1, 2020 对称矩阵 #   定义：满足$A^T=A$的矩阵。 显然，对称矩阵是方阵，否则转一下形状都变了。  实对称矩阵的特征值都是实数 证明：
 已知$Ax = \lambda x$，左右两边同时取共轭，有
 $$ \bar{A}\bar{x}=\bar{\lambda}\bar{x} $$
 因为A是实对称矩阵，$\bar{A}=A$，因此有 $$ A\bar{x}=\bar{\lambda}\bar{x} $$
@@ -152,11 +152,10 @@ $$ \bar{x}^TA=\bar{x}^T\bar{\lambda} $$
 比较两个式子，可以得到
 $$ \bar{\lambda} = \lambda $$
 一个数的共轭等于其本身，这个数是实数。
-  正交矩阵 #  正交矩阵（英语：orthogonal1 matrix）是一个方块矩阵Q，其元素为实数，而且行向量与列向量皆为正交的单位向量。
+  对称矩阵的特征向量是正交的。   正交矩阵 #  正交矩阵（英语：orthogonal1 matrix）是一个方块矩阵Q，其元素为实数，而且行向量与列向量皆为正交的单位向量。
  相同行/列向量内积为1 不同行/列向量内积为0  显然，每个行/列向量都不能由其他行/列向量线性表出，因此正交矩阵必定是满秩矩阵。
 行向量正交能否推出列向量正交? 可以，推导如下：
-行向量正交，因此有$AA^T = I$, 对于方阵，有$AB = I \simeq BA=I$ (证明)， 则有$A^TA=I$，则有列向量正交。
- 重要性质 #   正交矩阵的转置矩阵等于其逆矩阵: $A^T = A^{-1}$ 行列式值必定为+1或-1 $$ 1=\operatorname{det}(I)=\operatorname{det}\left(Q^{T} Q\right)=\operatorname{det}\left(Q^{T}\right) \operatorname{det}(Q)=(\operatorname{det}(Q))^{2} \Rightarrow \operatorname{det}(Q)=\pm 1 $$    虽然更完整的说法是orthonormal matrix(标准正交矩阵)，但我们说正交矩阵的时候一般都是指标准正交。 &amp;#x21a9;&amp;#xfe0e;</description>
+行向量正交，因此有$AA^T = I$, 对于方阵，有$AB = I \simeq BA=I$ (证明)， 则有$A^TA=I$，则有列向量正交。</description>
     </item>
     
     <item>
@@ -165,7 +164,24 @@ $$ \bar{\lambda} = \lambda $$
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://zeqiang-lai.github.io/blog/docs/matrix/svd/</guid>
-      <description>Created: Decemenber, 1, 2020 </description>
+      <description>&lt;h5&gt;Created: Decemenber, 1, 2020&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;所有矩阵&lt;/strong&gt;都可以分解成：&lt;strong&gt;正交矩阵 * 对角矩阵 * 正交矩阵&lt;/strong&gt;，这个分解叫&lt;strong&gt;奇异值分解&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;$$
+A = U\Sigma V^T
+$$&lt;/p&gt;
+&lt;p&gt;其中A是一个m*n的矩阵，V是一个n*n的矩阵，U是一个m*m的矩阵，$\Sigma$是一个m*n的矩阵。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>如何将各个知识点串起来？</title>
+      <link>https://zeqiang-lai.github.io/blog/docs/matrix/road/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/docs/matrix/road/</guid>
+      <description>Created: Decemenber, 3, 2020 引入 特征值与特征向量之后，我们可以很容易的推导出 矩阵对角化的公式。
+矩阵对角化是针对一般方阵的，对于特殊方阵，如 对称矩阵，矩阵对角化可以进一步特化。
+对称矩阵有很多很好的性质，它是它的进一步特例， 正定矩阵有着更好的性质。
+#  </description>
     </item>
     
     <item>
@@ -175,7 +191,11 @@ $$ \bar{\lambda} = \lambda $$
       
       <guid>https://zeqiang-lai.github.io/blog/docs/matrix/misc/</guid>
       <description>Created: Decemenber, 1, 2020 Spectrum(谱) #  矩阵中有谱（spectrum）这个概念，例如谱分解，谱范数等等。
-这个谱其实说的就是特征值，特征向量，它是从光学里借过来的说法。光学中光是由各种pure light构成的，光谱就是各个成分的占比。而在矩阵中，矩阵由各个pure的component，特征值特征向量构成。</description>
+这个谱其实说的就是特征值，特征向量，它是从光学里借过来的说法。光学中光是由各种pure light构成的，光谱就是各个成分的占比。而在矩阵中，矩阵由各个pure的component，特征值特征向量构成。
+进一步来说，我们看矩阵对角化，我们知道任何一个对称矩阵A都可以对角化成$Q\Lambda Q^{T}$，其中Q为特征向量组成的矩阵。
+我们进一步把这个式子拆开，我们设A的特征向量为$q_i$, 则
+$$ A = Q\Lambda Q^{T} = \lambda_1 q_1 q_1^T + \lambda_2 q_2 q_2^T + &amp;hellip; + \lambda_n q_n q_n^T $$
+$q_i$是一个列向量，$q_1 q_1^T$是一个矩阵，因此A实际上就化成了n个矩阵的线性组合，第i个矩阵是$q_i q_i^T$，系数是特征值$\lambda_i$。</description>
     </item>
     
     <item>
