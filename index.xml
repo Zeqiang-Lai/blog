@@ -141,7 +141,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://zeqiang-lai.github.io/blog/docs/matrix/types/</guid>
-      <description>Created: Decemenber, 1, 2020 对称矩阵 #   定义：满足$A^T=A$的矩阵。 显然，对称矩阵是方阵，否则转一下形状都变了。  实对称矩阵的特征值都是实数 证明：
+      <description>Created: Decemenber, 1, 2020 对称矩阵 #    定义：满足$A^T=A$的矩阵。 显然，对称矩阵是方阵，否则转一下形状都变了。  实对称矩阵的特征值都是实数 证明：
 已知$Ax = \lambda x$，左右两边同时取共轭，有
 $$ \bar{A}\bar{x}=\bar{\lambda}\bar{x} $$
 因为A是实对称矩阵，$\bar{A}=A$，因此有 $$ A\bar{x}=\bar{\lambda}\bar{x} $$
@@ -152,10 +152,9 @@ $$ \bar{x}^TA=\bar{x}^T\bar{\lambda} $$
 比较两个式子，可以得到
 $$ \bar{\lambda} = \lambda $$
 一个数的共轭等于其本身，这个数是实数。
-  对称矩阵的特征向量是正交的。   正交矩阵 #  正交矩阵（英语：orthogonal1 matrix）是一个方块矩阵Q，其元素为实数，而且行向量与列向量皆为正交的单位向量。
- 相同行/列向量内积为1 不同行/列向量内积为0  显然，每个行/列向量都不能由其他行/列向量线性表出，因此正交矩阵必定是满秩矩阵。
-行向量正交能否推出列向量正交? 可以，推导如下：
-行向量正交，因此有$AA^T = I$, 对于方阵，有$AB = I \simeq BA=I$ (证明)， 则有$A^TA=I$，则有列向量正交。</description>
+  对称矩阵的特征向量是正交的。   正定矩阵 #   正定矩阵是对称矩阵的一种特殊情况，因此它也是对称的。
+定义 #  正定矩阵有各种各样的定义，它们互相之间是等价的。下面是几种常见定义/判定方法：
+ 所有特征值大于0。 所有顺序主子式都大于0。 所有Pivots都大于0。 $x^TAx&amp;gt;0$ ： $x=[x_1,x_2, &amp;hellip;, x_n]$, 对于所有的x恒大于0  类似的可以定义半正定(大于等于0)，负定（小于0），半负定（小于等于0）。</description>
     </item>
     
     <item>
