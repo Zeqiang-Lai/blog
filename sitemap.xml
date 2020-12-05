@@ -13,6 +13,41 @@
   </url>
   
   <url>
+    <loc>https://zeqiang-lai.github.io/blog/categories/</loc>
+    <lastmod>2020-12-04T21:32:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zeqiang-lai.github.io/blog/posts/deep-learning/vae-more/</loc>
+    <lastmod>2020-12-04T21:32:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zeqiang-lai.github.io/blog/tags/</loc>
+    <lastmod>2020-12-04T21:32:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zeqiang-lai.github.io/blog/tags/VAE/</loc>
+    <lastmod>2020-12-04T21:32:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zeqiang-lai.github.io/blog/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</loc>
+    <lastmod>2020-12-04T21:32:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zeqiang-lai.github.io/blog/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2020-12-04T21:32:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zeqiang-lai.github.io/blog/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2020-12-04T21:32:04+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zeqiang-lai.github.io/blog/tags/Hugo/</loc>
     <lastmod>2020-12-02T11:20:13+08:00</lastmod>
   </url>
@@ -20,16 +55,6 @@
   <url>
     <loc>https://zeqiang-lai.github.io/blog/posts/misc/hugo-book/</loc>
     <lastmod>2020-12-02T11:20:13+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zeqiang-lai.github.io/blog/tags/</loc>
-    <lastmod>2020-12-02T11:20:13+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zeqiang-lai.github.io/blog/categories/</loc>
-    <lastmod>2020-11-29T23:40:26+08:00</lastmod>
   </url>
   
   <url>
@@ -69,11 +94,6 @@
   
   <url>
     <loc>https://zeqiang-lai.github.io/blog/tags/%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/</loc>
-    <lastmod>2020-11-29T23:40:26+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zeqiang-lai.github.io/blog/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2020-11-29T23:40:26+08:00</lastmod>
   </url>
   
@@ -154,7 +174,7 @@
   
   <url>
     <loc>https://zeqiang-lai.github.io/blog/docs/</loc>
-    <lastmod>2020-12-03T12:19:25+08:00</lastmod>
+    <lastmod>2020-12-03T14:55:20+08:00</lastmod>
   </url>
   
   <url>
@@ -169,7 +189,7 @@
   
   <url>
     <loc>https://zeqiang-lai.github.io/blog/docs/matrix/types/</loc>
-    <lastmod>2020-12-03T12:19:25+08:00</lastmod>
+    <lastmod>2020-12-03T14:55:20+08:00</lastmod>
   </url>
   
   <url>

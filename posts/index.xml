@@ -6,6 +6,16 @@
     <description>Recent content in Posts on Ze&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator><atom:link href="https://zeqiang-lai.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>More about Variational Autoencoder</title>
+      <link>https://zeqiang-lai.github.io/blog/posts/deep-learning/vae-more/</link>
+      <pubDate>Fri, 04 Dec 2020 21:32:04 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/posts/deep-learning/vae-more/</guid>
+      <description>&lt;p&gt;一些关于VAE的扩展知识。&lt;/p&gt;
+&lt;p&gt;不断更新中&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Hugo-Book Shortcodes Usages</title>
       <link>https://zeqiang-lai.github.io/blog/posts/misc/hugo-book/</link>
       <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.79.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="一些关于VAE的扩展知识。
+不断更新中&hellip;">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="More about Variational Autoencoder" />
+<meta property="og:description" content="一些关于VAE的扩展知识。
+不断更新中&hellip;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zeqiang-lai.github.io/blog/posts/deep-learning/vae-more/" />
+<meta property="article:published_time" content="2020-12-04T21:32:04+00:00" />
+<meta property="article:modified_time" content="2020-12-04T21:32:04+00:00" />
+<title>More about Variational Autoencoder | Ze&#39;s Blog</title>
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="icon" href="/blog/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/blog/book.min.b2f780b17a278d949f138bf10a562012fa7dc3500b62fe1e6b49bd4c7c968907.css" integrity="sha256-sveAsXonjZSfE4vxClYgEvp9w1ALYv4ea0m9THyWiQc=">
+<script defer src="/blog/sw.min.be1e3b3f88e332c359acd5e967344f6f6c1d04e690ab8dda0c12abe7c950a1d2.js" integrity="sha256-vh47P4jjMsNZrNXpZzRPb2wdBOaQq43aDBKr58lQodI="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/blog"><span>Ze&#39;s Blog</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+  <a href="/blog/docs/matrix/">Matrix</a></li>
+<li>
+  <a href="/blog/docs/notes/">Notes</a></li>
+<li>
+  <a href="/blog/posts/">Posts</a>
+<br /></li>
+</ul>
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="https://zeqiang-lai.github.io/Algorithms/" target="_blank" rel="noopener">
+        Algorithms
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/Zeqiang-Lai" target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://zeqiang-lai.github.io/" target="_blank" rel="noopener">
+        Profile
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/blog/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>More about Variational Autoencoder</strong>
+
+  <label for="toc-control">
+    
+    <img src="/blog/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#training-tips">Training Tips</a></li>
+        <li><a href="#related-models--papers">Related Models &amp;&amp; Papers</a>
+          <ul>
+            <li><a href="#beta-vae">Beta-VAE</a></li>
+            <li><a href="#extended-beta-vae">Extended beta VAE</a></li>
+            <li><a href="#spectral-regularization">Spectral Regularization</a></li>
+            <li><a href="#ladder-variational-autoencoders">Ladder Variational Autoencoders</a></li>
+            <li><a href="#re-balancing-variational-autoencoder-loss">Re-balancing Variational Autoencoder Loss</a></li>
+            <li><a href="#cvae">CVAE</a></li>
+            <li><a href="#conditional-variational-image-deraining">Conditional Variational Image Deraining</a></li>
+            <li><a href="#nvae">NVAE</a></li>
+          </ul>
+        </li>
+        <li><a href="#resources">Resources</a>
+          <ul>
+            <li><a href="#loss设计">Loss设计</a></li>
+            <li><a href="#github">Github</a></li>
+          </ul>
+        </li>
+        <li><a href="#reference">Reference</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+<article class="markdown">
+  <h1>
+    <a href="/blog/posts/deep-learning/vae-more/">More about Variational Autoencoder</a>
+  </h1>
+  
+  <h5>December 4, 2020</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/blog/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/blog/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>, 
+      <a href="/blog/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>, 
+      <a href="/blog/tags/VAE/">VAE</a>
+  </div>
+  
+
+
+  <p><p>一些关于VAE的扩展知识。</p>
+<p>不断更新中&hellip;</p>
+<h2 id="training-tips">
+  Training Tips
+  <a class="anchor" href="#training-tips">#</a>
+</h2>
+<ul>
+<li>spectral regularization<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> 有利于稳定VAE的训练<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></li>
+<li>训练的时候可以使用KL cost annealing<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>的训练策略，KL项的权重一开始为0，只关注重建，等重建能力差不多了，再逐渐增加KL项的权重到1。</li>
+<li>限制KL项中logvar.exp()，防止其值过大。<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>
+<ul>
+<li>强制clip</li>
+<li>weight初始化要小, 或使用$log(\sigma^2)$<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></li>
+</ul>
+</li>
+</ul>
+<h2 id="related-models--papers">
+  Related Models &amp;&amp; Papers
+  <a class="anchor" href="#related-models--papers">#</a>
+</h2>
+<h3 id="beta-vae">
+  Beta-VAE
+  <a class="anchor" href="#beta-vae">#</a>
+</h3>
+<hr>
+<p>beta-vae<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup>就是给KLD加了一个权重beta。</p>
+<div>
+$$
+\mathcal{F}(\theta, \phi, \beta ; \mathbf{x}, \mathbf{z}) \geq \mathcal{L}(\theta, \phi ; \mathbf{x}, \mathbf{z}, \beta)=\mathbb{E}_{q_{\phi}(\mathbf{z} \mid \mathbf{x})}\left[\log p_{\theta}(\mathbf{x} \mid \mathbf{z})\right]-\beta D_{K L}\left(q_{\phi}(\mathbf{z} \mid \mathbf{x}) \| p(\mathbf{z})\right)
+$$
+</div>
+<p>原文还设计了一个<strong>评测指标</strong>用于评测latent representation disentangle好不好的方法，简单来说是这样的：</p>
+<blockquote>
+<p>前提是：假设数据x是有一系列的disentangle factor y得到的，而且我们有一个ground truth simulator可以根据这些factor合成出数据x。</p>
+</blockquote>
+<p><strong>具体方法：</strong></p>
+<ol>
+<li>随机选一个factor y。 (Choose a factor y ∼ Unif[1&hellip;K])</li>
+<li>对一个batch里的L个样本（一个batch中每个sample的factor都一样）：
+<ol>
+<li>sample 两个latent representation（人工设计的），这两个样本，在刚刚选的那个factor上相同，其他随机。</li>
+<li>用simulator合成两张图像，用之前训练好的vae-encoder预测一个latent representaiton（网络学到的）</li>
+<li>计算两张图像的latent representation的差值。</li>
+</ol>
+</li>
+<li>使用L个sample差值的平均数作为一个线性分类器的输入，预测刚刚选的factor是哪个。用预测的准确性作为评测指标。</li>
+</ol>
+<p><strong>Intuition：</strong></p>
+<ul>
+<li>分类器会被强行设计的只有线性分类能力。</li>
+<li>如果vae学习到的latent representation够好，那理论上它应该有一维就是代表factor y， 在这个维度，每个样本的两张图像的值应该是很接近的，也就是说它们的差值会很接近0，那么分类器只需要找到很接近0的那一项就可以预测出刚刚选的factor是哪个了。</li>
+</ul>
+<h3 id="extended-beta-vae">
+  Extended beta VAE
+  <a class="anchor" href="#extended-beta-vae">#</a>
+</h3>
+<hr>
+<p>在Understanding disentangling in β -VAE<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup>中，作者进一步扩展了beta VAE， 方法如下：</p>
+<div>
+$$
+\mathcal{L}(\theta, \phi ; \mathbf{x}, \mathbf{z}, C)=\mathbb{E}_{q_{\phi}(\mathbf{z} \mid \mathbf{x})}\left[\log p_{\theta}(\mathbf{x} \mid \mathbf{z})\right]-\gamma\left|D_{K L}\left(q_{\phi}(\mathbf{z} \mid \mathbf{x}) \| p(\mathbf{z})\right)-C\right|
+$$
+</div>
+<p>其中C是一个逐渐增大的常数。</p>
+<p>Intuition是，当C逐渐增大时，KLD的作用逐渐变小，重构误差逐渐占主导地位，因此我们可以学习到更好的重构图像。这点与KLD annealing正好是反过来的。</p>
+<h3 id="spectral-regularization">
+  Spectral Regularization
+  <a class="anchor" href="#spectral-regularization">#</a>
+</h3>
+<hr>
+<p>简单来说：spectral regularization<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>用于降低 sensitivity to perturbation（测试数据微小的变动会引起结果很大的变化），方法是使用一个正则化，约束网络权重矩阵的谱范数，不让其过大。</p>
+<blockquote>
+<p>原文：To reduce the sensitivity to perturbation, we propose a simple and effective regularization method, referred to as spectral norm regularization, which penalizes the high spectral norm of weight matrices in neural networks.</p>
+</blockquote>
+<p>设$f$是我们要学习的函数，我们的目标是要让perturbation，即 $f(\boldsymbol{x}+\boldsymbol{\xi})-f(\boldsymbol{x})$ 尽量小。通常$f$ 都是一个线性函数加一个非线性激活函数。考虑到深度学习常用ReLU等piecewise linear function[?]作为激活函数。当$\boldsymbol{\xi}$很小的，我们可以把$f$看出一个线性函数。因此我们有：
+$$
+\frac{\left|f_{\Theta}(\boldsymbol{x}+\boldsymbol{\xi})-f(\boldsymbol{x})\right|_{2}}{|\boldsymbol{\xi}|_{2}}=\frac{\left|\left(W_{\Theta, \boldsymbol{x}}(\boldsymbol{x}+\boldsymbol{\xi})+\boldsymbol{b}_{\Theta, \boldsymbol{x}}\right)-\left(W_{\Theta, \boldsymbol{x}} \boldsymbol{x}+\boldsymbol{b}_{\Theta, \boldsymbol{x}}\right)\right|_{2}}{|\boldsymbol{\xi}|_{2}}=\frac{\left|W_{\Theta, \boldsymbol{x}} \boldsymbol{\xi}\right|_{2}}{|\boldsymbol{\xi}|_{2}} \leq \sigma\left(W_{\Theta, \boldsymbol{x}}\right),
+$$
+其中$\boldsymbol{\xi}$是个常数，因此，如果我们要让$f(\boldsymbol{x}+\boldsymbol{\xi})-f(\boldsymbol{x})$ 尽量小，我们应该让上界$\sigma\left(W_{\Theta, \boldsymbol{x}}\right)$尽量小。</p>
+<p>即：我们应当约束网络权重矩阵的谱范数，不让其过大。</p>
+<h3 id="ladder-variational-autoencoders">
+  Ladder Variational Autoencoders
+  <a class="anchor" href="#ladder-variational-autoencoders">#</a>
+</h3>
+<hr>
+<p>Ladder Variational Autoencoders<sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup></p>
+<ol>
+<li>提出了一个类似Ladder Network的Ladder Variational Autoencoders。</li>
+</ol>
+<p>具体结构：TODO</p>
+<ol start="2">
+<li>指出Batch Normal和KL Warm Up对训练很重要。</li>
+</ol>
+<h3 id="re-balancing-variational-autoencoder-loss">
+  Re-balancing Variational Autoencoder Loss
+  <a class="anchor" href="#re-balancing-variational-autoencoder-loss">#</a>
+</h3>
+<hr>
+<p>这篇文章<sup id="fnref:9"><a href="#fn:9" class="footnote-ref" role="doc-noteref">9</a></sup>分析了RNN-based VAE中posterior collapse问题出现的原因，并提出了一个loss减轻这个问题。</p>
+<p><strong>posterior collapse</strong>：任务是在RNN-VAE中，因为decoder训练的时候有ground truth作为teaching force，因此当latent representation很差的时候，decoder会忽视掉latent representation，导致latent representation和先验很接近，KLD这项很小，虽然loss可能不高，reconstruct因为有teaching force，loss不会太高，但是总体效果是很差的。</p>
+<p>分析原因，就是reconstruct loss被低估了，因此需要用系数调整，思路和beta-vae是一样的。</p>
+<div>
+$$
+\begin{aligned}
+\mathcal{L}(x ; \theta, \phi)=& \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x \mid z)\right] \\
+&-D_{\mathrm{KL}}\left(q_{\phi}(z \mid x) \| p(z)\right), \alpha>1
+\end{aligned}
+$$
+</div>
+<p>也可以改成beta-vae的形式，不过这里beta是在0-1区间，而beta-vae是&gt;1，因为目标不一样。这里是向增大reconstruction的占比 - 等价于缩小KLD。</p>
+<div>
+$$
+\begin{aligned}
+\mathcal{L}(x ; \theta, \phi)=& \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x \mid z)\right] \\
+&-\beta D_{\mathrm{KL}}\left(q_{\phi}(z \mid x) \| p(z)\right), 0 \leq \beta<1
+\end{aligned}
+$$
+</div>
+<h3 id="cvae">
+  CVAE
+  <a class="anchor" href="#cvae">#</a>
+</h3>
+<hr>
+<p>Learning Structured Output Representation using Deep Conditional Generative Models<sup id="fnref:10"><a href="#fn:10" class="footnote-ref" role="doc-noteref">10</a></sup>这篇论文提出了CVAE。</p>
+<p>传统VAE估计的是边缘概率$P(X)$， 而CVAE估计的是条件概率$P(X|Y)$。例如在图像中，X就是图像，Y是图像的类别，CVAE不仅可以生成图像，还可以指定生成哪种类型的图像。</p>
+<p>传统VAE的ELBO是：
+$$
+\log P(X)-D_{K L}[Q(z \mid X) | P(z \mid X)]=E[\log P(X \mid z)]-D_{K L}[Q(z \mid X) | P(z)]
+$$
+加入条件概率，直观地，相当于我们让encoder同时依赖于X和Y - $Q(z|x,y)$，让decoder依赖于Z和Y - $P(x|z,y)$，那我们的ELBO就变成了:
+$$
+\log P(X \mid c)-D_{K L}[Q(z \mid X, c) | P(z \mid X, c)]=E[\log P(X \mid z, c)]-D_{K L}[Q(z \mid X, c) | P(z \mid c)]
+$$
+详细的推导：</p>
+<ul>
+<li>TODO</li>
+</ul>
+<h3 id="conditional-variational-image-deraining">
+  Conditional Variational Image Deraining
+  <a class="anchor" href="#conditional-variational-image-deraining">#</a>
+</h3>
+<hr>
+<p>这篇文章<sup id="fnref:11"><a href="#fn:11" class="footnote-ref" role="doc-noteref">11</a></sup>是CVAE的一个应用，它的任务是把下雨时候照的照片中的雨给去掉。</p>
+<p>要理解它的做法，我们需要重新理解下CVAE究竟在做什么。</p>
+<blockquote>
+<p>传统的VAE都是输入一张图像X，然后我们用encoder学它的latent representation，然后我们再sample，经过decoder生成图像。如果我们想要生成指定类别的图像，这种方法是做不到的。</p>
+<p>那么一个很直接的思路是，我们可不可以输入一个类别，让encoder学习输出这个类别的latent representation，然后我们再通过同样的过程生成特定类别的图像？答案是很难。</p>
+</blockquote>
+<p>CVAE的做法是什么呢？我们给encoder一个额外信息，我们告诉它某个类别的图像是长什么样的，这样它在学习的时候会更有效。在这种角度下，CVAE其实是对传统VAE的一个小优化。</p>
+<p>在这篇去雨论文中，它的思路是类似的：</p>
+<ul>
+<li>我们把下雨照片当作“类别”，每一张下雨照片都是一个类别</li>
+<li>我们希望学习每个类别的latent representation，即每张下雨照片，干净版本的latent representation。</li>
+<li>然后我们通过多次sample，decode出多张干净照片，取个平均作为最终结果。</li>
+<li>只输入下雨照片不好训练encoder，因此我们加入一个condition，训练的时候我们把干净照片也加进去，帮助encoder进行训练。</li>
+<li>但是问题是预测的时候，我们没有干净照片作为encoder的额外输入，这时候encoder就没法用了，为此作者引入了一个额外的prior network去模仿encoder的encode过程，但是只用rainy image作为输入。</li>
+</ul>
+<p>
+  <img src="image-20201205220906766.png" alt="image-20201205220906766" /></p>
+<p>预测的时候使用的是prior network。</p>
+<p>
+  <img src="image-20201205220943492.png" alt="image-20201205220943492" /></p>
+<h3 id="nvae">
+  NVAE
+  <a class="anchor" href="#nvae">#</a>
+</h3>
+<hr>
+<p>英伟达2020的一个工作<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>，主要说两点：</p>
+<ol>
+<li>提出了一个精心设计的VAE网络，并指出VAE可以在网络设计上多下点功夫。</li>
+<li>提出了多个稳定KLD的方法：
+<ol>
+<li>Residual Normal Distributions:</li>
+<li>Spectral Regularization (SR)</li>
+<li>More Expressive Approximate Posteriors with Normalizing Flows</li>
+</ol>
+</li>
+</ol>
+<p>具体还没细看。</p>
+<h2 id="resources">
+  Resources
+  <a class="anchor" href="#resources">#</a>
+</h2>
+<ul>
+<li>
+  <a href="http://www.fenghz.xyz/Denosing-criterion-for-vae/">Denoising Criterion for Variational Autoencoding Framework</a></li>
+<li>
+  <a href="http://www.fenghz.xyz/VAE-train-tips/">Some useful tricks in training variational autoencoder</a></li>
+<li><a href="https://github.com/loliverhennigh/Variational-autoencoder-tricks-and-tips/blob/master/README.md">https://github.com/loliverhennigh/Variational-autoencoder-tricks-and-tips/blob/master/README.md</a></li>
+</ul>
+<h3 id="loss设计">
+  Loss设计
+  <a class="anchor" href="#loss%e8%ae%be%e8%ae%a1">#</a>
+</h3>
+<ul>
+<li>
+<p>
+  <a href="https://stats.stackexchange.com/questions/341954/balancing-reconstruction-vs-kl-loss-variational-autoencoder">Balancing Reconstruction vs KL Loss Variational Autoencoder</a></p>
+</li>
+<li>
+<p>
+  <a href="https://github.com/pytorch/examples/issues/399">Why don&rsquo;t we use MSE as a reconstruction loss for VAE ? #399</a></p>
+</li>
+<li>
+<p>
+  <a href="https://stats.stackexchange.com/questions/332179/how-to-weight-kld-loss-vs-reconstruction-loss-in-variational-auto-encoder">how to weight KLD loss vs reconstruction loss in variational auto-encoder</a></p>
+</li>
+</ul>
+<h3 id="github">
+  Github
+  <a class="anchor" href="#github">#</a>
+</h3>
+<p>这里是一些Github上使用VAE的项目代码：</p>
+<ul>
+<li>
+  <a href="https://github.com/AntixK/PyTorch-VAE">AntixK/PyTorch-VAE</a></li>
+<li>
+  <a href="https://github.com/NVlabs/NVAE">NVlabs/NVAE</a></li>
+</ul>
+<h2 id="reference">
+  Reference
+  <a class="anchor" href="#reference">#</a>
+</h2>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>Yoshida 和 Miyato - 2017 -Spectral Norm Regularization for Improving the Generalizability of Deep Learning <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>Vahdat 和 Kautz - 2020 - NVAE A Deep Hierarchical Variational Autoencoder <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>Bowman 等。 - 2016 - Generating Sentences from a Continuous Space <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p><a href="https://discuss.pytorch.org/t/kld-loss-goes-nan-during-vae-training/42305">https://discuss.pytorch.org/t/kld-loss-goes-nan-during-vae-training/42305</a> <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5" role="doc-endnote">
+<p><a href="https://github.com/y0ast/VAE-Torch/issues/3">https://github.com/y0ast/VAE-Torch/issues/3</a> <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6" role="doc-endnote">
+<p>Higgins 等。 - 2017 - β-VAE: LEARNING BASIC VISUAL CONCEPTS WITH A CONSTRAINED VARIATIONAL FRAMEWORK <a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:7" role="doc-endnote">
+<p>Burgess 等。 - 2018 - Understanding disentangling in $\beta$-VAE <a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:8" role="doc-endnote">
+<p>Sønderby 等。 - 2016 - Ladder Variational Autoencoders <a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:9" role="doc-endnote">
+<p>Yan 等。 - 2020 - Re-balancing Variational Autoencoder Loss for Molecule Sequence Generation <a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:10" role="doc-endnote">
+<p>Sohn 等。 - 2015 - Learning Structured Output Representation using Deep Conditional Generative Models <a href="#fnref:10" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:11" role="doc-endnote">
+<p>Du 等。 - 2020 - Conditional Variational Image Deraining <a href="#fnref:11" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section></p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      },
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#training-tips">Training Tips</a></li>
+        <li><a href="#related-models--papers">Related Models &amp;&amp; Papers</a>
+          <ul>
+            <li><a href="#beta-vae">Beta-VAE</a></li>
+            <li><a href="#extended-beta-vae">Extended beta VAE</a></li>
+            <li><a href="#spectral-regularization">Spectral Regularization</a></li>
+            <li><a href="#ladder-variational-autoencoders">Ladder Variational Autoencoders</a></li>
+            <li><a href="#re-balancing-variational-autoencoder-loss">Re-balancing Variational Autoencoder Loss</a></li>
+            <li><a href="#cvae">CVAE</a></li>
+            <li><a href="#conditional-variational-image-deraining">Conditional Variational Image Deraining</a></li>
+            <li><a href="#nvae">NVAE</a></li>
+          </ul>
+        </li>
+        <li><a href="#resources">Resources</a>
+          <ul>
+            <li><a href="#loss设计">Loss设计</a></li>
+            <li><a href="#github">Github</a></li>
+          </ul>
+        </li>
+        <li><a href="#reference">Reference</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

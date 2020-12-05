@@ -5,7 +5,17 @@
     <link>https://zeqiang-lai.github.io/blog/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
     <description>Recent content in 机器学习 on Ze&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 12 May 2018 08:24:04 +0000</lastBuildDate><atom:link href="https://zeqiang-lai.github.io/blog/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 04 Dec 2020 21:32:04 +0000</lastBuildDate><atom:link href="https://zeqiang-lai.github.io/blog/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>More about Variational Autoencoder</title>
+      <link>https://zeqiang-lai.github.io/blog/posts/deep-learning/vae-more/</link>
+      <pubDate>Fri, 04 Dec 2020 21:32:04 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/posts/deep-learning/vae-more/</guid>
+      <description>&lt;p&gt;一些关于VAE的扩展知识。&lt;/p&gt;
+&lt;p&gt;不断更新中&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>How genralized linear model work?</title>
       <link>https://zeqiang-lai.github.io/blog/posts/machine-learning/Generalized-Linear-Model/</link>
