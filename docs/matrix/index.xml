@@ -6,12 +6,23 @@
     <description>Recent content in Matrix on Ze&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator><atom:link href="https://zeqiang-lai.github.io/blog/docs/matrix/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Jordan Form</title>
+      <link>https://zeqiang-lai.github.io/blog/docs/matrix/jordan/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/docs/matrix/jordan/</guid>
+      <description>&lt;h5&gt;Created: Decemenber, 7, 2020&lt;/h5&gt;
+&lt;p&gt;Jordan Form是矩阵对角化的一个推广的产物。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>各种矩阵</title>
       <link>https://zeqiang-lai.github.io/blog/docs/matrix/types/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://zeqiang-lai.github.io/blog/docs/matrix/types/</guid>
-      <description>Created: Decemenber, 1, 2020 对称矩阵 #    定义：满足$A^T=A$的矩阵。 显然，对称矩阵是方阵，否则转一下形状都变了。  实对称矩阵的特征值都是实数 证明：
+      <description>Created: Decemenber, 1, 2020 对称矩阵 #    定义：满足$A^T=A$的矩阵。 显然，对称矩阵是方阵，否则转一下形状都变了。  对称矩阵的特征值/向量有着很好的性质：
+ 实对称矩阵的特征值都是实数。 对称矩阵的特征向量是正交的。  证明 1. 实对称矩阵的特征值都是实数
 已知$Ax = \lambda x$，左右两边同时取共轭，有
 $$ \bar{A}\bar{x}=\bar{\lambda}\bar{x} $$
 因为A是实对称矩阵，$\bar{A}=A$，因此有 $$ A\bar{x}=\bar{\lambda}\bar{x} $$
@@ -22,9 +33,10 @@ $$ \bar{x}^TA=\bar{x}^T\bar{\lambda} $$
 比较两个式子，可以得到
 $$ \bar{\lambda} = \lambda $$
 一个数的共轭等于其本身，这个数是实数。
-  对称矩阵的特征向量是正交的。   正定矩阵 #   正定矩阵是对称矩阵的一种特殊情况，因此它也是对称的。
+2. 对称矩阵的特征向量是正交的
+  正定矩阵 #   正定矩阵是对称矩阵的一种特殊情况，因此它也是对称的。
 定义 #  正定矩阵有各种各样的定义，它们互相之间是等价的。下面是几种常见定义/判定方法：
- 所有特征值大于0。 所有顺序主子式都大于0。 所有Pivots都大于0。 $x^TAx&amp;gt;0$ ： $x=[x_1,x_2, &amp;hellip;, x_n]$, 对于所有的x恒大于0  类似的可以定义半正定(大于等于0)，负定（小于0），半负定（小于等于0）。</description>
+ 所有特征值大于0。 所有顺序主子式都大于0。 所有Pivots都大于0。 $x^TAx&amp;gt;0$ ： $x=[x_1,x_2, &amp;hellip;, x_n]$, 对于所有的非零x恒大于0  类似的可以定义半正定(大于等于0)，负定（小于0），半负定（小于等于0）。</description>
     </item>
     
     <item>
@@ -85,6 +97,20 @@ $$ (A-\lambda I)x = 0 $$
 $$ Det(A-\lambda I) = 0 $$
 于是：
  求行列式并解方程即可求出特征值。 对于特征向量，我们回代特征值，解$(A-\lambda I)x=0$这个方程。  因为$(A-\lambda I)$不可逆，所以解有无穷多个，即特征向量有无穷多个，这时候我们只需要给出一个就行了。    性质 #   $\sum \lambda = trace(A)$ : 矩阵A的所有特征值之和等于矩阵A的 trace（对角线元素之和）。 $\prod \lambda = det(A)$ : 矩阵A的所有特征值的乘积等于矩阵A的行列式。 三角矩阵的特征值就是对角线上的元素。 对称矩阵的特征向量是正交的。  证明：对称矩阵的特征向量是正交的 To be done     由特征向量的定义，显然A必须要个方阵，若不是，A与x相乘，x维数就变了。 &amp;#x21a9;&amp;#xfe0e;</description>
+    </item>
+    
+    <item>
+      <title>相似矩阵</title>
+      <link>https://zeqiang-lai.github.io/blog/docs/matrix/similar/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/docs/matrix/similar/</guid>
+      <description>&lt;h5&gt;Created: Decemenber, 7, 2020&lt;/h5&gt;
+&lt;p&gt;满足以下条件的两个矩阵，我们称它们是&lt;strong&gt;相似&lt;/strong&gt;的。&lt;/p&gt;
+&lt;p&gt;$$
+B = M^{-1}AM
+$$&lt;/p&gt;
+&lt;p&gt;换句话说，如果某个矩阵可以由另一个矩阵左乘一个矩阵再右乘这个矩阵的逆，则称它们是相似的。&lt;/p&gt;</description>
     </item>
     
     <item>

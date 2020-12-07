@@ -5,7 +5,8 @@
   <meta name="generator" content="Hugo 0.79.0" />
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Created: Decemenber, 1, 2020 对称矩阵 #    定义：满足$A^T=A$的矩阵。 显然，对称矩阵是方阵，否则转一下形状都变了。  实对称矩阵的特征值都是实数 证明：
+<meta name="description" content="Created: Decemenber, 1, 2020 对称矩阵 #    定义：满足$A^T=A$的矩阵。 显然，对称矩阵是方阵，否则转一下形状都变了。  对称矩阵的特征值/向量有着很好的性质：
+ 实对称矩阵的特征值都是实数。 对称矩阵的特征向量是正交的。  证明 1. 实对称矩阵的特征值都是实数
 已知$Ax = \lambda x$，左右两边同时取共轭，有
 $$ \bar{A}\bar{x}=\bar{\lambda}\bar{x} $$
 因为A是实对称矩阵，$\bar{A}=A$，因此有 $$ A\bar{x}=\bar{\lambda}\bar{x} $$
@@ -16,11 +17,13 @@ $$ \bar{x}^TA=\bar{x}^T\bar{\lambda} $$
 比较两个式子，可以得到
 $$ \bar{\lambda} = \lambda $$
 一个数的共轭等于其本身，这个数是实数。
-  对称矩阵的特征向量是正交的。   正定矩阵 #   正定矩阵是对称矩阵的一种特殊情况，因此它也是对称的。
+2. 对称矩阵的特征向量是正交的
+  正定矩阵 #   正定矩阵是对称矩阵的一种特殊情况，因此它也是对称的。
 定义 #  正定矩阵有各种各样的定义，它们互相之间是等价的。下面是几种常见定义/判定方法：
- 所有特征值大于0。 所有顺序主子式都大于0。 所有Pivots都大于0。 $x^TAx&gt;0$ ： $x=[x_1,x_2, &hellip;, x_n]$, 对于所有的x恒大于0  类似的可以定义半正定(大于等于0)，负定（小于0），半负定（小于等于0）。">
+ 所有特征值大于0。 所有顺序主子式都大于0。 所有Pivots都大于0。 $x^TAx&gt;0$ ： $x=[x_1,x_2, &hellip;, x_n]$, 对于所有的非零x恒大于0  类似的可以定义半正定(大于等于0)，负定（小于0），半负定（小于等于0）。">
 <meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="各种矩阵" />
-<meta property="og:description" content="Created: Decemenber, 1, 2020 对称矩阵 #    定义：满足$A^T=A$的矩阵。 显然，对称矩阵是方阵，否则转一下形状都变了。  实对称矩阵的特征值都是实数 证明：
+<meta property="og:description" content="Created: Decemenber, 1, 2020 对称矩阵 #    定义：满足$A^T=A$的矩阵。 显然，对称矩阵是方阵，否则转一下形状都变了。  对称矩阵的特征值/向量有着很好的性质：
+ 实对称矩阵的特征值都是实数。 对称矩阵的特征向量是正交的。  证明 1. 实对称矩阵的特征值都是实数
 已知$Ax = \lambda x$，左右两边同时取共轭，有
 $$ \bar{A}\bar{x}=\bar{\lambda}\bar{x} $$
 因为A是实对称矩阵，$\bar{A}=A$，因此有 $$ A\bar{x}=\bar{\lambda}\bar{x} $$
@@ -31,9 +34,10 @@ $$ \bar{x}^TA=\bar{x}^T\bar{\lambda} $$
 比较两个式子，可以得到
 $$ \bar{\lambda} = \lambda $$
 一个数的共轭等于其本身，这个数是实数。
-  对称矩阵的特征向量是正交的。   正定矩阵 #   正定矩阵是对称矩阵的一种特殊情况，因此它也是对称的。
+2. 对称矩阵的特征向量是正交的
+  正定矩阵 #   正定矩阵是对称矩阵的一种特殊情况，因此它也是对称的。
 定义 #  正定矩阵有各种各样的定义，它们互相之间是等价的。下面是几种常见定义/判定方法：
- 所有特征值大于0。 所有顺序主子式都大于0。 所有Pivots都大于0。 $x^TAx&gt;0$ ： $x=[x_1,x_2, &hellip;, x_n]$, 对于所有的x恒大于0  类似的可以定义半正定(大于等于0)，负定（小于0），半负定（小于等于0）。" />
+ 所有特征值大于0。 所有顺序主子式都大于0。 所有Pivots都大于0。 $x^TAx&gt;0$ ： $x=[x_1,x_2, &hellip;, x_n]$, 对于所有的非零x恒大于0  类似的可以定义半正定(大于等于0)，负定（小于0），半负定（小于等于0）。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zeqiang-lai.github.io/blog/docs/matrix/types/" />
 <meta property="article:modified_time" content="2020-12-03T14:55:20+08:00" />
@@ -155,6 +159,7 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#正定矩阵">正定矩阵</a>
           <ul>
             <li><a href="#定义">定义</a></li>
+            <li><a href="#特殊情况">特殊情况</a></li>
           </ul>
         </li>
         <li><a href="#正交矩阵">正交矩阵</a>
@@ -197,10 +202,15 @@ https://github.com/alex-shpak/hugo-book
 <li>定义：满足$A^T=A$的矩阵。</li>
 <li>显然，对称矩阵是方阵，否则转一下形状都变了。</li>
 </ul>
+<p>对称矩阵的<strong>特征值/向量</strong>有着很好的性质：</p>
+<ol>
+<li>实对称矩阵的特征值都是实数。</li>
+<li>对称矩阵的特征向量是正交的。</li>
+</ol>
 <details >
-  <summary>实对称矩阵的特征值都是实数</summary>
+  <summary>证明</summary>
   <div class="markdown-inner">
-    <p><strong>证明：</strong></p>
+    <p><strong>1. 实对称矩阵的特征值都是实数</strong></p>
 <p>已知$Ax = \lambda x$，左右两边同时取共轭，有</p>
 <p>$$
 \bar{A}\bar{x}=\bar{\lambda}\bar{x}
@@ -226,14 +236,8 @@ $$</p>
 \bar{\lambda} = \lambda
 $$</p>
 <p>一个数的共轭等于其本身，这个数是实数。</p>
+<p><strong>2. 对称矩阵的特征向量是正交的</strong></p>
 
-  </div>
-</details>
-
-<details >
-  <summary>对称矩阵的特征向量是正交的。</summary>
-  <div class="markdown-inner">
-    
   </div>
 </details>
 
@@ -248,13 +252,44 @@ $$</p>
   <a class="anchor" href="#%e5%ae%9a%e4%b9%89">#</a>
 </h3>
 <p>正定矩阵有各种各样的定义，它们互相之间是等价的。下面是几种常见定义/判定方法：</p>
-<ul>
+<ol>
 <li>所有特征值大于0。</li>
 <li>所有顺序主子式都大于0。</li>
 <li>所有Pivots都大于0。</li>
-<li>$x^TAx&gt;0$ ： $x=[x_1,x_2, &hellip;, x_n]$, 对于所有的x恒大于0</li>
-</ul>
+<li>$x^TAx&gt;0$ ： $x=[x_1,x_2, &hellip;, x_n]$, 对于所有的非零x恒大于0</li>
+</ol>
 <p>类似的可以定义半正定(大于等于0)，负定（小于0），半负定（小于等于0）。</p>
+<details >
+  <summary>上述四个定义相关性的不严格证明</summary>
+  <div class="markdown-inner">
+    <p>考虑第四个定义，我们知道正定矩阵就是二次型的系数矩阵，当二次型要恒大于0，则它必定可以化成一系列平方的和，且每一项的系数都大于0（可以等于0吗？不行，平方项是可以等于0的，如果有一项系数是0，就多了一个自由变量，就可以构造出等于0的x），而化为平方和形式的过程，等价于对A做elimination，平方项的系数就是elimination之后的pivots，里面的系数是elimination过程的L矩阵。</p>
+<p>例：</p>
+
+  </div>
+</details>
+
+<h3 id="特殊情况">
+  特殊情况
+  <a class="anchor" href="#%e7%89%b9%e6%ae%8a%e6%83%85%e5%86%b5">#</a>
+</h3>
+<ul>
+<li>$A^TA$必定是半正定矩阵，如果A(m*n矩阵)的秩为n，则必定是正定矩阵。</li>
+</ul>
+<details >
+  <summary>证明</summary>
+  <div class="markdown-inner">
+    <p>直观的，这个相当于矩阵形式的平方。我们知道标量，$a^2&gt;0$，对应的，我们可以想象$A^TA$是应该是正定的。</p>
+<p>回忆正定矩阵的四种定义：特征值不知道，pivots不知道，顺序主子式不知道，因此考虑最后一种形式。</p>
+<p><strong>严格证明</strong>：</p>
+<p>考虑矩阵$A\in R^{m\times n}$</p>
+<p>$$
+x^TA^TAx = (Ax)^TAx = ||Ax||^2 \geq 0
+$$</p>
+<p>上式，只有在Ax=0的时候才取0，如果我们希望$A^TA$是正定的，这意味着Ax=0不能有解，而无解的条件是A的列向量线性无关，即A的秩为n。</p>
+
+  </div>
+</details>
+
 <h2 id="正交矩阵">
   正交矩阵
   <a class="anchor" href="#%e6%ad%a3%e4%ba%a4%e7%9f%a9%e9%98%b5">#</a>
@@ -356,6 +391,7 @@ $$</li>
         <li><a href="#正定矩阵">正定矩阵</a>
           <ul>
             <li><a href="#定义">定义</a></li>
+            <li><a href="#特殊情况">特殊情况</a></li>
           </ul>
         </li>
         <li><a href="#正交矩阵">正交矩阵</a>
