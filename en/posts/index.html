@@ -10,7 +10,7 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zeqiang-lai.github.io/blog/en/posts/" />
-<meta property="og:updated_time" content="2020-12-25T14:32:04+00:00" />
+
 <title>Posts | Ze&#39;s Blog</title>
 <link rel="manifest" href="/blog/manifest.json">
 <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
@@ -214,6 +214,9 @@ $$
         
   <script>
     MathJax = {
+      svg: {
+            fontCache: 'global'
+      },
       tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
         displayMath: [['$$','$$'], ['\\[', '\\]']],
@@ -231,10 +234,8 @@ $$
       });
 </script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script type="text/javascript" id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
  
         
       </footer>
