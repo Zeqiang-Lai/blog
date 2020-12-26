@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir=>
+<html lang="zh" dir=>
 
 <head>
   <meta name="generator" content="Hugo 0.79.0" />
@@ -14,6 +14,8 @@
 <title>Posts | Ze&#39;s Blog</title>
 <link rel="manifest" href="/blog/manifest.json">
 <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
+<link rel="alternate" hreflang="en" href="https://zeqiang-lai.github.io/blog/en/posts/" title="Posts">
+
 <link rel="stylesheet" href="/blog/book.min.a573b61f3ef933a5222a5c17ea66109fe49fa6241ce463c0faa5c30c48aafa9e.css" integrity="sha256-pXO2Hz75M6UiKlwX6mYQn&#43;SfpiQc5GPA&#43;qXDDEiq&#43;p4=">
 <script defer src="/blog/sw.min.be1e3b3f88e332c359acd5e967344f6f6c1d04e690ab8dda0c12abe7c950a1d2.js" integrity="sha256-vh47P4jjMsNZrNXpZzRPb2wdBOaQq43aDBKr58lQodI="></script>
 <link rel="alternate" type="application/rss+xml" href="https://zeqiang-lai.github.io/blog/posts/index.xml" title="Ze's Blog" />
@@ -547,19 +549,28 @@ https://github.com/alex-shpak/hugo-book
 
       <footer class="book-footer">
         
-  <div class="flex flex-wrap justify-between">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      },
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-
-
-  <div><a class="flex align-center" href="https://github.com/Zeqiang-Lai/blog/commit/e745bf9c8b649e50fedb47b636871945d2d71f56" title='Last modified by Zeqiang Lai | November 29, 2020' target="_blank" rel="noopener">
-      <img src="/blog/svg/calendar.svg" class="book-icon" alt="Calendar" />
-      <span>November 29, 2020</span>
-    </a>
-  </div>
-
-
-
-</div>
 
  
         

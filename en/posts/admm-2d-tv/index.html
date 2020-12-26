@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.79.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  In writing.
+
+
+For 2D Total variation denosing, we have the following objective, where $x$ is the clean image we want to optimize, $y$ is the origin noisy image, and $D_r $and $D_c$ are doubly block circulant matrices for two 2D convolution.
+In detail, both of $x$ and $y$ are vectorized into 1D vectors, and the total variation terms are expressed as two convolutions in Matrix-vector form.
+
+$$
+\operatorname{minimize} \enspace \frac{1}{2} \|x-y\|_{2}^{2} &#43; \lambda\|D_r x\|_{1} &#43; \lambda\|D_c x\|_{1}
+$$
+">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="2D TV Denosing with ADMM -- Mathematics &amp;&amp; Implementation" />
+<meta property="og:description" content="
+  In writing.
+
+
+For 2D Total variation denosing, we have the following objective, where $x$ is the clean image we want to optimize, $y$ is the origin noisy image, and $D_r $and $D_c$ are doubly block circulant matrices for two 2D convolution.
+In detail, both of $x$ and $y$ are vectorized into 1D vectors, and the total variation terms are expressed as two convolutions in Matrix-vector form.
+
+$$
+\operatorname{minimize} \enspace \frac{1}{2} \|x-y\|_{2}^{2} &#43; \lambda\|D_r x\|_{1} &#43; \lambda\|D_c x\|_{1}
+$$
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zeqiang-lai.github.io/blog/en/posts/admm-2d-tv/" />
+<meta property="article:published_time" content="2020-12-25T14:32:04+00:00" />
+<meta property="article:modified_time" content="2020-12-25T14:32:04+00:00" />
+<title>2D TV Denosing with ADMM -- Mathematics &amp;&amp; Implementation | Ze&#39;s Blog</title>
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="icon" href="/blog/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/blog/book.min.a573b61f3ef933a5222a5c17ea66109fe49fa6241ce463c0faa5c30c48aafa9e.css" integrity="sha256-pXO2Hz75M6UiKlwX6mYQn&#43;SfpiQc5GPA&#43;qXDDEiq&#43;p4=">
+<script defer src="/blog/sw.min.be1e3b3f88e332c359acd5e967344f6f6c1d04e690ab8dda0c12abe7c950a1d2.js" integrity="sha256-vh47P4jjMsNZrNXpZzRPb2wdBOaQq43aDBKr58lQodI="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/blog/en"><span>Ze&#39;s Blog</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+  <a href="/blog/en/posts/">Posts</a>
+<br /></li>
+</ul>
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="https://zeqiang-lai.github.io/Algorithms/" target="_blank" rel="noopener">
+        Algorithms
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/Zeqiang-Lai" target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://zeqiang-lai.github.io/" target="_blank" rel="noopener">
+        Profile
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+    <label for="menu-control">
+      <img src="/blog/svg/menu.svg" class="book-icon" alt="Menu" />
+    </label>
+  
+    
+    <label for="toc-control">
+      
+      <img src="/blog/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+      
+    </label>
+  </div>
+  
+
+  
+  <aside class="hidden clearfix">
+    
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#x-subproblem">X subproblem</a>
+          <ul>
+            <li><a href="#dft-speedup">DFT Speedup</a></li>
+            <li><a href="#implementation">Implementation</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+<article class="markdown">
+  <h1>
+    <a href="/blog/en/posts/admm-2d-tv/">2D TV Denosing with ADMM -- Mathematics &amp;&amp; Implementation</a>
+  </h1>
+  
+  <h5>December 25, 2020</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/blog/en/categories/Optimization/">Optimization</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/blog/en/tags/ADMM/">ADMM</a>
+  </div>
+  
+
+
+  <p><blockquote class="book-hint warning">
+  In writing.
+</blockquote>
+
+<p>For 2D Total variation denosing, we have the following objective, where $x$ is the clean image we want to optimize, $y$ is the origin noisy image, and $D_r $and $D_c$ are doubly block circulant matrices for two 2D convolution.</p>
+<p>In detail, both of $x$ and $y$ are vectorized into 1D vectors, and the total variation terms are expressed as two convolutions in Matrix-vector form.</p>
+<div>
+$$
+\operatorname{minimize} \enspace \frac{1}{2} \|x-y\|_{2}^{2} + \lambda\|D_r x\|_{1} + \lambda\|D_c x\|_{1}
+$$
+</div>
+<p>With ADMM, we substitute$D_* x$ with$ z_*$, and add two constraints.</p>
+<div>
+$$
+\begin{array}{ll}
+\operatorname{minimize} & \frac{1}{2} \|x-y\|_{2}^{2} + \lambda\|z_r\|_{1} + \lambda\|z_c\|_{1} \\
+\text { subject to } & D_r x-z_r=0 \\
+\text { subject to } & D_c x-z_c=0
+\end{array}
+$$
+</div>
+<p>Then, we use augmented lagrangian method to remove constraints：</p>
+<div>
+$$
+\begin{aligned}
+L_{\rho}( x , z_r , \nu_r, z_c, \nu_c ) = \frac{1}{2}\|x-y\|_{2}^{2} &  + \lambda\|z_r\|_{1}+ \nu_r ^{ T }(D_r x-z_r)+\frac{\rho}{2}\|D_r x -z_r\|_{2}^{2} \\
+& + \lambda\|z_c\|_{1}+ \nu_c ^{ T }(D_c x-z_c)+\frac{\rho}{2}\|D_c x -z_c\|_{2}^{2}
+\end{aligned}
+$$
+</div>
+<p>Let $\mu_r = \nu_r / \rho$，$\mu_c = \nu_c / \rho$，transform the above equation into the following one:</p>
+<div>
+$$
+\begin{aligned}
+L_{\rho}( x , z_r , \nu_r, z_c, \nu_c )= \frac{1}{2}\|x-y\|_{2}^{2} & + \lambda\|z_r\|_{1}+ \frac{\rho}{2}\|D_r x-z_r+ \mu_r \|_{2}^{2}-\frac{\rho}{2}\| \mu_r \|_{2}^{2} \\
+& + \lambda\|z_c\|_{1}+ \frac{\rho}{2}\|D_c x-z_c+ \mu_c \|_{2}^{2}-\frac{\rho}{2}\| \mu_c \|_{2}^{2}
+\end{aligned}
+$$
+</div>
+<h2 id="x-subproblem">
+  X subproblem
+  <a class="anchor" href="#x-subproblem">#</a>
+</h2>
+<hr>
+<p>For x subproblem, we need to optimize the following equation:</p>
+<div>
+$$
+\begin{aligned}
+x ^{(k+1)} =\arg \min _{ x } \enspace \|x^{(k)}-y\|_{2}^{2} & + \left\|\sqrt{\rho}D_r x^{(k)}- \sqrt{\rho}(z_r ^{(k)}- \mu_r ^{(k)})\right\|_{2}^{2} \\
+& + \left\|\sqrt{\rho}D_c x^{(k)}- \sqrt{\rho}(z_c ^{(k)}- \mu_c ^{(k)})\right\|_{2}^{2} 
+\end{aligned}
+$$
+</div>
+<p>This is a least square problem</p>
+<div>
+$$
+\min _{x}\left\|\left[\begin{array}{c} 
+I \\
+\sqrt{\rho} D_r \\
+\sqrt{\rho} D_c \\
+\end{array}\right] x^{(k)} -\left[\begin{array}{c} 
+y \\
+\sqrt{\rho}\left( z_r ^{(k)}- \mu_r ^{(k)}\right) \\
+\sqrt{\rho}\left( z_c ^{(k)}- \mu_c ^{(k)}\right) \\
+\end{array}\right]\right\|_{2}^{2}
+$$
+</div>
+<p>And we can solve it with the solution of least square $(X^TX)^{-1}X^TY$：</p>
+<div>
+$$
+\begin{aligned}
+x ^{(k+1)} &=\left( I +\rho (D_r^TD_r + D_c^TD_c) \right)^{-1}\left[ I, \sqrt{\rho} D_r^T, \sqrt{\rho} D_c^T \right]\left[\begin{array}{c} 
+y \\
+\left.\sqrt{\rho}\left( z_r ^{(k)}- \mu_r ^{(k)}\right)\right] \\
+\left.\sqrt{\rho}\left( z_c ^{(k)}- \mu_c ^{(k)}\right)\right] \\
+\end{array}\right] \\
+&=\left( I +\rho (D_r^TD_r + D_c^TF_c) \right)^{-1} \left( y + \rho \left[ D_r^T\left( z_r ^{(k)}- \mu_r ^{(k)}\right) + D_c^T\left( z_c ^{(k)}- \mu_c ^{(k)}\right) \right] \right)
+\end{aligned}
+$$
+</div>
+<h3 id="dft-speedup">
+  DFT Speedup
+  <a class="anchor" href="#dft-speedup">#</a>
+</h3>
+<p>The inverse of matrix $I +\rho (D_r^TD_r + D_c^TD_c)$ is computationally expensive. To see why, suppose there is a 200 * 300 image, then the shape of $D_r$ and $D_c$are both <code>(200*300, 200*300)</code>, and it means we have to take inverse of a giant <code> (200*300, 200*300)</code> matrix, which is impractical.</p>
+<p>Thanks to 
+  <a href="https://en.wikipedia.org/wiki/Convolution_theorem">convolution theorem</a>, we could solve this equation purely in frequency domain.</p>
+<p>For detail, we start with moving $(I +\rho (D_r^TD_r + D_c^TD_c))^{-1}$ to the left hand side:</p>
+<div>
+$$
+\left( I +\rho (D_r^TD_r + D_c^TF_c) \right) x ^{(k+1)} = \left( y + \rho \left[ D_r^T\left( z_r ^{(k)}- \mu_r ^{(k)}\right) + D_c^T\left( z_c ^{(k)}- \mu_c ^{(k)}\right) \right] \right)
+$$
+</div>
+<p>Suppose $\mathcal{F}$ is the Fourier matrix and $\mathcal{F}^{-1}$ is the inverse Fourier matrix. Perform fourier transform on the both sides of above equation gives us the following result (using the 
+  <a href="https://en.wikipedia.org/wiki/Fourier_transform#Linearity">linearity of Fourier transform</a>):</p>
+<div>
+$$
+\left( \mathcal{F}I +\rho (\mathcal{F}D_r^TD_r + \mathcal{F}D_c^TF_c) \right) x ^{(k+1)} = \left( \mathcal{F}y + \rho \left[ \mathcal{F}D_r^T\left( z_r ^{(k)}- \mu_r ^{(k)}\right) + \mathcal{F}D_c^T\left( z_c ^{(k)}- \mu_c ^{(k)}\right) \right] \right)
+$$
+</div>
+<p>If we use the property of $\mathcal{F}^{-1}F = \mathcal{F}^H\mathcal{F} = I$, we could get:</p>
+<div>
+$$
+\begin{aligned}
+\left( \mathcal{F}I +\rho (\mathcal{F}D_r^TD_r + \mathcal{F}D_c^TF_c) \right) \mathcal{F}^H\mathcal{F} x ^{(k+1)} = LHS \\
+\text{=>} 
+\left( \mathcal{F}I\mathcal{F}^H +\rho (\mathcal{F}D_r^TD_r\mathcal{F}^H + \mathcal{F}D_c^TF_c\mathcal{F}^H) \right) \mathcal{F} x ^{(k+1)} = LHS
+\end{aligned}
+$$
+</div>
+<p>From the facts below:</p>
+<ul>
+<li>$\mathcal{F}I\mathcal{F}^H = I$</li>
+<li>Fourier matrix can diagonize any circulant matrix in the way of $\mathcal{F}D\mathcal{F}^H$, See 
+  <a href="https://dsp.stackexchange.com/a/56721">[Link1]</a>, 
+  <a href="https://math.stackexchange.com/a/3207584">[Link2]</a>.</li>
+</ul>
+<p>We could get:</p>
+<div>
+$$
+\left( I +\rho (\Lambda_r + \Lambda_c) \right) \mathcal{F} x ^{(k+1)} = \left( \mathcal{F}y + \rho \left[ \mathcal{F}D_r^T\left( z_r ^{(k)}- \mu_r ^{(k)}\right) + \mathcal{F}D_c^T\left( z_c ^{(k)}- \mu_c ^{(k)}\right) \right] \right)
+$$
+</div>
+<p>In frequency domain, convolution is element-wise multiplication, so the final result is:</p>
+<div>
+$$
+x ^{(k+1)} =  \mathcal{F}^{-1} \frac{\left( \mathcal{F}y + \rho \left[ \mathcal{F}D_r^T\left( z_r ^{(k)}- \mu_r ^{(k)}\right) + \mathcal{F}D_c^T\left( z_c ^{(k)}- \mu_c ^{(k)}\right) \right] \right)} {\left( I +\rho (\Lambda_r + \Lambda_c) \right)}
+$$
+</div>
+<h3 id="implementation">
+  Implementation
+  <a class="anchor" href="#implementation">#</a>
+</h3>
+<p>Recall that any doubly block circulant matrices $D$ can be diagonized by Fourier matrix. The column of $F^H$ are the eigen vectors and <strong>the corresponding eigen values are the DFT values of the signal generating the circulant matrix</strong>.</p>
+<p>And with the following equations, we know the eigen value of $D^TD$ are just the multiplication of the eigen matrix of $D$ and its conjugate.</p>
+<div>
+$$
+H = \mathcal{F}^{H} D \mathcal{F} \\
+H^H = \mathcal{F}^{H} D^T \mathcal{F} \\
+H^HH = \mathcal{F}^{H} D^T \mathcal{F}\mathcal{F}^{H} D \mathcal{F} = \mathcal{F}^{H} D^T D \mathcal{F}
+$$
+</div>
+<p>Summarize all the fact above, we could caluclate $\Lambda_r + \Lambda_c$ with the following Python snippet.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">eigDtD <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>abs(np<span style="color:#f92672">.</span>fft<span style="color:#f92672">.</span>fft2(np<span style="color:#f92672">.</span>array([[<span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]]), (row, col))) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> \
+         np<span style="color:#f92672">.</span>abs(np<span style="color:#f92672">.</span>fft<span style="color:#f92672">.</span>fft2(np<span style="color:#f92672">.</span>array([[<span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]])<span style="color:#f92672">.</span>transpose(), (row, col))) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>
+</code></pre></div><p>Note that we use the fact that $A^HA = ||A||_2^2$</p>
+<p>Since $\Lambda_r + \Lambda_c$ is diagonal, addition and multiplication of $I +\rho (\Lambda_r + \Lambda_c)$ could be done in element-wise way.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">lhs <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> rho <span style="color:#f92672">*</span> eigDtD
+</code></pre></div></p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+  
+
+
+  
+
+  
+
+
+
+<div class="book-languages" tabindex="0" aria-haspopup="true">
+  <ul>
+    <li class="flex align-center">
+      <img src="/blog/svg/translate.svg" class="book-icon" alt="Languages" />
+      English
+    </li> 
+  </ul>
+
+  <ul class="book-languages-list">
+    
+    <li class="">
+      <a href="https://zeqiang-lai.github.io/blog/" class="flex align-center">
+        <img src="/blog/svg/translate.svg" class="book-icon" alt="Languages" />
+        Chinese
+      </a>
+    </li>
+    
+    <li class="active">
+      <a href="https://zeqiang-lai.github.io/blog/en/" class="flex align-center">
+        <img src="/blog/svg/translate.svg" class="book-icon" alt="Languages" />
+        English
+      </a>
+    </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+</div>
+
+ 
+        <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      },
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#x-subproblem">X subproblem</a>
+          <ul>
+            <li><a href="#dft-speedup">DFT Speedup</a></li>
+            <li><a href="#implementation">Implementation</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

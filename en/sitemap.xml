@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://zeqiang-lai.github.io/blog/en/posts/admm-2d-tv/</loc>
+    <lastmod>2020-12-25T14:32:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zeqiang-lai.github.io/blog/en/tags/ADMM/</loc>
+    <lastmod>2020-12-25T14:32:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zeqiang-lai.github.io/blog/en/categories/</loc>
+    <lastmod>2020-12-25T14:32:04+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://zeqiang-lai.github.io/blog/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zeqiang-lai.github.io/blog/en/categories/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://zeqiang-lai.github.io/blog/en/</loc>
+    <lastmod>2020-12-25T14:32:04+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://zeqiang-lai.github.io/blog/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zeqiang-lai.github.io/blog/en/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://zeqiang-lai.github.io/blog/en/categories/Optimization/</loc>
+    <lastmod>2020-12-25T14:32:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zeqiang-lai.github.io/blog/en/posts/</loc>
+    <lastmod>2020-12-25T14:32:04+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://zeqiang-lai.github.io/blog/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zeqiang-lai.github.io/blog/en/posts/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://zeqiang-lai.github.io/blog/en/tags/</loc>
+    <lastmod>2020-12-25T14:32:04+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://zeqiang-lai.github.io/blog/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zeqiang-lai.github.io/blog/en/tags/"
+                />
+  </url>
+  
+</urlset>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.79.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Posts" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://zeqiang-lai.github.io/blog/en/posts/" />
+<meta property="og:updated_time" content="2020-12-25T14:32:04+00:00" />
+<title>Posts | Ze&#39;s Blog</title>
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="icon" href="/blog/favicon.png" type="image/x-icon">
+<link rel="alternate" hreflang="zh" href="https://zeqiang-lai.github.io/blog/posts/" title="Posts">
+
+<link rel="stylesheet" href="/blog/book.min.a573b61f3ef933a5222a5c17ea66109fe49fa6241ce463c0faa5c30c48aafa9e.css" integrity="sha256-pXO2Hz75M6UiKlwX6mYQn&#43;SfpiQc5GPA&#43;qXDDEiq&#43;p4=">
+<script defer src="/blog/sw.min.be1e3b3f88e332c359acd5e967344f6f6c1d04e690ab8dda0c12abe7c950a1d2.js" integrity="sha256-vh47P4jjMsNZrNXpZzRPb2wdBOaQq43aDBKr58lQodI="></script>
+<link rel="alternate" type="application/rss+xml" href="https://zeqiang-lai.github.io/blog/en/posts/index.xml" title="Ze's Blog" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/blog/en"><span>Ze&#39;s Blog</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+  <a href="/blog/en/posts/"class=active>Posts</a>
+<br /></li>
+</ul>
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="https://zeqiang-lai.github.io/Algorithms/" target="_blank" rel="noopener">
+        Algorithms
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/Zeqiang-Lai" target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://zeqiang-lai.github.io/" target="_blank" rel="noopener">
+        Profile
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+    <label for="menu-control">
+      <img src="/blog/svg/menu.svg" class="book-icon" alt="Menu" />
+    </label>
+  
+    
+    <label for="toc-control">
+      
+      <img src="/blog/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+      
+    </label>
+  </div>
+  
+
+  
+  <aside class="hidden clearfix">
+    
+  <nav>
+  <ul>
+  
+    
+    <li class="book-section-flat">
+      <strong>Categories</strong>
+      <ul>
+      
+        <li class="flex justify-between">
+          <a href="/blog/en/categories/Optimization/">Optimization</a>
+          <span>1</span>
+        </li>
+      
+      </ul>
+    </li>
+    
+  
+    
+    <li class="book-section-flat">
+      <strong>Tags</strong>
+      <ul>
+      
+        <li class="flex justify-between">
+          <a href="/blog/en/tags/ADMM/">ADMM</a>
+          <span>1</span>
+        </li>
+      
+      </ul>
+    </li>
+    
+  
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/blog/en/posts/admm-2d-tv/">2D TV Denosing with ADMM -- Mathematics &amp;&amp; Implementation</a>
+    </h2>
+    
+  <h5>December 25, 2020</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/blog/en/categories/Optimization/">Optimization</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/blog/en/tags/ADMM/">ADMM</a>
+  </div>
+  
+
+
+    <p><blockquote class="book-hint warning">
+  In writing.
+</blockquote>
+
+<p>For 2D Total variation denosing, we have the following objective, where $x$ is the clean image we want to optimize, $y$ is the origin noisy image, and $D_r $and $D_c$ are doubly block circulant matrices for two 2D convolution.</p>
+<p>In detail, both of $x$ and $y$ are vectorized into 1D vectors, and the total variation terms are expressed as two convolutions in Matrix-vector form.</p>
+<div>
+$$
+\operatorname{minimize} \enspace \frac{1}{2} \|x-y\|_{2}^{2} + \lambda\|D_r x\|_{1} + \lambda\|D_c x\|_{1}
+$$
+</div>
+        <a href="/blog/en/posts/admm-2d-tv/">...</a>
+      
+    </p>
+  </article>
+  
+
+  
+
+
+ 
+      
+
+      <footer class="book-footer">
+        
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      },
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav>
+  <ul>
+  
+    
+    <li class="book-section-flat">
+      <strong>Categories</strong>
+      <ul>
+      
+        <li class="flex justify-between">
+          <a href="/blog/en/categories/Optimization/">Optimization</a>
+          <span>1</span>
+        </li>
+      
+      </ul>
+    </li>
+    
+  
+    
+    <li class="book-section-flat">
+      <strong>Tags</strong>
+      <ul>
+      
+        <li class="flex justify-between">
+          <a href="/blog/en/tags/ADMM/">ADMM</a>
+          <span>1</span>
+        </li>
+      
+      </ul>
+    </li>
+    
+  
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
