@@ -25,7 +25,9 @@ Made with Book Theme
 https://github.com/alex-shpak/hugo-book
 -->
 
-  
+  <link href="/blog/font-awesome/css/fontawesome.css" rel="stylesheet">
+<link href="/blog/font-awesome/css/brands.css" rel="stylesheet">
+<link href="/blog/font-awesome/css/solid.css" rel="stylesheet">
 </head>
 
 <body dir=>
@@ -76,14 +78,14 @@ https://github.com/alex-shpak/hugo-book
   </li>
   
   <li>
-    <a href="https://github.com/Zeqiang-Lai" target="_blank" rel="noopener">
-        Github
+    <a href="https://zeqiang-lai.github.io/" target="_blank" rel="noopener">
+        Profile
       </a>
   </li>
   
   <li>
-    <a href="https://zeqiang-lai.github.io/" target="_blank" rel="noopener">
-        Profile
+    <a href="https://github.com/Zeqiang-Lai" target="_blank" rel="noopener"></br><i class="fab fa-github"></i>
+        Github
       </a>
   </li>
   
@@ -131,12 +133,25 @@ https://github.com/alex-shpak/hugo-book
       <ul>
         <li><a href="#线性空间">线性空间</a>
           <ul>
-            <li><a href="#核零空间---null-space">核(零)空间 - Null Space</a></li>
+            <li><a href="#核零空间">核(零)空间</a></li>
             <li><a href="#列空间值域">列空间/值域</a></li>
             <li><a href="#向量">向量</a></li>
             <li><a href="#基">基</a></li>
             <li><a href="#坐标变换">坐标变换</a></li>
             <li><a href="#线性子空间">线性子空间</a></li>
+          </ul>
+        </li>
+        <li><a href="#线性映射">线性映射</a>
+          <ul>
+            <li><a href="#性质">性质</a></li>
+            <li><a href="#矩阵表示">矩阵表示</a></li>
+            <li><a href="#值域核">值域&amp;&amp;核</a></li>
+          </ul>
+        </li>
+        <li><a href="#线性变换">线性变换</a>
+          <ul>
+            <li><a href="#特征值特征向量">特征值&amp;&amp;特征向量</a></li>
+            <li><a href="#相似对角化">相似对角化</a></li>
           </ul>
         </li>
       </ul>
@@ -179,9 +194,9 @@ https://github.com/alex-shpak/hugo-book
 <ul>
 <li><input disabled="" type="checkbox"> TODO</li>
 </ul>
-<h3 id="核零空间---null-space">
-  核(零)空间 - Null Space
-  <a class="anchor" href="#%e6%a0%b8%e9%9b%b6%e7%a9%ba%e9%97%b4---null-space">#</a>
+<h3 id="核零空间">
+  核(零)空间
+  <a class="anchor" href="#%e6%a0%b8%e9%9b%b6%e7%a9%ba%e9%97%b4">#</a>
 </h3>
 <hr>
 <p>核空间，或者说零空间是<strong>针对一个矩阵</strong>来说的。对一个矩阵A，它的核空间就是Ax=0的解空间。</p>
@@ -250,19 +265,19 @@ $$</p>
 </h3>
 <hr>
 <p>线性子空间是线性空间中仍满足线性空间要求的一个子空间。</p>
-<p><strong>特殊的两个子空间</strong>：</p>
+<p><strong>特殊的两个子空间</strong>：也称这两个子空间为平凡子空间</p>
 <ul>
-<li>平凡子空间</li>
+<li>线性空间本身</li>
 <li>零空间</li>
 </ul>
 <p><strong>生成子空间</strong>：写做 span{$a_1, a_2, &hellip;, a_n$}</p>
-<p><strong>交空间</strong>：同时存在于两个子空间。</p>
+<p><strong>交空间</strong>：两个子空间的交集，同时存在于两个子空间。</p>
 <div>
 $$
 V_{1} \cap V_{2}=\left\{\boldsymbol{\alpha} \mid \boldsymbol{\alpha} \in V_{1} \text { 且 } \boldsymbol{\alpha} \in V_{2}\right\}
 $$
 </div>
-<p><strong>和空间</strong>：这个空间的向量是两个空间向量的和。</p>
+<p><strong>和空间</strong>：这个空间的向量是两个空间向量的和。这两个子空间有点像是和空间的基底。</p>
 <div>
 $$
 V_{1}+V_{2}=\left\{\boldsymbol{\alpha}=\boldsymbol{\alpha}_{1}+\boldsymbol{\alpha}_{2} \mid \boldsymbol{\alpha}_{1} \in V_{1} \text { 且 } \boldsymbol{\alpha}_{2} \in V_{2}\right\}
@@ -273,7 +288,108 @@ $$
 \operatorname{dim} V_{1}+\operatorname{dim} V_{2}=\operatorname{dim}\left(V_{1}+V_{2}\right)+\operatorname{dim}\left(V_{1} \cap V_{2}\right)
 $$</p>
 <p><strong>直和空间</strong>：若V1，V2两个子空间没有交集，则它们的和空间称为V1，V2的直和空间。</p>
-<p><strong>补子空间</strong>：直和空间为全集的两个子空间互为自己代数补。</p></p>
+<p><strong>补子空间</strong>：直和空间为全集的两个子空间互为自己代数补。</p>
+<h2 id="线性映射">
+  线性映射
+  <a class="anchor" href="#%e7%ba%bf%e6%80%a7%e6%98%a0%e5%b0%84">#</a>
+</h2>
+<hr>
+<blockquote>
+<p>定义：满足加法和数乘的两个线性空间的映射关系称为线性映射。</p>
+</blockquote>
+<p>线性映射前的空间叫原像，后的叫“像”。</p>
+<p>证明线性映射，只需要证明下面两个式子：</p>
+<div>
+$$
+\begin{array}{l} 
+\mathcal{A} \left( \alpha _{1}+ \alpha _{2}\right)= \mathcal{A} \left( \alpha _{1}\right)+ \mathcal{A} \left( \alpha _{2}\right) \\
+\mathcal{A} \left(\lambda \alpha _{1}\right)=\lambda \mathcal{A} \left( \alpha _{1}\right)
+\end{array}
+$$
+</div>
+<h3 id="性质">
+  性质
+  <a class="anchor" href="#%e6%80%a7%e8%b4%a8">#</a>
+</h3>
+<ul>
+<li>零元素经过线性映射还是零元素。</li>
+<li>一组元素经过线性映射，如果原来线性相关，则之后也线性相关。<strong>但是，如果原来线性无关，则之后不一定线性无关</strong>。</li>
+</ul>
+<h3 id="矩阵表示">
+  矩阵表示
+  <a class="anchor" href="#%e7%9f%a9%e9%98%b5%e8%a1%a8%e7%a4%ba">#</a>
+</h3>
+<p>线性映射可以用矩阵表示，但这之前我们需要将两个线性空间的元素用各自的基底进行表示。</p>
+<p>选取不同的基底，同一个线性映射的矩阵表示就不同。</p>
+<p>注意区分两个概念：</p>
+<ul>
+<li>基坐标变换：$\alpha=\beta A$</li>
+<li>向量坐标变换：$y=Ax$</li>
+</ul>
+<p>给定基的情况下给个矩阵都表示一个线性映射。</p>
+<p><strong>不同基底下矩阵表示之间的关系</strong>：</p>
+<p>设有两个空间$X,Y$, 两组基底$x_1,y_1$和$x_2,y_2$，</p>
+<ul>
+<li>$Q$是$y_1$到$y_2$的过渡矩阵，</li>
+<li>$P$是$x_1$到$x_2$之间的过渡矩阵，</li>
+</ul>
+<p>则在$x_1,y_1$下的$A$与在$x_2,y_2$的$B$有如下关系。</p>
+<p>$$
+B = Q^{-1}AP
+$$</p>
+<h3 id="值域核">
+  值域&amp;&amp;核
+  <a class="anchor" href="#%e5%80%bc%e5%9f%9f%e6%a0%b8">#</a>
+</h3>
+<p>值域</p>
+<p>核子空间：线性映射的“零空间“，映射之后为0的元素构成的空间。</p>
+<p>对于一个从n维线性空间v1，映射到m维线性空间v2的线性映射。</p>
+<ul>
+<li>核子空间核值域的维数之和为n</li>
+</ul>
+<h2 id="线性变换">
+  线性变换
+  <a class="anchor" href="#%e7%ba%bf%e6%80%a7%e5%8f%98%e6%8d%a2">#</a>
+</h2>
+<hr>
+<blockquote>
+<p>同一个空间的线性映射称之为线性变换。</p>
+</blockquote>
+<p>矩阵相似, 存在矩阵P，满足：</p>
+<p>$$
+B=P^{-1}AP
+$$</p>
+<p>则称A，B相似。</p>
+<blockquote class="book-hint info">
+  两个矩阵相似，意味着它们是不同基底下同一个线性变换的不同矩阵表示。
+</blockquote>
+
+<p>线性变换本身也可以定义运算, 这些运算和其矩阵表示有着对应关系:</p>
+<ul>
+<li>乘法: AB</li>
+<li>加法: A+B</li>
+<li>数乘: kA</li>
+</ul>
+<h3 id="特征值特征向量">
+  特征值&amp;&amp;特征向量
+  <a class="anchor" href="#%e7%89%b9%e5%be%81%e5%80%bc%e7%89%b9%e5%be%81%e5%90%91%e9%87%8f">#</a>
+</h3>
+<p>矩阵特征值的推广，求还是用线性变换的矩阵表示来求。</p>
+<ul>
+<li><strong>特征子空间</strong>：一个特征值对应的特征向量和零向量构成的一个子空间，称为这个特征值的特征子空间。</li>
+<li><strong>代数重复度</strong>：每个不同特征值的重复数目称为这个特征值的代数重复度。</li>
+<li><strong>几何重复度</strong>：一个特征值特征子空间的维数称为这个特征值的几何重复度。</li>
+</ul>
+<h3 id="相似对角化">
+  相似对角化
+  <a class="anchor" href="#%e7%9b%b8%e4%bc%bc%e5%af%b9%e8%a7%92%e5%8c%96">#</a>
+</h3>
+<ul>
+<li>n阶矩阵A可对角化的充要条件是A有n个线性无关的特征向量。</li>
+</ul>
+<blockquote class="book-hint warning">
+  注意，并不是什么线性变换存在一个基，使得在这个基下的矩阵表示，呈现对角形。
+</blockquote></p>
 </article>
  
       
@@ -374,12 +490,25 @@ $$</p>
       <ul>
         <li><a href="#线性空间">线性空间</a>
           <ul>
-            <li><a href="#核零空间---null-space">核(零)空间 - Null Space</a></li>
+            <li><a href="#核零空间">核(零)空间</a></li>
             <li><a href="#列空间值域">列空间/值域</a></li>
             <li><a href="#向量">向量</a></li>
             <li><a href="#基">基</a></li>
             <li><a href="#坐标变换">坐标变换</a></li>
             <li><a href="#线性子空间">线性子空间</a></li>
+          </ul>
+        </li>
+        <li><a href="#线性映射">线性映射</a>
+          <ul>
+            <li><a href="#性质">性质</a></li>
+            <li><a href="#矩阵表示">矩阵表示</a></li>
+            <li><a href="#值域核">值域&amp;&amp;核</a></li>
+          </ul>
+        </li>
+        <li><a href="#线性变换">线性变换</a>
+          <ul>
+            <li><a href="#特征值特征向量">特征值&amp;&amp;特征向量</a></li>
+            <li><a href="#相似对角化">相似对角化</a></li>
           </ul>
         </li>
       </ul>
