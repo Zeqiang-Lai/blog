@@ -162,7 +162,7 @@
       
       <guid>https://zeqiang-lai.github.io/blog/docs/matrix/types/</guid>
       <description>Created: Decemenber, 1, 2020 对称矩阵 #    定义：满足$A^T=A$的矩阵。 显然，对称矩阵是方阵，否则转一下形状都变了。  对称矩阵的特征值/向量有着很好的性质：
- 实对称矩阵的特征值都是实数。 对称矩阵的特征向量是正交的。  证明 1. 实对称矩阵的特征值都是实数
+ 实对称矩阵的特征值都是实数。 对称矩阵的特征向量是正交的。没验证，不过应该是不同特征值对应的特征向量一定是正交的，同一个特征值对应的特征向量可能需要Schmidt正交化。  证明 1. 实对称矩阵的特征值都是实数
 已知$Ax = \lambda x$，左右两边同时取共轭，有
 $$ \bar{A}\bar{x}=\bar{\lambda}\bar{x} $$
 因为A是实对称矩阵，$\bar{A}=A$，因此有 $$ A\bar{x}=\bar{\lambda}\bar{x} $$
@@ -211,7 +211,7 @@ $$&lt;/p&gt;
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://zeqiang-lai.github.io/blog/docs/matrix/misc/</guid>
-      <description>Created: Decemenber, 1, 2020 Spectrum(谱) #  矩阵中有谱（spectrum）这个概念，例如谱分解，谱范数等等。
+      <description>Created: Decemenber, 1, 2020 Spectrum #  矩阵中有谱（spectrum）这个概念，例如谱分解，谱范数等等。
 这个谱其实说的就是特征值，特征向量，它是从光学里借过来的说法。光学中光是由各种pure light构成的，光谱就是各个成分的占比。而在矩阵中，矩阵由各个pure的component，特征值特征向量构成。
 进一步来说，我们看矩阵对角化，我们知道任何一个对称矩阵A都可以对角化成$Q\Lambda Q^{T}$，其中Q为特征向量组成的矩阵。
 我们进一步把这个式子拆开，我们设A的特征向量为$q_i$, 则

@@ -8,7 +8,7 @@
 <meta name="description" content="Matrix #  正在努力编写中✍️    如何将各个知识点串起来？  杂七杂八: 一些无法分类的小知识  线性空间  各种矩阵
   对称矩阵  正定矩阵  正交矩阵  相似矩阵 : ⚠️ 相似矩阵是指一系列互相相似的矩阵。  特征值/特征向量
   基础知识  矩阵对角化 : 利用特征值，特征向量进行。  Jordan Form  矩阵分解
-  特征值分解(矩阵对角化) : 对角化也算是一种分解。  奇异值分解 : 特征值分解(eigendecomposition)的扩展  线性代数中常见的等价关系 #    singular matrix = 奇异矩阵 = 不可逆矩阵
+  特征值分解(矩阵对角化) : 对角化也算是一种分解。  奇异值分解 : 特征值分解(eigen decomposition)的扩展  谱分解 : 特征值分解的另一种表达形式。  线性代数中常见的等价关系 #    singular matrix = 奇异矩阵 = 不可逆矩阵
   A不可逆 &lt;-&gt;1 Ax = 0 有非零解 &lt;-&gt;2 特征值=0">
 <meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Matrix" />
 <meta property="og:description" content="" />
@@ -135,6 +135,7 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#matrix">Matrix</a>
           <ul>
             <li><a href="#线性代数中常见的等价关系">线性代数中常见的等价关系</a></li>
+            <li><a href="#quick-look">Quick Look</a></li>
           </ul>
         </li>
       </ul>
@@ -191,7 +192,9 @@ https://github.com/alex-shpak/hugo-book
 <li>
   <a href="/blog/docs/matrix/diagonalization/">特征值分解(矩阵对角化)</a> : 对角化也算是一种分解。</li>
 <li>
-  <a href="/blog/docs/matrix/svd/">奇异值分解</a> : 特征值分解(eigendecomposition)的扩展</li>
+  <a href="/blog/docs/matrix/svd/">奇异值分解</a> : 特征值分解(eigen decomposition)的扩展</li>
+<li>
+  <a href="/blog/docs/matrix/misc/#spectrum">谱分解</a> : 特征值分解的另一种表达形式。</li>
 </ul>
 <h3 id="线性代数中常见的等价关系">
   线性代数中常见的等价关系
@@ -204,6 +207,16 @@ https://github.com/alex-shpak/hugo-book
 <li>
 <p>A不可逆 &lt;-&gt;<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> Ax = 0 有非零解 &lt;-&gt;<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> 特征值=0</p>
 </li>
+</ul>
+<h3 id="quick-look">
+  Quick Look
+  <a class="anchor" href="#quick-look">#</a>
+</h3>
+<ul>
+<li><strong>酉矩阵</strong>: $A^HA=E$</li>
+<li><strong>正规矩阵</strong>: $A^HA=AA^H$, 包括对称矩阵，反对称矩阵，Hermite矩阵，反Hermite矩阵，正交矩阵，酉矩阵等。</li>
+<li><strong>酉对角化</strong>： $A=Q\Lambda Q^H$, <strong>普通对角化</strong>: $A=Q\Lambda Q^{-1}$</li>
+<li><strong>单纯矩阵</strong>：可以对角化的矩阵，即有n个线性无关的特征向量。</li>
 </ul>
 <section class="footnotes" role="doc-endnotes">
 <hr>
@@ -274,7 +287,30 @@ https://github.com/alex-shpak/hugo-book
 </div>
 
  
-        
+        <script>
+    MathJax = {
+      svg: {
+            fontCache: 'global'
+      },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      },
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
       </footer>
 
       
@@ -294,6 +330,7 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#matrix">Matrix</a>
           <ul>
             <li><a href="#线性代数中常见的等价关系">线性代数中常见的等价关系</a></li>
+            <li><a href="#quick-look">Quick Look</a></li>
           </ul>
         </li>
       </ul>

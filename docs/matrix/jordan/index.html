@@ -129,7 +129,7 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li>
       <ul>
-        <li><a href="#jordan块">Jordan块</a></li>
+        <li><a href="#lambda矩阵">$\lambda$矩阵</a></li>
       </ul>
     </li>
   </ul>
@@ -166,10 +166,34 @@ $$</p>
 J = P^{-1}AP
 $$</p>
 <p>但这时，J的对角线不在是一个单独的元素，而是一系列Jordan块（请想象一下分块矩阵）。</p>
-<h2 id="jordan块">
-  Jordan块
-  <a class="anchor" href="#jordan%e5%9d%97">#</a>
-</h2></p>
+<h2 id="lambda矩阵">
+  $\lambda$矩阵
+  <a class="anchor" href="#lambda%e7%9f%a9%e9%98%b5">#</a>
+</h2>
+<p>如果一个矩阵每个元素都是变量$\lambda$的多项式，则称这个矩阵为$\lambda$矩阵，记做$A(\lambda)$。</p>
+<p><strong>Smtih标准形</strong></p>
+<p>每一个$\lambda$矩阵都可以化成对角形矩阵，这个对角形矩阵称为该$\lambda$矩阵的<strong>Smith标准形</strong>。</p>
+<p>对角线上的元素按一定顺序排列：</p>
+<ul>
+<li>每一个元素都能整除后一个元素</li>
+<li>0在最后面（这其实是第一条规则的推论）</li>
+</ul>
+<p><strong>不变因子</strong></p>
+<p>Smith标准形对角线上的元素称为$A(\lambda)$的不变因子。</p>
+<p><strong>行列式因子</strong></p>
+<p>k阶行列式因子就是Smith标准形的前k各元素相乘。k最大只能取到矩阵秩，就是说行列式因子没有0。</p>
+<p>$$
+D_k(\lambda) = d_1(\lambda)d_2(\lambda)&hellip;d_k(\lambda)
+$$</p>
+<p><strong>初等因子</strong></p>
+<p>不是常数的不变因子的“因数”称为初等因子。</p>
+<blockquote class="book-hint info">
+  <p>例如，若$\lambda$矩阵的不变因子是</p>
+<p>1, 1, $(\lambda-2)^5(\lambda-3)^3$, $(\lambda-2)^5(\lambda-3)^4(\lambda+2)$</p>
+<p>则它的初等因子是，<strong>仔细看</strong></p>
+<p>$(\lambda-2)^5$, $(\lambda-3)^3$, $(\lambda-2)^5$, $(\lambda-3)^4$, $(\lambda+2)$</p>
+
+</blockquote></p>
 </article>
  
       
@@ -268,7 +292,7 @@ $$</p>
   <ul>
     <li>
       <ul>
-        <li><a href="#jordan块">Jordan块</a></li>
+        <li><a href="#lambda矩阵">$\lambda$矩阵</a></li>
       </ul>
     </li>
   </ul>

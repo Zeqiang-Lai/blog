@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Created: Decemenber, 1, 2020 对称矩阵 #    定义：满足$A^T=A$的矩阵。 显然，对称矩阵是方阵，否则转一下形状都变了。  对称矩阵的特征值/向量有着很好的性质：
- 实对称矩阵的特征值都是实数。 对称矩阵的特征向量是正交的。  证明 1. 实对称矩阵的特征值都是实数
+ 实对称矩阵的特征值都是实数。 对称矩阵的特征向量是正交的。没验证，不过应该是不同特征值对应的特征向量一定是正交的，同一个特征值对应的特征向量可能需要Schmidt正交化。  证明 1. 实对称矩阵的特征值都是实数
 已知$Ax = \lambda x$，左右两边同时取共轭，有
 $$ \bar{A}\bar{x}=\bar{\lambda}\bar{x} $$
 因为A是实对称矩阵，$\bar{A}=A$，因此有 $$ A\bar{x}=\bar{\lambda}\bar{x} $$
@@ -23,7 +23,7 @@ $$ \bar{\lambda} = \lambda $$
  所有特征值大于0。 所有顺序主子式都大于0。 所有Pivots都大于0。 $x^TAx&gt;0$ ： $x=[x_1,x_2, &hellip;, x_n]$, 对于所有的非零x恒大于0  类似的可以定义半正定(大于等于0)，负定（小于0），半负定（小于等于0）。">
 <meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="各种矩阵" />
 <meta property="og:description" content="Created: Decemenber, 1, 2020 对称矩阵 #    定义：满足$A^T=A$的矩阵。 显然，对称矩阵是方阵，否则转一下形状都变了。  对称矩阵的特征值/向量有着很好的性质：
- 实对称矩阵的特征值都是实数。 对称矩阵的特征向量是正交的。  证明 1. 实对称矩阵的特征值都是实数
+ 实对称矩阵的特征值都是实数。 对称矩阵的特征向量是正交的。没验证，不过应该是不同特征值对应的特征向量一定是正交的，同一个特征值对应的特征向量可能需要Schmidt正交化。  证明 1. 实对称矩阵的特征值都是实数
 已知$Ax = \lambda x$，左右两边同时取共轭，有
 $$ \bar{A}\bar{x}=\bar{\lambda}\bar{x} $$
 因为A是实对称矩阵，$\bar{A}=A$，因此有 $$ A\bar{x}=\bar{\lambda}\bar{x} $$
@@ -207,7 +207,7 @@ https://github.com/alex-shpak/hugo-book
 <p>对称矩阵的<strong>特征值/向量</strong>有着很好的性质：</p>
 <ol>
 <li>实对称矩阵的特征值都是实数。</li>
-<li>对称矩阵的特征向量是正交的。</li>
+<li>对称矩阵的特征向量是正交的。没验证，不过应该是不同特征值对应的特征向量一定是正交的，同一个特征值对应的特征向量可能需要Schmidt正交化。</li>
 </ol>
 <details >
   <summary>证明</summary>
