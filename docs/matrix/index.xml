@@ -71,12 +71,13 @@ $$&lt;/p&gt;
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://zeqiang-lai.github.io/blog/docs/matrix/misc/</guid>
-      <description>Created: Decemenber, 1, 2020 Spectrum #  矩阵中有谱（spectrum）这个概念，例如谱分解，谱范数等等。
+      <description>Created: Decemenber, 1, 2020 Quick Look #   酉矩阵: $A^HA=E$ 正规矩阵: $A^HA=AA^H$, 包括对称矩阵，反对称矩阵，Hermite矩阵，反Hermite矩阵，正交矩阵，酉矩阵等。 酉对角化： $A=Q\Lambda Q^H$, 普通对角化: $A=Q\Lambda Q^{-1}$ 单纯矩阵：可以对角化的矩阵，即有n个线性无关的特征向量。  线性代数中常见的等价关系 #    singular matrix = 奇异矩阵 = 不可逆矩阵
+  A不可逆 &amp;lt;-&amp;gt;1 Ax = 0 有非零解 &amp;lt;-&amp;gt;2 特征值=0
+  Spectrum #  矩阵中有谱（spectrum）这个概念，例如谱分解，谱范数等等。
 这个谱其实说的就是特征值，特征向量，它是从光学里借过来的说法。光学中光是由各种pure light构成的，光谱就是各个成分的占比。而在矩阵中，矩阵由各个pure的component，特征值特征向量构成。
 进一步来说，我们看矩阵对角化，我们知道任何一个对称矩阵A都可以对角化成$Q\Lambda Q^{T}$，其中Q为特征向量组成的矩阵。
 我们进一步把这个式子拆开，我们设A的特征向量为$q_i$, 则
-$$ A = Q\Lambda Q^{T} = \lambda_1 q_1 q_1^T + \lambda_2 q_2 q_2^T + &amp;hellip; + \lambda_n q_n q_n^T $$
-$q_i$是一个列向量，$q_1 q_1^T$是一个矩阵，因此A实际上就化成了n个矩阵的线性组合，第i个矩阵是$q_i q_i^T$，系数是特征值$\lambda_i$。</description>
+$$ A = Q\Lambda Q^{T} = \lambda_1 q_1 q_1^T + \lambda_2 q_2 q_2^T + &amp;hellip; + \lambda_n q_n q_n^T $$</description>
     </item>
     
     <item>
