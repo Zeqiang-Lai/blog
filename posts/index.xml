@@ -6,6 +6,15 @@
     <description>Recent content in Posts on Ze&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator><atom:link href="https://zeqiang-lai.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>蒙特卡洛法</title>
+      <link>https://zeqiang-lai.github.io/blog/posts/machine-learning/monte_carlo/</link>
+      <pubDate>Tue, 25 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/posts/machine-learning/monte_carlo/</guid>
+      <description>&lt;p&gt;蒙特卡洛(MonteCarlo)是一大类随机算法(RandomizedAlgorithms)的总称，它们通过随机样本来估算真实值。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>More about Variational Autoencoder</title>
       <link>https://zeqiang-lai.github.io/blog/posts/deep-learning/vae-more/</link>
       <pubDate>Fri, 04 Dec 2020 21:32:04 +0000</pubDate>

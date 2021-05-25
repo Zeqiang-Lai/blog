@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="蒙特卡洛(MonteCarlo)是一大类随机算法(RandomizedAlgorithms)的总称，它们通过随机样本来估算真实值。">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="蒙特卡洛法" />
+<meta property="og:description" content="蒙特卡洛(MonteCarlo)是一大类随机算法(RandomizedAlgorithms)的总称，它们通过随机样本来估算真实值。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zeqiang-lai.github.io/blog/posts/machine-learning/monte_carlo/" />
+<meta property="article:published_time" content="2021-05-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-05-25T00:00:00+00:00" />
+<title>蒙特卡洛法 | Ze&#39;s Blog</title>
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="icon" href="/blog/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/blog/book.min.a573b61f3ef933a5222a5c17ea66109fe49fa6241ce463c0faa5c30c48aafa9e.css" integrity="sha256-pXO2Hz75M6UiKlwX6mYQn&#43;SfpiQc5GPA&#43;qXDDEiq&#43;p4=">
+<script defer src="/blog/sw.min.be1e3b3f88e332c359acd5e967344f6f6c1d04e690ab8dda0c12abe7c950a1d2.js" integrity="sha256-vh47P4jjMsNZrNXpZzRPb2wdBOaQq43aDBKr58lQodI="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  <link href="/blog/font-awesome/css/fontawesome.css" rel="stylesheet">
+<link href="/blog/font-awesome/css/brands.css" rel="stylesheet">
+<link href="/blog/font-awesome/css/solid.css" rel="stylesheet">
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/blog"><span>Ze&#39;s Blog</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+  <a href="/blog/docs/matrix/">Matrix</a></li>
+<li>
+  <a href="/blog/docs/notes/">Notes</a></li>
+<li>
+  <a href="/blog/posts/">Posts</a>
+<br /></li>
+</ul>
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="https://zeqiang-lai.github.io/Algorithms/" target="_blank" rel="noopener">
+        Algorithms
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://zeqiang-lai.github.io/" target="_blank" rel="noopener">
+        Profile
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/Zeqiang-Lai" target="_blank" rel="noopener"></br><i class="fab fa-github"></i>
+        Github
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+    <label for="menu-control">
+      <img src="/blog/svg/menu.svg" class="book-icon" alt="Menu" />
+    </label>
+  
+    
+    <label for="toc-control">
+      
+      <img src="/blog/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+      
+    </label>
+  </div>
+  
+
+  
+  <aside class="hidden clearfix">
+    
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#估计圆周率">估计圆周率</a></li>
+        <li><a href="#近似求定积分">近似求定积分</a></li>
+        <li><a href="#参考资料">参考资料</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+<article class="markdown">
+  <h1>
+    <a href="/blog/posts/machine-learning/monte_carlo/">蒙特卡洛法</a>
+  </h1>
+  
+  <h5>May 25, 2021</h5>
+
+
+
+  
+
+  
+  <div>
+    
+      <a href="/blog/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/">统计学</a>
+  </div>
+  
+
+
+  <p><p>蒙特卡洛(MonteCarlo)是一大类随机算法(RandomizedAlgorithms)的总称，它们通过随机样本来估算真实值。</p>
+<h2 id="估计圆周率">
+  估计圆周率
+  <a class="anchor" href="#%e4%bc%b0%e8%ae%a1%e5%9c%86%e5%91%a8%e7%8e%87">#</a>
+</h2>
+<p>假设有一个半径为1，圆心在原点的圆，我们知道它的面积是$\pi$。现在我们随机在$x\in[-1,1], y\in[-1,1]$上随机取一个点，我们知道这个点落在圆内的概率为圆与正方形面积之比：</p>
+<p>$$
+p = \frac{\pi}{4}
+$$</p>
+<p>假设我们随机选取了n个点，我们可以使用下面的公式判断哪些点位于圆内，假设有m个。</p>
+<p>$$
+x^2 + y^2 &lt; 1
+$$</p>
+<p>显然，我们知道m的数学期望是</p>
+<p>$$
+E[M] = \frac{\pi n}{4}
+$$</p>
+<p>当n很大时, m近似于数学期望，因此有</p>
+<div>
+$$
+\begin{aligned}
+m \approx \frac{\pi n}{4} \\
+\pi \approx \frac{4m}{n}
+\end{aligned}
+$$
+</div>
+<h2 id="近似求定积分">
+  近似求定积分
+  <a class="anchor" href="#%e8%bf%91%e4%bc%bc%e6%b1%82%e5%ae%9a%e7%a7%af%e5%88%86">#</a>
+</h2>
+<p>蒙特卡洛求积分的本质是利用随机模拟估计一个随机变量的期望。</p>
+<p>假设我们想求定积分:</p>
+<p>$$
+\int_{a}^{b} f(x) \mathrm{d} x
+$$</p>
+<p>我们可以把它转换成某个随机变量的数学期望，具体如下：</p>
+<p>设随机变量$X \sim U[a, b]$，即服从均匀分布，X具有概率密度$p(x)=\frac{1}{b-a}$，那么就有:</p>
+<p>$$
+E[f(X)] =\int_{a}^{b} p(x)f(x) \mathrm{d} x = \frac{1}{b-a}\int_{a}^{b} f(x) \mathrm{d} x
+$$</p>
+<p>在统计学中，我们知道期望是可以估计的，我们随机取N个$f(x)$的样本，这些样本的平均值可以作为所求期望的近似，即：</p>
+<p>$$
+E[f(x)] = \frac{\sum_1^Nf(x_i)}{N} = \frac{1}{b-a}\int_{a}^{b} f(x) \mathrm{d} x
+$$</p>
+<p>那么就有：</p>
+<p>$$
+\int_{a}^{b} f(x) \mathrm{d} x = (b-a)\frac{\sum_1^Nf(x_i)}{N}
+$$</p>
+<h2 id="参考资料">
+  参考资料
+  <a class="anchor" href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99">#</a>
+</h2>
+<ul>
+<li><a href="https://blog.csdn.net/weixin_41503009/article/details/107853383">https://blog.csdn.net/weixin_41503009/article/details/107853383</a></li>
+<li><a href="https://github.com/wangshusen/DRL">https://github.com/wangshusen/DRL</a></li>
+</ul></p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+  
+
+
+  
+
+  
+
+
+
+<div class="book-languages" tabindex="0" aria-haspopup="true">
+  <ul>
+    <li class="flex align-center">
+      <img src="/blog/svg/translate.svg" class="book-icon" alt="Languages" />
+      Chinese
+    </li> 
+  </ul>
+
+  <ul class="book-languages-list">
+    
+    <li class="active">
+      <a href="https://zeqiang-lai.github.io/blog/" class="flex align-center">
+        <img src="/blog/svg/translate.svg" class="book-icon" alt="Languages" />
+        Chinese
+      </a>
+    </li>
+    
+    <li class="">
+      <a href="https://zeqiang-lai.github.io/blog/en/" class="flex align-center">
+        <img src="/blog/svg/translate.svg" class="book-icon" alt="Languages" />
+        English
+      </a>
+    </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+</div>
+
+ 
+        <script>
+    MathJax = {
+      svg: {
+            fontCache: 'global'
+      },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      },
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#估计圆周率">估计圆周率</a></li>
+        <li><a href="#近似求定积分">近似求定积分</a></li>
+        <li><a href="#参考资料">参考资料</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
