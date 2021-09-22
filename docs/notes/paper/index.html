@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Paper Notes #  一些论文阅读笔记
+ [ PDF] Tuning-free Plug-and-Play Proximal Algorithm for Inverse Imaging Problems [ PDF] Effective Snapshot Compressive-spectral Imaging via Deep Denoising and Total Varia-tion Priors [ Draft] RAFT: Recurrent All-Pairs Field Transforms for Optical Flow  ">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Paper" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://zeqiang-lai.github.io/blog/docs/notes/paper/" />
+
+<title>Paper | Ze&#39;s Blog</title>
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="icon" href="/blog/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/blog/book.min.8d117f34ebb569235b4a415f26d18ff080d018eee9c82e8634a71858bff41715.css" integrity="sha256-jRF/NOu1aSNbSkFfJtGP8IDQGO7pyC6GNKcYWL/0FxU=" crossorigin="anonymous">
+  <script defer src="/blog/flexsearch.min.js"></script>
+  <script defer src="/blog/zh.search.min.0a5d7deb52d532bcf3990601de35e7b5ef7af85709b7b5007472f49a2dc4fd2e.js" integrity="sha256-Cl1961LVMrzzmQYB3jXnte96&#43;FcJt7UAdHL0mi3E/S4=" crossorigin="anonymous"></script>
+
+  <script defer src="/blog/sw.min.be1e3b3f88e332c359acd5e967344f6f6c1d04e690ab8dda0c12abe7c950a1d2.js" integrity="sha256-vh47P4jjMsNZrNXpZzRPb2wdBOaQq43aDBKr58lQodI=" crossorigin="anonymous"></script>
+<link rel="alternate" type="application/rss+xml" href="https://zeqiang-lai.github.io/blog/docs/notes/paper/index.xml" title="Ze's Blog" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  <link href="/blog/font-awesome/css/fontawesome.css" rel="stylesheet">
+<link href="/blog/font-awesome/css/brands.css" rel="stylesheet">
+<link href="/blog/font-awesome/css/solid.css" rel="stylesheet">
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/blog/"><span>Ze&#39;s Blog</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="搜索" aria-label="搜索" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+  
+
+
+
+  
+    
+  
+
+
+
+<ul class="book-languages">
+  <li>
+    <input type="checkbox" id="languages" class="toggle" />
+    <label for="languages" class="flex justify-between">
+      <a role="button" class="flex align-center">
+        <img src="/blog/svg/translate.svg" class="book-icon" alt="Languages" />
+        Chinese
+      </a>
+    </label>
+
+    <ul>
+      
+      <li>
+        <a href="https://zeqiang-lai.github.io/blog/en/">
+          English
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="https://zeqiang-lai.github.io/blog/docs/notes/" class="">Notes</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://zeqiang-lai.github.io/blog/docs/notes/concept/" class="">Concept</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://zeqiang-lai.github.io/blog/docs/notes/paper/" class=" active">Paper</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://zeqiang-lai.github.io/blog/docs/matrix/" class="">Matrix</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/blog/posts/" >
+        Posts
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://zeqiang-lai.github.io/Algorithms/" target="_blank" rel="noopener"></br>
+        Algorithms
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://zeqiang-lai.github.io/" target="_blank" rel="noopener">
+        Profile
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/Zeqiang-Lai" target="_blank" rel="noopener"></br><i class="fab fa-github"></i>
+        Github
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+    <label for="menu-control">
+      <img src="/blog/svg/menu.svg" class="book-icon" alt="Menu" />
+    </label>
+  
+    
+    <label for="toc-control">
+      
+      <img src="/blog/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+      
+    </label>
+  </div>
+  
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#paper-notes">Paper Notes</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="paper-notes">
+  Paper Notes
+  <a class="anchor" href="#paper-notes">#</a>
+</h1>
+<p>一些论文阅读笔记</p>
+<ol>
+<li>[
+      
+  <a href="tfpnp.pdf">PDF</a>] Tuning-free Plug-and-Play Proximal Algorithm for Inverse Imaging Problems</li>
+<li>[
+      
+  <a href="sci_tv_ffdnet_report.pdf">PDF</a>] Effective Snapshot Compressive-spectral Imaging via Deep Denoising and Total Varia-tion Priors</li>
+<li>[
+  <a href="/blog/docs/notes/paper/raft/">Draft</a>] RAFT: Recurrent All-Pairs Field Transforms for Optical Flow</li>
+</ol>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+  <div><a class="flex align-center" href="https://github.com/Zeqiang-Lai/blog/commit/a9c698eba35fc991d6e5e2a813e88c4feccc1b43" title='最后修改者 Zeqiang Lai | September 22, 2021' target="_blank" rel="noopener">
+      <img src="/blog/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>September 22, 2021</span>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function select(element){const selection=window.getSelection();const range=document.createRange();range.selectNodeContents(element);selection.removeAllRanges();selection.addRange(range);}
+document.querySelectorAll("pre code").forEach(code=>{code.addEventListener("click",function(event){select(code.parentElement);if(navigator.clipboard){navigator.clipboard.writeText(code.parentElement.textContent);}});});})();</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#paper-notes">Paper Notes</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

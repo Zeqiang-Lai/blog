@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<html lang="zh" dir=>
-
+<html lang="zh" dir="ltr">
 <head>
-  <meta name="generator" content="Hugo 0.80.0" />
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Hugo-Book Shortcodes Usages">
@@ -15,50 +13,168 @@
 <title>Hugo-Book Shortcodes Usages | Ze&#39;s Blog</title>
 <link rel="manifest" href="/blog/manifest.json">
 <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
-<link rel="stylesheet" href="/blog/book.min.a573b61f3ef933a5222a5c17ea66109fe49fa6241ce463c0faa5c30c48aafa9e.css" integrity="sha256-pXO2Hz75M6UiKlwX6mYQn&#43;SfpiQc5GPA&#43;qXDDEiq&#43;p4=">
-<script defer src="/blog/sw.min.be1e3b3f88e332c359acd5e967344f6f6c1d04e690ab8dda0c12abe7c950a1d2.js" integrity="sha256-vh47P4jjMsNZrNXpZzRPb2wdBOaQq43aDBKr58lQodI="></script>
+<link rel="stylesheet" href="/blog/book.min.8d117f34ebb569235b4a415f26d18ff080d018eee9c82e8634a71858bff41715.css" integrity="sha256-jRF/NOu1aSNbSkFfJtGP8IDQGO7pyC6GNKcYWL/0FxU=" crossorigin="anonymous">
+  <script defer src="/blog/flexsearch.min.js"></script>
+  <script defer src="/blog/zh.search.min.0a5d7deb52d532bcf3990601de35e7b5ef7af85709b7b5007472f49a2dc4fd2e.js" integrity="sha256-Cl1961LVMrzzmQYB3jXnte96&#43;FcJt7UAdHL0mi3E/S4=" crossorigin="anonymous"></script>
+
+  <script defer src="/blog/sw.min.be1e3b3f88e332c359acd5e967344f6f6c1d04e690ab8dda0c12abe7c950a1d2.js" integrity="sha256-vh47P4jjMsNZrNXpZzRPb2wdBOaQq43aDBKr58lQodI=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
 -->
-
   <link href="/blog/font-awesome/css/fontawesome.css" rel="stylesheet">
 <link href="/blog/font-awesome/css/brands.css" rel="stylesheet">
 <link href="/blog/font-awesome/css/solid.css" rel="stylesheet">
 </head>
-
-<body dir=>
+<body dir="ltr">
   <input type="checkbox" class="hidden toggle" id="menu-control" />
   <input type="checkbox" class="hidden toggle" id="toc-control" />
   <main class="container flex">
     <aside class="book-menu">
-      
+      <div class="book-menu-content">
+        
   <nav>
 <h2 class="book-brand">
-  <a href="/blog"><span>Ze&#39;s Blog</span>
+  <a class="flex align-center" href="/blog/"><span>Ze&#39;s Blog</span>
   </a>
 </h2>
 
 
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="搜索" aria-label="搜索" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
 
 
 
+  
 
 
 
+  
+    
+  
 
 
 
+<ul class="book-languages">
+  <li>
+    <input type="checkbox" id="languages" class="toggle" />
+    <label for="languages" class="flex justify-between">
+      <a role="button" class="flex align-center">
+        <img src="/blog/svg/translate.svg" class="book-icon" alt="Languages" />
+        Chinese
+      </a>
+    </label>
 
-  <ul>
-<li>
-  <a href="/blog/docs/matrix/">Matrix</a></li>
-<li>
-  <a href="/blog/docs/notes/">Notes</a></li>
-<li>
-  <a href="/blog/posts/">Posts</a>
-<br /></li>
+    <ul>
+      
+      <li>
+        <a href="https://zeqiang-lai.github.io/blog/en/">
+          English
+        </a>
+      </li>
+      
+    </ul>
+  </li>
 </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="https://zeqiang-lai.github.io/blog/docs/notes/" class="">Notes</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://zeqiang-lai.github.io/blog/docs/notes/concept/" class="">Concept</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://zeqiang-lai.github.io/blog/docs/notes/paper/" class="">Paper</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://zeqiang-lai.github.io/blog/docs/matrix/" class="">Matrix</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
 
 
 
@@ -69,7 +185,13 @@ https://github.com/alex-shpak/hugo-book
 <ul>
   
   <li>
-    <a href="https://zeqiang-lai.github.io/Algorithms/" target="_blank" rel="noopener">
+    <a href="/blog/posts/" >
+        Posts
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://zeqiang-lai.github.io/Algorithms/" target="_blank" rel="noopener"></br>
         Algorithms
       </a>
   </li>
@@ -98,10 +220,11 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+  <script>(function(){var menu=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
 
 
  
+      </div>
     </aside>
 
     <div class="book-page">
@@ -124,7 +247,8 @@ https://github.com/alex-shpak/hugo-book
   
   <aside class="hidden clearfix">
     
-  <nav id="TableOfContents">
+  
+<nav id="TableOfContents">
   <ul>
     <li>
       <ul>
@@ -165,6 +289,7 @@ https://github.com/alex-shpak/hugo-book
 </nav>
 
 
+
   </aside>
   
  
@@ -191,11 +316,14 @@ https://github.com/alex-shpak/hugo-book
   
 
 
-  <p><p>Hugo-Book Shortcodes Usages</p>
+
+<p>Hugo-Book Shortcodes Usages</p>
 <blockquote class="book-hint warning">
   <ul>
-<li>如果公式里出现矩阵，需要用div将$$包括起来，否则无法正常显。见<a href="https://github.com/gohugoio/hugo/issues/2893">Link</a></li>
-<li>如果公式需要换行，需要用六个斜杠\\\，见<a href="https://github.com/wowchemy/wowchemy-hugo-modules/issues/291">Link</a></li>
+<li>如果公式里出现矩阵，需要用div将$$包括起来，否则无法正常显。见
+  <a href="https://github.com/gohugoio/hugo/issues/2893">Link</a></li>
+<li>如果公式需要换行，需要用六个斜杠\\\，见
+  <a href="https://github.com/wowchemy/wowchemy-hugo-modules/issues/291">Link</a></li>
 </ul>
 
 </blockquote>
@@ -223,7 +351,7 @@ https://github.com/alex-shpak/hugo-book
   
 
 
-<a  href="https://github.com/alex-shpak/hugo-book"   target="_blank"  class="book-btn">
+<a  href="https://github.com/alex-shpak/hugo-book"   target="_blank" rel="noopener"  class="book-btn">
   Contribute
 </a>
 </p>
@@ -251,29 +379,38 @@ Lorem markdownum insigne...
   <a class="anchor" href="#example">#</a>
 </h3>
 <div class="book-columns flex flex-wrap">
-  
+
   <div class="flex-even markdown-inner">
-    <h3 id="left-content">Left Content</h3>
+    <h3 id="left-content">
+  Left Content
+  <a class="anchor" href="#left-content">#</a>
+</h3>
 <p>Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat
 stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa
 protulit, sed sed aere valvis inhaesuro Pallas animam: qui <em>quid</em>, ignes.
 Miseratus fonte Ditis conubia.
   </div>
-  
+
   <div class="flex-even markdown-inner">
-    <h3 id="mid-content">Mid Content</h3>
+    <h3 id="mid-content">
+  Mid Content
+  <a class="anchor" href="#mid-content">#</a>
+</h3>
 <p>Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat
 stringit, frustra Saturnius uteroque inter!
   </div>
-  
+
   <div class="flex-even markdown-inner">
-    <h3 id="right-content">Right Content</h3>
+    <h3 id="right-content">
+  Right Content
+  <a class="anchor" href="#right-content">#</a>
+</h3>
 <p>Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat
 stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa
 protulit, sed sed aere valvis inhaesuro Pallas animam: qui <em>quid</em>, ignes.
 Miseratus fonte Ditis conubia.
   </div>
-  
+
 </div>
 
 <h2 id="details">
@@ -293,10 +430,12 @@ Lorem markdownum insigne...
 ## Markdown content
 Lorem markdownum insigne...
 <span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">details</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span>
-</code></pre></div><details open>
-  <summary>Title</summary>
+</code></pre></div><details open><summary>Title</summary>
   <div class="markdown-inner">
-    <h3 id="markdown-content">Markdown content</h3>
+    <h3 id="markdown-content">
+  Markdown content
+  <a class="anchor" href="#markdown-content">#</a>
+</h3>
 <p>Lorem markdownum insigne&hellip;
   </div>
 </details>
@@ -403,7 +542,7 @@ stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa
   <a class="anchor" href="#example-4">#</a>
 </h3>
 <div class="book-columns flex flex-wrap">
-  
+
   <div class="flex-even markdown-inner">
     <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tpl" data-lang="tpl"><span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">mermaid</span> <span style="color:#f92672">[</span><span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-center&#34;</span><span style="color:#f92672">]&gt;</span><span style="color:#75715e">}}</span>
 sequenceDiagram
@@ -419,7 +558,7 @@ sequenceDiagram
 <span style="color:#75715e">{{</span><span style="color:#f92672">&lt;</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">mermaid</span> <span style="color:#f92672">&gt;</span><span style="color:#75715e">}}</span>
 </code></pre></div>
   </div>
-  
+
   <div class="flex-even markdown-inner">
     <script src="/blog/mermaid.min.js"></script>
   <script>mermaid.initialize({
@@ -441,7 +580,7 @@ sequenceDiagram
         Bob->>Alice: Thanks for asking
     end
   </div>
-  
+
 </div>
 
 <h2 id="tabs">
@@ -464,7 +603,10 @@ sequenceDiagram
 
 <div class="book-tabs"><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-0" checked="checked" />
   <label for="tabs-uniqueid-0">MacOS</label>
-  <div class="book-tabs-content markdown-inner"><h2 id="macos">MacOS</h2>
+  <div class="book-tabs-content markdown-inner"><h2 id="macos">
+  MacOS
+  <a class="anchor" href="#macos">#</a>
+</h2>
 <p>This is tab <strong>MacOS</strong> content.</p>
 <p>Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat
 stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa
@@ -472,7 +614,10 @@ protulit, sed sed aere valvis inhaesuro Pallas animam: qui <em>quid</em>, ignes.
 Miseratus fonte Ditis conubia.</p>
 </div><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-1"  />
   <label for="tabs-uniqueid-1">Linux</label>
-  <div class="book-tabs-content markdown-inner"><h2 id="linux">Linux</h2>
+  <div class="book-tabs-content markdown-inner"><h2 id="linux">
+  Linux
+  <a class="anchor" href="#linux">#</a>
+</h2>
 <p>This is tab <strong>Linux</strong> content.</p>
 <p>Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat
 stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa
@@ -480,58 +625,22 @@ protulit, sed sed aere valvis inhaesuro Pallas animam: qui <em>quid</em>, ignes.
 Miseratus fonte Ditis conubia.</p>
 </div><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-2"  />
   <label for="tabs-uniqueid-2">Windows</label>
-  <div class="book-tabs-content markdown-inner"><h2 id="windows">Windows</h2>
+  <div class="book-tabs-content markdown-inner"><h2 id="windows">
+  Windows
+  <a class="anchor" href="#windows">#</a>
+</h2>
 <p>This is tab <strong>Windows</strong> content.</p>
 <p>Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat
 stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa
 protulit, sed sed aere valvis inhaesuro Pallas animam: qui <em>quid</em>, ignes.
 Miseratus fonte Ditis conubia.</p>
-</div></div></p>
-</article>
+</div></div></article>
  
       
 
       <footer class="book-footer">
         
   <div class="flex flex-wrap justify-between">
-
-  
-
-
-  
-
-  
-
-
-
-<div class="book-languages" tabindex="0" aria-haspopup="true">
-  <ul>
-    <li class="flex align-center">
-      <img src="/blog/svg/translate.svg" class="book-icon" alt="Languages" />
-      Chinese
-    </li> 
-  </ul>
-
-  <ul class="book-languages-list">
-    
-    <li class="active">
-      <a href="https://zeqiang-lai.github.io/blog/" class="flex align-center">
-        <img src="/blog/svg/translate.svg" class="book-icon" alt="Languages" />
-        Chinese
-      </a>
-    </li>
-    
-    <li class="">
-      <a href="https://zeqiang-lai.github.io/blog/en/" class="flex align-center">
-        <img src="/blog/svg/translate.svg" class="book-icon" alt="Languages" />
-        English
-      </a>
-    </li>
-    
-  </ul>
-</div>
-
-
 
 
   <div><a class="flex align-center" href="https://github.com/Zeqiang-Lai/blog/commit/5504d0e6fd0b24a7b52ed7edcfe82a36a1c8c4fa" title='最后修改者 Zeqiang Lai | February 2, 2021' target="_blank" rel="noopener">
@@ -542,7 +651,14 @@ Miseratus fonte Ditis conubia.</p>
 
 
 
+
 </div>
+
+
+
+  <script>(function(){function select(element){const selection=window.getSelection();const range=document.createRange();range.selectNodeContents(element);selection.removeAllRanges();selection.addRange(range);}
+document.querySelectorAll("pre code").forEach(code=>{code.addEventListener("click",function(event){select(code.parentElement);if(navigator.clipboard){navigator.clipboard.writeText(code.parentElement.textContent);}});});})();</script>
+
 
  
         <script>
@@ -580,8 +696,10 @@ Miseratus fonte Ditis conubia.</p>
 
     
     <aside class="book-toc">
-      
-  <nav id="TableOfContents">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
   <ul>
     <li>
       <ul>
@@ -621,14 +739,15 @@ Miseratus fonte Ditis conubia.</p>
   </ul>
 </nav>
 
+
  
+      </div>
     </aside>
     
   </main>
 
   
 </body>
-
 </html>
 
 

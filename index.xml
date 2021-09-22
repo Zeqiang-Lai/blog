@@ -155,6 +155,17 @@
     </item>
     
     <item>
+      <title>ArbSR: 任意尺度超分 - 阅读笔记</title>
+      <link>https://zeqiang-lai.github.io/blog/docs/notes/paper/arbrcan/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/docs/notes/paper/arbrcan/</guid>
+      <description>Created: August, 12, 2021 论文: Learning A Single Network for Scale-Arbitrary Super-Resolution
+Code: https://github.com/LongguangWang/ArbSR
+ </description>
+    </item>
+    
+    <item>
       <title>Jordan Form</title>
       <link>https://zeqiang-lai.github.io/blog/docs/matrix/jordan/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -166,10 +177,10 @@
     
     <item>
       <title>Raft 阅读笔记</title>
-      <link>https://zeqiang-lai.github.io/blog/docs/notes/md/raft/</link>
+      <link>https://zeqiang-lai.github.io/blog/docs/notes/paper/raft/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://zeqiang-lai.github.io/blog/docs/notes/md/raft/</guid>
+      <guid>https://zeqiang-lai.github.io/blog/docs/notes/paper/raft/</guid>
       <description>Created: August, 6, 2021 论文: RAFT: Recurrent All-Pairs Field Transforms for Optical Flow
 Code: https://github.com/princeton-vl/RAFT
  这篇文章做的是光流估计，简单来说，任务就是输入两张图像$I_1,I_2$，我们需要估计出第二张图像$I_1$每个像素点$(u,v)$相对于第一张图像$I_1$的偏移量$(f^1(u), f^2(v))$。
