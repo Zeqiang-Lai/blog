@@ -3,23 +3,15 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Created: Decemenber, 7, 2020
-满足以下条件的两个矩阵，我们称它们是相似的。
-$$
-B = M^{-1}AM
-$$
-换句话说，如果某个矩阵可以由另一个矩阵左乘一个矩阵再右乘这个矩阵的逆，则称它们是相似的。">
-<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="相似矩阵" />
-<meta property="og:description" content="Created: Decemenber, 7, 2020
-满足以下条件的两个矩阵，我们称它们是相似的。
-$$
-B = M^{-1}AM
-$$
-换句话说，如果某个矩阵可以由另一个矩阵左乘一个矩阵再右乘这个矩阵的逆，则称它们是相似的。" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://zeqiang-lai.github.io/blog/docs/matrix/similar/" />
-<meta property="article:modified_time" content="2021-02-02T18:42:43+08:00" />
-<title>相似矩阵 | Ze&#39;s Blog</title>
+<meta name="description" content="Torchlight Documentation #  Torchlight is an ultra light-weight pytorch wrapper for fast prototyping of computer vision models.
+ Installation #  Clone the repo from GitHub
+pip install . pip install -e . # editable installation Features #   Debug Mode User friendly progress bar Save latest checkpoint if interrupted by Ctrl-C  ">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Torchlight" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://zeqiang-lai.github.io/blog/docs/torchlight/" />
+
+<title>Torchlight | Ze&#39;s Blog</title>
 <link rel="manifest" href="/blog/manifest.json">
 <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/blog/book.min.8d117f34ebb569235b4a415f26d18ff080d018eee9c82e8634a71858bff41715.css" integrity="sha256-jRF/NOu1aSNbSkFfJtGP8IDQGO7pyC6GNKcYWL/0FxU=" crossorigin="anonymous">
@@ -27,6 +19,7 @@ $$
   <script defer src="/blog/zh.search.min.c4635fd954026a53e33f3848f40733d43e1cda29164f7f7c0ff8b71cc948e343.js" integrity="sha256-xGNf2VQCalPjPzhI9Acz1D4c2ikWT398D/i3HMlI40M=" crossorigin="anonymous"></script>
 
   <script defer src="/blog/sw.min.be1e3b3f88e332c359acd5e967344f6f6c1d04e690ab8dda0c12abe7c950a1d2.js" integrity="sha256-vh47P4jjMsNZrNXpZzRPb2wdBOaQq43aDBKr58lQodI=" crossorigin="anonymous"></script>
+<link rel="alternate" type="application/rss+xml" href="https://zeqiang-lai.github.io/blog/docs/torchlight/index.xml" title="Ze's Blog" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -167,7 +160,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://zeqiang-lai.github.io/blog/docs/torchlight/" class="">Torchlight</a>
+    <a href="https://zeqiang-lai.github.io/blog/docs/torchlight/" class=" active">Torchlight</a>
   
 
           
@@ -277,10 +270,10 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#torchlight-documentation">Torchlight Documentation</a>
       <ul>
-        <li><a href="#intuition">Intuition</a></li>
-        <li><a href="#性质">性质</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#features">Features</a></li>
       </ul>
     </li>
   </ul>
@@ -295,74 +288,30 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-<article class="markdown">
-  <h1>
-    <a href="/blog/docs/matrix/similar/">相似矩阵</a>
-  </h1>
-  
-
-
-  
-
-  
-
-
-
-<h5>Created: Decemenber, 7, 2020</h5>
-<p>满足以下条件的两个矩阵，我们称它们是<strong>相似</strong>的。</p>
-<p>$$
-B = M^{-1}AM
-$$</p>
-<p>换句话说，如果某个矩阵可以由另一个矩阵左乘一个矩阵再右乘这个矩阵的逆，则称它们是相似的。</p>
-<h2 id="intuition">
-  Intuition
-  <a class="anchor" href="#intuition">#</a>
+  <article class="markdown"><h1 id="torchlight-documentation">
+  Torchlight Documentation
+  <a class="anchor" href="#torchlight-documentation">#</a>
+</h1>
+<p>Torchlight is an ultra light-weight pytorch wrapper for fast prototyping of computer vision models.</p>
+<script id="asciicast-plgeWrgKAl9HdbI6kQEYMRsii" src="https://asciinema.org/a/plgeWrgKAl9HdbI6kQEYMRsii.js" async></script>
+<h2 id="installation">
+  Installation
+  <a class="anchor" href="#installation">#</a>
 </h2>
-<p>相似的矩阵具有很多相似的属性。</p>
-<p>我们可以把每一个矩阵和其相似的矩阵（们）都想成一个<strong>family</strong>，这个family里可能有一些矩阵很特殊，通过研究这些特殊的矩阵（通常更为容易），我们可以反推出原矩阵的一些属性。</p>
-<blockquote class="book-hint info">
-  <div>
-矩阵对角化$\Lambda = S^{-1}AS$的对角矩阵就是一种特殊的相似矩阵。
-</div>
-
-</blockquote>
-
-<h2 id="性质">
-  性质
-  <a class="anchor" href="#%e6%80%a7%e8%b4%a8">#</a>
+<p>Clone the repo from 
+  <a href="https://github.com/Zeqiang-Lai/torchlight">GitHub</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pip install .
+pip install -e . <span style="color:#75715e"># editable installation</span>
+</code></pre></div><h2 id="features">
+  Features
+  <a class="anchor" href="#features">#</a>
 </h2>
 <ul>
-<li><strong>相似矩阵的特征值是相同的</strong>（特征向量可能不同<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>,但相互独立的数量是相同的）</li>
+<li>Debug Mode</li>
+<li>User friendly progress bar</li>
+<li>Save latest checkpoint if interrupted by Ctrl-C</li>
 </ul>
-<details open><summary>证明</summary>
-  <div class="markdown-inner">
-    <p>证明要分两个方向，A的特征值是B的特征值，B的特征值也是A的，由这两者即可得到二者特征值相等。</p>
-<p>对于原矩阵A, 其特征值满足：</p>
-<p>$$
-Ax = \lambda x
-$$</p>
-<p>对于B：</p>
-<p>$$
-(M^{-1}AM)M^{-1}x = M^{-1} \lambda x  = \lambda M^{-1} x
-$$
-$$
-BM^{-1}x = \lambda M^{-1} x
-$$</p>
-<p>于是，我们知道A的特征值也是B的特征值，且B的特征向量是A的特征向量乘以$M^{-1}$。</p>
-<p>反向很容易，把M乘到B那边得到$MBM^{-1} = A$，用类似的方法即可证明。</p>
-
-  </div>
-</details>
-
-</br>
-<section class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1" role="doc-endnote">
-<p>还是一定不同？TODO <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</section></article>
+</article>
  
       
 
@@ -371,9 +320,9 @@ $$</p>
   <div class="flex flex-wrap justify-between">
 
 
-  <div><a class="flex align-center" href="https://github.com/Zeqiang-Lai/blog/commit/5504d0e6fd0b24a7b52ed7edcfe82a36a1c8c4fa" title='最后修改者 Zeqiang Lai | February 2, 2021' target="_blank" rel="noopener">
+  <div><a class="flex align-center" href="https://github.com/Zeqiang-Lai/blog/commit/b727a90bb6e3d59136401098fef58903f0f983c7" title='最后修改者 Zeqiang Lai | September 22, 2021' target="_blank" rel="noopener">
       <img src="/blog/svg/calendar.svg" class="book-icon" alt="Calendar" />
-      <span>February 2, 2021</span>
+      <span>September 22, 2021</span>
     </a>
   </div>
 
@@ -389,30 +338,7 @@ document.querySelectorAll("pre code").forEach(code=>{code.addEventListener("clic
 
 
  
-        <script>
-    MathJax = {
-      svg: {
-            fontCache: 'global'
-      },
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$','$$'], ['\\[', '\\]']],
-        processEscapes: true,
-        processEnvironments: true,
-      },
-      options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-      },
-    };
-  
-    window.addEventListener('load', (event) => {
-        document.querySelectorAll("mjx-container").forEach(function(x){
-          x.parentElement.classList += 'has-jax'})
-      });
-</script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-
-<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+        
       </footer>
 
       
@@ -429,10 +355,10 @@ document.querySelectorAll("pre code").forEach(code=>{code.addEventListener("clic
   
 <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#torchlight-documentation">Torchlight Documentation</a>
       <ul>
-        <li><a href="#intuition">Intuition</a></li>
-        <li><a href="#性质">性质</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#features">Features</a></li>
       </ul>
     </li>
   </ul>
