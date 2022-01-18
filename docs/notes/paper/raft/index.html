@@ -10,7 +10,8 @@ $$ I_1 = I_2 &#43; f $$
 这篇文章的思路是这样的：
  首先使用一个feature encoder  求出flow feature：同时输入img1，img2，得到fmap1，fmap2 求出context feature：只输入img1，得到inp   求出fmap1和fmap2的相似度corr 使用一个RNN迭代的求出flow。  RNN的输入包括一个隐藏状态net，context feature inp，相似度corr，上一步的flow     这里的主要问题是每迭代一次，我们都得到了一个更接近img1的img2，这时候相似度需要重新计算。
  RAFT设计了一个查表的思路，只需要在最开始算一遍即可。它的方法是用新坐标周围的点的flow feature拉成一个向量作为新坐标点的flow特征。">
-<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Raft 阅读笔记" />
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Raft 阅读笔记" />
 <meta property="og:description" content="Created: August, 6, 2021 论文: RAFT: Recurrent All-Pairs Field Transforms for Optical Flow
 Code: https://github.com/princeton-vl/RAFT
  这篇文章做的是光流估计，简单来说，任务就是输入两张图像$I_1,I_2$，我们需要估计出第二张图像$I_1$每个像素点$(u,v)$相对于第一张图像$I_1$的偏移量$(f^1(u), f^2(v))$。
@@ -24,9 +25,9 @@ $$ I_1 = I_2 &#43; f $$
 <title>Raft 阅读笔记 | Ze&#39;s Blog</title>
 <link rel="manifest" href="/blog/manifest.json">
 <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
-<link rel="stylesheet" href="/blog/book.min.8d117f34ebb569235b4a415f26d18ff080d018eee9c82e8634a71858bff41715.css" integrity="sha256-jRF/NOu1aSNbSkFfJtGP8IDQGO7pyC6GNKcYWL/0FxU=" crossorigin="anonymous">
+<link rel="stylesheet" href="/blog/book.min.dd6df3b20cb0c537f0d92a30df68af84febcbb2345007d2213900f011c24b6c0.css" integrity="sha256-3W3zsgywxTfw2Sow32ivhP68uyNFAH0iE5APARwktsA=" crossorigin="anonymous">
   <script defer src="/blog/flexsearch.min.js"></script>
-  <script defer src="/blog/zh.search.min.2fdcbb12e546ddd61bb4462308fc880c4464d231b5c2536369264332aace19a4.js" integrity="sha256-L9y7EuVG3dYbtEYjCPyIDERk0jG1wlNjaSZDMqrOGaQ=" crossorigin="anonymous"></script>
+  <script defer src="/blog/zh.search.min.a3700e6a831acc72f7b5f4254916c1bc333e43fbbd110483aca6d18d1b06786a.js" integrity="sha256-o3AOaoMazHL3tfQlSRbBvDM&#43;Q/u9EQSDrKbRjRsGeGo=" crossorigin="anonymous"></script>
 
   <script defer src="/blog/sw.min.be1e3b3f88e332c359acd5e967344f6f6c1d04e690ab8dda0c12abe7c950a1d2.js" integrity="sha256-vh47P4jjMsNZrNXpZzRPb2wdBOaQq43aDBKr58lQodI=" crossorigin="anonymous"></script>
 <!--
