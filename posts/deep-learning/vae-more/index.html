@@ -10,28 +10,27 @@
 <meta property="og:description" content="一些关于VAE的扩展知识。
 不断更新中&hellip;" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zeqiang-lai.github.io/blog/posts/deep-learning/vae-more/" />
+<meta property="og:url" content="https://zeqiang-lai.github.io/blog/posts/deep-learning/vae-more/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-12-04T21:32:04+00:00" />
 <meta property="article:modified_time" content="2021-02-02T18:42:43+08:00" />
+
 <title>More about Variational Autoencoder | Ze&#39;s Blog</title>
 <link rel="manifest" href="/blog/manifest.json">
 <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
-<link rel="stylesheet" href="/blog/book.min.13bbbe4f6615c2678d4791e3ced8ba400c6b664b82857ee3efc9f20f99b3069e.css" integrity="sha256-E7u&#43;T2YVwmeNR5Hjzti6QAxrZkuChX7j78nyD5mzBp4=" crossorigin="anonymous">
+<link rel="stylesheet" href="/blog/book.min.83d6bd38ef6e13aa5cbd5283293cf037f4d6e83b871d7a2341f6edc7ca421291.css" integrity="sha256-g9a9OO9uE6pcvVKDKTzwN/TW6DuHHXojQfbtx8pCEpE=" crossorigin="anonymous">
   <script defer src="/blog/flexsearch.min.js"></script>
-  <script defer src="/blog/zh.search.min.a3700e6a831acc72f7b5f4254916c1bc333e43fbbd110483aca6d18d1b06786a.js" integrity="sha256-o3AOaoMazHL3tfQlSRbBvDM&#43;Q/u9EQSDrKbRjRsGeGo=" crossorigin="anonymous"></script>
+  <script defer src="/blog/zh.search.min.bec239b17d2f88cc64a88f29214420382c126324953814f606d08d5f12903f30.js" integrity="sha256-vsI5sX0viMxkqI8pIUQgOCwSYySVOBT2BtCNXxKQPzA=" crossorigin="anonymous"></script>
 
-  <script defer src="/blog/sw.min.be1e3b3f88e332c359acd5e967344f6f6c1d04e690ab8dda0c12abe7c950a1d2.js" integrity="sha256-vh47P4jjMsNZrNXpZzRPb2wdBOaQq43aDBKr58lQodI=" crossorigin="anonymous"></script>
+  <script defer src="/blog/sw.min.f4bc4151631c92d29816d24dfaacb947aa6b03f91ec1c0cd2738ba8957d04791.js" integrity="sha256-9LxBUWMcktKYFtJN&#43;qy5R6prA/kewcDNJzi6iVfQR5E=" crossorigin="anonymous"></script>
 
-<script type="application/javascript">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7KXWQ22DHN"></script>
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'G-7KXWQ22DHN', 'auto');
-	
-	ga('send', 'pageview');
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-7KXWQ22DHN', { 'anonymize_ip': false });
 }
 </script>
 <!--
@@ -292,7 +291,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-  <script>(function(){var menu=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
 
 
  
@@ -573,7 +572,8 @@ $$
   <a href="http://www.fenghz.xyz/Denosing-criterion-for-vae/">Denoising Criterion for Variational Autoencoding Framework</a></li>
 <li>
   <a href="http://www.fenghz.xyz/VAE-train-tips/">Some useful tricks in training variational autoencoder</a></li>
-<li><a href="https://github.com/loliverhennigh/Variational-autoencoder-tricks-and-tips/blob/master/README.md">https://github.com/loliverhennigh/Variational-autoencoder-tricks-and-tips/blob/master/README.md</a></li>
+<li>
+  <a href="https://github.com/loliverhennigh/Variational-autoencoder-tricks-and-tips/blob/master/README.md">https://github.com/loliverhennigh/Variational-autoencoder-tricks-and-tips/blob/master/README.md</a></li>
 </ul>
 <h3 id="loss设计">
   Loss设计
@@ -612,37 +612,39 @@ $$
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>Yoshida 和 Miyato - 2017 -Spectral Norm Regularization for Improving the Generalizability of Deep Learning <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Yoshida 和 Miyato - 2017 -Spectral Norm Regularization for Improving the Generalizability of Deep Learning&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
-<p>Vahdat 和 Kautz - 2020 - NVAE A Deep Hierarchical Variational Autoencoder <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Vahdat 和 Kautz - 2020 - NVAE A Deep Hierarchical Variational Autoencoder&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:3" role="doc-endnote">
-<p>Bowman 等。 - 2016 - Generating Sentences from a Continuous Space <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Bowman 等。 - 2016 - Generating Sentences from a Continuous Space&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:4" role="doc-endnote">
-<p><a href="https://discuss.pytorch.org/t/kld-loss-goes-nan-during-vae-training/42305">https://discuss.pytorch.org/t/kld-loss-goes-nan-during-vae-training/42305</a> <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>
+  <a href="https://discuss.pytorch.org/t/kld-loss-goes-nan-during-vae-training/42305">https://discuss.pytorch.org/t/kld-loss-goes-nan-during-vae-training/42305</a>&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:5" role="doc-endnote">
-<p><a href="https://github.com/y0ast/VAE-Torch/issues/3">https://github.com/y0ast/VAE-Torch/issues/3</a> <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>
+  <a href="https://github.com/y0ast/VAE-Torch/issues/3">https://github.com/y0ast/VAE-Torch/issues/3</a>&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:6" role="doc-endnote">
-<p>Higgins 等。 - 2017 - β-VAE: LEARNING BASIC VISUAL CONCEPTS WITH A CONSTRAINED VARIATIONAL FRAMEWORK <a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Higgins 等。 - 2017 - β-VAE: LEARNING BASIC VISUAL CONCEPTS WITH A CONSTRAINED VARIATIONAL FRAMEWORK&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:7" role="doc-endnote">
-<p>Burgess 等。 - 2018 - Understanding disentangling in $\beta$-VAE <a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Burgess 等。 - 2018 - Understanding disentangling in $\beta$-VAE&#160;<a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:8" role="doc-endnote">
-<p>Sønderby 等。 - 2016 - Ladder Variational Autoencoders <a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Sønderby 等。 - 2016 - Ladder Variational Autoencoders&#160;<a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:9" role="doc-endnote">
-<p>Yan 等。 - 2020 - Re-balancing Variational Autoencoder Loss for Molecule Sequence Generation <a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Yan 等。 - 2020 - Re-balancing Variational Autoencoder Loss for Molecule Sequence Generation&#160;<a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:10" role="doc-endnote">
-<p>Sohn 等。 - 2015 - Learning Structured Output Representation using Deep Conditional Generative Models <a href="#fnref:10" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Sohn 等。 - 2015 - Learning Structured Output Representation using Deep Conditional Generative Models&#160;<a href="#fnref:10" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:11" role="doc-endnote">
-<p>Du 等。 - 2020 - Conditional Variational Image Deraining <a href="#fnref:11" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Du 等。 - 2020 - Conditional Variational Image Deraining&#160;<a href="#fnref:11" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section></article>
@@ -667,8 +669,7 @@ $$
 
 
 
-  <script>(function(){function select(element){const selection=window.getSelection();const range=document.createRange();range.selectNodeContents(element);selection.removeAllRanges();selection.addRange(range);}
-document.querySelectorAll("pre code").forEach(code=>{code.addEventListener("click",function(event){select(code.parentElement);if(navigator.clipboard){navigator.clipboard.writeText(code.parentElement.textContent);}});});})();</script>
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
 
 
  

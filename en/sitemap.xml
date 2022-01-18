@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://zeqiang-lai.github.io/blog/en/posts/admm-2d-tv/</loc>
     <lastmod>2021-02-02T18:42:43+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zeqiang-lai.github.io/blog/en/tags/ADMM/</loc>
     <lastmod>2021-02-02T18:42:43+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zeqiang-lai.github.io/blog/en/categories/</loc>
     <lastmod>2021-02-02T18:42:43+08:00</lastmod>
     <xhtml:link
@@ -25,14 +20,10 @@
                 hreflang="en"
                 href="https://zeqiang-lai.github.io/blog/en/categories/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zeqiang-lai.github.io/blog/en/categories/Optimization/</loc>
     <lastmod>2021-02-02T18:42:43+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zeqiang-lai.github.io/blog/en/tags/</loc>
     <lastmod>2021-02-02T18:42:43+08:00</lastmod>
     <xhtml:link
@@ -45,9 +36,7 @@
                 hreflang="en"
                 href="https://zeqiang-lai.github.io/blog/en/tags/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zeqiang-lai.github.io/blog/en/</loc>
     <lastmod>2021-02-02T18:42:43+08:00</lastmod>
     <xhtml:link
@@ -60,9 +49,7 @@
                 hreflang="en"
                 href="https://zeqiang-lai.github.io/blog/en/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zeqiang-lai.github.io/blog/en/posts/</loc>
     <lastmod>2021-09-22T16:52:05+08:00</lastmod>
     <xhtml:link
@@ -76,5 +63,4 @@
                 href="https://zeqiang-lai.github.io/blog/en/posts/"
                 />
   </url>
-  
 </urlset>
