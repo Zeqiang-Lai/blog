@@ -7,19 +7,30 @@
     <generator>Hugo -- gohugo.io</generator><atom:link href="https://zeqiang-lai.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>蒙特卡洛法</title>
-      <link>https://zeqiang-lai.github.io/blog/posts/machine-learning/monte_carlo/</link>
+      <link>https://zeqiang-lai.github.io/blog/posts/ai/monte_carlo/</link>
       <pubDate>Tue, 25 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://zeqiang-lai.github.io/blog/posts/machine-learning/monte_carlo/</guid>
+      <guid>https://zeqiang-lai.github.io/blog/posts/ai/monte_carlo/</guid>
       <description>&lt;p&gt;蒙特卡洛(MonteCarlo)是一大类随机算法(RandomizedAlgorithms)的总称，它们通过随机样本来估算真实值。&lt;/p&gt;</description>
     </item>
     
     <item>
+      <title>Convolution with Image Filter &amp;&amp; Convolution with fft/ifft</title>
+      <link>https://zeqiang-lai.github.io/blog/posts/ai/conv-fft/</link>
+      <pubDate>Thu, 04 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/posts/ai/conv-fft/</guid>
+      <description>我们可以使用傅立叶变换实现卷积，具体做法大概就是先对数据和卷积核进行傅立叶变换将数据变换到频域，然后卷积就是频域上的乘积, 最后做逆傅立叶变换转化回原来的空域。
+r = ifft(fft(x).*fft(h)) 但是需要注意的是傅立叶变换做的卷积对应的是Circular Convolution。
+g = conv2(f,h,&amp;#39;same&amp;#39;); g_fft2 = ifft2(fft2(circshift(f,[-1,-1])).*fft2(rot90(h,2),2,4)); 使用傅立叶变换如果要获得和Circular Convolution一模一样的结果，需要对数据做一个shift，shift的大小和卷积核大小有关，二维情况就是[-w/2, -h/2]；然后卷积核也要反转一下，因为conv2卷积是倒着的。</description>
+    </item>
+    
+    <item>
       <title>More about Variational Autoencoder</title>
-      <link>https://zeqiang-lai.github.io/blog/posts/deep-learning/vae-more/</link>
+      <link>https://zeqiang-lai.github.io/blog/posts/ai/vae-more/</link>
       <pubDate>Fri, 04 Dec 2020 21:32:04 +0000</pubDate>
       
-      <guid>https://zeqiang-lai.github.io/blog/posts/deep-learning/vae-more/</guid>
+      <guid>https://zeqiang-lai.github.io/blog/posts/ai/vae-more/</guid>
       <description>&lt;p&gt;一些关于VAE的扩展知识。&lt;/p&gt;
 &lt;p&gt;不断更新中&amp;hellip;&lt;/p&gt;</description>
     </item>
@@ -56,10 +67,10 @@
     
     <item>
       <title>How genralized linear model work?</title>
-      <link>https://zeqiang-lai.github.io/blog/posts/machine-learning/Generalized-Linear-Model/</link>
+      <link>https://zeqiang-lai.github.io/blog/posts/ai/Generalized-Linear-Model/</link>
       <pubDate>Sat, 12 May 2018 08:24:04 +0000</pubDate>
       
-      <guid>https://zeqiang-lai.github.io/blog/posts/machine-learning/Generalized-Linear-Model/</guid>
+      <guid>https://zeqiang-lai.github.io/blog/posts/ai/Generalized-Linear-Model/</guid>
       <description>&lt;p&gt;本文将简单的讲述：GLM是如何工作的？&lt;/p&gt;</description>
     </item>
     
@@ -93,10 +104,10 @@
     
     <item>
       <title>Principal component analysis</title>
-      <link>https://zeqiang-lai.github.io/blog/posts/machine-learning/Principal-component-analysis/</link>
+      <link>https://zeqiang-lai.github.io/blog/posts/ai/Principal-component-analysis/</link>
       <pubDate>Mon, 08 Jan 2018 12:45:04 +0000</pubDate>
       
-      <guid>https://zeqiang-lai.github.io/blog/posts/machine-learning/Principal-component-analysis/</guid>
+      <guid>https://zeqiang-lai.github.io/blog/posts/ai/Principal-component-analysis/</guid>
       <description>&lt;p&gt;PCA (Principal component analysis) 是一种给数据降维的方法。&lt;/p&gt;
 &lt;p&gt;利用PCA，能将一堆高维空间的数据映射到一个低维空间，并最大限度保持它们之间的可区分性。&lt;/p&gt;</description>
     </item>

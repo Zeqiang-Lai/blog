@@ -17,6 +17,23 @@ Code: https://github.com/LongguangWang/ArbSR
     </item>
     
     <item>
+      <title>PatchMatch 导读</title>
+      <link>https://zeqiang-lai.github.io/blog/docs/notes/paper/patchmatch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/docs/notes/paper/patchmatch/</guid>
+      <description>Created: Jan, 24, 2022 PatchMatch: A Randomized Correspondence Algorithm for Structural Image Editing
+ Sample Impl ｜ 知乎解读
+图像匹配的典中典，基于匹配块周围的匹配也近似匹配的先验知识的随机化算法。
+ 首先明确这篇论文解决的问题是图像匹配问题，即给定两张图像A，B，我们需要将A，B中相同的像素或图像块（Patch）进行匹配，得到一个偏移量f，使得对于A中每个点的坐标x，B中对应点的坐标为x+f(x)。
+这篇论文提出了一个Randomized Correspondence Algorithm来做这件事情。要理解这个算法，我们首先需要这个算法的核心insight：
+The key insights driving the algorithm are thatsome good patch matches can be found via random sampling, and that natural coherence in the imagery allows us to propagate such matches quickly to surrounding areas.  用中文来说就是，对于一个匹配好的点，我们知道其偏移量为f(x)，基于图像的连续性，那么这个点周围的点的偏移量应该也近似是f(x)，这样我们就可以快速把正确点的偏移量向其周围传播，使其周围点的估计偏移量越来越准确。
+图像的连续性：一个苹果在两张图像上放在不同位置，但是苹果上某两个点的相对位置关系近似不变。  算法 #  前提条件 假设我们有两张图像A，B，我们需要找到一个偏移量f，使得对于A中每个点的坐标x，B中对应点的坐标为x+f(x)。
+PatchMatch的算法主要分为三个步骤：
+ Initialization： 随机初始化匹配关系，即A中每个点的偏移量。 Propagation： 根据匹配程度，将每个点的偏移量传播到周围的点。实际实现是，对于某个点(x,y)，使用其周围点的偏移量还是自己的偏移量得到匹配点，计算匹配程度，取匹配程度最好的偏移量作为当前点的偏移量。 Random search： 为了进一步优化匹配结果，我们在前一步得到的偏移量基础上，我们再随机的做一些变化，检查匹配点周围是否有更好的匹配点。   解读：</description>
+    </item>
+    
+    <item>
       <title>Raft 阅读笔记</title>
       <link>https://zeqiang-lai.github.io/blog/docs/notes/paper/raft/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

@@ -3,26 +3,16 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Created: Decemenber, 7, 2020
-满足以下条件的两个矩阵，我们称它们是相似的。
-$$
-B = M^{-1}AM
-$$
-换句话说，如果某个矩阵可以由另一个矩阵左乘一个矩阵再右乘这个矩阵的逆，则称它们是相似的。">
+<meta name="description" content="蒙特卡洛(MonteCarlo)是一大类随机算法(RandomizedAlgorithms)的总称，它们通过随机样本来估算真实值。">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="相似矩阵" />
-<meta property="og:description" content="Created: Decemenber, 7, 2020
-满足以下条件的两个矩阵，我们称它们是相似的。
-$$
-B = M^{-1}AM
-$$
-换句话说，如果某个矩阵可以由另一个矩阵左乘一个矩阵再右乘这个矩阵的逆，则称它们是相似的。" />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="蒙特卡洛法" />
+<meta property="og:description" content="蒙特卡洛(MonteCarlo)是一大类随机算法(RandomizedAlgorithms)的总称，它们通过随机样本来估算真实值。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zeqiang-lai.github.io/blog/docs/matrix/similar/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="https://zeqiang-lai.github.io/blog/posts/ai/monte_carlo/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-05-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-05-25T00:00:00+00:00" />
 
-<meta property="article:modified_time" content="2021-02-02T18:42:43+08:00" />
-
-<title>相似矩阵 | Ze&#39;s Blog</title>
+<title>蒙特卡洛法 | Ze&#39;s Blog</title>
 <link rel="manifest" href="/blog/manifest.json">
 <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/blog/book.min.83d6bd38ef6e13aa5cbd5283293cf037f4d6e83b871d7a2341f6edc7ca421291.css" integrity="sha256-g9a9OO9uE6pcvVKDKTzwN/TW6DuHHXojQfbtx8pCEpE=" crossorigin="anonymous">
@@ -313,8 +303,9 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li>
       <ul>
-        <li><a href="#intuition">Intuition</a></li>
-        <li><a href="#性质">性质</a></li>
+        <li><a href="#估计圆周率">估计圆周率</a></li>
+        <li><a href="#近似求定积分">近似求定积分</a></li>
+        <li><a href="#参考资料">参考资料</a></li>
       </ul>
     </li>
   </ul>
@@ -331,72 +322,82 @@ https://github.com/alex-shpak/hugo-book
       
 <article class="markdown">
   <h1>
-    <a href="/blog/docs/matrix/similar/">相似矩阵</a>
+    <a href="/blog/posts/ai/monte_carlo/">蒙特卡洛法</a>
   </h1>
   
+  <h5>May 25, 2021</h5>
+
 
 
   
-
-  
-
-
-
-<h5>Created: Decemenber, 7, 2020</h5>
-<p>满足以下条件的两个矩阵，我们称它们是<strong>相似</strong>的。</p>
-<p>$$
-B = M^{-1}AM
-$$</p>
-<p>换句话说，如果某个矩阵可以由另一个矩阵左乘一个矩阵再右乘这个矩阵的逆，则称它们是相似的。</p>
-<h2 id="intuition">
-  Intuition
-  <a class="anchor" href="#intuition">#</a>
-</h2>
-<p>相似的矩阵具有很多相似的属性。</p>
-<p>我们可以把每一个矩阵和其相似的矩阵（们）都想成一个<strong>family</strong>，这个family里可能有一些矩阵很特殊，通过研究这些特殊的矩阵（通常更为容易），我们可以反推出原矩阵的一些属性。</p>
-<blockquote class="book-hint info">
   <div>
-矩阵对角化$\Lambda = S^{-1}AS$的对角矩阵就是一种特殊的相似矩阵。
+    
+      <a href="/blog/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+  </div>
+  
+
+  
+
+
+
+<p>蒙特卡洛(MonteCarlo)是一大类随机算法(RandomizedAlgorithms)的总称，它们通过随机样本来估算真实值。</p>
+<h2 id="估计圆周率">
+  估计圆周率
+  <a class="anchor" href="#%e4%bc%b0%e8%ae%a1%e5%9c%86%e5%91%a8%e7%8e%87">#</a>
+</h2>
+<p>假设有一个半径为1，圆心在原点的圆，我们知道它的面积是$\pi$。现在我们随机在$x\in[-1,1], y\in[-1,1]$上随机取一个点，我们知道这个点落在圆内的概率为圆与正方形面积之比：</p>
+<p>$$
+p = \frac{\pi}{4}
+$$</p>
+<p>假设我们随机选取了n个点，我们可以使用下面的公式判断哪些点位于圆内，假设有m个。</p>
+<p>$$
+x^2 + y^2 &lt; 1
+$$</p>
+<p>显然，我们知道m的数学期望是</p>
+<p>$$
+E[M] = \frac{\pi n}{4}
+$$</p>
+<p>当n很大时, m近似于数学期望，因此有</p>
+<div>
+$$
+\begin{aligned}
+m \approx \frac{\pi n}{4} \\
+\pi \approx \frac{4m}{n}
+\end{aligned}
+$$
 </div>
-
-</blockquote>
-
-<h2 id="性质">
-  性质
-  <a class="anchor" href="#%e6%80%a7%e8%b4%a8">#</a>
+<h2 id="近似求定积分">
+  近似求定积分
+  <a class="anchor" href="#%e8%bf%91%e4%bc%bc%e6%b1%82%e5%ae%9a%e7%a7%af%e5%88%86">#</a>
+</h2>
+<p>蒙特卡洛求积分的本质是利用随机模拟估计一个随机变量的期望。</p>
+<p>假设我们想求定积分:</p>
+<p>$$
+\int_{a}^{b} f(x) \mathrm{d} x
+$$</p>
+<p>我们可以把它转换成某个随机变量的数学期望，具体如下：</p>
+<p>设随机变量$X \sim U[a, b]$，即服从均匀分布，X具有概率密度$p(x)=\frac{1}{b-a}$，那么就有:</p>
+<p>$$
+E[f(X)] =\int_{a}^{b} p(x)f(x) \mathrm{d} x = \frac{1}{b-a}\int_{a}^{b} f(x) \mathrm{d} x
+$$</p>
+<p>在统计学中，我们知道期望是可以估计的，我们随机取N个$f(x)$的样本，这些样本的平均值可以作为所求期望的近似，即：</p>
+<p>$$
+E[f(x)] = \frac{\sum_1^Nf(x_i)}{N} = \frac{1}{b-a}\int_{a}^{b} f(x) \mathrm{d} x
+$$</p>
+<p>那么就有：</p>
+<p>$$
+\int_{a}^{b} f(x) \mathrm{d} x = (b-a)\frac{\sum_1^Nf(x_i)}{N}
+$$</p>
+<h2 id="参考资料">
+  参考资料
+  <a class="anchor" href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99">#</a>
 </h2>
 <ul>
-<li><strong>相似矩阵的特征值是相同的</strong>（特征向量可能不同<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>,但相互独立的数量是相同的）</li>
-</ul>
-<details open><summary>证明</summary>
-  <div class="markdown-inner">
-    <p>证明要分两个方向，A的特征值是B的特征值，B的特征值也是A的，由这两者即可得到二者特征值相等。</p>
-<p>对于原矩阵A, 其特征值满足：</p>
-<p>$$
-Ax = \lambda x
-$$</p>
-<p>对于B：</p>
-<p>$$
-(M^{-1}AM)M^{-1}x = M^{-1} \lambda x  = \lambda M^{-1} x
-$$
-$$
-BM^{-1}x = \lambda M^{-1} x
-$$</p>
-<p>于是，我们知道A的特征值也是B的特征值，且B的特征向量是A的特征向量乘以$M^{-1}$。</p>
-<p>反向很容易，把M乘到B那边得到$MBM^{-1} = A$，用类似的方法即可证明。</p>
-
-  </div>
-</details>
-
-</br>
-<section class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1" role="doc-endnote">
-<p>还是一定不同？TODO&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</section></article>
+<li>
+  <a href="https://blog.csdn.net/weixin_41503009/article/details/107853383">https://blog.csdn.net/weixin_41503009/article/details/107853383</a></li>
+<li>
+  <a href="https://github.com/wangshusen/DRL">https://github.com/wangshusen/DRL</a></li>
+</ul></article>
  
       
 
@@ -404,12 +405,6 @@ $$</p>
         
   <div class="flex flex-wrap justify-between">
 
-
-  <div><a class="flex align-center" href="https://github.com/Zeqiang-Lai/blog/commit/5504d0e6fd0b24a7b52ed7edcfe82a36a1c8c4fa" title='最后修改者 Zeqiang Lai | February 2, 2021' target="_blank" rel="noopener">
-      <img src="/blog/svg/calendar.svg" class="book-icon" alt="Calendar" />
-      <span>February 2, 2021</span>
-    </a>
-  </div>
 
 
 
@@ -464,8 +459,9 @@ $$</p>
   <ul>
     <li>
       <ul>
-        <li><a href="#intuition">Intuition</a></li>
-        <li><a href="#性质">性质</a></li>
+        <li><a href="#估计圆周率">估计圆周率</a></li>
+        <li><a href="#近似求定积分">近似求定积分</a></li>
+        <li><a href="#参考资料">参考资料</a></li>
       </ul>
     </li>
   </ul>

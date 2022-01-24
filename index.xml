@@ -7,19 +7,30 @@
     <generator>Hugo -- gohugo.io</generator><atom:link href="https://zeqiang-lai.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>蒙特卡洛法</title>
-      <link>https://zeqiang-lai.github.io/blog/posts/machine-learning/monte_carlo/</link>
+      <link>https://zeqiang-lai.github.io/blog/posts/ai/monte_carlo/</link>
       <pubDate>Tue, 25 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://zeqiang-lai.github.io/blog/posts/machine-learning/monte_carlo/</guid>
+      <guid>https://zeqiang-lai.github.io/blog/posts/ai/monte_carlo/</guid>
       <description>&lt;p&gt;蒙特卡洛(MonteCarlo)是一大类随机算法(RandomizedAlgorithms)的总称，它们通过随机样本来估算真实值。&lt;/p&gt;</description>
     </item>
     
     <item>
+      <title>Convolution with Image Filter &amp;&amp; Convolution with fft/ifft</title>
+      <link>https://zeqiang-lai.github.io/blog/posts/ai/conv-fft/</link>
+      <pubDate>Thu, 04 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/posts/ai/conv-fft/</guid>
+      <description>我们可以使用傅立叶变换实现卷积，具体做法大概就是先对数据和卷积核进行傅立叶变换将数据变换到频域，然后卷积就是频域上的乘积, 最后做逆傅立叶变换转化回原来的空域。
+r = ifft(fft(x).*fft(h)) 但是需要注意的是傅立叶变换做的卷积对应的是Circular Convolution。
+g = conv2(f,h,&amp;#39;same&amp;#39;); g_fft2 = ifft2(fft2(circshift(f,[-1,-1])).*fft2(rot90(h,2),2,4)); 使用傅立叶变换如果要获得和Circular Convolution一模一样的结果，需要对数据做一个shift，shift的大小和卷积核大小有关，二维情况就是[-w/2, -h/2]；然后卷积核也要反转一下，因为conv2卷积是倒着的。</description>
+    </item>
+    
+    <item>
       <title>More about Variational Autoencoder</title>
-      <link>https://zeqiang-lai.github.io/blog/posts/deep-learning/vae-more/</link>
+      <link>https://zeqiang-lai.github.io/blog/posts/ai/vae-more/</link>
       <pubDate>Fri, 04 Dec 2020 21:32:04 +0000</pubDate>
       
-      <guid>https://zeqiang-lai.github.io/blog/posts/deep-learning/vae-more/</guid>
+      <guid>https://zeqiang-lai.github.io/blog/posts/ai/vae-more/</guid>
       <description>&lt;p&gt;一些关于VAE的扩展知识。&lt;/p&gt;
 &lt;p&gt;不断更新中&amp;hellip;&lt;/p&gt;</description>
     </item>
@@ -56,10 +67,10 @@
     
     <item>
       <title>How genralized linear model work?</title>
-      <link>https://zeqiang-lai.github.io/blog/posts/machine-learning/Generalized-Linear-Model/</link>
+      <link>https://zeqiang-lai.github.io/blog/posts/ai/Generalized-Linear-Model/</link>
       <pubDate>Sat, 12 May 2018 08:24:04 +0000</pubDate>
       
-      <guid>https://zeqiang-lai.github.io/blog/posts/machine-learning/Generalized-Linear-Model/</guid>
+      <guid>https://zeqiang-lai.github.io/blog/posts/ai/Generalized-Linear-Model/</guid>
       <description>&lt;p&gt;本文将简单的讲述：GLM是如何工作的？&lt;/p&gt;</description>
     </item>
     
@@ -93,10 +104,10 @@
     
     <item>
       <title>Principal component analysis</title>
-      <link>https://zeqiang-lai.github.io/blog/posts/machine-learning/Principal-component-analysis/</link>
+      <link>https://zeqiang-lai.github.io/blog/posts/ai/Principal-component-analysis/</link>
       <pubDate>Mon, 08 Jan 2018 12:45:04 +0000</pubDate>
       
-      <guid>https://zeqiang-lai.github.io/blog/posts/machine-learning/Principal-component-analysis/</guid>
+      <guid>https://zeqiang-lai.github.io/blog/posts/ai/Principal-component-analysis/</guid>
       <description>&lt;p&gt;PCA (Principal component analysis) 是一种给数据降维的方法。&lt;/p&gt;
 &lt;p&gt;利用PCA，能将一堆高维空间的数据映射到一个低维空间，并最大限度保持它们之间的可区分性。&lt;/p&gt;</description>
     </item>
@@ -173,6 +184,23 @@ Code: https://github.com/LongguangWang/ArbSR
       <guid>https://zeqiang-lai.github.io/blog/docs/matrix/jordan/</guid>
       <description>&lt;h5&gt;Created: Decemenber, 7, 2020&lt;/h5&gt;
 &lt;p&gt;Jordan Form是矩阵对角化的一个推广的产物。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PatchMatch 导读</title>
+      <link>https://zeqiang-lai.github.io/blog/docs/notes/paper/patchmatch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/docs/notes/paper/patchmatch/</guid>
+      <description>Created: Jan, 24, 2022 PatchMatch: A Randomized Correspondence Algorithm for Structural Image Editing
+ Sample Impl ｜ 知乎解读
+图像匹配的典中典，基于匹配块周围的匹配也近似匹配的先验知识的随机化算法。
+ 首先明确这篇论文解决的问题是图像匹配问题，即给定两张图像A，B，我们需要将A，B中相同的像素或图像块（Patch）进行匹配，得到一个偏移量f，使得对于A中每个点的坐标x，B中对应点的坐标为x+f(x)。
+这篇论文提出了一个Randomized Correspondence Algorithm来做这件事情。要理解这个算法，我们首先需要这个算法的核心insight：
+The key insights driving the algorithm are thatsome good patch matches can be found via random sampling, and that natural coherence in the imagery allows us to propagate such matches quickly to surrounding areas.  用中文来说就是，对于一个匹配好的点，我们知道其偏移量为f(x)，基于图像的连续性，那么这个点周围的点的偏移量应该也近似是f(x)，这样我们就可以快速把正确点的偏移量向其周围传播，使其周围点的估计偏移量越来越准确。
+图像的连续性：一个苹果在两张图像上放在不同位置，但是苹果上某两个点的相对位置关系近似不变。  算法 #  前提条件 假设我们有两张图像A，B，我们需要找到一个偏移量f，使得对于A中每个点的坐标x，B中对应点的坐标为x+f(x)。
+PatchMatch的算法主要分为三个步骤：
+ Initialization： 随机初始化匹配关系，即A中每个点的偏移量。 Propagation： 根据匹配程度，将每个点的偏移量传播到周围的点。实际实现是，对于某个点(x,y)，使用其周围点的偏移量还是自己的偏移量得到匹配点，计算匹配程度，取匹配程度最好的偏移量作为当前点的偏移量。 Random search： 为了进一步优化匹配结果，我们在前一步得到的偏移量基础上，我们再随机的做一些变化，检查匹配点周围是否有更好的匹配点。   解读：</description>
     </item>
     
     <item>

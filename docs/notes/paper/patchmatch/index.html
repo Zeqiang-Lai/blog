@@ -3,26 +3,32 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Created: Decemenber, 7, 2020
-满足以下条件的两个矩阵，我们称它们是相似的。
-$$
-B = M^{-1}AM
-$$
-换句话说，如果某个矩阵可以由另一个矩阵左乘一个矩阵再右乘这个矩阵的逆，则称它们是相似的。">
+<meta name="description" content="Created: Jan, 24, 2022 PatchMatch: A Randomized Correspondence Algorithm for Structural Image Editing
+ Sample Impl ｜ 知乎解读
+图像匹配的典中典，基于匹配块周围的匹配也近似匹配的先验知识的随机化算法。
+ 首先明确这篇论文解决的问题是图像匹配问题，即给定两张图像A，B，我们需要将A，B中相同的像素或图像块（Patch）进行匹配，得到一个偏移量f，使得对于A中每个点的坐标x，B中对应点的坐标为x&#43;f(x)。
+这篇论文提出了一个Randomized Correspondence Algorithm来做这件事情。要理解这个算法，我们首先需要这个算法的核心insight：
+The key insights driving the algorithm are thatsome good patch matches can be found via random sampling, and that natural coherence in the imagery allows us to propagate such matches quickly to surrounding areas.  用中文来说就是，对于一个匹配好的点，我们知道其偏移量为f(x)，基于图像的连续性，那么这个点周围的点的偏移量应该也近似是f(x)，这样我们就可以快速把正确点的偏移量向其周围传播，使其周围点的估计偏移量越来越准确。
+图像的连续性：一个苹果在两张图像上放在不同位置，但是苹果上某两个点的相对位置关系近似不变。  算法 #  前提条件 假设我们有两张图像A，B，我们需要找到一个偏移量f，使得对于A中每个点的坐标x，B中对应点的坐标为x&#43;f(x)。
+PatchMatch的算法主要分为三个步骤：
+ Initialization： 随机初始化匹配关系，即A中每个点的偏移量。 Propagation： 根据匹配程度，将每个点的偏移量传播到周围的点。实际实现是，对于某个点(x,y)，使用其周围点的偏移量还是自己的偏移量得到匹配点，计算匹配程度，取匹配程度最好的偏移量作为当前点的偏移量。 Random search： 为了进一步优化匹配结果，我们在前一步得到的偏移量基础上，我们再随机的做一些变化，检查匹配点周围是否有更好的匹配点。   解读：">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="相似矩阵" />
-<meta property="og:description" content="Created: Decemenber, 7, 2020
-满足以下条件的两个矩阵，我们称它们是相似的。
-$$
-B = M^{-1}AM
-$$
-换句话说，如果某个矩阵可以由另一个矩阵左乘一个矩阵再右乘这个矩阵的逆，则称它们是相似的。" />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="PatchMatch 导读" />
+<meta property="og:description" content="Created: Jan, 24, 2022 PatchMatch: A Randomized Correspondence Algorithm for Structural Image Editing
+ Sample Impl ｜ 知乎解读
+图像匹配的典中典，基于匹配块周围的匹配也近似匹配的先验知识的随机化算法。
+ 首先明确这篇论文解决的问题是图像匹配问题，即给定两张图像A，B，我们需要将A，B中相同的像素或图像块（Patch）进行匹配，得到一个偏移量f，使得对于A中每个点的坐标x，B中对应点的坐标为x&#43;f(x)。
+这篇论文提出了一个Randomized Correspondence Algorithm来做这件事情。要理解这个算法，我们首先需要这个算法的核心insight：
+The key insights driving the algorithm are thatsome good patch matches can be found via random sampling, and that natural coherence in the imagery allows us to propagate such matches quickly to surrounding areas.  用中文来说就是，对于一个匹配好的点，我们知道其偏移量为f(x)，基于图像的连续性，那么这个点周围的点的偏移量应该也近似是f(x)，这样我们就可以快速把正确点的偏移量向其周围传播，使其周围点的估计偏移量越来越准确。
+图像的连续性：一个苹果在两张图像上放在不同位置，但是苹果上某两个点的相对位置关系近似不变。  算法 #  前提条件 假设我们有两张图像A，B，我们需要找到一个偏移量f，使得对于A中每个点的坐标x，B中对应点的坐标为x&#43;f(x)。
+PatchMatch的算法主要分为三个步骤：
+ Initialization： 随机初始化匹配关系，即A中每个点的偏移量。 Propagation： 根据匹配程度，将每个点的偏移量传播到周围的点。实际实现是，对于某个点(x,y)，使用其周围点的偏移量还是自己的偏移量得到匹配点，计算匹配程度，取匹配程度最好的偏移量作为当前点的偏移量。 Random search： 为了进一步优化匹配结果，我们在前一步得到的偏移量基础上，我们再随机的做一些变化，检查匹配点周围是否有更好的匹配点。   解读：" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zeqiang-lai.github.io/blog/docs/matrix/similar/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="https://zeqiang-lai.github.io/blog/docs/notes/paper/patchmatch/" /><meta property="article:section" content="docs" />
 
-<meta property="article:modified_time" content="2021-02-02T18:42:43+08:00" />
 
-<title>相似矩阵 | Ze&#39;s Blog</title>
+
+<title>PatchMatch 导读 | Ze&#39;s Blog</title>
 <link rel="manifest" href="/blog/manifest.json">
 <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/blog/book.min.83d6bd38ef6e13aa5cbd5283293cf037f4d6e83b871d7a2341f6edc7ca421291.css" integrity="sha256-g9a9OO9uE6pcvVKDKTzwN/TW6DuHHXojQfbtx8pCEpE=" crossorigin="anonymous">
@@ -313,8 +319,8 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li>
       <ul>
-        <li><a href="#intuition">Intuition</a></li>
-        <li><a href="#性质">性质</a></li>
+        <li><a href="#算法">算法</a></li>
+        <li><a href="#应用">应用</a></li>
       </ul>
     </li>
   </ul>
@@ -331,7 +337,7 @@ https://github.com/alex-shpak/hugo-book
       
 <article class="markdown">
   <h1>
-    <a href="/blog/docs/matrix/similar/">相似矩阵</a>
+    <a href="/blog/docs/notes/paper/patchmatch/">PatchMatch 导读</a>
   </h1>
   
 
@@ -342,61 +348,51 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-<h5>Created: Decemenber, 7, 2020</h5>
-<p>满足以下条件的两个矩阵，我们称它们是<strong>相似</strong>的。</p>
-<p>$$
-B = M^{-1}AM
-$$</p>
-<p>换句话说，如果某个矩阵可以由另一个矩阵左乘一个矩阵再右乘这个矩阵的逆，则称它们是相似的。</p>
-<h2 id="intuition">
-  Intuition
-  <a class="anchor" href="#intuition">#</a>
-</h2>
-<p>相似的矩阵具有很多相似的属性。</p>
-<p>我们可以把每一个矩阵和其相似的矩阵（们）都想成一个<strong>family</strong>，这个family里可能有一些矩阵很特殊，通过研究这些特殊的矩阵（通常更为容易），我们可以反推出原矩阵的一些属性。</p>
-<blockquote class="book-hint info">
-  <div>
-矩阵对角化$\Lambda = S^{-1}AS$的对角矩阵就是一种特殊的相似矩阵。
-</div>
-
+<h5>Created: Jan, 24, 2022</h5>
+<p><strong>PatchMatch: A Randomized Correspondence Algorithm for Structural Image Editing</strong></p>
+<p>
+  <a href="https://github.com/MingtaoGuo/PatchMatch.git">Sample Impl</a> ｜
+  <a href="https://zhuanlan.zhihu.com/p/377230002">知乎解读</a></p>
+<p>图像匹配的典中典，基于匹配块周围的匹配也近似匹配的先验知识的随机化算法。</p>
+<hr>
+<p>首先明确这篇论文解决的问题是<strong>图像匹配问题</strong>，即给定两张图像A，B，我们需要将A，B中相同的像素或图像块（Patch）进行匹配，得到一个偏移量<code>f</code>，使得对于A中每个点的坐标<code>x</code>，B中对应点的坐标为<code>x+f(x)</code>。</p>
+<p>这篇论文提出了一个Randomized Correspondence Algorithm来做这件事情。要理解这个算法，我们首先需要这个算法的核心insight：</p>
+<blockquote class="book-hint warning">
+  The key insights driving the algorithm are that<strong>some good patch matches can be found via random sampling</strong>, and that natural coherence in the imagery allows us to <strong>propagate such matches quickly to surrounding areas</strong>.
 </blockquote>
 
-<h2 id="性质">
-  性质
-  <a class="anchor" href="#%e6%80%a7%e8%b4%a8">#</a>
+<p>用中文来说就是，对于一个匹配好的点，我们知道其偏移量为f(x)，基于图像的连续性，那么这个点周围的点的偏移量应该也近似是f(x)，这样我们就可以快速把正确点的偏移量向其周围传播，使其周围点的估计偏移量越来越准确。</p>
+<blockquote class="book-hint info">
+  图像的连续性：一个苹果在两张图像上放在不同位置，但是苹果上某两个点的相对位置关系近似不变。
+</blockquote>
+
+<h2 id="算法">
+  算法
+  <a class="anchor" href="#%e7%ae%97%e6%b3%95">#</a>
+</h2>
+<p><strong>前提条件</strong> 假设我们有两张图像A，B，我们需要找到一个偏移量f，使得对于A中每个点的坐标x，B中对应点的坐标为x+f(x)。</p>
+<p>PatchMatch的算法主要分为三个步骤：</p>
+<ol>
+<li><strong>Initialization：</strong> 随机初始化匹配关系，即A中每个点的偏移量。</li>
+<li><strong>Propagation：</strong> 根据匹配程度，将每个点的偏移量传播到周围的点。实际实现是，对于某个点<code>(x,y)</code>，使用其周围点的偏移量还是自己的偏移量得到匹配点，计算匹配程度，取匹配程度最好的偏移量作为当前点的偏移量。</li>
+<li><strong>Random search：</strong> 为了进一步优化匹配结果，我们在前一步得到的偏移量基础上，我们再随机的做一些变化，检查匹配点周围是否有更好的匹配点。</li>
+</ol>
+<p>
+  <img src="algorithm.png" alt="Illustration of Algorithm" /></p>
+<p><strong>解读：</strong></p>
+<ul>
+<li>随机初始化在点很多的时候，我们有很大几率会得到不少还不错的匹配，这些正确匹配是后续Propagation的基础。</li>
+<li>不加random search性能如何？TODO</li>
+</ul>
+<h2 id="应用">
+  应用
+  <a class="anchor" href="#%e5%ba%94%e7%94%a8">#</a>
 </h2>
 <ul>
-<li><strong>相似矩阵的特征值是相同的</strong>（特征向量可能不同<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>,但相互独立的数量是相同的）</li>
+<li>Coarse-to-Fine Embedded PatchMatch and Multi-Scale Dynamic Aggregation for Reference-based Super-Resolution</li>
+<li>PatchmatchNet: Learned Multi-View Patchmatch Stereo</li>
 </ul>
-<details open><summary>证明</summary>
-  <div class="markdown-inner">
-    <p>证明要分两个方向，A的特征值是B的特征值，B的特征值也是A的，由这两者即可得到二者特征值相等。</p>
-<p>对于原矩阵A, 其特征值满足：</p>
-<p>$$
-Ax = \lambda x
-$$</p>
-<p>对于B：</p>
-<p>$$
-(M^{-1}AM)M^{-1}x = M^{-1} \lambda x  = \lambda M^{-1} x
-$$
-$$
-BM^{-1}x = \lambda M^{-1} x
-$$</p>
-<p>于是，我们知道A的特征值也是B的特征值，且B的特征向量是A的特征向量乘以$M^{-1}$。</p>
-<p>反向很容易，把M乘到B那边得到$MBM^{-1} = A$，用类似的方法即可证明。</p>
-
-  </div>
-</details>
-
-</br>
-<section class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1" role="doc-endnote">
-<p>还是一定不同？TODO&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</section></article>
+</article>
  
       
 
@@ -404,12 +400,6 @@ $$</p>
         
   <div class="flex flex-wrap justify-between">
 
-
-  <div><a class="flex align-center" href="https://github.com/Zeqiang-Lai/blog/commit/5504d0e6fd0b24a7b52ed7edcfe82a36a1c8c4fa" title='最后修改者 Zeqiang Lai | February 2, 2021' target="_blank" rel="noopener">
-      <img src="/blog/svg/calendar.svg" class="book-icon" alt="Calendar" />
-      <span>February 2, 2021</span>
-    </a>
-  </div>
 
 
 
@@ -464,8 +454,8 @@ $$</p>
   <ul>
     <li>
       <ul>
-        <li><a href="#intuition">Intuition</a></li>
-        <li><a href="#性质">性质</a></li>
+        <li><a href="#算法">算法</a></li>
+        <li><a href="#应用">应用</a></li>
       </ul>
     </li>
   </ul>
