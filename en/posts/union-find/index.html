@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Union-Find is an algorithm that is used to solve a number of particular problems. The essentail one is Dynamic connectivity, many other problems are its variants.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Union-Find" />
+<meta property="og:description" content="Union-Find is an algorithm that is used to solve a number of particular problems. The essentail one is Dynamic connectivity, many other problems are its variants." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zeqiang-lai.github.io/blog/en/posts/union-find/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-07T17:30:00+00:00" />
+<meta property="article:modified_time" content="2022-02-08T17:34:42+08:00" />
+
+<title>Union-Find | Ze&#39;s Blog</title>
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="icon" href="/blog/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/blog/book.min.83d6bd38ef6e13aa5cbd5283293cf037f4d6e83b871d7a2341f6edc7ca421291.css" integrity="sha256-g9a9OO9uE6pcvVKDKTzwN/TW6DuHHXojQfbtx8pCEpE=" crossorigin="anonymous">
+  <script defer src="/blog/flexsearch.min.js"></script>
+  <script defer src="/blog/en.search.min.ab63ca599afa6730caef48deabd370d5cf8bbb59eaea08c5b4617312704e2a79.js" integrity="sha256-q2PKWZr6ZzDK70jeq9Nw1c&#43;Lu1nq6gjFtGFzEnBOKnk=" crossorigin="anonymous"></script>
+
+  <script defer src="/blog/sw.min.f4bc4151631c92d29816d24dfaacb947aa6b03f91ec1c0cd2738ba8957d04791.js" integrity="sha256-9LxBUWMcktKYFtJN&#43;qy5R6prA/kewcDNJzi6iVfQR5E=" crossorigin="anonymous"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7KXWQ22DHN"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-7KXWQ22DHN', { 'anonymize_ip': false });
+}
+</script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  <link href="/blog/font-awesome/css/fontawesome.css" rel="stylesheet">
+<link href="/blog/font-awesome/css/brands.css" rel="stylesheet">
+<link href="/blog/font-awesome/css/solid.css" rel="stylesheet">
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/blog/en/"><span>Ze&#39;s Blog</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+  
+
+
+
+  
+    
+  
+
+
+
+<ul class="book-languages">
+  <li>
+    <input type="checkbox" id="languages" class="toggle" />
+    <label for="languages" class="flex justify-between">
+      <a role="button" class="flex align-center">
+        <img src="/blog/svg/translate.svg" class="book-icon" alt="Languages" />
+        English
+      </a>
+    </label>
+
+    <ul>
+      
+      <li>
+        <a href="https://zeqiang-lai.github.io/blog/">
+          Chinese
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/blog/en/posts/" >
+        Posts
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://zeqiang-lai.github.io/Algorithms/" target="_blank" rel="noopener"></br>
+        Algorithms
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://zeqiang-lai.github.io/" target="_blank" rel="noopener">
+        Profile
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/Zeqiang-Lai" target="_blank" rel="noopener"></br><i class="fab fa-github"></i>
+        Github
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+<div class="js-toggle-wrapper">
+  <div class="js-toggle">
+    <div class="js-toggle-track">
+      <div class="js-toggle-track-check">
+        <img
+          src="data:image/png;base64,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"
+          role="presentation"
+          style="pointer-events: none"
+          width="20"
+          height="20"
+        />
+      </div>
+      <div class="js-toggle-track-x">
+        <img
+          src="data:image/png;base64,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"
+          role="presentation"
+          style="pointer-events: none"
+          width="20"
+          height="20"
+        />
+      </div>
+    </div>
+    <div class="js-toggle-thumb">
+      <img
+        src="data:image/png;base64,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"
+        role="presentation"
+        style="pointer-events: none"
+        width="30"
+        height="30"
+      />
+    </div>
+    <input
+      class="js-toggle-screenreader-only"
+      type="checkbox"
+      aria-label="Switch between Dark and Light mode"
+    />
+  </div>
+</div>
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+    <label for="menu-control">
+      <img src="/blog/svg/menu.svg" class="book-icon" alt="Menu" />
+    </label>
+  
+    
+    <label for="toc-control">
+      
+      <img src="/blog/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+      
+    </label>
+  </div>
+  
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#dynamic-connectivity">Dynamic connectivity</a></li>
+        <li><a href="#model">Model</a>
+          <ul>
+            <li><a href="#objects">Objects</a></li>
+            <li><a href="#connections">Connections</a></li>
+            <li><a href="#operations">Operations</a></li>
+          </ul>
+        </li>
+        <li><a href="#api">API</a>
+          <ul>
+            <li><a href="#data-structure">Data structure</a></li>
+            <li><a href="#interface">Interface</a></li>
+          </ul>
+        </li>
+        <li><a href="#client">Client</a></li>
+        <li><a href="#alogrithms">Alogrithms</a>
+          <ul>
+            <li><a href="#quick-find">Quick Find</a></li>
+            <li><a href="#quick-union">Quick Union</a></li>
+            <li><a href="#improvements">Improvements</a></li>
+          </ul>
+        </li>
+        <li><a href="#appendix">Appendix</a>
+          <ul>
+            <li><a href="#why-quadratic-algorithms-wont-work">Why Quadratic algorithms won&rsquo;t work?</a></li>
+            <li><a href="#why-the-complexity-of-qupath-compression-is-nmlogn">Why the complexity of QU+path compression is N+MlogN?</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+<article class="markdown">
+  <h1>
+    <a href="/blog/en/posts/union-find/">Union-Find</a>
+  </h1>
+  
+  <h5>February 7, 2022</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/blog/en/categories/Algorithm/">Algorithm</a>
+  </div>
+  
+
+  
+
+
+
+<p>Union-Find is an algorithm that is used to solve a number of particular problems. The essentail one is <strong>Dynamic connectivity</strong>, many other problems are its variants.</p>
+<h2 id="dynamic-connectivity">
+  Dynamic connectivity
+  <a class="anchor" href="#dynamic-connectivity">#</a>
+</h2>
+<p>Given a set of N objects (could be anything), there are two types of operations.</p>
+<ul>
+<li>Union command: connect two objects</li>
+<li>Find/connected query: is there a path connecting the two objects?</li>
+</ul>
+<p>
+  <img src="dynamic-connectivity.png" alt="dynamic connectivity" /></p>
+<h2 id="model">
+  Model
+  <a class="anchor" href="#model">#</a>
+</h2>
+<p>We first model the problems into a mathmatical/algorithmic model.</p>
+<h3 id="objects">
+  Objects
+  <a class="anchor" href="#objects">#</a>
+</h3>
+<p>First, we have to <strong>symbolize objects</strong>. When encountering problems in the real world, sometimes, it is hard to recognize them as &ldquo;Dynamic connectivity&rdquo; problems.</p>
+<p>So it is important to refer some example of them:</p>
+<ul>
+<li>Pixels in a digital photo.</li>
+<li>Computer in a network.</li>
+<li>Friends in a social network.</li>
+</ul>
+<p>When programming, it is convenient to name objects 0 to N-1.</p>
+<ul>
+<li>Use integers as array index.</li>
+<li>Suppress details not relevant to union-find. (could use 
+  <a href="/blog/en/">symbol table</a>)</li>
+</ul>
+<h3 id="connections">
+  Connections
+  <a class="anchor" href="#connections">#</a>
+</h3>
+<p>Then, we defined what &ldquo;<strong>is connected to</strong>&rdquo; means precisely. In this case, we assume it an equivalence relation:</p>
+<ul>
+<li>Reflexive: p is connective to p.</li>
+<li>Symmetric: if</li>
+<li>Transitive:</li>
+</ul>
+<p><strong>Connected components.</strong> Maximal set of objects that are mutually connected.</p>
+<p>
+  <img src="components.png" alt="components" /></p>
+<h3 id="operations">
+  Operations
+  <a class="anchor" href="#operations">#</a>
+</h3>
+<p>There are only two main operations:</p>
+<ul>
+<li><strong>Find query.</strong> Check if two objects are in the same component.</li>
+<li><strong>Union command.</strong> Replace components containing two objects with their union.</li>
+</ul>
+<p>
+  <img src="implementing-the-operations.png" alt="implementing the operations" /></p>
+<h2 id="api">
+  API
+  <a class="anchor" href="#api">#</a>
+</h2>
+<p>Union-find data type (API) specify the requirements.</p>
+<h3 id="data-structure">
+  Data structure
+  <a class="anchor" href="#data-structure">#</a>
+</h3>
+<p><strong>Goal.</strong> Design efficient data structure for union-find.</p>
+<ul>
+<li>Number of objects N can be huge.</li>
+<li>Number of operations M can be huge.</li>
+<li>Find queries and union commands may be intermixed.</li>
+</ul>
+<h3 id="interface">
+  Interface
+  <a class="anchor" href="#interface">#</a>
+</h3>
+<table>
+<thead>
+<tr>
+<th>public class UF</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UF(int N)</td>
+<td>initialize union-find data structure with N objects (0 to N – 1)</td>
+</tr>
+<tr>
+<td>void union(int p, int q)</td>
+<td>add connection between p and q</td>
+</tr>
+<tr>
+<td>boolean connected(int p, int q)</td>
+<td>are p and q in the same component?</td>
+</tr>
+<tr>
+<td>int find(int p)</td>
+<td>component identifier for p (0 to N – 1)</td>
+</tr>
+<tr>
+<td>int count()</td>
+<td>number of components</td>
+</tr>
+</tbody>
+</table>
+<h2 id="client">
+  Client
+  <a class="anchor" href="#client">#</a>
+</h2>
+<p>As we complete the design of the API, we can use them to write a client program. No matter which algorithm we choose to implement the API, the same client is used for test.</p>
+<p>Here is an example:</p>
+<p>The origin one in the <em>coursera</em> did not test the operation <strong>find</strong> , the one mentioned below is modified to fix it.</p>
+<p>TODO: modified the example below</p>
+<p><strong>Code:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span>
+<span style="color:#f92672">{</span>
+   <span style="color:#66d9ef">int</span> N <span style="color:#f92672">=</span> StdIn<span style="color:#f92672">.</span><span style="color:#a6e22e">readInt</span><span style="color:#f92672">();</span>
+   UF uf <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> UF<span style="color:#f92672">(</span>N<span style="color:#f92672">);</span>
+   <span style="color:#66d9ef">while</span> <span style="color:#f92672">(!</span>StdIn<span style="color:#f92672">.</span><span style="color:#a6e22e">isEmpty</span><span style="color:#f92672">())</span>
+   <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">int</span> p <span style="color:#f92672">=</span> StdIn<span style="color:#f92672">.</span><span style="color:#a6e22e">readInt</span><span style="color:#f92672">();</span>
+      <span style="color:#66d9ef">int</span> q <span style="color:#f92672">=</span> StdIn<span style="color:#f92672">.</span><span style="color:#a6e22e">readInt</span><span style="color:#f92672">();</span>
+      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>uf<span style="color:#f92672">.</span><span style="color:#a6e22e">connected</span><span style="color:#f92672">(</span>p<span style="color:#f92672">,</span> q<span style="color:#f92672">))</span>
+      <span style="color:#f92672">{</span>
+         uf<span style="color:#f92672">.</span><span style="color:#a6e22e">union</span><span style="color:#f92672">(</span>p<span style="color:#f92672">,</span> q<span style="color:#f92672">);</span>
+         StdOut<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>p <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> q<span style="color:#f92672">);</span>
+      <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span> <span style="color:#f92672">}</span>
+</code></pre></div><p><strong>Test data:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">% more tinyUF.txt 
+10
+4 3
+3 8
+6 5 
+9 4 
+2 1 
+8 9 
+5 0 
+7 2 
+6 1 
+1 0 
+6 7
+</code></pre></div><h2 id="alogrithms">
+  Alogrithms
+  <a class="anchor" href="#alogrithms">#</a>
+</h2>
+<h3 id="quick-find">
+  Quick Find
+  <a class="anchor" href="#quick-find">#</a>
+</h3>
+<p>Quick-find is an eager approach to the implementation of Union-Find.</p>
+<p><strong>What does &ldquo;Eager&rdquo; mean?</strong></p>
+<blockquote>
+<p>It process union operation as well as possible in order to make find operation much faster later.</p>
+</blockquote>
+<h4 id="data-structure-1">
+  Data structure
+  <a class="anchor" href="#data-structure-1">#</a>
+</h4>
+<ul>
+<li>Integer array id[] of length N.</li>
+<li>Interpretation: p and q are connected iff they have the same id.</li>
+</ul>
+<p>For example,</p>
+<p>
+  <img src="quick-find-datastructure.png" alt="quick-find-datastructure" /></p>
+<h4 id="algorithms">
+  Algorithms
+  <a class="anchor" href="#algorithms">#</a>
+</h4>
+<p>Here are the algorithms for Find and Union operations based on the data structure mentioned above.</p>
+<p><strong>Find.</strong> Check if p and q have the same id.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">// Example:
+id[6] = 0;id[1] = 1 
+6 and 1 are not connected
+</code></pre></div><p><strong>Union.</strong> To merge components containing p and q, change all entries
+whose id equals id[p] to id[q].</p>
+<p>
+  <img src="quick-find-union.png" alt="quick-find-union" /></p>
+<h4 id="implementation-in-java">
+  Implementation in Java
+  <a class="anchor" href="#implementation-in-java">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">QuickFindUF</span>
+<span style="color:#f92672">{</span>
+   	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> id<span style="color:#f92672">;</span>
+   	<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">QuickFindUF</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> N<span style="color:#f92672">)</span>
+   	<span style="color:#f92672">{</span>
+    	id <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>N<span style="color:#f92672">];</span>
+        <span style="color:#75715e">// set id of each object to itself (N array accesses)
+</span><span style="color:#75715e"></span>      	<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> N<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span>
+            id<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> i<span style="color:#f92672">;</span>
+ 	<span style="color:#f92672">}</span>
+    
+    <span style="color:#75715e">// check whether p and q are in the same component (2 array accesses)
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">connected</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> p<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> q<span style="color:#f92672">)</span>
+	<span style="color:#f92672">{</span>  <span style="color:#66d9ef">return</span> id<span style="color:#f92672">[</span>p<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> id<span style="color:#f92672">[</span>q<span style="color:#f92672">];</span>  <span style="color:#f92672">}</span>
+    
+ 	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">union</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> p<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> q<span style="color:#f92672">)</span>
+	<span style="color:#f92672">{</span>
+   		<span style="color:#66d9ef">int</span> pid <span style="color:#f92672">=</span> id<span style="color:#f92672">[</span>p<span style="color:#f92672">];</span>
+   		<span style="color:#66d9ef">int</span> qid <span style="color:#f92672">=</span> id<span style="color:#f92672">[</span>q<span style="color:#f92672">];</span>
+        <span style="color:#75715e">// change all entries with id[p] to id[q] 
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// (at most 2N + 2 array accesses)
+</span><span style="color:#75715e"></span>   		<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> id<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>id<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> pid<span style="color:#f92672">)</span> id<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> qid<span style="color:#f92672">;</span>
+ 	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h4 id="complexity">
+  Complexity
+  <a class="anchor" href="#complexity">#</a>
+</h4>
+<p><strong>Cost model.</strong> Number of array accesses (for read or write).</p>
+<table>
+<thead>
+<tr>
+<th>algorithm</th>
+<th>initialize</th>
+<th>union</th>
+<th>find</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>quick-find</td>
+<td>N</td>
+<td>N</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Analysis:</strong></p>
+<ul>
+<li><strong>Union is too expensive.</strong> It takes $N^2$ array accesses to process a sequence of N union commands on N objects.</li>
+</ul>
+<h3 id="quick-union">
+  Quick Union
+  <a class="anchor" href="#quick-union">#</a>
+</h3>
+<p>Quick-Union is a lazy approach to the implementation of Union-Find.</p>
+<p><strong>What does &ldquo;Lazy&rdquo; mean?</strong></p>
+<blockquote>
+<p>It won&rsquo;t do too much when performing union command. Instead, more operations are needed in find command.</p>
+</blockquote>
+<h4 id="data-structure-2">
+  Data structure
+  <a class="anchor" href="#data-structure-2">#</a>
+</h4>
+<ul>
+<li>Integer array id[] of length N.</li>
+<li>Interpretation: id[i] is parent of i.</li>
+<li>Root of i is id[id[id[&hellip;id[i]&hellip;]]]. <em>(keep going until it doesn’t change)</em></li>
+</ul>
+<p>
+  <img src="quick-union-datastructure.png" alt="quick-union-datastructure" /></p>
+<h4 id="algorithm">
+  Algorithm
+  <a class="anchor" href="#algorithm">#</a>
+</h4>
+<p><strong>Find.</strong> Check if p and q have the same root.</p>
+<p><strong>Union.</strong> To merge components containing p and q, set the id of p&rsquo;s root to the id of q&rsquo;s root.</p>
+<h4 id="implementation-in-java-1">
+  Implementation in Java
+  <a class="anchor" href="#implementation-in-java-1">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">QuickUnionUF</span>
+<span style="color:#f92672">{</span>
+   	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> id<span style="color:#f92672">;</span>
+    
+   	<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">QuickUnionUF</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> N<span style="color:#f92672">)</span>
+   	<span style="color:#f92672">{</span>
+      	id <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>N<span style="color:#f92672">];</span>
+        <span style="color:#75715e">// set id of each object to itself (N array accesses)
+</span><span style="color:#75715e"></span>      	<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> N<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> id<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> i<span style="color:#f92672">;</span>
+   	<span style="color:#f92672">}</span>
+    
+   	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">root</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i<span style="color:#f92672">)</span>
+   	<span style="color:#f92672">{</span>
+        <span style="color:#75715e">// chase parent pointers until reach root 
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// (depth of i array accesses)
+</span><span style="color:#75715e"></span>      	<span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">!=</span> id<span style="color:#f92672">[</span>i<span style="color:#f92672">])</span> i <span style="color:#f92672">=</span> id<span style="color:#f92672">[</span>i<span style="color:#f92672">];</span>
+		<span style="color:#66d9ef">return</span> i<span style="color:#f92672">;</span> 
+    <span style="color:#f92672">}</span>
+    
+   	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">connected</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> p<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> q<span style="color:#f92672">)</span>
+   	<span style="color:#f92672">{</span>
+        <span style="color:#75715e">// check if p and q have same root 
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// (depth of p and q array accesses)
+</span><span style="color:#75715e"></span>      	<span style="color:#66d9ef">return</span> root<span style="color:#f92672">(</span>p<span style="color:#f92672">)</span> <span style="color:#f92672">==</span> root<span style="color:#f92672">(</span>q<span style="color:#f92672">);</span>
+   	<span style="color:#f92672">}</span>
+    
+   	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">union</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> p<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> q<span style="color:#f92672">)</span>
+   	<span style="color:#f92672">{</span>	
+      	<span style="color:#75715e">// change root of p to point to root of q 
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// (depth of p and q array accesses)
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> root<span style="color:#f92672">(</span>p<span style="color:#f92672">);</span>
+      	<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> root<span style="color:#f92672">(</span>q<span style="color:#f92672">);</span>
+      	id<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> j<span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span> 
+<span style="color:#f92672">}</span>
+</code></pre></div><h4 id="complexity-1">
+  Complexity
+  <a class="anchor" href="#complexity-1">#</a>
+</h4>
+<p><strong>Cost model.</strong> Number of array accesses (for read or write).</p>
+<table>
+<thead>
+<tr>
+<th>algorithm</th>
+<th>initialize</th>
+<th>union</th>
+<th>find</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>quick-find</td>
+<td>N</td>
+<td>N</td>
+<td>1</td>
+</tr>
+<tr>
+<td>quick-union</td>
+<td>N</td>
+<td>N†</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Quick-find defect.</strong></p>
+<ul>
+<li>Union too expensive (N array accesses).</li>
+<li>Trees are flat, but too expensive to keep them flat.</li>
+</ul>
+<p><strong>Quick-union defect.</strong></p>
+<ul>
+<li>Trees can get tall.</li>
+<li>Find too expensive (could be N array accesses).</li>
+</ul>
+<h3 id="improvements">
+  Improvements
+  <a class="anchor" href="#improvements">#</a>
+</h3>
+<h4 id="weighting">
+  Weighting
+  <a class="anchor" href="#weighting">#</a>
+</h4>
+<p>For <strong>Quick-Union</strong>, the biggest problem is that trees can grow too tall to find root. If we can find a way  to make the tree shorter, we can minimize the complexity of the algorithm.</p>
+<p>Based on the intuition mentioned above, we could develop a new version of Quick-Union, which calleed <strong>Weighted quick-union</strong>.</p>
+<p>The baisc idea behind it is pretty simple.</p>
+<ul>
+<li>First, keep track of size of each tree (number of objects).</li>
+<li>Then, balance by linking root of smaller tree to root of larger tree.</li>
+</ul>
+<blockquote>
+<p>Here, larger means that the tree has more nodes (ojbects).</p>
+</blockquote>
+<h5 id="data-structure-3">
+  Data structure
+  <a class="anchor" href="#data-structure-3">#</a>
+</h5>
+<p>Same as quick-union, but maintain extra array sz[i] to count number of objects in the tree rooted at i.</p>
+<h5 id="algorithm-1">
+  Algorithm
+  <a class="anchor" href="#algorithm-1">#</a>
+</h5>
+<p><strong>Find.</strong> Identical to quick-union.</p>
+<p><strong>Union.</strong> Modify quick-union to:</p>
+<ul>
+<li>Link root of smaller tree to root of larger tree.</li>
+<li>Update the sz[] array.</li>
+</ul>
+<h5 id="implementation-in-java-2">
+  Implementation in Java
+  <a class="anchor" href="#implementation-in-java-2">#</a>
+</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// find
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">return</span> root<span style="color:#f92672">(</span>p<span style="color:#f92672">)</span> <span style="color:#f92672">==</span> root<span style="color:#f92672">(</span>q<span style="color:#f92672">);</span>
+<span style="color:#75715e">// union
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> root<span style="color:#f92672">(</span>p<span style="color:#f92672">);</span>
+<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> root<span style="color:#f92672">(</span>q<span style="color:#f92672">);</span>
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">==</span> j<span style="color:#f92672">)</span> <span style="color:#66d9ef">return</span><span style="color:#f92672">;</span>
+<span style="color:#66d9ef">if</span>  <span style="color:#f92672">(</span>sz<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">&lt;</span> sz<span style="color:#f92672">[</span>j<span style="color:#f92672">])</span> <span style="color:#f92672">{</span> id<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> j<span style="color:#f92672">;</span> sz<span style="color:#f92672">[</span>j<span style="color:#f92672">]</span> <span style="color:#f92672">+=</span> sz<span style="color:#f92672">[</span>i<span style="color:#f92672">];</span> <span style="color:#f92672">}</span>
+<span style="color:#66d9ef">else</span>                <span style="color:#f92672">{</span> id<span style="color:#f92672">[</span>j<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> i<span style="color:#f92672">;</span> sz<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">+=</span> sz<span style="color:#f92672">[</span>j<span style="color:#f92672">];</span> <span style="color:#f92672">}</span>
+</code></pre></div><h5 id="analysis">
+  Analysis
+  <a class="anchor" href="#analysis">#</a>
+</h5>
+<p><strong>Running time.</strong></p>
+<ul>
+<li>Find: takes time proportional to depth of p and q.</li>
+</ul>
+<blockquote>
+<p>Because you have to find roots of two nodes.</p>
+</blockquote>
+<ul>
+<li>Union: takes constant time, given roots.</li>
+</ul>
+<p><strong>Proposition.</strong> Depth of any node x is at most lg N.</p>
+<p>Pf. When does depth of x increase?
+Increases by 1 when tree T1 containing x is merged into another tree T2.</p>
+<ul>
+<li>The size of the tree containing x at least doubles since | T2 | ≥ | T1 |.</li>
+<li>Size of tree containing x can double at most lg N times. Why?</li>
+</ul>
+<blockquote>
+<p>Because there is only N nodes, if there is only one node in the tree initially, after doubling lg N times, there will be 2^(lg N) = N nodes, the same as the total number of nodes.</p>
+</blockquote>
+<p><strong>Comparsion.</strong></p>
+<table>
+<thead>
+<tr>
+<th>algorithm</th>
+<th>initialize</th>
+<th>union</th>
+<th>connected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>quick-find</td>
+<td>N</td>
+<td>N</td>
+<td>1</td>
+</tr>
+<tr>
+<td>quick-union</td>
+<td>N</td>
+<td>N†</td>
+<td>N</td>
+</tr>
+<tr>
+<td>weighted QU</td>
+<td>N</td>
+<td>lg N †</td>
+<td>lg N</td>
+</tr>
+</tbody>
+</table>
+<h4 id="path-compression">
+  Path compression
+  <a class="anchor" href="#path-compression">#</a>
+</h4>
+<blockquote>
+<p>Just after computing the root of p, set the id of each examined node to point to that root.</p>
+</blockquote>
+<p>No extra data structure is needed.</p>
+<h5 id="implementation-in-java-3">
+  Implementation in Java
+  <a class="anchor" href="#implementation-in-java-3">#</a>
+</h5>
+<p><strong>Two-pass implementation:</strong> add second loop to root() to set the id[] of each examined node to the root.</p>
+<p><strong>Simpler one-pass variant:</strong> Make every other node in path point to its grandparent (thereby halving path length).</p>
+<blockquote>
+<p>In practice, the simpler one-pass variant is able to keep tree almost completely flat. So it is acceptable to use it.</p>
+</blockquote>
+<h5 id="analysis-1">
+  Analysis
+  <a class="anchor" href="#analysis-1">#</a>
+</h5>
+<p><strong>Proposition.</strong> [<em>Hopcroft-Ulman, Tarjan</em>] Starting from an empty data structure, any sequence of M union-find ops on N objects makes ≤ c ( N + M lg* N ) array accesses.</p>
+<ul>
+<li>Analysis can be improved to N + M α(M, N).</li>
+</ul>
+<p><strong>Linear-time algorithm for M union-find ops on N objects?</strong></p>
+<ul>
+<li>
+<p>In theory, WQUPC is not quite linear.</p>
+</li>
+<li>
+<p>In practice, WQUPC is linear.</p>
+</li>
+</ul>
+<p>WQUPC (weighted quick-union path compression)</p>
+<p>Actually, there is no linear-time algorithm exists. [<em>Fredman-Saks</em>]</p>
+<h4 id="summary">
+  Summary
+  <a class="anchor" href="#summary">#</a>
+</h4>
+<p>M union-find operations on a set of N objects</p>
+<table>
+<thead>
+<tr>
+<th>algorithm</th>
+<th>worst-case time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>quick-find</td>
+<td>MN</td>
+</tr>
+<tr>
+<td>quick-union</td>
+<td>MN</td>
+</tr>
+<tr>
+<td>weighted QU</td>
+<td>N + M log N</td>
+</tr>
+<tr>
+<td>QU + path compression</td>
+<td>N + M log N</td>
+</tr>
+<tr>
+<td>weighted QU + path compression</td>
+<td>N + M lg* N</td>
+</tr>
+</tbody>
+</table>
+<h2 id="appendix">
+  Appendix
+  <a class="anchor" href="#appendix">#</a>
+</h2>
+<h3 id="why-quadratic-algorithms-wont-work">
+  Why Quadratic algorithms won&rsquo;t work?
+  <a class="anchor" href="#why-quadratic-algorithms-wont-work">#</a>
+</h3>
+<p>For now, computer can perform $10^9$ operations per second, and there are about $10^9$ words in the main memory, which means that computer can touch all words in approximately 1 second.</p>
+<p>Suppose we are using a single computer for Union-find, the biggest problem could contain $10^9$ objects and there could be $10^9$ union command on them.</p>
+<p>In the worsts cases, every union cost $10^9$ times array accesses and there will be more than $10^{18}$ array access in total.</p>
+<p>Under this circumstance, it will cost 30+ years of computer time.</p>
+<h3 id="why-the-complexity-of-qupath-compression-is-nmlogn">
+  Why the complexity of QU+path compression is N+MlogN?
+  <a class="anchor" href="#why-the-complexity-of-qupath-compression-is-nmlogn">#</a>
+</h3>
+<p>Suppose we use one-pass implementation.</p>
+<p><del>For each examined node, we set its id to its grandparent. After one find operation, the height of the tree would reduce by half.</del></p></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+  <div><a class="flex align-center" href="https://github.com/Zeqiang-Lai/blog/commit/5cfcce7dfd390c177b1276ac5105cab3e39c7ec1" title='Last modified by Zeqiang Lai | February 8, 2022' target="_blank" rel="noopener">
+      <img src="/blog/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>February 8, 2022</span>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        <script>
+    MathJax = {
+      svg: {
+            fontCache: 'global'
+      },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      },
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#dynamic-connectivity">Dynamic connectivity</a></li>
+        <li><a href="#model">Model</a>
+          <ul>
+            <li><a href="#objects">Objects</a></li>
+            <li><a href="#connections">Connections</a></li>
+            <li><a href="#operations">Operations</a></li>
+          </ul>
+        </li>
+        <li><a href="#api">API</a>
+          <ul>
+            <li><a href="#data-structure">Data structure</a></li>
+            <li><a href="#interface">Interface</a></li>
+          </ul>
+        </li>
+        <li><a href="#client">Client</a></li>
+        <li><a href="#alogrithms">Alogrithms</a>
+          <ul>
+            <li><a href="#quick-find">Quick Find</a></li>
+            <li><a href="#quick-union">Quick Union</a></li>
+            <li><a href="#improvements">Improvements</a></li>
+          </ul>
+        </li>
+        <li><a href="#appendix">Appendix</a>
+          <ul>
+            <li><a href="#why-quadratic-algorithms-wont-work">Why Quadratic algorithms won&rsquo;t work?</a></li>
+            <li><a href="#why-the-complexity-of-qupath-compression-is-nmlogn">Why the complexity of QU+path compression is N+MlogN?</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  <script async="async">
+    var html = document.documentElement;
+    var switcher = document.getElementsByClassName('js-toggle')[0];
+    if(typeof(Storage) !== 'undefined') {
+        if (localStorage.getItem('themeMode') == 'dark' || document.documentElement.getAttribute('data-theme') == 'dark') {
+            switcher.classList.add('js-toggle--checked');
+        }
+        switcher.classList.add('js-toggle--focus');
+    }
+    
+    switcher.addEventListener("click", function() {
+            this.classList.toggle('js-toggle--checked');
+            this.classList.add('js-toggle--focus');
+            
+            if (this.classList.contains('js-toggle--checked')) {
+                html.setAttribute("data-theme","dark");
+                
+                localStorage.setItem('themeMode', 'dark');
+            } else {
+                html.setAttribute("data-theme","light");
+                localStorage.setItem('themeMode', 'light');
+            }
+        })
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
