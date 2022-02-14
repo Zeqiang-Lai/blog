@@ -6,6 +6,28 @@
     <description>Recent content in Introduction on Ze&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator><atom:link href="https://zeqiang-lai.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>最短路算法</title>
+      <link>https://zeqiang-lai.github.io/blog/posts/algorithms/%E6%9C%80%E7%9F%AD%E8%B7%AF/</link>
+      <pubDate>Fri, 11 Feb 2022 13:52:51 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/posts/algorithms/%E6%9C%80%E7%9F%AD%E8%B7%AF/</guid>
+      <description>&lt;p&gt;Dijkstra用于求没有负权边的单源最短路。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>快速求最大公约数gcd</title>
+      <link>https://zeqiang-lai.github.io/blog/posts/algorithms/gcd/</link>
+      <pubDate>Wed, 09 Feb 2022 13:52:51 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/posts/algorithms/gcd/</guid>
+      <description>&lt;p&gt;快速求两个数的最大公约数(公因数)有两个办法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;更相减损法&lt;/li&gt;
+&lt;li&gt;辗转相除法&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    
+    <item>
       <title>蒙特卡洛法</title>
       <link>https://zeqiang-lai.github.io/blog/posts/ai/monte_carlo/</link>
       <pubDate>Tue, 25 May 2021 00:00:00 +0000</pubDate>
@@ -42,6 +64,33 @@ g = conv2(f,h,&amp;#39;same&amp;#39;); g_fft2 = ifft2(fft2(circshift(f,[-1,-1]))
       
       <guid>https://zeqiang-lai.github.io/blog/posts/misc/hugo-book/</guid>
       <description>&lt;p&gt;Hugo-Book Shortcodes Usages&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>AC自动机</title>
+      <link>https://zeqiang-lai.github.io/blog/posts/algorithms/AC%E8%87%AA%E5%8A%A8%E6%9C%BA/</link>
+      <pubDate>Sat, 25 Jan 2020 12:03:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/posts/algorithms/AC%E8%87%AA%E5%8A%A8%E6%9C%BA/</guid>
+      <description>&lt;p&gt;AC自动机用于解决下述问题及其同类问题:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;给定一系列模式串和一个文本串，判断有多少模式串出现在文本串中，给出数目和对应模式串的出现位置。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Trie树</title>
+      <link>https://zeqiang-lai.github.io/blog/posts/algorithms/trie%E6%A0%91/</link>
+      <pubDate>Fri, 24 Jan 2020 13:52:51 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/posts/algorithms/trie%E6%A0%91/</guid>
+      <description>&lt;p&gt;Trie树可以:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;压缩存储大量的字符串&lt;/li&gt;
+&lt;li&gt;快速找出具有相同前缀的字符串&lt;/li&gt;
+&lt;li&gt;快速按字典序对字符串进行排序&lt;/li&gt;
+&lt;li&gt;&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
@@ -184,6 +233,18 @@ Code: https://github.com/LongguangWang/ArbSR
       <guid>https://zeqiang-lai.github.io/blog/docs/matrix/jordan/</guid>
       <description>&lt;h5&gt;Created: Decemenber, 7, 2020&lt;/h5&gt;
 &lt;p&gt;Jordan Form是矩阵对角化的一个推广的产物。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>KMP算法</title>
+      <link>https://zeqiang-lai.github.io/blog/posts/algorithms/kmp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/posts/algorithms/kmp/</guid>
+      <description>&lt;p&gt;问题描述:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;给定一个文本串S, 和一个模式串P, 我们要找到P在S中的位置，即给出P的第一个字符在S中的位置。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
     </item>
     
     <item>

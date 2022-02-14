@@ -3,14 +3,22 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="物理" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://zeqiang-lai.github.io/blog/tags/%E7%89%A9%E7%90%86/" />
+<meta name="description" content="问题描述:
 
-<title>物理 | Ze&#39;s Blog</title>
+给定一个文本串S, 和一个模式串P, 我们要找到P在S中的位置，即给出P的第一个字符在S中的位置。
+">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="KMP算法" />
+<meta property="og:description" content="问题描述:
+
+给定一个文本串S, 和一个模式串P, 我们要找到P在S中的位置，即给出P的第一个字符在S中的位置。
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zeqiang-lai.github.io/blog/posts/algorithms/kmp/" /><meta property="article:section" content="posts" />
+
+<meta property="article:modified_time" content="2022-02-14T21:06:23+08:00" />
+
+<title>KMP算法 | Ze&#39;s Blog</title>
 <link rel="manifest" href="/blog/manifest.json">
 <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/blog/book.min.83d6bd38ef6e13aa5cbd5283293cf037f4d6e83b871d7a2341f6edc7ca421291.css" integrity="sha256-g9a9OO9uE6pcvVKDKTzwN/TW6DuHHXojQfbtx8pCEpE=" crossorigin="anonymous">
@@ -29,7 +37,6 @@ if (!doNotTrack) {
 	gtag('config', 'G-7KXWQ22DHN', { 'anonymize_ip': false });
 }
 </script>
-<link rel="alternate" type="application/rss+xml" href="https://zeqiang-lai.github.io/blog/tags/%E7%89%A9%E7%90%86/index.xml" title="Ze's Blog" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -297,79 +304,23 @@ https://github.com/alex-shpak/hugo-book
   
   <aside class="hidden clearfix">
     
-  <nav>
+  
+<nav id="TableOfContents">
   <ul>
-  
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
+    <li>
       <ul>
-      
-        <li class="flex justify-between">
-          <a href="/blog/categories/%E7%AE%97%E6%B3%95/">算法</a>
-          <span>14</span>
+        <li><a href="#朴素算法">朴素算法</a></li>
+        <li><a href="#kmp算法">KMP算法</a>
+          <ul>
+            <li><a href="#求解next数组">求解next数组</a></li>
+          </ul>
         </li>
-      
-        <li class="flex justify-between">
-          <a href="/blog/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
-          <span>5</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/blog/categories/%E7%BC%96%E7%A8%8B/">编程</a>
-          <span>1</span>
-        </li>
-      
+        <li><a href="#参考资料">参考资料</a></li>
       </ul>
     </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
-      <ul>
-      
-        <li class="flex justify-between">
-          <a href="/blog/tags/VAE/">VAE</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/blog/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/blog/tags/Hugo/">Hugo</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/blog/tags/%E5%90%8C%E6%AD%A5/">同步</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/blog/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/blog/tags/%E7%89%A9%E7%90%86/">物理</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/blog/tags/%E7%9B%B8%E5%AF%B9%E8%AE%BA/">相对论</a>
-          <span>1</span>
-        </li>
-      
-      </ul>
-    </li>
-    
-  
   </ul>
 </nav>
+
 
 
   </aside>
@@ -379,37 +330,192 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+<article class="markdown">
+  <h1>
+    <a href="/blog/posts/algorithms/kmp/">KMP算法</a>
+  </h1>
   
-  <article class="markdown book-post">
-    <h2>
-      <a href="/blog/posts/misc/%E6%B4%9B%E4%BC%A6%E5%85%B9%E5%8F%98%E6%8D%A2/">洛伦兹变换</a>
-    </h2>
-    
-  <h5>December 17, 2017</h5>
 
-
-
-  
 
   
   <div>
     
-      <a href="/blog/tags/%E7%9B%B8%E5%AF%B9%E8%AE%BA/">相对论</a>, 
-      <a href="/blog/tags/%E7%89%A9%E7%90%86/">物理</a>
+      <a href="/blog/categories/%E7%AE%97%E6%B3%95/">算法</a>
   </div>
   
 
-
-
-
-    <p><p>洛伦兹变换是从光速不变原理推出的，不同坐标系坐标之间的转换关系。</p>
-        <a href="/blog/posts/misc/%E6%B4%9B%E4%BC%A6%E5%85%B9%E5%8F%98%E6%8D%A2/">...</a>
-      
-    </p>
-  </article>
   
 
-  
+
+
+<p>问题描述:</p>
+<blockquote>
+<p>给定一个文本串S, 和一个模式串P, 我们要找到P在S中的位置，即给出P的第一个字符在S中的位置。</p>
+</blockquote>
+<h2 id="朴素算法">
+  朴素算法
+  <a class="anchor" href="#%e6%9c%b4%e7%b4%a0%e7%ae%97%e6%b3%95">#</a>
+</h2>
+<p>枚举S中每个位置，判断是否是模式串P的起点。</p>
+<p>基于上述思想，我们可以很容易可以写出如下的枚举代码:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">vanilla_find</span>(<span style="color:#66d9ef">const</span> string<span style="color:#f92672">&amp;</span> s, <span style="color:#66d9ef">const</span> string<span style="color:#f92672">&amp;</span> p) {
+    <span style="color:#66d9ef">int</span> pos <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">bool</span> ok <span style="color:#f92672">=</span> true;
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>s.size(); i<span style="color:#f92672">++</span>) {
+        ok <span style="color:#f92672">=</span> true;
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; j<span style="color:#f92672">&lt;</span>p.size(); j<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">if</span>(s[i<span style="color:#f92672">+</span>j] <span style="color:#f92672">!=</span> p[j]) { ok <span style="color:#f92672">=</span> false; <span style="color:#66d9ef">break</span>; }
+        }
+        <span style="color:#66d9ef">if</span>(ok) { pos <span style="color:#f92672">=</span> i; <span style="color:#66d9ef">break</span>; }
+    }
+    <span style="color:#66d9ef">return</span> pos;
+} 
+</code></pre></div><p>上述实现使用1个循环枚举配对的起点，再用1个循环判断从该起点开始是否有模式串P。</p>
+<p>为了方便理解KMP算法，我们不妨换一种思路实现这个朴素算法。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">vanilla_find2</span>(<span style="color:#66d9ef">const</span> string<span style="color:#f92672">&amp;</span> s, <span style="color:#66d9ef">const</span> string<span style="color:#f92672">&amp;</span> p) {
+    <span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span>(i <span style="color:#f92672">&lt;</span> s.size() <span style="color:#f92672">&amp;&amp;</span> j <span style="color:#f92672">&lt;</span> p.size()) {
+        <span style="color:#66d9ef">if</span>(s[i] <span style="color:#f92672">==</span> p[j]) { i<span style="color:#f92672">++</span>; j<span style="color:#f92672">++</span>; } 
+        <span style="color:#66d9ef">else</span> { i<span style="color:#f92672">=</span>i<span style="color:#f92672">-</span>j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; }
+    }
+    <span style="color:#66d9ef">if</span>(j <span style="color:#f92672">==</span> p.size()) <span style="color:#66d9ef">return</span> i<span style="color:#f92672">-</span>j;
+    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+} 
+</code></pre></div><p>上述实现使用两个指针, <code>i</code>, <code>j</code>，i指针代表当前S串匹配到的位置，j表示P串匹配到的位置，遇到不匹配，则将i指针回溯到上一次尝试的起始点的后一个位置，即<code>i-j+1</code>。j指针回溯到开头。</p>
+<p>虽然两种实现本质是一样的，但第二种实现会更容易理解KMP算法的优化。</p>
+<p>如图1所示，当我们匹配成功ABCDAB后，发现D不匹配，这时如果我们将<code>i</code>回溯到<code>i-j+1</code>的位置，匹配必然失败，因为我们前一步已经知道<code>S[i-j+1]=B</code>了。</p>
+<p>如果我们能够利用前一步的匹配结果，让i不必回溯，只回溯j的话，那么匹配效率会大幅提升。</p>
+<p>{% include double-image.html
+url1=&quot;/assets/img/kmp1.png&quot; caption1=&ldquo;Step1&rdquo;
+url2=&quot;/assets/img/kmp2.png&quot; caption2=&ldquo;Step2&rdquo;
+size=&ldquo;70%&rdquo;
+description=&ldquo;图1&rdquo; %}</p>
+<h2 id="kmp算法">
+  KMP算法
+  <a class="anchor" href="#kmp%e7%ae%97%e6%b3%95">#</a>
+</h2>
+<p>如果我们把之前的优化假设形式化一下，我们将得到如下的描述。</p>
+<p>当失配时，我们希望能够让<code>i=i</code>,<code>j=next[j]</code>，即i不用回溯，j根据当前位置决定模式串要跟<code>S[i]</code>匹配的位置。</p>
+<p>事实上，这个假设是成立的，考虑如图2的情况：</p>
+<p>{% include double-image.html
+url1=&quot;/assets/img/kmp3.png&quot; caption1=&ldquo;Step1&rdquo;
+url2=&quot;/assets/img/kmp4.png&quot; caption2=&ldquo;Step2&rdquo;
+size=&ldquo;70%&rdquo;
+description=&ldquo;图2&rdquo; %}</p>
+<p>当D失配时，我们知道模式串的<code>D</code>之前有相投的前缀后缀<code>AB</code>，因此我们只需要尝试匹配模式串前缀<code>AB</code>后的<code>D</code>以及文本串的<code> </code>即可。</p>
+<p>换句话说，我们知道这时候<code>next[j]=2</code>。</p>
+<p>如此，现在的问题就变成<strong>如何求next数组</strong>了。</p>
+<h3 id="求解next数组">
+  求解next数组
+  <a class="anchor" href="#%e6%b1%82%e8%a7%a3next%e6%95%b0%e7%bb%84">#</a>
+</h3>
+<p>让我们再次考虑图2的情况，事实上，我们已经能够发现求解<code>next[j]</code>的规律了。对于P串的第j个元素，其失配后需要回溯到的位置取决于 - P串前j个元素有多长相同的前缀后缀。如果有长度为k的相同前缀后缀，则<code>next[j]=k</code>。</p>
+<p>基于上述思想，我们其实已经可以编写一个暴力求next数组的程序了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> get_next_vanilla(<span style="color:#66d9ef">const</span> string<span style="color:#f92672">&amp;</span> p) {
+    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> next(p.size());
+    next[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;</span>p.size(); i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">int</span> n_match <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#75715e">// 枚举所有可能的相同前缀后缀
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> k<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; k<span style="color:#f92672">&lt;</span>i; k<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">bool</span> ok <span style="color:#f92672">=</span> true;
+            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; j<span style="color:#f92672">&lt;</span>k; j<span style="color:#f92672">++</span>) {
+                <span style="color:#66d9ef">if</span>(p[j] <span style="color:#f92672">!=</span> p[i<span style="color:#f92672">-</span>k<span style="color:#f92672">+</span>j]) ok <span style="color:#f92672">=</span> false;
+            }
+            <span style="color:#66d9ef">if</span>(ok <span style="color:#f92672">==</span> true) n_match <span style="color:#f92672">=</span> k;
+        }
+        next[i] <span style="color:#f92672">=</span> n_match;
+    }
+    <span style="color:#66d9ef">return</span> next;
+}
+</code></pre></div><p>很显然，这种暴力求解的效率是很低的($$O(n^3)$$)。因此，我们需要对求解next的算法进行优化。</p>
+<h4 id="递推求解优化">
+  递推求解优化
+  <a class="anchor" href="#%e9%80%92%e6%8e%a8%e6%b1%82%e8%a7%a3%e4%bc%98%e5%8c%96">#</a>
+</h4>
+<p>考虑下面这种情况</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">ABCDABDC
+01234567
+</code></pre></div><p>如果我们已经求得<code>next[6]=2</code>，即D之前有相同前缀后缀AB，那么我们在求next[7]的时候，只需要判断<code>P[next[6]] == P[7-1] (C==D)</code>是否成立即可。</p>
+<ul>
+<li>若成立，显然next[7] = next[6] + 1。</li>
+<li>若不成立，那么我们需要考虑D要和AB这个前缀中的哪个字母进行配对组成相同前缀后缀。（其实这是一个套娃问题:》）</li>
+</ul>
+<p>换句话说，我们在求next[i]的时候我们实际上需要的是，P[:i-1]中最长的相同前缀后缀（可以通过next[i-1]得到），设长度为<code>k</code>, 然后再判断<code>P[l] == P[k]</code>。如果不等于的话，我们就找出P[:k-1]中第二长的相同前缀后缀，用同样方法再判断一次。</p>
+<p>实际上，第二长的相同前缀后缀可以通过<code>next[next[k-1]]</code>得到。</p>
+<blockquote>
+<p>为什么？第一长的相同前缀后缀的相同前缀后缀实际上就是第二长的相同前缀后缀。例如 <code>ABABCDABAB</code>, 第一长是 <code>ABAB</code>, 第二长是 <code>AB</code></p>
+</blockquote>
+<p>基于上述思想，我们可以写出如下的递推求解的代码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> get_next(<span style="color:#66d9ef">const</span> string<span style="color:#f92672">&amp;</span> p) {
+    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> next(p.size());
+    next[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;</span>p.size();i<span style="color:#f92672">++</span>){
+        <span style="color:#66d9ef">int</span> k<span style="color:#f92672">=</span>i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">while</span>(k<span style="color:#f92672">!=</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> p[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> p[next[k]]) k<span style="color:#f92672">=</span>next[k];  <span style="color:#75715e">// 先找出&#34;OK&#34;的前缀后缀
+</span><span style="color:#75715e"></span>        next[i] <span style="color:#f92672">=</span> next[k] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+    }
+    <span style="color:#66d9ef">return</span> next;
+}
+</code></pre></div><h4 id="继续优化">
+  继续优化
+  <a class="anchor" href="#%e7%bb%a7%e7%bb%ad%e4%bc%98%e5%8c%96">#</a>
+</h4>
+<p><strong>优化1</strong></p>
+<p>我们首先可以重构一下代码, 以下代码和<code>get_next</code>等价。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> get_next2(<span style="color:#66d9ef">const</span> string<span style="color:#f92672">&amp;</span> p) {
+    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> next(p.size());
+    next[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, k<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">while</span>(i <span style="color:#f92672">&lt;</span> p.size() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">if</span>(k <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> p[i] <span style="color:#f92672">==</span> p[k]) {
+            i<span style="color:#f92672">++</span>; k<span style="color:#f92672">++</span>;
+            next[i] <span style="color:#f92672">=</span> k;
+        } <span style="color:#66d9ef">else</span> { k <span style="color:#f92672">=</span> next[k]; }
+    }
+    <span style="color:#66d9ef">return</span> next;
+}
+</code></pre></div><p><strong>优化2</strong></p>
+<p>再者，考虑如下情况</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">abab
+next: -1, 0, 0, 1
+</code></pre></div><p>当b失配时，next=1，但是P[1]=b，我们没必要再比一次，因为这次一定失配，基于此我们可以再次优化。如下所示：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> get_next2_opt(<span style="color:#66d9ef">const</span> string<span style="color:#f92672">&amp;</span> p) {
+    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> next(p.size());
+    next[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, k<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">while</span>(i <span style="color:#f92672">&lt;</span> p.size() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">if</span>(k <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> p[i] <span style="color:#f92672">==</span> p[k]) {
+            i<span style="color:#f92672">++</span>; k<span style="color:#f92672">++</span>;
+            <span style="color:#75715e">// 以下两行为优化内容
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span>(p[k] <span style="color:#f92672">!=</span> p[i]) next[i] <span style="color:#f92672">=</span> k; 
+            <span style="color:#66d9ef">else</span> next[i] <span style="color:#f92672">=</span> next[k];
+        } <span style="color:#66d9ef">else</span> { k <span style="color:#f92672">=</span> next[k]; }
+    }
+    <span style="color:#66d9ef">return</span> next;
+}
+</code></pre></div><p>原来的get_next当然也可以用同样的方法优化，但是要注意写法。
+下面这种优化方式就不行。事实上，当你把下面的代码改对之后，你会发现你的代码就变得和<code>get_next2_opt</code>基本一样了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> get_next_opt(<span style="color:#66d9ef">const</span> string<span style="color:#f92672">&amp;</span> p) {
+    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> next(p.size());
+    next[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;</span>p.size();i<span style="color:#f92672">++</span>){
+        <span style="color:#66d9ef">int</span> k<span style="color:#f92672">=</span>i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">while</span>(k<span style="color:#f92672">!=</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> p[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> p[next[k]]) k<span style="color:#f92672">=</span>next[k];  <span style="color:#75715e">// 先找出&#34;OK&#34;的前缀后缀
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// 直接这样优化是不行的
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span>(p[i] <span style="color:#f92672">!=</span> p[next[k]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]) next[i] <span style="color:#f92672">=</span> next[k] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">else</span> next[i] <span style="color:#f92672">=</span> next[next[k]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>];
+    }
+    <span style="color:#66d9ef">return</span> next;
+}
+</code></pre></div><h2 id="参考资料">
+  参考资料
+  <a class="anchor" href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99">#</a>
+</h2>
+<ol>
+<li>从头到尾彻底理解KMP: 
+  <a href="https://www.cnblogs.com/zhangtianq/p/5839909.html">cnblogs</a></li>
+</ol></article>
  
       
 
@@ -417,6 +523,12 @@ https://github.com/alex-shpak/hugo-book
         
   <div class="flex flex-wrap justify-between">
 
+
+  <div><a class="flex align-center" href="https://github.com/Zeqiang-Lai/blog/commit/4f57fc12b5494458219ea8b245044dda7e4c3d3a" title='最后修改者 Zeqiang Lai | February 14, 2022' target="_blank" rel="noopener">
+      <img src="/blog/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>February 14, 2022</span>
+    </a>
+  </div>
 
 
 
@@ -443,79 +555,23 @@ https://github.com/alex-shpak/hugo-book
     <aside class="book-toc">
       <div class="book-toc-content">
         
-  <nav>
+  
+<nav id="TableOfContents">
   <ul>
-  
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
+    <li>
       <ul>
-      
-        <li class="flex justify-between">
-          <a href="/blog/categories/%E7%AE%97%E6%B3%95/">算法</a>
-          <span>14</span>
+        <li><a href="#朴素算法">朴素算法</a></li>
+        <li><a href="#kmp算法">KMP算法</a>
+          <ul>
+            <li><a href="#求解next数组">求解next数组</a></li>
+          </ul>
         </li>
-      
-        <li class="flex justify-between">
-          <a href="/blog/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
-          <span>5</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/blog/categories/%E7%BC%96%E7%A8%8B/">编程</a>
-          <span>1</span>
-        </li>
-      
+        <li><a href="#参考资料">参考资料</a></li>
       </ul>
     </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
-      <ul>
-      
-        <li class="flex justify-between">
-          <a href="/blog/tags/VAE/">VAE</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/blog/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/blog/tags/Hugo/">Hugo</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/blog/tags/%E5%90%8C%E6%AD%A5/">同步</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/blog/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/blog/tags/%E7%89%A9%E7%90%86/">物理</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/blog/tags/%E7%9B%B8%E5%AF%B9%E8%AE%BA/">相对论</a>
-          <span>1</span>
-        </li>
-      
-      </ul>
-    </li>
-    
-  
   </ul>
 </nav>
+
 
  
       </div>

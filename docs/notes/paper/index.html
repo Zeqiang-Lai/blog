@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Paper Notes #  一些论文阅读笔记
-  [PDF] Tuning-free Plug-and-Play Proximal Algorithm for Inverse Imaging Problems  [PDF] Effective Snapshot Compressive-spectral Imaging via Deep Denoising and Total Varia-tion Priors  [Draft] RAFT: Recurrent All-Pairs Field Transforms for Optical Flow  [Draft] PatchMatch: A Randomized Correspondence Algorithm for Structural Image Editing  ">
+  [PDF] Tuning-free Plug-and-Play Proximal Algorithm for Inverse Imaging Problems  [PDF] Effective Snapshot Compressive-spectral Imaging via Deep Denoising and Total Varia-tion Priors  [Draft] RAFT: Recurrent All-Pairs Field Transforms for Optical Flow  [Draft] PatchMatch: A Randomized Correspondence Algorithm for Structural Image Editing  Simple Review #   PatchMatch: A Randomized Correspondence Algorithm for Structural Image Editing #   Sample Impl ｜ 知乎解读 | 本站 🌟">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Paper" />
 <meta property="og:description" content="" />
@@ -16,7 +16,7 @@
 <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/blog/book.min.83d6bd38ef6e13aa5cbd5283293cf037f4d6e83b871d7a2341f6edc7ca421291.css" integrity="sha256-g9a9OO9uE6pcvVKDKTzwN/TW6DuHHXojQfbtx8pCEpE=" crossorigin="anonymous">
   <script defer src="/blog/flexsearch.min.js"></script>
-  <script defer src="/blog/zh.search.min.03fa8210e2bef311593e4c617fe6d4f9ec93df70a7188394a6b9e7ba7d0e214a.js" integrity="sha256-A/qCEOK&#43;8xFZPkxhf&#43;bU&#43;eyT33CnGIOUprnnun0OIUo=" crossorigin="anonymous"></script>
+  <script defer src="/blog/zh.search.min.bcac404f82391fc1d125e717cf8d35e642b7b2f2606a056fdc81d73fc01a0d76.js" integrity="sha256-vKxAT4I5H8HRJecXz4015kK3svJgagVv3IHXP8AaDXY=" crossorigin="anonymous"></script>
 
   <script defer src="/blog/sw.min.f4bc4151631c92d29816d24dfaacb947aa6b03f91ec1c0cd2738ba8957d04791.js" integrity="sha256-9LxBUWMcktKYFtJN&#43;qy5R6prA/kewcDNJzi6iVfQR5E=" crossorigin="anonymous"></script>
 
@@ -301,7 +301,17 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#paper-notes">Paper Notes</a></li>
+    <li><a href="#paper-notes">Paper Notes</a>
+      <ul>
+        <li><a href="#simple-review">Simple Review</a>
+          <ul>
+            <li><a href="#patchmatch-a-randomized-correspondence-algorithm-for-structural-image-editing">PatchMatch: A Randomized Correspondence Algorithm for Structural Image Editing</a></li>
+            <li><a href="#a-convnet-for-the-2020s">A ConvNet for the 2020s</a></li>
+            <li><a href="#masked-autoencoders-are-scalable-vision-learners">Masked Autoencoders Are Scalable Vision Learners</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
@@ -331,6 +341,53 @@ https://github.com/alex-shpak/hugo-book
 <li>
   <a href="/blog/docs/notes/paper/patchmatch/">[Draft]</a> PatchMatch: A Randomized Correspondence Algorithm for Structural Image Editing</li>
 </ol>
+<h2 id="simple-review">
+  Simple Review
+  <a class="anchor" href="#simple-review">#</a>
+</h2>
+<hr>
+<h3 id="patchmatch-a-randomized-correspondence-algorithm-for-structural-image-editing">
+  PatchMatch: A Randomized Correspondence Algorithm for Structural Image Editing
+  <a class="anchor" href="#patchmatch-a-randomized-correspondence-algorithm-for-structural-image-editing">#</a>
+</h3>
+<p>
+  <a href="https://github.com/MingtaoGuo/PatchMatch.git">Sample Impl</a> ｜
+  <a href="https://zhuanlan.zhihu.com/p/377230002">知乎解读</a> | 
+  <a href="/blog/docs/notes/paper/patchmatch/">本站</a> 🌟</p>
+<ul>
+<li>图像匹配的典中典，基于匹配块周围的匹配也近似匹配的先验知识的随机化算法。</li>
+<li>原论文挺好读的，但是建议先看解读有一个insight之后再读。</li>
+</ul>
+<details ><summary>Quick Review</summary>
+  <div class="markdown-inner">
+    <ol>
+<li>随机初始化匹配关系。</li>
+<li>基于正确的匹配关系进行修正，即正确匹配的Patch Pair周围的patch应该是匹配的。</li>
+<li>加入扰动，在修正后匹配的匹配对周围搜索是否有更加匹配的patch。</li>
+</ol>
+<p>
+  <img src="patchmatch/algorithm.png" alt="Illustration of Algorithm" />
+  </div>
+</details>
+
+<h3 id="a-convnet-for-the-2020s">
+  A ConvNet for the 2020s
+  <a class="anchor" href="#a-convnet-for-the-2020s">#</a>
+</h3>
+<p>
+  <a href="https://github.com/facebookresearch/ConvNeXt">Offical Impl</a></p>
+<ul>
+<li>CNN的大型Ablation Study，研究各种已有模块和训练技巧的有效性，基于此构建了一个超越现有Transformer的纯CNN模型。</li>
+</ul>
+<h3 id="masked-autoencoders-are-scalable-vision-learners">
+  Masked Autoencoders Are Scalable Vision Learners
+  <a class="anchor" href="#masked-autoencoders-are-scalable-vision-learners">#</a>
+</h3>
+<p>
+  <a href="https://github.com/facebookresearch/mae">Offical Impl</a></p>
+<ul>
+<li>基于Transformer的（高层）视觉预训练模型，只用重构任务。</li>
+</ul>
 </article>
  
       
@@ -340,9 +397,9 @@ https://github.com/alex-shpak/hugo-book
   <div class="flex flex-wrap justify-between">
 
 
-  <div><a class="flex align-center" href="https://github.com/Zeqiang-Lai/blog/commit/7b07528993bb3e2d1e8b2a058853d0157d893c07" title='最后修改者 Zeqiang Lai | January 24, 2022' target="_blank" rel="noopener">
+  <div><a class="flex align-center" href="https://github.com/Zeqiang-Lai/blog/commit/4f57fc12b5494458219ea8b245044dda7e4c3d3a" title='最后修改者 Zeqiang Lai | February 14, 2022' target="_blank" rel="noopener">
       <img src="/blog/svg/calendar.svg" class="book-icon" alt="Calendar" />
-      <span>January 24, 2022</span>
+      <span>February 14, 2022</span>
     </a>
   </div>
 
@@ -374,7 +431,17 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#paper-notes">Paper Notes</a></li>
+    <li><a href="#paper-notes">Paper Notes</a>
+      <ul>
+        <li><a href="#simple-review">Simple Review</a>
+          <ul>
+            <li><a href="#patchmatch-a-randomized-correspondence-algorithm-for-structural-image-editing">PatchMatch: A Randomized Correspondence Algorithm for Structural Image Editing</a></li>
+            <li><a href="#a-convnet-for-the-2020s">A ConvNet for the 2020s</a></li>
+            <li><a href="#masked-autoencoders-are-scalable-vision-learners">Masked Autoencoders Are Scalable Vision Learners</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
