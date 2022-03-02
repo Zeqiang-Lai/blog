@@ -5,5 +5,18 @@
     <link>https://zeqiang-lai.github.io/blog/docs/notes/concept/</link>
     <description>Recent content in Concept on Ze&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator><atom:link href="https://zeqiang-lai.github.io/blog/docs/notes/concept/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Normalizing Flow</title>
+      <link>https://zeqiang-lai.github.io/blog/docs/notes/concept/nflow/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/docs/notes/concept/nflow/</guid>
+      <description>简单介绍 #  首先，Normalizing Flow是一种生成模型（Generative Model），它的提出是为了解决现有的生成的模型的一些问题，如GAN训练不稳定，VAE边缘概率估计intractable的问题。
+Normalizing Flow是一种特殊的inveritable网络，每个模块都是可逆的，并且有tractable determinant of the Jacobian，且求逆也是tractable的。
+优点：
+ 相比VAE，不必引入噪声， more powerful local variance models. 相比GAN，训练更稳定，更易收敛。  缺点
+ 每个模块都必须可逆，限制了表达能力。 可逆要求latent space的维度很高。  详细介绍 #  参考资料 #   Github: normalizing-flows  Introduction to Normalizing Flows  Stanford CS236: Normalizing flow models  Difference between invertible NN and flow-based NN  </description>
+    </item>
+    
   </channel>
 </rss>

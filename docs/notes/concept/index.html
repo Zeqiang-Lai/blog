@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Concepts #  VAE #   再看变分自动编码器VAE: [ Note], [ Slide]  EM #   推导高斯混合模型的EM算法：[ Note] 从最小化自由能的角度推导高斯混合模型的EM算法：[ Note]  ADMM #   ADMM Tutorial: [ Note] ADMM各个任务推导: [ Note]  ">
+<meta name="description" content="Concepts #  Deep Generative Models #   VAE #   再看变分自动编码器VAE: [ Note], [ Slide]  Flow-based #   Invertible Neural Network Normalizing Flow (Flow Neural Network) [Note] Denoising Normalizing Flow  Illustration   EM #    推导高斯混合模型的EM算法：[ Note] 从最小化自由能的角度推导高斯混合模型的EM算法：[ Note]  ADMM #    ADMM Tutorial: [ Note] ADMM各个任务推导: [ Note]  Others #    Denoising Autoencoder  朴素贝叶斯 #  朴素贝叶斯 用于求解分类问题，给定数据，每个数据点包含多列特征和一个类别。 任务是估计给定特征，各个类别出现的概率，即求： $$ p\left(C \mid F_{1}, \ldots, F_{n}\right) $$">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Concept" />
 <meta property="og:description" content="" />
@@ -15,7 +15,7 @@
 <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/blog/book.min.83d6bd38ef6e13aa5cbd5283293cf037f4d6e83b871d7a2341f6edc7ca421291.css" integrity="sha256-g9a9OO9uE6pcvVKDKTzwN/TW6DuHHXojQfbtx8pCEpE=" crossorigin="anonymous">
   <script defer src="/blog/flexsearch.min.js"></script>
-  <script defer src="/blog/zh.search.min.bcac404f82391fc1d125e717cf8d35e642b7b2f2606a056fdc81d73fc01a0d76.js" integrity="sha256-vKxAT4I5H8HRJecXz4015kK3svJgagVv3IHXP8AaDXY=" crossorigin="anonymous"></script>
+  <script defer src="/blog/zh.search.min.5e4a0ba67247a0085bbd637d5f1863c1fab12ef5c8a0de41cce5a95f80f42b37.js" integrity="sha256-XkoLpnJHoAhbvWN9XxhjwfqxLvXIoN5BzOWpX4D0Kzc=" crossorigin="anonymous"></script>
 
   <script defer src="/blog/sw.min.f4bc4151631c92d29816d24dfaacb947aa6b03f91ec1c0cd2738ba8957d04791.js" integrity="sha256-9LxBUWMcktKYFtJN&#43;qy5R6prA/kewcDNJzi6iVfQR5E=" crossorigin="anonymous"></script>
 
@@ -302,9 +302,19 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li><a href="#concepts">Concepts</a>
       <ul>
-        <li><a href="#vae">VAE</a></li>
+        <li><a href="#deep-generative-models">Deep Generative Models</a>
+          <ul>
+            <li><a href="#vae">VAE</a></li>
+            <li><a href="#flow-based">Flow-based</a></li>
+          </ul>
+        </li>
         <li><a href="#em">EM</a></li>
         <li><a href="#admm">ADMM</a></li>
+        <li><a href="#others">Others</a>
+          <ul>
+            <li><a href="#朴素贝叶斯">朴素贝叶斯</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -323,19 +333,41 @@ https://github.com/alex-shpak/hugo-book
   Concepts
   <a class="anchor" href="#concepts">#</a>
 </h1>
-<h2 id="vae">
+<h2 id="deep-generative-models">
+  Deep Generative Models
+  <a class="anchor" href="#deep-generative-models">#</a>
+</h2>
+<hr>
+<h3 id="vae">
   VAE
   <a class="anchor" href="#vae">#</a>
-</h2>
+</h3>
 <ul>
 <li>再看变分自动编码器VAE: [
   <a href="another-look-on-vae.pdf">Note</a>], [
   <a href="another-look-on-vae-slide.pdf">Slide</a>]</li>
 </ul>
+<h3 id="flow-based">
+  Flow-based
+  <a class="anchor" href="#flow-based">#</a>
+</h3>
+<ul>
+<li>Invertible Neural Network</li>
+<li>Normalizing Flow (Flow Neural Network) 
+  <a href="/blog/docs/notes/concept/nflow/">[Note]</a></li>
+<li>Denoising Normalizing Flow</li>
+</ul>
+<details ><summary>Illustration</summary>
+  <div class="markdown-inner">
+    <img src="imgs/dgm.webp" alt="dgn" />
+  </div>
+</details>
+
 <h2 id="em">
   EM
   <a class="anchor" href="#em">#</a>
 </h2>
+<hr>
 <ul>
 <li>推导高斯混合模型的EM算法：[
   <a href="mixture-em.pdf">Note</a>]</li>
@@ -346,12 +378,54 @@ https://github.com/alex-shpak/hugo-book
   ADMM
   <a class="anchor" href="#admm">#</a>
 </h2>
+<hr>
 <ul>
 <li>ADMM Tutorial: [
   <a href="admm-tutorial.pdf">Note</a>]</li>
 <li>ADMM各个任务推导: [
   <a href="admm.pdf">Note</a>]</li>
 </ul>
+<h2 id="others">
+  Others
+  <a class="anchor" href="#others">#</a>
+</h2>
+<hr>
+<ul>
+<li>Denoising Autoencoder</li>
+</ul>
+<h3 id="朴素贝叶斯">
+  朴素贝叶斯
+  <a class="anchor" href="#%e6%9c%b4%e7%b4%a0%e8%b4%9d%e5%8f%b6%e6%96%af">#</a>
+</h3>
+<details ><summary>朴素贝叶斯</summary>
+  <div class="markdown-inner">
+    <p>用于求解分类问题，给定数据，每个数据点包含多列特征和一个类别。
+任务是估计给定特征，各个类别出现的概率，即求：
+$$
+p\left(C \mid F_{1}, \ldots, F_{n}\right)
+$$</p>
+<p>我们可以用频率估计概率的方法直接从数据中估计这个概率，但是当特征F的种类很多，取值也很多的情况下，我们需要很大量的数据才能做出准确估计。这在现实生活中往往是做不到的。</p>
+<p>因此，朴素贝叶斯首先用贝叶斯公式改写求解目标：
+$$
+p\left(C \mid F_{1}, \ldots, F_{n}\right)=\frac{p(C) p\left(F_{1}, \ldots, F_{n} \mid C\right)}{p\left(F_{1}, \ldots, F_{n}\right)}
+$$</p>
+<p>分母是每个特征出现的联合概率，与类别无关，可以看作某个未知的定值。对于分子，$p(C)$是比较容易通过频率估计的，而$p\left(F_{1}, \ldots, F_{n} \mid C\right)$则不好估计，因为当特征F很多的时候，数据一般比较稀疏，给定$C$，$F_{1}, \ldots, F_{n}$出现的概率可能为0，因为数据集中不存在这种情况（但不代表真的出现概率为0）。</p>
+<p>因此，朴素贝叶斯做了个朴素的假设，即各个特征相互独立。基于此，则有：</p>
+<div>
+$$
+\begin{equation}
+\begin{aligned}
+p\left(F_{1}, \ldots, F_{n} \mid C\right) & \propto p\left(F_{1} \mid C\right) p\left(F_{2} \mid C\right) p\left(F_{3} \mid C\right) \ldots \\
+& \propto \prod_{i=1}^{n} p\left(F_{i} \mid C\right)
+\end{aligned}
+\end{equation}
+$$
+</div>
+<p>显然，基于频率统计概率$p\left(F_{i} \mid C\right)$会更加容易得多。</p>
+
+  </div>
+</details>
+
 </article>
  
       
@@ -378,7 +452,30 @@ https://github.com/alex-shpak/hugo-book
 
 
  
-        
+        <script>
+    MathJax = {
+      svg: {
+            fontCache: 'global'
+      },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      },
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
       </footer>
 
       
@@ -397,9 +494,19 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li><a href="#concepts">Concepts</a>
       <ul>
-        <li><a href="#vae">VAE</a></li>
+        <li><a href="#deep-generative-models">Deep Generative Models</a>
+          <ul>
+            <li><a href="#vae">VAE</a></li>
+            <li><a href="#flow-based">Flow-based</a></li>
+          </ul>
+        </li>
         <li><a href="#em">EM</a></li>
         <li><a href="#admm">ADMM</a></li>
+        <li><a href="#others">Others</a>
+          <ul>
+            <li><a href="#朴素贝叶斯">朴素贝叶斯</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>

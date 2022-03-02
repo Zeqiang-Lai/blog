@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Paper Notes #  一些论文阅读笔记
-  [PDF] Tuning-free Plug-and-Play Proximal Algorithm for Inverse Imaging Problems  [PDF] Effective Snapshot Compressive-spectral Imaging via Deep Denoising and Total Varia-tion Priors  [Draft] RAFT: Recurrent All-Pairs Field Transforms for Optical Flow  [Draft] PatchMatch: A Randomized Correspondence Algorithm for Structural Image Editing  Simple Review #   PatchMatch: A Randomized Correspondence Algorithm for Structural Image Editing #   Sample Impl ｜ 知乎解读 | 本站 🌟">
+  [PDF] Tuning-free Plug-and-Play Proximal Algorithm for Inverse Imaging Problems  [PDF] Effective Snapshot Compressive-spectral Imaging via Deep Denoising and Total Varia-tion Priors  [Draft] RAFT: Recurrent All-Pairs Field Transforms for Optical Flow  [Draft] PatchMatch: A Randomized Correspondence Algorithm for Structural Image Editing  Simple Review #   Vision Transformer for Small-Size Datasets #   提出了一个针对小数据集的Transformer。 主要模块：Shifted Patch Tokenization, Locality Self-Attention。细节没看。  Functional Neural Networks for Parametric Image Restoration Problems #   对于超分，去噪，JPEG Decompression，有不同的parameter（scale factor，noise level等），现有方法针对不同parameter单独训练模型，或不考虑不同parameter的差异，一起训练一个统一的模型。 作者提出学习一个函数，输入paramter，输出针对这个parameter的模型参数。主要用点是不用单独训练每个parameter的模型，而是训练一个函数，输入parameter，输出模型参数。  Variational Image Restoration Network #   用了Generative Model和Variational inference做Image Restoration。太长公式太多，没细看。  Designing a Practical Degradation Model for Deep Blind Image Super-Resolution #   Github">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Paper" />
 <meta property="og:description" content="" />
@@ -16,7 +16,7 @@
 <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/blog/book.min.83d6bd38ef6e13aa5cbd5283293cf037f4d6e83b871d7a2341f6edc7ca421291.css" integrity="sha256-g9a9OO9uE6pcvVKDKTzwN/TW6DuHHXojQfbtx8pCEpE=" crossorigin="anonymous">
   <script defer src="/blog/flexsearch.min.js"></script>
-  <script defer src="/blog/zh.search.min.bcac404f82391fc1d125e717cf8d35e642b7b2f2606a056fdc81d73fc01a0d76.js" integrity="sha256-vKxAT4I5H8HRJecXz4015kK3svJgagVv3IHXP8AaDXY=" crossorigin="anonymous"></script>
+  <script defer src="/blog/zh.search.min.5e4a0ba67247a0085bbd637d5f1863c1fab12ef5c8a0de41cce5a95f80f42b37.js" integrity="sha256-XkoLpnJHoAhbvWN9XxhjwfqxLvXIoN5BzOWpX4D0Kzc=" crossorigin="anonymous"></script>
 
   <script defer src="/blog/sw.min.f4bc4151631c92d29816d24dfaacb947aa6b03f91ec1c0cd2738ba8957d04791.js" integrity="sha256-9LxBUWMcktKYFtJN&#43;qy5R6prA/kewcDNJzi6iVfQR5E=" crossorigin="anonymous"></script>
 
@@ -305,6 +305,22 @@ https://github.com/alex-shpak/hugo-book
       <ul>
         <li><a href="#simple-review">Simple Review</a>
           <ul>
+            <li><a href="#vision-transformer-for-small-size-datasets">Vision Transformer for Small-Size Datasets</a></li>
+            <li><a href="#functional-neural-networks-for-parametric-image-restoration-problems">Functional Neural Networks for Parametric Image Restoration Problems</a></li>
+            <li><a href="#variational-image-restoration-network">Variational Image Restoration Network</a></li>
+            <li><a href="#designing-a-practical-degradation-model-for-deep-blind-image-super-resolution">Designing a Practical Degradation Model for Deep Blind Image Super-Resolution</a></li>
+            <li><a href="#revisiting-rcan-improved-training-for-image-super-resolution">Revisiting RCAN: Improved Training for Image Super-Resolution</a></li>
+            <li><a href="#enhancing-low-light-images-in-real-world-via-cross-image-disentanglement">Enhancing Low-Light Images in Real World via Cross-Image Disentanglement</a></li>
+            <li><a href="#disentangling-noise-from-images-a-flow-based-image-denoising-neural-network">Disentangling Noise from Images: A Flow-Based Image Denoising Neural Network</a></li>
+            <li><a href="#denoising-normalizing-flow">Denoising Normalizing Flow</a></li>
+            <li><a href="#deflow-learning-complex-image-degradations-from-unpaired-data-with-conditional-flows">DeFlow: Learning Complex Image Degradations from Unpaired Data with Conditional Flows</a></li>
+            <li><a href="#invertible-denoising-network-a-light-solution-for-real-noise-removal">Invertible Denoising Network: A Light Solution for Real Noise Removal</a></li>
+            <li><a href="#adadm-enabling-normalization-for-image-super-resolution">AdaDM: Enabling Normalization for Image Super-Resolution</a></li>
+            <li><a href="#idr-self-supervised-image-denoising-via-iterative-data-refinement">IDR: Self-Supervised Image Denoising via Iterative Data Refinement</a></li>
+            <li><a href="#rethinking-noise-synthesis-and-modeling-in-raw-denoising">Rethinking Noise Synthesis and Modeling in Raw Denoising</a></li>
+            <li><a href="#on-efficient-transformer-and-image-pre-training-for-low-level-vision">On Efficient Transformer and Image Pre-training for Low-level Vision</a></li>
+            <li><a href="#transweather-transformer-based-restoration-of-images-degraded-by-adverse-weather-conditions">TransWeather: Transformer-based Restoration of Images Degraded by Adverse Weather Conditions</a></li>
+            <li><a href="#all-in-one-bad-weather-removal-using-architectural-search">All in One Bad Weather Removal using Architectural Search</a></li>
             <li><a href="#patchmatch-a-randomized-correspondence-algorithm-for-structural-image-editing">PatchMatch: A Randomized Correspondence Algorithm for Structural Image Editing</a></li>
             <li><a href="#a-convnet-for-the-2020s">A ConvNet for the 2020s</a></li>
             <li><a href="#masked-autoencoders-are-scalable-vision-learners">Masked Autoencoders Are Scalable Vision Learners</a></li>
@@ -346,6 +362,178 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#simple-review">#</a>
 </h2>
 <hr>
+<h3 id="vision-transformer-for-small-size-datasets">
+  Vision Transformer for Small-Size Datasets
+  <a class="anchor" href="#vision-transformer-for-small-size-datasets">#</a>
+</h3>
+<ul>
+<li>提出了一个针对小数据集的Transformer。</li>
+<li>主要模块：Shifted Patch Tokenization, Locality Self-Attention。细节没看。</li>
+</ul>
+<h3 id="functional-neural-networks-for-parametric-image-restoration-problems">
+  Functional Neural Networks for Parametric Image Restoration Problems
+  <a class="anchor" href="#functional-neural-networks-for-parametric-image-restoration-problems">#</a>
+</h3>
+<ul>
+<li>对于超分，去噪，JPEG Decompression，有不同的parameter（scale factor，noise level等），现有方法针对不同parameter单独训练模型，或不考虑不同parameter的差异，一起训练一个统一的模型。</li>
+<li>作者提出学习一个函数，输入paramter，输出针对这个parameter的模型参数。主要用点是不用单独训练每个parameter的模型，而是训练一个函数，输入parameter，输出模型参数。</li>
+</ul>
+<h3 id="variational-image-restoration-network">
+  Variational Image Restoration Network
+  <a class="anchor" href="#variational-image-restoration-network">#</a>
+</h3>
+<ul>
+<li>用了Generative Model和Variational inference做Image Restoration。太长公式太多，没细看。</li>
+</ul>
+<h3 id="designing-a-practical-degradation-model-for-deep-blind-image-super-resolution">
+  Designing a Practical Degradation Model for Deep Blind Image Super-Resolution
+  <a class="anchor" href="#designing-a-practical-degradation-model-for-deep-blind-image-super-resolution">#</a>
+</h3>
+<p>
+  <a href="https://github.com/cszn/BSRGAN">Github</a></p>
+<ul>
+<li>提出了一个超分的Degradation Model用于真实图像超分。</li>
+<li>其实就是总结了常见的Blur，Downsample，Noise的种类，然后degradation就是这些的排列组合。</li>
+</ul>
+<h3 id="revisiting-rcan-improved-training-for-image-super-resolution">
+  Revisiting RCAN: Improved Training for Image Super-Resolution
+  <a class="anchor" href="#revisiting-rcan-improved-training-for-image-super-resolution">#</a>
+</h3>
+<ul>
+<li>提出了一些训练策略，让RCAN的性能进一步提升。</li>
+<li>策略简单说：多GPU大Batch Size，SiLu替换ReLu，训练更长时间，Lamb Optimizer，48*48 patch训练，64*64 finetune，FP16加速训练，不要regularization，先训练x2，然后用x2参数训练x3，以此类推。</li>
+</ul>
+<h3 id="enhancing-low-light-images-in-real-world-via-cross-image-disentanglement">
+  Enhancing Low-Light Images in Real World via Cross-Image Disentanglement
+  <a class="anchor" href="#enhancing-low-light-images-in-real-world-via-cross-image-disentanglement">#</a>
+</h3>
+<p>arxiv 2022 | CIDN</p>
+<ul>
+<li>不需要配对数据训练的暗光增强网络</li>
+<li>核心思想，将一张图分成 content feature 和 brightness feature。使用低光图像的content feature，和正常光图像的brightness feature，然后使用normal-light decoder重构出来。正常光参考图像不必与低光图像对齐。</li>
+</ul>
+<details ><summary>结构图</summary>
+  <div class="markdown-inner">
+    <p>
+  <img src="imgs/cidn.png" alt="Illustration" /></p>
+<ul>
+<li>训练数据是参考图像粗对齐的正常光图，测试数据参考图像可以完全不一样。</li>
+<li>几个Loss：（1）低光和正常光的content feature应该类似。(2) 低光的content feature和brightness feature应该能够重构出低光图像。（3）正常光图像没有gt。（4）令光照特征符合正态分布，与结构无关。（5）VGG perceptual loss。</li>
+</ul>
+
+  </div>
+</details>
+
+<h3 id="disentangling-noise-from-images-a-flow-based-image-denoising-neural-network">
+  Disentangling Noise from Images: A Flow-Based Image Denoising Neural Network
+  <a class="anchor" href="#disentangling-noise-from-images-a-flow-based-image-denoising-neural-network">#</a>
+</h3>
+<p>arxiv 2021 | 
+  <a href="https://github.com/Yang-Liu1082/FDN">Github</a></p>
+<ul>
+<li>Invertible Denoising Network: A Light Solution for Real Noise Removal的期刊扩展。</li>
+</ul>
+<h3 id="denoising-normalizing-flow">
+  Denoising Normalizing Flow
+  <a class="anchor" href="#denoising-normalizing-flow">#</a>
+</h3>
+<p>NeurIPS 2021</p>
+<ul>
+<li>本文并不是用来去噪的Normalizing Flow。类似Denoising Autoencoder。</li>
+</ul>
+<h3 id="deflow-learning-complex-image-degradations-from-unpaired-data-with-conditional-flows">
+  DeFlow: Learning Complex Image Degradations from Unpaired Data with Conditional Flows
+  <a class="anchor" href="#deflow-learning-complex-image-degradations-from-unpaired-data-with-conditional-flows">#</a>
+</h3>
+<p>CVPR 2021 | 
+  <a href="https://github.com/volflow/DeFlow">Github</a> | 
+  <a href="/blog/docs/notes/concept/nflow/">Blog:Normalizing Flow</a></p>
+<ul>
+<li>提出了一个不需要配对数据训练的conditional flow网络用于合成训练数据。</li>
+<li>具体做法简介：需要先了解Normalizing Flow。TODO</li>
+</ul>
+<h3 id="invertible-denoising-network-a-light-solution-for-real-noise-removal">
+  Invertible Denoising Network: A Light Solution for Real Noise Removal
+  <a class="anchor" href="#invertible-denoising-network-a-light-solution-for-real-noise-removal">#</a>
+</h3>
+<p>
+  <a href="https://github.com/Yang-Liu1082/InvDN">Github</a> | 
+  <a href="/blog/">Blog:Invertible Network</a></p>
+<ul>
+<li>提出使用Invertible Network做真实噪声去噪。</li>
+<li>网络将noisy image编码成low resolution clean image和一个high frequency和noise信息的latent vector。</li>
+<li>逆过程把latent vector换成一个从标准正态分布取样的vector，然后逆回去，得到clean image。</li>
+</ul>
+<p>问题（比较疑惑的地方）：为什么是随机取样，取出来的latent vector起的作用是什么，不同的vector，恢复出来的clean image不是是不一样的？</p>
+<h3 id="adadm-enabling-normalization-for-image-super-resolution">
+  AdaDM: Enabling Normalization for Image Super-Resolution
+  <a class="anchor" href="#adadm-enabling-normalization-for-image-super-resolution">#</a>
+</h3>
+<ul>
+<li>传统超分网络一般不加Normalization，因为这会使得特征方差变小，对性能有很大影响。</li>
+<li>这篇文章文章提出了 Adaptive Deviation Modulator (AdaDM)，可以放大方差，使得Normalization又能加了。并且有性能提升。</li>
+</ul>
+<h3 id="idr-self-supervised-image-denoising-via-iterative-data-refinement">
+  IDR: Self-Supervised Image Denoising via Iterative Data Refinement
+  <a class="anchor" href="#idr-self-supervised-image-denoising-via-iterative-data-refinement">#</a>
+</h3>
+<p>
+  <a href="https://github.com/zhangyi-3/IDR">Github</a></p>
+<ul>
+<li>提出了一个unsupervised denoising method，不用配对数据训练。</li>
+<li>基于在带噪图像上加noise model的合成噪声训练的网络，能够一定程度地对带噪图像降噪。noiser-noisy数据集和noisy-clean的domain gap越小，网络降噪性能越好。</li>
+<li>本文提出用noiser-noisy数据集训练一个网络，然后用网络去噪得到更干净的noisy图像，再合成noiser-nosiy数据集。迭代进行训练，不断缩小noiser-noisy数据集和noisy-clean的domain gap。</li>
+</ul>
+<h3 id="rethinking-noise-synthesis-and-modeling-in-raw-denoising">
+  Rethinking Noise Synthesis and Modeling in Raw Denoising
+  <a class="anchor" href="#rethinking-noise-synthesis-and-modeling-in-raw-denoising">#</a>
+</h3>
+<p>
+  <a href="https://github.com/zhangyi-3/noise-synthesis">Github</a></p>
+<ul>
+<li>物理噪声模型对于真实场景去噪比DNN的好使，但是需要对不同相机，光照条件单独建模或者标定，毕竟麻烦。</li>
+<li>本文提出从相机噪声中随机取样作为合成噪声，因此不需要噪声模型，只需要拍摄多张带噪图像作为database即可。</li>
+<li>作者将噪声分为信号相关和信号无关的，信号无关采用随机取样，信号相关部分只考虑photo shot noise，从泊松分布采样使用，仍然需要标定。</li>
+</ul>
+<h3 id="on-efficient-transformer-and-image-pre-training-for-low-level-vision">
+  On Efficient Transformer and Image Pre-training for Low-level Vision
+  <a class="anchor" href="#on-efficient-transformer-and-image-pre-training-for-low-level-vision">#</a>
+</h3>
+<p>
+  <a href="https://github.com/fenglinglwb/EDT">Github</a></p>
+<ul>
+<li>提出了一个Encoder-Decoder结构的Transformer。比IPT小10倍，只用200k（15.6%的ImageNet）数据预训练。GFLOPS只有SwinIR的8.4%, 38 vs 451。</li>
+<li>研究了预训练策略，发现多任务预训练比单任务和单纯增加数据量好。simply increasing the data scale may not be the op- timal option, and in contrast, multi-related-task pre-training is more effective and data-efficient.</li>
+</ul>
+<h3 id="transweather-transformer-based-restoration-of-images-degraded-by-adverse-weather-conditions">
+  TransWeather: Transformer-based Restoration of Images Degraded by Adverse Weather Conditions
+  <a class="anchor" href="#transweather-transformer-based-restoration-of-images-degraded-by-adverse-weather-conditions">#</a>
+</h3>
+<p>
+  <a href="https://github.com/jeya-maria-jose/TransWeather">Github</a></p>
+<ul>
+<li>Transformer结构，不同任务相同encoder，decoder，但是decoder，把任务类型作为query传进decoder。</li>
+</ul>
+<details ><summary>Quick Review</summary>
+  <div class="markdown-inner">
+    <img src="imgs/transweather.png" alt="Illustration" />
+  </div>
+</details>
+
+<h3 id="all-in-one-bad-weather-removal-using-architectural-search">
+  All in One Bad Weather Removal using Architectural Search
+  <a class="anchor" href="#all-in-one-bad-weather-removal-using-architectural-search">#</a>
+</h3>
+<ul>
+<li>用多个Encoder，一个Decoder做Image Restoration，具体是Bad Weather Removal。</li>
+<li>Encoder后面接了一个NAS搜的网络，其他没有特别的设计。Feature Space也没什么约束。在去噪等传统领域效果感觉不一定好，很可能不好。</li>
+</ul>
+<details ><summary>Quick Review</summary>
+  <div class="markdown-inner">
+    <img src="imgs/allinone.png" alt="Illustration" />
+  </div>
+</details>
+
 <h3 id="patchmatch-a-randomized-correspondence-algorithm-for-structural-image-editing">
   PatchMatch: A Randomized Correspondence Algorithm for Structural Image Editing
   <a class="anchor" href="#patchmatch-a-randomized-correspondence-algorithm-for-structural-image-editing">#</a>
@@ -435,6 +623,22 @@ https://github.com/alex-shpak/hugo-book
       <ul>
         <li><a href="#simple-review">Simple Review</a>
           <ul>
+            <li><a href="#vision-transformer-for-small-size-datasets">Vision Transformer for Small-Size Datasets</a></li>
+            <li><a href="#functional-neural-networks-for-parametric-image-restoration-problems">Functional Neural Networks for Parametric Image Restoration Problems</a></li>
+            <li><a href="#variational-image-restoration-network">Variational Image Restoration Network</a></li>
+            <li><a href="#designing-a-practical-degradation-model-for-deep-blind-image-super-resolution">Designing a Practical Degradation Model for Deep Blind Image Super-Resolution</a></li>
+            <li><a href="#revisiting-rcan-improved-training-for-image-super-resolution">Revisiting RCAN: Improved Training for Image Super-Resolution</a></li>
+            <li><a href="#enhancing-low-light-images-in-real-world-via-cross-image-disentanglement">Enhancing Low-Light Images in Real World via Cross-Image Disentanglement</a></li>
+            <li><a href="#disentangling-noise-from-images-a-flow-based-image-denoising-neural-network">Disentangling Noise from Images: A Flow-Based Image Denoising Neural Network</a></li>
+            <li><a href="#denoising-normalizing-flow">Denoising Normalizing Flow</a></li>
+            <li><a href="#deflow-learning-complex-image-degradations-from-unpaired-data-with-conditional-flows">DeFlow: Learning Complex Image Degradations from Unpaired Data with Conditional Flows</a></li>
+            <li><a href="#invertible-denoising-network-a-light-solution-for-real-noise-removal">Invertible Denoising Network: A Light Solution for Real Noise Removal</a></li>
+            <li><a href="#adadm-enabling-normalization-for-image-super-resolution">AdaDM: Enabling Normalization for Image Super-Resolution</a></li>
+            <li><a href="#idr-self-supervised-image-denoising-via-iterative-data-refinement">IDR: Self-Supervised Image Denoising via Iterative Data Refinement</a></li>
+            <li><a href="#rethinking-noise-synthesis-and-modeling-in-raw-denoising">Rethinking Noise Synthesis and Modeling in Raw Denoising</a></li>
+            <li><a href="#on-efficient-transformer-and-image-pre-training-for-low-level-vision">On Efficient Transformer and Image Pre-training for Low-level Vision</a></li>
+            <li><a href="#transweather-transformer-based-restoration-of-images-degraded-by-adverse-weather-conditions">TransWeather: Transformer-based Restoration of Images Degraded by Adverse Weather Conditions</a></li>
+            <li><a href="#all-in-one-bad-weather-removal-using-architectural-search">All in One Bad Weather Removal using Architectural Search</a></li>
             <li><a href="#patchmatch-a-randomized-correspondence-algorithm-for-structural-image-editing">PatchMatch: A Randomized Correspondence Algorithm for Structural Image Editing</a></li>
             <li><a href="#a-convnet-for-the-2020s">A ConvNet for the 2020s</a></li>
             <li><a href="#masked-autoencoders-are-scalable-vision-learners">Masked Autoencoders Are Scalable Vision Learners</a></li>
