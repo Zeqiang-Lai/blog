@@ -5,7 +5,20 @@
     <link>https://zeqiang-lai.github.io/blog/en/categories/Optimization/</link>
     <description>Recent content in Optimization on Ze&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 21 Apr 2022 14:32:05 +0000</lastBuildDate><atom:link href="https://zeqiang-lai.github.io/blog/en/categories/Optimization/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 25 Apr 2022 14:32:05 +0000</lastBuildDate><atom:link href="https://zeqiang-lai.github.io/blog/en/categories/Optimization/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Steepest Descent &amp;&amp; Conjugate Gradient</title>
+      <link>https://zeqiang-lai.github.io/blog/en/posts/sd_cg/</link>
+      <pubDate>Mon, 25 Apr 2022 14:32:05 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/en/posts/sd_cg/</guid>
+      <description>&lt;p&gt;This is a reading note on:&lt;/p&gt;
+&lt;p&gt;
+  &lt;a href=&#34;https://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf&#34;&gt;An Introduction to the Conjugate Gradient Method Without the Agonizing Pain&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;It is definitely the best paper to understand the steepest descent conjugate gradient method, which save me a lot of time, thanks god.
+And it is written in 1994, pretty cool, right? 🧐&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Derivation of Least Square</title>
       <link>https://zeqiang-lai.github.io/blog/en/posts/least_square/</link>
