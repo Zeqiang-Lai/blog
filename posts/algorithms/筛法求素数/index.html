@@ -25,9 +25,9 @@
 <title>筛法求素数 | Ze&#39;s Blog</title>
 <link rel="manifest" href="/blog/manifest.json">
 <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
-<link rel="stylesheet" href="/blog/book.min.83d6bd38ef6e13aa5cbd5283293cf037f4d6e83b871d7a2341f6edc7ca421291.css" integrity="sha256-g9a9OO9uE6pcvVKDKTzwN/TW6DuHHXojQfbtx8pCEpE=" crossorigin="anonymous">
+<link rel="stylesheet" href="/blog/book.min.6538e51405f8dbbdfe6874bb615a6502a22edf71fcd873f1e0ca1ed6151f599c.css" integrity="sha256-ZTjlFAX4273&#43;aHS7YVplAqIu33H82HPx4Moe1hUfWZw=" crossorigin="anonymous">
   <script defer src="/blog/flexsearch.min.js"></script>
-  <script defer src="/blog/zh.search.min.dea55a8a5909a1034ff1fe6e6c600edb1e0f75100d5fe59e79bdf68c73ca023d.js" integrity="sha256-3qVailkJoQNP8f5ubGAO2x4PdRANX&#43;Weeb32jHPKAj0=" crossorigin="anonymous"></script>
+  <script defer src="/blog/zh.search.min.a2690a557562458066ddcbf85a6df09ae9477fef9dbcddee94b6463df00754f9.js" integrity="sha256-omkKVXViRYBm3cv4Wm3wmulHf&#43;&#43;dvN3ulLZGPfAHVPk=" crossorigin="anonymous"></script>
 
   <script defer src="/blog/sw.min.f4bc4151631c92d29816d24dfaacb947aa6b03f91ec1c0cd2738ba8957d04791.js" integrity="sha256-9LxBUWMcktKYFtJN&#43;qy5R6prA/kewcDNJzi6iVfQR5E=" crossorigin="anonymous"></script>
 
@@ -48,6 +48,187 @@ https://github.com/alex-shpak/hugo-book
   <link href="/blog/font-awesome/css/fontawesome.css" rel="stylesheet">
 <link href="/blog/font-awesome/css/brands.css" rel="stylesheet">
 <link href="/blog/font-awesome/css/solid.css" rel="stylesheet">
+
+<style type="text/css" media="screen">
+    @media (prefers-color-scheme: dark) { 
+      /* Background */ .chroma { color: #1f1f24 }
+/* Other */ .chroma .x { color: #ffffff }
+/* Error */ .chroma .err { color: #960050 }
+/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0;color: #ffffff }
+/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block;color: #ffffff }
+/* LineHighlight */ .chroma .hl { display: block; width: 100%;color: #ffffff; background-color: #ffffcc }
+/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #8f8f91 }
+/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #8f8f91 }
+/* Keyword */ .chroma .k { color: #fc5fa3 }
+/* KeywordConstant */ .chroma .kc { color: #fc5fa3 }
+/* KeywordDeclaration */ .chroma .kd { color: #fc5fa3 }
+/* KeywordNamespace */ .chroma .kn { color: #fc5fa3 }
+/* KeywordPseudo */ .chroma .kp { color: #fc5fa3 }
+/* KeywordReserved */ .chroma .kr { color: #fc5fa3 }
+/* KeywordType */ .chroma .kt { color: #fc5fa3 }
+/* Name */ .chroma .n { color: #ffffff }
+/* NameAttribute */ .chroma .na { color: #ffffff }
+/* NameBuiltin */ .chroma .nb { color: #d0a8ff }
+/* NameBuiltinPseudo */ .chroma .bp { color: #a167e6 }
+/* NameClass */ .chroma .nc { color: #5dd8ff }
+/* NameConstant */ .chroma .no { color: #ffffff }
+/* NameDecorator */ .chroma .nd { color: #ffffff }
+/* NameEntity */ .chroma .ni { color: #ffffff }
+/* NameException */ .chroma .ne { color: #ffffff }
+/* NameFunction */ .chroma .nf { color: #41a1c0 }
+/* NameFunctionMagic */ .chroma .fm { color: #ffffff }
+/* NameLabel */ .chroma .nl { color: #ffffff }
+/* NameNamespace */ .chroma .nn { color: #ffffff }
+/* NameOther */ .chroma .nx { color: #ffffff }
+/* NameProperty */ .chroma .py { color: #ffffff }
+/* NameTag */ .chroma .nt { color: #ffffff }
+/* NameVariable */ .chroma .nv { color: #41a1c0 }
+/* NameVariableClass */ .chroma .vc { color: #ffffff }
+/* NameVariableGlobal */ .chroma .vg { color: #ffffff }
+/* NameVariableInstance */ .chroma .vi { color: #ffffff }
+/* NameVariableMagic */ .chroma .vm { color: #ffffff }
+/* Literal */ .chroma .l { color: #ffffff }
+/* LiteralDate */ .chroma .ld { color: #ffffff }
+/* LiteralString */ .chroma .s { color: #fc6a5d }
+/* LiteralStringAffix */ .chroma .sa { color: #fc6a5d }
+/* LiteralStringBacktick */ .chroma .sb { color: #fc6a5d }
+/* LiteralStringChar */ .chroma .sc { color: #fc6a5d }
+/* LiteralStringDelimiter */ .chroma .dl { color: #fc6a5d }
+/* LiteralStringDoc */ .chroma .sd { color: #fc6a5d }
+/* LiteralStringDouble */ .chroma .s2 { color: #fc6a5d }
+/* LiteralStringEscape */ .chroma .se { color: #fc6a5d }
+/* LiteralStringHeredoc */ .chroma .sh { color: #fc6a5d }
+/* LiteralStringInterpol */ .chroma .si { color: #ffffff }
+/* LiteralStringOther */ .chroma .sx { color: #fc6a5d }
+/* LiteralStringRegex */ .chroma .sr { color: #fc6a5d }
+/* LiteralStringSingle */ .chroma .s1 { color: #fc6a5d }
+/* LiteralStringSymbol */ .chroma .ss { color: #fc6a5d }
+/* LiteralNumber */ .chroma .m { color: #d0bf69 }
+/* LiteralNumberBin */ .chroma .mb { color: #d0bf69 }
+/* LiteralNumberFloat */ .chroma .mf { color: #d0bf69 }
+/* LiteralNumberHex */ .chroma .mh { color: #d0bf69 }
+/* LiteralNumberInteger */ .chroma .mi { color: #d0bf69 }
+/* LiteralNumberIntegerLong */ .chroma .il { color: #d0bf69 }
+/* LiteralNumberOct */ .chroma .mo { color: #d0bf69 }
+/* Operator */ .chroma .o { color: #ffffff }
+/* OperatorWord */ .chroma .ow { color: #ffffff }
+/* Punctuation */ .chroma .p { color: #ffffff }
+/* Comment */ .chroma .c { color: #6c7986 }
+/* CommentHashbang */ .chroma .ch { color: #6c7986 }
+/* CommentMultiline */ .chroma .cm { color: #6c7986 }
+/* CommentSingle */ .chroma .c1 { color: #6c7986 }
+/* CommentSpecial */ .chroma .cs { color: #6c7986; font-style: italic }
+/* CommentPreproc */ .chroma .cp { color: #fd8f3f }
+/* CommentPreprocFile */ .chroma .cpf { color: #fd8f3f }
+/* Generic */ .chroma .g { color: #ffffff }
+/* GenericDeleted */ .chroma .gd { color: #ffffff }
+/* GenericEmph */ .chroma .ge { color: #ffffff }
+/* GenericError */ .chroma .gr { color: #ffffff }
+/* GenericHeading */ .chroma .gh { color: #ffffff }
+/* GenericInserted */ .chroma .gi { color: #ffffff }
+/* GenericOutput */ .chroma .go { color: #ffffff }
+/* GenericPrompt */ .chroma .gp { color: #ffffff }
+/* GenericStrong */ .chroma .gs { color: #ffffff }
+/* GenericSubheading */ .chroma .gu { color: #ffffff }
+/* GenericTraceback */ .chroma .gt { color: #ffffff }
+/* GenericUnderline */ .chroma .gl { color: #ffffff }
+/* TextWhitespace */ .chroma .w { color: #ffffff }
+
+    }
+    @media (prefers-color-scheme: light) { 
+      /* Background */ .chroma { background-color: #ffffff }
+/* Other */ .chroma .x {  }
+/* Error */ .chroma .err { color: #000000 }
+/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
+/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
+/* LineHighlight */ .chroma .hl { display: block; width: 100%;background-color: #ffffcc }
+/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #7f7f7f }
+/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #7f7f7f }
+/* Keyword */ .chroma .k { color: #a90d91 }
+/* KeywordConstant */ .chroma .kc { color: #a90d91 }
+/* KeywordDeclaration */ .chroma .kd { color: #a90d91 }
+/* KeywordNamespace */ .chroma .kn { color: #a90d91 }
+/* KeywordPseudo */ .chroma .kp { color: #a90d91 }
+/* KeywordReserved */ .chroma .kr { color: #a90d91 }
+/* KeywordType */ .chroma .kt { color: #a90d91 }
+/* Name */ .chroma .n { color: #000000 }
+/* NameAttribute */ .chroma .na { color: #836c28 }
+/* NameBuiltin */ .chroma .nb { color: #a90d91 }
+/* NameBuiltinPseudo */ .chroma .bp { color: #5b269a }
+/* NameClass */ .chroma .nc { color: #3f6e75 }
+/* NameConstant */ .chroma .no { color: #000000 }
+/* NameDecorator */ .chroma .nd { color: #000000 }
+/* NameEntity */ .chroma .ni { color: #000000 }
+/* NameException */ .chroma .ne { color: #000000 }
+/* NameFunction */ .chroma .nf { color: #000000 }
+/* NameFunctionMagic */ .chroma .fm { color: #000000 }
+/* NameLabel */ .chroma .nl { color: #000000 }
+/* NameNamespace */ .chroma .nn { color: #000000 }
+/* NameOther */ .chroma .nx { color: #000000 }
+/* NameProperty */ .chroma .py { color: #000000 }
+/* NameTag */ .chroma .nt { color: #000000 }
+/* NameVariable */ .chroma .nv { color: #000000 }
+/* NameVariableClass */ .chroma .vc { color: #000000 }
+/* NameVariableGlobal */ .chroma .vg { color: #000000 }
+/* NameVariableInstance */ .chroma .vi { color: #000000 }
+/* NameVariableMagic */ .chroma .vm { color: #000000 }
+/* Literal */ .chroma .l { color: #1c01ce }
+/* LiteralDate */ .chroma .ld { color: #1c01ce }
+/* LiteralString */ .chroma .s { color: #c41a16 }
+/* LiteralStringAffix */ .chroma .sa { color: #c41a16 }
+/* LiteralStringBacktick */ .chroma .sb { color: #c41a16 }
+/* LiteralStringChar */ .chroma .sc { color: #2300ce }
+/* LiteralStringDelimiter */ .chroma .dl { color: #c41a16 }
+/* LiteralStringDoc */ .chroma .sd { color: #c41a16 }
+/* LiteralStringDouble */ .chroma .s2 { color: #c41a16 }
+/* LiteralStringEscape */ .chroma .se { color: #c41a16 }
+/* LiteralStringHeredoc */ .chroma .sh { color: #c41a16 }
+/* LiteralStringInterpol */ .chroma .si { color: #c41a16 }
+/* LiteralStringOther */ .chroma .sx { color: #c41a16 }
+/* LiteralStringRegex */ .chroma .sr { color: #c41a16 }
+/* LiteralStringSingle */ .chroma .s1 { color: #c41a16 }
+/* LiteralStringSymbol */ .chroma .ss { color: #c41a16 }
+/* LiteralNumber */ .chroma .m { color: #1c01ce }
+/* LiteralNumberBin */ .chroma .mb { color: #1c01ce }
+/* LiteralNumberFloat */ .chroma .mf { color: #1c01ce }
+/* LiteralNumberHex */ .chroma .mh { color: #1c01ce }
+/* LiteralNumberInteger */ .chroma .mi { color: #1c01ce }
+/* LiteralNumberIntegerLong */ .chroma .il { color: #1c01ce }
+/* LiteralNumberOct */ .chroma .mo { color: #1c01ce }
+/* Operator */ .chroma .o { color: #000000 }
+/* OperatorWord */ .chroma .ow { color: #000000 }
+/* Punctuation */ .chroma .p {  }
+/* Comment */ .chroma .c { color: #177500 }
+/* CommentHashbang */ .chroma .ch { color: #177500 }
+/* CommentMultiline */ .chroma .cm { color: #177500 }
+/* CommentSingle */ .chroma .c1 { color: #177500 }
+/* CommentSpecial */ .chroma .cs { color: #177500 }
+/* CommentPreproc */ .chroma .cp { color: #633820 }
+/* CommentPreprocFile */ .chroma .cpf { color: #633820 }
+/* Generic */ .chroma .g {  }
+/* GenericDeleted */ .chroma .gd {  }
+/* GenericEmph */ .chroma .ge {  }
+/* GenericError */ .chroma .gr {  }
+/* GenericHeading */ .chroma .gh {  }
+/* GenericInserted */ .chroma .gi {  }
+/* GenericOutput */ .chroma .go {  }
+/* GenericPrompt */ .chroma .gp {  }
+/* GenericStrong */ .chroma .gs {  }
+/* GenericSubheading */ .chroma .gu {  }
+/* GenericTraceback */ .chroma .gt {  }
+/* GenericUnderline */ .chroma .gl {  }
+/* TextWhitespace */ .chroma .w {  }
+ 
+    }
+</style>
+
+
+
+  
+  <link rel="stylesheet" href="/blog/css/clipboard.min.456f496a8e4e3c17a4539bc11c924c0037787518515ecb6f11c7740c76a2ffcd.css">
+
+
+
 </head>
 <body dir="ltr">
   <input type="checkbox" class="hidden toggle" id="menu-control" />
@@ -367,19 +548,19 @@ https://github.com/alex-shpak/hugo-book
   C++实现
   <a class="anchor" href="#c%e5%ae%9e%e7%8e%b0">#</a>
 </h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">countPrimes</span>(<span style="color:#66d9ef">int</span> n) {
-        vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;</span> vis(n,false);
-        vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> prime;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"> <span class="kt">int</span> <span class="nf">countPrimes</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">vis</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="nb">false</span><span class="p">);</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">prime</span><span class="p">;</span>
      
-        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>){
-            <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>vis[i]) prime.push_back(i);
-            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span>prime.size() <span style="color:#f92672">&amp;&amp;</span> i<span style="color:#f92672">*</span>prime[j]<span style="color:#f92672">&lt;=</span>n;j<span style="color:#f92672">++</span>){
-                vis[i<span style="color:#f92672">*</span>prime[j]] <span style="color:#f92672">=</span> true;
-                <span style="color:#66d9ef">if</span>(i<span style="color:#f92672">%</span>prime[j] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">break</span>;	<span style="color:#75715e">//优化
-</span><span style="color:#75715e"></span>            }
-        }
-        <span style="color:#66d9ef">return</span> prime.size();
- }
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">vis</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">prime</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">prime</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">i</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+                <span class="n">vis</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>	<span class="c1">//优化
+</span><span class="c1"></span>            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">prime</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+ <span class="p">}</span>
 </code></pre></div><p>最外层循环每次循环，都能得到小于等于i的所有素数，当要求i+1内的素数时，只需判断i+1是否在之前被筛掉。</p>
 <p>与此同时，将当前所有素数的i+1倍筛掉。</p>
 <p>那后面出现的素数的i+1倍，设为m ，会怎么样呢？</p>
@@ -491,6 +672,11 @@ https://github.com/alex-shpak/hugo-book
             }
         })
 </script>
+
+
+    
+    <script src="/blog/js/clipboard.min.d1339707ef2b3804bac2858e9ec2d4a56e8305692fedb18db3a498c0d3736058.js"></script>
+
 </body>
 </html>
 

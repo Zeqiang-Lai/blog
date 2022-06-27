@@ -4,23 +4,15 @@
     <title>Introduction on Ze&#39;s Blog</title>
     <link>https://zeqiang-lai.github.io/blog/</link>
     <description>Recent content in Introduction on Ze&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="https://zeqiang-lai.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language><atom:link href="https://zeqiang-lai.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Steepest Descent &amp;&amp; Conjugate Gradient</title>
       <link>https://zeqiang-lai.github.io/blog/posts/ai/sd_cg/</link>
       <pubDate>Mon, 25 Apr 2022 14:32:05 +0000</pubDate>
       
       <guid>https://zeqiang-lai.github.io/blog/posts/ai/sd_cg/</guid>
-      <description>&lt;p&gt;这是一篇主要介绍Conjugate Gradient (CG)的笔记，当然为了引入CG，也会一并介绍其“前身” Steepest Descent。&lt;/p&gt;
-&lt;p&gt;本文主要参考这篇论文：
-
-  &lt;a href=&#34;https://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf&#34;&gt;An Introduction to the Conjugate Gradient Method Without the Agonizing Pain&lt;/a&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;It is definitely the best paper to understand the steepest descent conjugate gradient method, which save me a lot of time, thanks god. And it is written in 1994, pretty cool, right? 🧐&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;类似的知乎： 
-  &lt;a href=&#34;https://zhuanlan.zhihu.com/p/64227658&#34;&gt;https://zhuanlan.zhihu.com/p/64227658&lt;/a&gt;&lt;/p&gt;
-&lt;hr&gt;</description>
+      <description>&lt;p&gt;这是一篇主要介绍Conjugate Gradient (CG)的笔记，当然为了引入CG，也会一并介绍其“前身” Steepest Descent。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -60,9 +52,7 @@
       <pubDate>Thu, 04 Feb 2021 00:00:00 +0000</pubDate>
       
       <guid>https://zeqiang-lai.github.io/blog/posts/ai/conv-fft/</guid>
-      <description>我们可以使用傅立叶变换实现卷积，具体做法大概就是先对数据和卷积核进行傅立叶变换将数据变换到频域，然后卷积就是频域上的乘积, 最后做逆傅立叶变换转化回原来的空域。
-r = ifft(fft(x).*fft(h)) 但是需要注意的是傅立叶变换做的卷积对应的是Circular Convolution。
-g = conv2(f,h,&amp;#39;same&amp;#39;); g_fft2 = ifft2(fft2(circshift(f,[-1,-1])).*fft2(rot90(h,2),2,4)); 使用傅立叶变换如果要获得和Circular Convolution一模一样的结果，需要对数据做一个shift，shift的大小和卷积核大小有关，二维情况就是[-w/2, -h/2]；然后卷积核也要反转一下，因为conv2卷积是倒着的。</description>
+      <description>&lt;p&gt;我们可以使用傅立叶变换实现卷积，具体做法大概就是先对数据和卷积核进行傅立叶变换将数据变换到频域，然后卷积就是频域上的乘积, 最后做逆傅立叶变换转化回原来的空域。&lt;/p&gt;</description>
     </item>
     
     <item>

@@ -21,9 +21,9 @@
 <title>KMP算法 | Ze&#39;s Blog</title>
 <link rel="manifest" href="/blog/manifest.json">
 <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
-<link rel="stylesheet" href="/blog/book.min.83d6bd38ef6e13aa5cbd5283293cf037f4d6e83b871d7a2341f6edc7ca421291.css" integrity="sha256-g9a9OO9uE6pcvVKDKTzwN/TW6DuHHXojQfbtx8pCEpE=" crossorigin="anonymous">
+<link rel="stylesheet" href="/blog/book.min.6538e51405f8dbbdfe6874bb615a6502a22edf71fcd873f1e0ca1ed6151f599c.css" integrity="sha256-ZTjlFAX4273&#43;aHS7YVplAqIu33H82HPx4Moe1hUfWZw=" crossorigin="anonymous">
   <script defer src="/blog/flexsearch.min.js"></script>
-  <script defer src="/blog/zh.search.min.dea55a8a5909a1034ff1fe6e6c600edb1e0f75100d5fe59e79bdf68c73ca023d.js" integrity="sha256-3qVailkJoQNP8f5ubGAO2x4PdRANX&#43;Weeb32jHPKAj0=" crossorigin="anonymous"></script>
+  <script defer src="/blog/zh.search.min.a2690a557562458066ddcbf85a6df09ae9477fef9dbcddee94b6463df00754f9.js" integrity="sha256-omkKVXViRYBm3cv4Wm3wmulHf&#43;&#43;dvN3ulLZGPfAHVPk=" crossorigin="anonymous"></script>
 
   <script defer src="/blog/sw.min.f4bc4151631c92d29816d24dfaacb947aa6b03f91ec1c0cd2738ba8957d04791.js" integrity="sha256-9LxBUWMcktKYFtJN&#43;qy5R6prA/kewcDNJzi6iVfQR5E=" crossorigin="anonymous"></script>
 
@@ -44,6 +44,187 @@ https://github.com/alex-shpak/hugo-book
   <link href="/blog/font-awesome/css/fontawesome.css" rel="stylesheet">
 <link href="/blog/font-awesome/css/brands.css" rel="stylesheet">
 <link href="/blog/font-awesome/css/solid.css" rel="stylesheet">
+
+<style type="text/css" media="screen">
+    @media (prefers-color-scheme: dark) { 
+      /* Background */ .chroma { color: #1f1f24 }
+/* Other */ .chroma .x { color: #ffffff }
+/* Error */ .chroma .err { color: #960050 }
+/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0;color: #ffffff }
+/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block;color: #ffffff }
+/* LineHighlight */ .chroma .hl { display: block; width: 100%;color: #ffffff; background-color: #ffffcc }
+/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #8f8f91 }
+/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #8f8f91 }
+/* Keyword */ .chroma .k { color: #fc5fa3 }
+/* KeywordConstant */ .chroma .kc { color: #fc5fa3 }
+/* KeywordDeclaration */ .chroma .kd { color: #fc5fa3 }
+/* KeywordNamespace */ .chroma .kn { color: #fc5fa3 }
+/* KeywordPseudo */ .chroma .kp { color: #fc5fa3 }
+/* KeywordReserved */ .chroma .kr { color: #fc5fa3 }
+/* KeywordType */ .chroma .kt { color: #fc5fa3 }
+/* Name */ .chroma .n { color: #ffffff }
+/* NameAttribute */ .chroma .na { color: #ffffff }
+/* NameBuiltin */ .chroma .nb { color: #d0a8ff }
+/* NameBuiltinPseudo */ .chroma .bp { color: #a167e6 }
+/* NameClass */ .chroma .nc { color: #5dd8ff }
+/* NameConstant */ .chroma .no { color: #ffffff }
+/* NameDecorator */ .chroma .nd { color: #ffffff }
+/* NameEntity */ .chroma .ni { color: #ffffff }
+/* NameException */ .chroma .ne { color: #ffffff }
+/* NameFunction */ .chroma .nf { color: #41a1c0 }
+/* NameFunctionMagic */ .chroma .fm { color: #ffffff }
+/* NameLabel */ .chroma .nl { color: #ffffff }
+/* NameNamespace */ .chroma .nn { color: #ffffff }
+/* NameOther */ .chroma .nx { color: #ffffff }
+/* NameProperty */ .chroma .py { color: #ffffff }
+/* NameTag */ .chroma .nt { color: #ffffff }
+/* NameVariable */ .chroma .nv { color: #41a1c0 }
+/* NameVariableClass */ .chroma .vc { color: #ffffff }
+/* NameVariableGlobal */ .chroma .vg { color: #ffffff }
+/* NameVariableInstance */ .chroma .vi { color: #ffffff }
+/* NameVariableMagic */ .chroma .vm { color: #ffffff }
+/* Literal */ .chroma .l { color: #ffffff }
+/* LiteralDate */ .chroma .ld { color: #ffffff }
+/* LiteralString */ .chroma .s { color: #fc6a5d }
+/* LiteralStringAffix */ .chroma .sa { color: #fc6a5d }
+/* LiteralStringBacktick */ .chroma .sb { color: #fc6a5d }
+/* LiteralStringChar */ .chroma .sc { color: #fc6a5d }
+/* LiteralStringDelimiter */ .chroma .dl { color: #fc6a5d }
+/* LiteralStringDoc */ .chroma .sd { color: #fc6a5d }
+/* LiteralStringDouble */ .chroma .s2 { color: #fc6a5d }
+/* LiteralStringEscape */ .chroma .se { color: #fc6a5d }
+/* LiteralStringHeredoc */ .chroma .sh { color: #fc6a5d }
+/* LiteralStringInterpol */ .chroma .si { color: #ffffff }
+/* LiteralStringOther */ .chroma .sx { color: #fc6a5d }
+/* LiteralStringRegex */ .chroma .sr { color: #fc6a5d }
+/* LiteralStringSingle */ .chroma .s1 { color: #fc6a5d }
+/* LiteralStringSymbol */ .chroma .ss { color: #fc6a5d }
+/* LiteralNumber */ .chroma .m { color: #d0bf69 }
+/* LiteralNumberBin */ .chroma .mb { color: #d0bf69 }
+/* LiteralNumberFloat */ .chroma .mf { color: #d0bf69 }
+/* LiteralNumberHex */ .chroma .mh { color: #d0bf69 }
+/* LiteralNumberInteger */ .chroma .mi { color: #d0bf69 }
+/* LiteralNumberIntegerLong */ .chroma .il { color: #d0bf69 }
+/* LiteralNumberOct */ .chroma .mo { color: #d0bf69 }
+/* Operator */ .chroma .o { color: #ffffff }
+/* OperatorWord */ .chroma .ow { color: #ffffff }
+/* Punctuation */ .chroma .p { color: #ffffff }
+/* Comment */ .chroma .c { color: #6c7986 }
+/* CommentHashbang */ .chroma .ch { color: #6c7986 }
+/* CommentMultiline */ .chroma .cm { color: #6c7986 }
+/* CommentSingle */ .chroma .c1 { color: #6c7986 }
+/* CommentSpecial */ .chroma .cs { color: #6c7986; font-style: italic }
+/* CommentPreproc */ .chroma .cp { color: #fd8f3f }
+/* CommentPreprocFile */ .chroma .cpf { color: #fd8f3f }
+/* Generic */ .chroma .g { color: #ffffff }
+/* GenericDeleted */ .chroma .gd { color: #ffffff }
+/* GenericEmph */ .chroma .ge { color: #ffffff }
+/* GenericError */ .chroma .gr { color: #ffffff }
+/* GenericHeading */ .chroma .gh { color: #ffffff }
+/* GenericInserted */ .chroma .gi { color: #ffffff }
+/* GenericOutput */ .chroma .go { color: #ffffff }
+/* GenericPrompt */ .chroma .gp { color: #ffffff }
+/* GenericStrong */ .chroma .gs { color: #ffffff }
+/* GenericSubheading */ .chroma .gu { color: #ffffff }
+/* GenericTraceback */ .chroma .gt { color: #ffffff }
+/* GenericUnderline */ .chroma .gl { color: #ffffff }
+/* TextWhitespace */ .chroma .w { color: #ffffff }
+
+    }
+    @media (prefers-color-scheme: light) { 
+      /* Background */ .chroma { background-color: #ffffff }
+/* Other */ .chroma .x {  }
+/* Error */ .chroma .err { color: #000000 }
+/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
+/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
+/* LineHighlight */ .chroma .hl { display: block; width: 100%;background-color: #ffffcc }
+/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #7f7f7f }
+/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #7f7f7f }
+/* Keyword */ .chroma .k { color: #a90d91 }
+/* KeywordConstant */ .chroma .kc { color: #a90d91 }
+/* KeywordDeclaration */ .chroma .kd { color: #a90d91 }
+/* KeywordNamespace */ .chroma .kn { color: #a90d91 }
+/* KeywordPseudo */ .chroma .kp { color: #a90d91 }
+/* KeywordReserved */ .chroma .kr { color: #a90d91 }
+/* KeywordType */ .chroma .kt { color: #a90d91 }
+/* Name */ .chroma .n { color: #000000 }
+/* NameAttribute */ .chroma .na { color: #836c28 }
+/* NameBuiltin */ .chroma .nb { color: #a90d91 }
+/* NameBuiltinPseudo */ .chroma .bp { color: #5b269a }
+/* NameClass */ .chroma .nc { color: #3f6e75 }
+/* NameConstant */ .chroma .no { color: #000000 }
+/* NameDecorator */ .chroma .nd { color: #000000 }
+/* NameEntity */ .chroma .ni { color: #000000 }
+/* NameException */ .chroma .ne { color: #000000 }
+/* NameFunction */ .chroma .nf { color: #000000 }
+/* NameFunctionMagic */ .chroma .fm { color: #000000 }
+/* NameLabel */ .chroma .nl { color: #000000 }
+/* NameNamespace */ .chroma .nn { color: #000000 }
+/* NameOther */ .chroma .nx { color: #000000 }
+/* NameProperty */ .chroma .py { color: #000000 }
+/* NameTag */ .chroma .nt { color: #000000 }
+/* NameVariable */ .chroma .nv { color: #000000 }
+/* NameVariableClass */ .chroma .vc { color: #000000 }
+/* NameVariableGlobal */ .chroma .vg { color: #000000 }
+/* NameVariableInstance */ .chroma .vi { color: #000000 }
+/* NameVariableMagic */ .chroma .vm { color: #000000 }
+/* Literal */ .chroma .l { color: #1c01ce }
+/* LiteralDate */ .chroma .ld { color: #1c01ce }
+/* LiteralString */ .chroma .s { color: #c41a16 }
+/* LiteralStringAffix */ .chroma .sa { color: #c41a16 }
+/* LiteralStringBacktick */ .chroma .sb { color: #c41a16 }
+/* LiteralStringChar */ .chroma .sc { color: #2300ce }
+/* LiteralStringDelimiter */ .chroma .dl { color: #c41a16 }
+/* LiteralStringDoc */ .chroma .sd { color: #c41a16 }
+/* LiteralStringDouble */ .chroma .s2 { color: #c41a16 }
+/* LiteralStringEscape */ .chroma .se { color: #c41a16 }
+/* LiteralStringHeredoc */ .chroma .sh { color: #c41a16 }
+/* LiteralStringInterpol */ .chroma .si { color: #c41a16 }
+/* LiteralStringOther */ .chroma .sx { color: #c41a16 }
+/* LiteralStringRegex */ .chroma .sr { color: #c41a16 }
+/* LiteralStringSingle */ .chroma .s1 { color: #c41a16 }
+/* LiteralStringSymbol */ .chroma .ss { color: #c41a16 }
+/* LiteralNumber */ .chroma .m { color: #1c01ce }
+/* LiteralNumberBin */ .chroma .mb { color: #1c01ce }
+/* LiteralNumberFloat */ .chroma .mf { color: #1c01ce }
+/* LiteralNumberHex */ .chroma .mh { color: #1c01ce }
+/* LiteralNumberInteger */ .chroma .mi { color: #1c01ce }
+/* LiteralNumberIntegerLong */ .chroma .il { color: #1c01ce }
+/* LiteralNumberOct */ .chroma .mo { color: #1c01ce }
+/* Operator */ .chroma .o { color: #000000 }
+/* OperatorWord */ .chroma .ow { color: #000000 }
+/* Punctuation */ .chroma .p {  }
+/* Comment */ .chroma .c { color: #177500 }
+/* CommentHashbang */ .chroma .ch { color: #177500 }
+/* CommentMultiline */ .chroma .cm { color: #177500 }
+/* CommentSingle */ .chroma .c1 { color: #177500 }
+/* CommentSpecial */ .chroma .cs { color: #177500 }
+/* CommentPreproc */ .chroma .cp { color: #633820 }
+/* CommentPreprocFile */ .chroma .cpf { color: #633820 }
+/* Generic */ .chroma .g {  }
+/* GenericDeleted */ .chroma .gd {  }
+/* GenericEmph */ .chroma .ge {  }
+/* GenericError */ .chroma .gr {  }
+/* GenericHeading */ .chroma .gh {  }
+/* GenericInserted */ .chroma .gi {  }
+/* GenericOutput */ .chroma .go {  }
+/* GenericPrompt */ .chroma .gp {  }
+/* GenericStrong */ .chroma .gs {  }
+/* GenericSubheading */ .chroma .gu {  }
+/* GenericTraceback */ .chroma .gt {  }
+/* GenericUnderline */ .chroma .gl {  }
+/* TextWhitespace */ .chroma .w {  }
+ 
+    }
+</style>
+
+
+
+  
+  <link rel="stylesheet" href="/blog/css/clipboard.min.456f496a8e4e3c17a4539bc11c924c0037787518515ecb6f11c7740c76a2ffcd.css">
+
+
+
 </head>
 <body dir="ltr">
   <input type="checkbox" class="hidden toggle" id="menu-control" />
@@ -358,29 +539,29 @@ https://github.com/alex-shpak/hugo-book
 </h2>
 <p>枚举S中每个位置，判断是否是模式串P的起点。</p>
 <p>基于上述思想，我们可以很容易可以写出如下的枚举代码:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">vanilla_find</span>(<span style="color:#66d9ef">const</span> string<span style="color:#f92672">&amp;</span> s, <span style="color:#66d9ef">const</span> string<span style="color:#f92672">&amp;</span> p) {
-    <span style="color:#66d9ef">int</span> pos <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">bool</span> ok <span style="color:#f92672">=</span> true;
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>s.size(); i<span style="color:#f92672">++</span>) {
-        ok <span style="color:#f92672">=</span> true;
-        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; j<span style="color:#f92672">&lt;</span>p.size(); j<span style="color:#f92672">++</span>) {
-            <span style="color:#66d9ef">if</span>(s[i<span style="color:#f92672">+</span>j] <span style="color:#f92672">!=</span> p[j]) { ok <span style="color:#f92672">=</span> false; <span style="color:#66d9ef">break</span>; }
-        }
-        <span style="color:#66d9ef">if</span>(ok) { pos <span style="color:#f92672">=</span> i; <span style="color:#66d9ef">break</span>; }
-    }
-    <span style="color:#66d9ef">return</span> pos;
-} 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">int</span> <span class="nf">vanilla_find</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="n">ok</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ok</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">p</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="n">p</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="p">{</span> <span class="n">ok</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span> <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ok</span><span class="p">)</span> <span class="p">{</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">pos</span><span class="p">;</span>
+<span class="p">}</span> 
 </code></pre></div><p>上述实现使用1个循环枚举配对的起点，再用1个循环判断从该起点开始是否有模式串P。</p>
 <p>为了方便理解KMP算法，我们不妨换一种思路实现这个朴素算法。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">vanilla_find2</span>(<span style="color:#66d9ef">const</span> string<span style="color:#f92672">&amp;</span> s, <span style="color:#66d9ef">const</span> string<span style="color:#f92672">&amp;</span> p) {
-    <span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">while</span>(i <span style="color:#f92672">&lt;</span> s.size() <span style="color:#f92672">&amp;&amp;</span> j <span style="color:#f92672">&lt;</span> p.size()) {
-        <span style="color:#66d9ef">if</span>(s[i] <span style="color:#f92672">==</span> p[j]) { i<span style="color:#f92672">++</span>; j<span style="color:#f92672">++</span>; } 
-        <span style="color:#66d9ef">else</span> { i<span style="color:#f92672">=</span>i<span style="color:#f92672">-</span>j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; }
-    }
-    <span style="color:#66d9ef">if</span>(j <span style="color:#f92672">==</span> p.size()) <span style="color:#66d9ef">return</span> i<span style="color:#f92672">-</span>j;
-    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-} 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">int</span> <span class="nf">vanilla_find2</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="p">{</span> <span class="n">i</span><span class="o">++</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">;</span> <span class="p">}</span> 
+        <span class="k">else</span> <span class="p">{</span> <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">p</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="k">return</span> <span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span> 
 </code></pre></div><p>上述实现使用两个指针, <code>i</code>, <code>j</code>，i指针代表当前S串匹配到的位置，j表示P串匹配到的位置，遇到不匹配，则将i指针回溯到上一次尝试的起始点的后一个位置，即<code>i-j+1</code>。j指针回溯到开头。</p>
 <p>虽然两种实现本质是一样的，但第二种实现会更容易理解KMP算法的优化。</p>
 <p>如图1所示，当我们匹配成功ABCDAB后，发现D不匹配，这时如果我们将<code>i</code>回溯到<code>i-j+1</code>的位置，匹配必然失败，因为我们前一步已经知道<code>S[i-j+1]=B</code>了。</p>
@@ -411,30 +592,30 @@ description=&ldquo;图2&rdquo; %}</p>
 </h3>
 <p>让我们再次考虑图2的情况，事实上，我们已经能够发现求解<code>next[j]</code>的规律了。对于P串的第j个元素，其失配后需要回溯到的位置取决于 - P串前j个元素有多长相同的前缀后缀。如果有长度为k的相同前缀后缀，则<code>next[j]=k</code>。</p>
 <p>基于上述思想，我们其实已经可以编写一个暴力求next数组的程序了。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> get_next_vanilla(<span style="color:#66d9ef">const</span> string<span style="color:#f92672">&amp;</span> p) {
-    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> next(p.size());
-    next[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;</span>p.size(); i<span style="color:#f92672">++</span>) {
-        <span style="color:#66d9ef">int</span> n_match <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        <span style="color:#75715e">// 枚举所有可能的相同前缀后缀
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> k<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; k<span style="color:#f92672">&lt;</span>i; k<span style="color:#f92672">++</span>) {
-            <span style="color:#66d9ef">bool</span> ok <span style="color:#f92672">=</span> true;
-            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; j<span style="color:#f92672">&lt;</span>k; j<span style="color:#f92672">++</span>) {
-                <span style="color:#66d9ef">if</span>(p[j] <span style="color:#f92672">!=</span> p[i<span style="color:#f92672">-</span>k<span style="color:#f92672">+</span>j]) ok <span style="color:#f92672">=</span> false;
-            }
-            <span style="color:#66d9ef">if</span>(ok <span style="color:#f92672">==</span> true) n_match <span style="color:#f92672">=</span> k;
-        }
-        next[i] <span style="color:#f92672">=</span> n_match;
-    }
-    <span style="color:#66d9ef">return</span> next;
-}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">get_next_vanilla</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">next</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+    <span class="n">next</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">p</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">n_match</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="c1">// 枚举所有可能的相同前缀后缀
+</span><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">k</span><span class="o">&lt;</span><span class="n">i</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">bool</span> <span class="n">ok</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">k</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">k</span><span class="o">+</span><span class="n">j</span><span class="p">])</span> <span class="n">ok</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">ok</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span> <span class="n">n_match</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">next</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_match</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">next</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div><p>很显然，这种暴力求解的效率是很低的($$O(n^3)$$)。因此，我们需要对求解next的算法进行优化。</p>
 <h4 id="递推求解优化">
   递推求解优化
   <a class="anchor" href="#%e9%80%92%e6%8e%a8%e6%b1%82%e8%a7%a3%e4%bc%98%e5%8c%96">#</a>
 </h4>
 <p>考虑下面这种情况</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">ABCDABDC
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">ABCDABDC
 01234567
 </code></pre></div><p>如果我们已经求得<code>next[6]=2</code>，即D之前有相同前缀后缀AB，那么我们在求next[7]的时候，只需要判断<code>P[next[6]] == P[7-1] (C==D)</code>是否成立即可。</p>
 <ul>
@@ -447,67 +628,67 @@ description=&ldquo;图2&rdquo; %}</p>
 <p>为什么？第一长的相同前缀后缀的相同前缀后缀实际上就是第二长的相同前缀后缀。例如 <code>ABABCDABAB</code>, 第一长是 <code>ABAB</code>, 第二长是 <code>AB</code></p>
 </blockquote>
 <p>基于上述思想，我们可以写出如下的递推求解的代码</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> get_next(<span style="color:#66d9ef">const</span> string<span style="color:#f92672">&amp;</span> p) {
-    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> next(p.size());
-    next[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;</span>p.size();i<span style="color:#f92672">++</span>){
-        <span style="color:#66d9ef">int</span> k<span style="color:#f92672">=</span>i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">while</span>(k<span style="color:#f92672">!=</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> p[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> p[next[k]]) k<span style="color:#f92672">=</span>next[k];  <span style="color:#75715e">// 先找出&#34;OK&#34;的前缀后缀
-</span><span style="color:#75715e"></span>        next[i] <span style="color:#f92672">=</span> next[k] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
-    }
-    <span style="color:#66d9ef">return</span> next;
-}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">get_next</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">next</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+    <span class="n">next</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">p</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">k</span><span class="o">!=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">p</span><span class="p">[</span><span class="n">next</span><span class="p">[</span><span class="n">k</span><span class="p">]])</span> <span class="n">k</span><span class="o">=</span><span class="n">next</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>  <span class="c1">// 先找出&#34;OK&#34;的前缀后缀
+</span><span class="c1"></span>        <span class="n">next</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">next</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">next</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div><h4 id="继续优化">
   继续优化
   <a class="anchor" href="#%e7%bb%a7%e7%bb%ad%e4%bc%98%e5%8c%96">#</a>
 </h4>
 <p><strong>优化1</strong></p>
 <p>我们首先可以重构一下代码, 以下代码和<code>get_next</code>等价。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> get_next2(<span style="color:#66d9ef">const</span> string<span style="color:#f92672">&amp;</span> p) {
-    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> next(p.size());
-    next[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, k<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">while</span>(i <span style="color:#f92672">&lt;</span> p.size() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
-        <span style="color:#66d9ef">if</span>(k <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> p[i] <span style="color:#f92672">==</span> p[k]) {
-            i<span style="color:#f92672">++</span>; k<span style="color:#f92672">++</span>;
-            next[i] <span style="color:#f92672">=</span> k;
-        } <span style="color:#66d9ef">else</span> { k <span style="color:#f92672">=</span> next[k]; }
-    }
-    <span style="color:#66d9ef">return</span> next;
-}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">get_next2</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">next</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+    <span class="n">next</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">k</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">||</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="p">{</span>
+            <span class="n">i</span><span class="o">++</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">;</span>
+            <span class="n">next</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="n">k</span> <span class="o">=</span> <span class="n">next</span><span class="p">[</span><span class="n">k</span><span class="p">];</span> <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">next</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div><p><strong>优化2</strong></p>
 <p>再者，考虑如下情况</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">abab
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">abab
 next: -1, 0, 0, 1
 </code></pre></div><p>当b失配时，next=1，但是P[1]=b，我们没必要再比一次，因为这次一定失配，基于此我们可以再次优化。如下所示：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> get_next2_opt(<span style="color:#66d9ef">const</span> string<span style="color:#f92672">&amp;</span> p) {
-    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> next(p.size());
-    next[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, k<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">while</span>(i <span style="color:#f92672">&lt;</span> p.size() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
-        <span style="color:#66d9ef">if</span>(k <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> p[i] <span style="color:#f92672">==</span> p[k]) {
-            i<span style="color:#f92672">++</span>; k<span style="color:#f92672">++</span>;
-            <span style="color:#75715e">// 以下两行为优化内容
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span>(p[k] <span style="color:#f92672">!=</span> p[i]) next[i] <span style="color:#f92672">=</span> k; 
-            <span style="color:#66d9ef">else</span> next[i] <span style="color:#f92672">=</span> next[k];
-        } <span style="color:#66d9ef">else</span> { k <span style="color:#f92672">=</span> next[k]; }
-    }
-    <span style="color:#66d9ef">return</span> next;
-}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">get_next2_opt</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">next</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+    <span class="n">next</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">k</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">||</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="p">{</span>
+            <span class="n">i</span><span class="o">++</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">;</span>
+            <span class="c1">// 以下两行为优化内容
+</span><span class="c1"></span>            <span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">!=</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">next</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span> 
+            <span class="k">else</span> <span class="n">next</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">next</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="n">k</span> <span class="o">=</span> <span class="n">next</span><span class="p">[</span><span class="n">k</span><span class="p">];</span> <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">next</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div><p>原来的get_next当然也可以用同样的方法优化，但是要注意写法。
 下面这种优化方式就不行。事实上，当你把下面的代码改对之后，你会发现你的代码就变得和<code>get_next2_opt</code>基本一样了。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> get_next_opt(<span style="color:#66d9ef">const</span> string<span style="color:#f92672">&amp;</span> p) {
-    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> next(p.size());
-    next[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;</span>p.size();i<span style="color:#f92672">++</span>){
-        <span style="color:#66d9ef">int</span> k<span style="color:#f92672">=</span>i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">while</span>(k<span style="color:#f92672">!=</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> p[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> p[next[k]]) k<span style="color:#f92672">=</span>next[k];  <span style="color:#75715e">// 先找出&#34;OK&#34;的前缀后缀
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">// 直接这样优化是不行的
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span>(p[i] <span style="color:#f92672">!=</span> p[next[k]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]) next[i] <span style="color:#f92672">=</span> next[k] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">else</span> next[i] <span style="color:#f92672">=</span> next[next[k]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>];
-    }
-    <span style="color:#66d9ef">return</span> next;
-}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">get_next_opt</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">next</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+    <span class="n">next</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">p</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">k</span><span class="o">!=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">p</span><span class="p">[</span><span class="n">next</span><span class="p">[</span><span class="n">k</span><span class="p">]])</span> <span class="n">k</span><span class="o">=</span><span class="n">next</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>  <span class="c1">// 先找出&#34;OK&#34;的前缀后缀
+</span><span class="c1"></span>        <span class="c1">// 直接这样优化是不行的
+</span><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">p</span><span class="p">[</span><span class="n">next</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="n">next</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">next</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">else</span> <span class="n">next</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">next</span><span class="p">[</span><span class="n">next</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">next</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div><h2 id="参考资料">
   参考资料
   <a class="anchor" href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99">#</a>
@@ -603,6 +784,11 @@ next: -1, 0, 0, 1
             }
         })
 </script>
+
+
+    
+    <script src="/blog/js/clipboard.min.d1339707ef2b3804bac2858e9ec2d4a56e8305692fedb18db3a498c0d3736058.js"></script>
+
 </body>
 </html>
 
