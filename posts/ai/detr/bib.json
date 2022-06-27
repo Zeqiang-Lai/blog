@@ -1,0 +1,366 @@
+[
+	{
+		"id": "Pix2seq",
+		"type": "article",
+		"abstract": "We present Pix2Seq, a simple and generic framework for object detection. Unlike existing approaches that explicitly integrate prior knowledge about the task, we cast object detection as a language modeling task conditioned on the observed pixel inputs. Object descriptions (e.g., bounding boxes and class labels) are expressed as sequences of discrete tokens, and we train a neural network to perceive the image and generate the desired sequence. Our approach is based mainly on the intuition that if a neural network knows about where and what the objects are, we just need to teach it how to read them out. Beyond the use of task-specific data augmentations, our approach makes minimal assumptions about the task, yet it achieves competitive results on the challenging COCO dataset, compared to highly specialized and well optimized detection algorithms.",
+		"language": "en",
+		"note": "number: arXiv:2109.10852\narXiv:2109.10852 [cs]",
+		"number": "arXiv:2109.10852",
+		"publisher": "arXiv",
+		"source": "arXiv.org",
+		"title": "Pix2seq: A Language Modeling Framework for Object Detection",
+		"title-short": "Pix2seq",
+		"URL": "http://arxiv.org/abs/2109.10852",
+		"author": [
+			{
+				"family": "Chen",
+				"given": "Ting"
+			},
+			{
+				"family": "Saxena",
+				"given": "Saurabh"
+			},
+			{
+				"family": "Li",
+				"given": "Lala"
+			},
+			{
+				"family": "Fleet",
+				"given": "David J."
+			},
+			{
+				"family": "Hinton",
+				"given": "Geoffrey"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2022",
+					5,
+					30
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2021"
+				]
+			]
+		}
+	},
+	{
+		"id": "detr",
+		"type": "article",
+		"abstract": "We present a new method that views object detection as a direct set prediction problem. Our approach streamlines the detection pipeline, eﬀectively removing the need for many hand-designed components like a non-maximum suppression procedure or anchor generation that explicitly encode our prior knowledge about the task. The main ingredients of the new framework, called DEtection TRansformer or DETR, are a set-based global loss that forces unique predictions via bipartite matching, and a transformer encoder-decoder architecture. Given a ﬁxed small set of learned object queries, DETR reasons about the relations of the objects and the global image context to directly output the ﬁnal set of predictions in parallel. The new model is conceptually simple and does not require a specialized library, unlike many other modern detectors. DETR demonstrates accuracy and run-time performance on par with the well-established and highly-optimized Faster RCNN baseline on the challenging COCO object detection dataset. Moreover, DETR can be easily generalized to produce panoptic segmentation in a uniﬁed manner. We show that it signiﬁcantly outperforms competitive baselines. Training code and pretrained models are available at https://github.com/facebookresearch/detr.",
+		"language": "en",
+		"note": "number: arXiv:2005.12872\narXiv:2005.12872 [cs]",
+		"number": "arXiv:2005.12872",
+		"publisher": "arXiv",
+		"source": "arXiv.org",
+		"title": "End-to-End Object Detection with Transformers",
+		"title-short": "DETR",
+		"URL": "http://arxiv.org/abs/2005.12872",
+		"author": [
+			{
+				"family": "Carion",
+				"given": "Nicolas"
+			},
+			{
+				"family": "Massa",
+				"given": "Francisco"
+			},
+			{
+				"family": "Synnaeve",
+				"given": "Gabriel"
+			},
+			{
+				"family": "Usunier",
+				"given": "Nicolas"
+			},
+			{
+				"family": "Kirillov",
+				"given": "Alexander"
+			},
+			{
+				"family": "Zagoruyko",
+				"given": "Sergey"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2022",
+					6,
+					6
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2020",
+					5,
+					28
+				]
+			]
+		}
+	},
+	{
+		"id": "defor-detr",
+		"type": "article",
+		"abstract": "DETR has been recently proposed to eliminate the need for many hand-designed components in object detection while demonstrating good performance. However, it suffers from slow convergence and limited feature spatial resolution, due to the limitation of Transformer attention modules in processing image feature maps. To mitigate these issues, we proposed Deformable DETR, whose attention modules only attend to a small set of key sampling points around a reference. Deformable DETR can achieve better performance than DETR (especially on small objects) with 10× less training epochs. Extensive experiments on the COCO benchmark demonstrate the effectiveness of our approach. Code is released at https:// github.com/fundamentalvision/Deformable-DETR.",
+		"language": "en",
+		"note": "number: arXiv:2010.04159\narXiv:2010.04159 [cs]",
+		"number": "arXiv:2010.04159",
+		"publisher": "arXiv",
+		"source": "arXiv.org",
+		"title": "Deformable DETR: Deformable Transformers for End-to-End Object Detection",
+		"title-short": "Deformable DETR",
+		"URL": "http://arxiv.org/abs/2010.04159",
+		"author": [
+			{
+				"family": "Zhu",
+				"given": "Xizhou"
+			},
+			{
+				"family": "Su",
+				"given": "Weijie"
+			},
+			{
+				"family": "Lu",
+				"given": "Lewei"
+			},
+			{
+				"family": "Li",
+				"given": "Bin"
+			},
+			{
+				"family": "Wang",
+				"given": "Xiaogang"
+			},
+			{
+				"family": "Dai",
+				"given": "Jifeng"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2022",
+					6,
+					24
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2021",
+					3,
+					17
+				]
+			]
+		}
+	},
+	{
+		"id": "vidt",
+		"type": "article-journal",
+		"abstract": "Transformers are transforming the landscape of computer vision, especially for recognition tasks. Detection transformers are the ﬁrst fully end-to-end learning systems for object detection, while vision transformers are the ﬁrst fully transformer-based architecture for image classiﬁcation. In this paper, we integrate Vision and Detection Transformers (ViDT) to build an effective and efﬁcient object detector. ViDT introduces a reconﬁgured attention module to extend the recent Swin Transformer to be a standalone object detector, followed by a computationally efﬁcient transformer decoder that exploits multi-scale features and auxiliary techniques essential to boost the detection performance without much increase in computational load. Extensive evaluation results on the Microsoft COCO benchmark dataset demonstrate that ViDT obtains the best AP and latency trade-off among existing fully transformer-based object detectors, and achieves 49.2AP owing to its high scalability for large models. We release the code and trained models at https://github.com/naver-ai/vidt.",
+		"language": "en",
+		"page": "18",
+		"source": "Zotero",
+		"title": "ViDT: An Efficient and Effective Fully Transformer-Based Object Detector",
+		"author": [
+			{
+				"family": "Song",
+				"given": "Hwanjun"
+			},
+			{
+				"family": "Sun",
+				"given": "Deqing"
+			},
+			{
+				"family": "Chun",
+				"given": "Sanghyuk"
+			},
+			{
+				"family": "Jampani",
+				"given": "Varun"
+			},
+			{
+				"family": "Han",
+				"given": "Dongyoon"
+			},
+			{
+				"family": "Heo",
+				"given": "Byeongho"
+			},
+			{
+				"family": "Kim",
+				"given": "Wonjae"
+			},
+			{
+				"family": "Yang",
+				"given": "Ming-Hsuan"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2022"
+				]
+			]
+		}
+	},
+	{
+		"id": "dab-detr",
+		"type": "article",
+		"abstract": "We present in this paper a novel query formulation using dynamic anchor boxes for DETR (DEtection TRansformer) and offer a deeper understanding of the role of queries in DETR. This new formulation directly uses box coordinates as queries in Transformer decoders and dynamically updates them layer-by-layer. Using box coordinates not only helps using explicit positional priors to improve the queryto-feature similarity and eliminate the slow training convergence issue in DETR, but also allows us to modulate the positional attention map using the box width and height information. Such a design makes it clear that queries in DETR can be implemented as performing soft ROI pooling layer-by-layer in a cascade manner. As a result, it leads to the best performance on MS-COCO benchmark among the DETR-like detection models under the same setting, e.g., AP 45.7% using ResNet50-DC5 as backbone trained in 50 epochs. We also conducted extensive experiments to conﬁrm our analysis and verify the effectiveness of our methods. Code is available at https://github.com/SlongLiu/DAB-DETR.",
+		"language": "en",
+		"note": "number: arXiv:2201.12329\narXiv:2201.12329 [cs]",
+		"number": "arXiv:2201.12329",
+		"publisher": "arXiv",
+		"source": "arXiv.org",
+		"title": "DAB-DETR: Dynamic Anchor Boxes are Better Queries for DETR",
+		"title-short": "DAB-DETR",
+		"URL": "http://arxiv.org/abs/2201.12329",
+		"author": [
+			{
+				"family": "Liu",
+				"given": "Shilong"
+			},
+			{
+				"family": "Li",
+				"given": "Feng"
+			},
+			{
+				"family": "Zhang",
+				"given": "Hao"
+			},
+			{
+				"family": "Yang",
+				"given": "Xiao"
+			},
+			{
+				"family": "Qi",
+				"given": "Xianbiao"
+			},
+			{
+				"family": "Su",
+				"given": "Hang"
+			},
+			{
+				"family": "Zhu",
+				"given": "Jun"
+			},
+			{
+				"family": "Zhang",
+				"given": "Lei"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2022",
+					6,
+					24
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2022",
+					3,
+					30
+				]
+			]
+		}
+	},
+	{
+		"id": "dn-detr",
+		"type": "article-journal",
+		"abstract": "We present in this paper a novel denoising training method to speedup DETR (DEtection TRansformer) training and offer a deepened understanding of the slow convergence issue of DETR-like methods. We show that the slow convergence results from the instability of bipartite graph matching which causes inconsistent optimization goals in early training stages. To address this issue, except for the Hungarian loss, our method additionally feeds ground-truth bounding boxes with noises into Transformer decoder and trains the model to reconstruct the original boxes, which effectively reduces the bipartite graph matching difficulty and leads to a faster convergence. Our method is universal and can be easily plugged into any DETR-like methods by adding dozens of lines of code to achieve a remarkable improvement. As a result, our DN-DETR results in a remarkable improvement (+1.9AP) under the same setting and achieves the best result (AP 43.4 and 48.6 with 12 and 50 epochs of training respectively) among DETR-like methods with ResNet-50 backbone. Compared with the baseline under the same setting, DN-DETR achieves comparable performance with 50% training epochs. Code is available at https://github.com/FengLi-ust/DN-DETR.",
+		"language": "en",
+		"page": "11",
+		"source": "Zotero",
+		"title": "DN-DETR: Accelerate DETR Training by Introducing Query DeNoising",
+		"author": [
+			{
+				"family": "Li",
+				"given": "Feng"
+			},
+			{
+				"family": "Zhang",
+				"given": "Hao"
+			},
+			{
+				"family": "Liu",
+				"given": "Shilong"
+			},
+			{
+				"family": "Guo",
+				"given": "Jian"
+			},
+			{
+				"family": "Ni",
+				"given": "Lionel M"
+			},
+			{
+				"family": "Zhang",
+				"given": "Lei"
+			}
+		]
+	},
+	{
+		"id": "anchor-detr",
+		"type": "article",
+		"abstract": "In this paper, we propose a novel query design for the transformer-based object detection. In previous transformerbased detectors, the object queries are a set of learned embeddings. However, each learned embedding does not have an explicit physical meaning and we cannot explain where it will focus on. It is difﬁcult to optimize as the prediction slot of each object query does not have a speciﬁc mode. In other words, each object query will not focus on a speciﬁc region. To solved these problems, in our query design, object queries are based on anchor points, which are widely used in CNN-based detectors. So each object query focuses on the objects near the anchor point. Moreover, our query design can predict multiple objects at one position to solve the difﬁculty: “one region, multiple objects”. In addition, we design an attention variant, which can reduce the memory cost while achieving similar or better performance than the standard attention in DETR. Thanks to the query design and the attention variant, the proposed detector that we called Anchor DETR, can achieve better performance and run faster than the DETR with 10× fewer training epochs. For example, it achieves 44.2 AP with 19 FPS on the MSCOCO dataset when using the ResNet50-DC5 feature for training 50 epochs. Extensive experiments on the MSCOCO benchmark prove the effectiveness of the proposed methods. Code is available at https://github.com/megvii-research/AnchorDETR.",
+		"language": "en",
+		"note": "arXiv:2109.07107 [cs]",
+		"number": "arXiv:2109.07107",
+		"publisher": "arXiv",
+		"source": "arXiv.org",
+		"title": "Anchor DETR: Query Design for Transformer-Based Object Detection",
+		"title-short": "Anchor DETR",
+		"URL": "http://arxiv.org/abs/2109.07107",
+		"author": [
+			{
+				"family": "Wang",
+				"given": "Yingming"
+			},
+			{
+				"family": "Zhang",
+				"given": "Xiangyu"
+			},
+			{
+				"family": "Yang",
+				"given": "Tong"
+			},
+			{
+				"family": "Sun",
+				"given": "Jian"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2022",
+					6,
+					26
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2022",
+					1,
+					4
+				]
+			]
+		}
+	}
+]
