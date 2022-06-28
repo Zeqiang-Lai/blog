@@ -7,6 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language><atom:link href="https://zeqiang-lai.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Detr Family for End-to-End Detection</title>
+      <link>https://zeqiang-lai.github.io/blog/posts/ai/detr/</link>
+      <pubDate>Mon, 27 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/posts/ai/detr/</guid>
+      <description>&lt;p&gt;Detr（Detection Transformer）是 facebook 在 2020 年提出的第一个端到端的目标检测模型，
+它改变了现有基于 Fast-RCNN 和 YOLO 的目标检测范式，后续有许多工作，基于 Detr 提出了各种个样的改进。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Steepest Descent &amp;&amp; Conjugate Gradient</title>
       <link>https://zeqiang-lai.github.io/blog/posts/ai/sd_cg/</link>
       <pubDate>Mon, 25 Apr 2022 14:32:05 +0000</pubDate>
