@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AIGC on Ze&#39;s Blog</title>
+    <link>https://zeqiang-lai.github.io/blog/docs/gen/</link>
+    <description>Recent content in AIGC on Ze&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language><atom:link href="https://zeqiang-lai.github.io/blog/docs/gen/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction</title>
+      <link>https://zeqiang-lai.github.io/blog/docs/gen/introduction/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/docs/gen/introduction/</guid>
+      <description>Created: March, 23, 2023 对于生成式模型来说，我们要解决的核心问题就是如何构造一个 highly flexible families of probability distribution 去拟合真实的数据分布，并且我们希望这个分布家族对于，
+ learning：通过数据学习分布形式。 sampling：从分布中取样。 inference：计算条件概率 $p(x|y)$。 evaluation：计算给定样本出现的概率 $p(x)$。  这四个任务，都是或尽可能都是 analytically 或者 computationally tractable [1]_ 的 :raw-latex:\parencite{sohl2015deep}。
+为了这个目标，人们提出了各种各样的模型，方法。这些方法的核心思路基本就是，在保证 tractable 的前提下，尽可能的提升flexibility，从而更好的拟合复杂的真实数据分布。常见的模型包括：Mixture Gaussian, VAE, Normalizing Flow, DDPM, GAN 等等。对于这些模型，上述的四个任务并不是都能够解的，大部分都只能解决其中一个或几个（例如GAN，我们只能做 learning 和 sampling）。
+Think from Scratch #  以上的介绍可能过于抽象，现在我们可以从零开始思考，如果现在我们拥有一堆数据，这些数据有很多样本，比如说我们有 N 个样本，每个样本都是一个 D 维的向量，我们要如何学习这些数据的分布呢？
+想要回答这个问题，我们必须理解 ”分布“ 是什么？分布其实就是概率分布，概率分布就是一个随机变量不同取值的概率构成的一个函数。对于一个连续的随机变量，单个取值的概率没有意义，这时候，分布其实是代指概率密度函数。
+这时候，我们应该知道，对于前面提到的数据，如果我把数据中的样本视作一个 D 维的随机变量，我们实际上就是想要学习这个随机变量的概率密度函数。
+这时候，又引出了一个新的问题，这个概率密度函数的形式是什么样的呢 ？如果我们知道概率密度函数的解析形式，那么我们就可以通过极大似然估计，根据给定的数据，估计出这个分布的未知参数了。例如，如果我们假设数据服从高斯分布，但是均值方差未知，通过极大似然估计，我们就可以得到这个分布的均值和方差。
+数据分布的形式的选取是需要根据我们的先验知识决定的，但很多时候，我们并没有这些先验知识，我们也不想自己决定。另一方面，即便我们有一些先验知识，但是现实中可供选取的 family of distribution 是有限的，这些分布并不一定能够建模复杂的真实数据。
+Latent Variable Model #  为此，我们通常考虑使用 Latent Variable Model 对数据分布进行建模，即我们希望从一个known well-defined distribution 出发，通过学习一个分布的映射，将这个已知分布映射到未知的数据分布。</description>
+    </item>
+    
+    <item>
+      <title>Reverse Time Stochastic Differential Equations for Generative Modelling</title>
+      <link>https://zeqiang-lai.github.io/blog/docs/gen/reverse_diffusion/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/docs/gen/reverse_diffusion/</guid>
+      <description>Created: March, 23, 2023 Originally posted at Reverse Time Stochastic Differential Equations for generative modelling.
+ What follows is a derivation of the main result of ‘Reverse-Time Diffusion Equation Models’ by Brian D.O. Anderson (1982). Earlier on this blog we learned that a stochastic differential equation of the form $$ \begin{align} dX_t = \mu(X_t, t) dt + \sigma(X_t, t) dW_t \end{align} $$
+with the derivative of Wiener process $W_t$ admits two types of equations, called the forward Kolmogorov or Fokker-Planck equation and the backward Kolmogorov equation.</description>
+    </item>
+    
+    <item>
+      <title>Stochastic Differential Equations</title>
+      <link>https://zeqiang-lai.github.io/blog/docs/gen/sde/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/docs/gen/sde/</guid>
+      <description>Created: March, 23, 2023  A Wiener twist to differential equations
+ Non-Differential Equations #  Most of us are quite familiar with linear and non-linear equations from our 101 math classes and lectures. These equations define an equality between the two terms left and right of the equal sign: $$ \begin{align} y = f(x) \end{align} $$
+These functions assert an equality between $y$ and $x$ through the function $f(\cdot)$ and describe a &amp;ldquo;static&amp;rdquo; relationship between a value $x$ and its corresponding value $y$.</description>
+    </item>
+    
+  </channel>
+</rss>

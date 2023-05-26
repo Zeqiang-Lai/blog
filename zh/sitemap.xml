@@ -11,8 +11,13 @@
     <loc>https://zeqiang-lai.github.io/blog/docs/notes/paper/</loc>
     <lastmod>2022-03-02T19:11:35+08:00</lastmod>
   </url><url>
+    <loc>https://zeqiang-lai.github.io/blog/docs/gen/</loc>
+  </url><url>
     <loc>https://zeqiang-lai.github.io/blog/docs/matrix/</loc>
     <lastmod>2021-09-22T17:00:32+08:00</lastmod>
+  </url><url>
+    <loc>https://zeqiang-lai.github.io/blog/posts/ai/drag_gan/</loc>
+    <lastmod>2023-05-26T12:02:42+08:00</lastmod>
   </url><url>
     <loc>https://zeqiang-lai.github.io/blog/posts/ai/detr/</loc>
     <lastmod>2022-06-30T09:49:58+08:00</lastmod>
@@ -155,6 +160,8 @@
                 href="https://zeqiang-lai.github.io/blog/"
                 />
   </url><url>
+    <loc>https://zeqiang-lai.github.io/blog/docs/gen/introduction/</loc>
+  </url><url>
     <loc>https://zeqiang-lai.github.io/blog/docs/matrix/jordan/</loc>
     <lastmod>2021-02-02T18:42:43+08:00</lastmod>
   </url><url>
@@ -182,6 +189,10 @@
   </url><url>
     <loc>https://zeqiang-lai.github.io/blog/docs/notes/paper/raft/</loc>
     <lastmod>2021-09-22T16:52:05+08:00</lastmod>
+  </url><url>
+    <loc>https://zeqiang-lai.github.io/blog/docs/gen/reverse_diffusion/</loc>
+  </url><url>
+    <loc>https://zeqiang-lai.github.io/blog/docs/gen/sde/</loc>
   </url><url>
     <loc>https://zeqiang-lai.github.io/blog/docs/matrix/types/</loc>
     <lastmod>2021-02-02T18:42:43+08:00</lastmod>
