@@ -7,6 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language><atom:link href="https://zeqiang-lai.github.io/blog/en/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>DragGAN: Early Access and Local Deployment Tutorial</title>
+      <link>https://zeqiang-lai.github.io/blog/en/posts/drag_gan/</link>
+      <pubDate>Thu, 25 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/en/posts/drag_gan/</guid>
+      <description>&lt;p&gt;DragGAN, which has recently become popular across the internet, does not have its official code released yet. However, it is now available for early access experience&lt;/p&gt;
+&lt;p&gt;Project Pages&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+  &lt;a href=&#34;https://github.com/Zeqiang-Lai/DragGAN&#34;&gt;Zeqiang-Lai/DragGAN&lt;/a&gt;: Code and Checkpoints, Local Deployment, Colab Demo.&lt;/li&gt;
+&lt;li&gt;
+  &lt;a href=&#34;https://github.com/OpenGVLab/InternGPT&#34;&gt;OpenGVLab/InternGPT&lt;/a&gt;: Free Online Demo Integration.&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
       <title>Steepest Descent &amp;&amp; Conjugate Gradient</title>
       <link>https://zeqiang-lai.github.io/blog/en/posts/sd_cg/</link>
       <pubDate>Mon, 25 Apr 2022 14:32:05 +0000</pubDate>
