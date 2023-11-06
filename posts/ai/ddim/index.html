@@ -17,7 +17,7 @@
 <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/blog/book.min.6462353533c3f762fe6bb5be03366e305f85746754362ee2d02d32045005eef6.css" integrity="sha256-ZGI1NTPD92L&#43;a7W&#43;AzZuMF&#43;FdGdUNi7i0C0yBFAF7vY=" crossorigin="anonymous">
   <script defer src="/blog/flexsearch.min.js"></script>
-  <script defer src="/blog/zh.search.min.4d6183b26b30bf0676ce2f6396a2404015293ce88651c2a1a8f4bdd00c9c4e0e.js" integrity="sha256-TWGDsmswvwZ2zi9jlqJAQBUpPOiGUcKhqPS90AycTg4=" crossorigin="anonymous"></script>
+  <script defer src="/blog/zh.search.min.ae1d21a08a5f63a7813e2d344898076bfd2da79cf9e142bf638bcc17332a89af.js" integrity="sha256-rh0hoIpfY6eBPi00SJgHa/0tp5z54UK/Y4vMFzMqia8=" crossorigin="anonymous"></script>
 
   <script defer src="/blog/sw.min.f4bc4151631c92d29816d24dfaacb947aa6b03f91ec1c0cd2738ba8957d04791.js" integrity="sha256-9LxBUWMcktKYFtJN&#43;qy5R6prA/kewcDNJzi6iVfQR5E=" crossorigin="anonymous"></script>
 
@@ -541,7 +541,7 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#%e5%86%99%e5%9c%a8%e5%89%8d%e9%9d%a2">#</a>
 </h2>
 <p>DDIM 全称 【Denoising Diffusion Implict Model】，是一篇发表于 ICLR 2021 的论文，不过实际时间也就比 DDPM 晚几个月（2020 年 10 月）就挂在 arXiv 上了。作者呢，则是 Yang Song 博士（也就是 Score-based Diffusion Model 的奠基人）的同门，Jiaming Song 博士， Chenlin Meng 博士（她在Guided Diffusion 蒸馏领域的早期工作获得了 CVPR2023 的 Award Candidate），以及 Stefano Ermon 教授。</p>
-<p>老实说，这是一篇比较难懂的论文，一方面是里面涉及大量的推导以及概率论等相关背景知识，另一方面也是推导过程不太直观，以及刚接触的人难以获取到的 intutition，其他也包括一些 notation 的差异和 typo。但是没办法，项目需要，不得不啃。</p>
+<p>老实说，这是一篇比较难懂的论文，一方面是里面涉及大量的推导以及概率论等相关背景知识，另一方面也是推导过程不太直观，以及刚接触的人难以获取到的 intutition，其他也包括一些 notation 的差异和 typo。</p>
 <p>以下是个人对 DDIM 的一些理解（数学不好，记性也不行，也当是方便以后查阅的笔记），如果有理解上的错误，还请大佬们批评指正。</p>
 <p>撰写过程不仅参考了原论文，还包括了</p>
 <ul>
@@ -613,7 +613,7 @@ $$
 <p>首先我们回顾一下 DDPM 的推导过程</p>
 <div>
 $$
-\begin{equation}p(\boldsymbol{x}_t|\boldsymbol{x}_{t-1})\xrightarrow{\text{推导}}p(\boldsymbol{x}_t|\boldsymbol{x}_0)\xrightarrow{\text{推导}}q(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0)\xrightarrow{\text{近似}}p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t)\end{equation}
+p(\boldsymbol{x}_t|\boldsymbol{x}_{t-1})\xrightarrow{\text{推导}}p(\boldsymbol{x}_t|\boldsymbol{x}_0)\xrightarrow{\text{推导}}q(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0)\xrightarrow{\text{近似}}p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t)
 $$
 </div>
 <p>其中采样过程理论上需要用到 $p(x_{t-1}|x_t)$, 但实际上采用 $q(x_{t-1}|x_t, x_0)$ 做近似，因此我们需要做的就是推导一个不一样的 $q(x_{t-1}|x_t, x_0)$，在原论文里，作者直接写出了这个公式（原论文的公式 7）：</p>
@@ -634,7 +634,7 @@ $$
 <p>可以看到 $q(x_{t-1}|x_t, x_0)$ 这里是一个正态分布，基于此，我们可以假设一个更general的形式，我们假设：</p>
 <div>
 $$
-\begin{equation}q(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) = \mathcal{N}(\boldsymbol{x}_{t-1}; \kappa_t \boldsymbol{x}_t + \lambda_t \boldsymbol{x}_0, \sigma_t^2 \boldsymbol{I})\end{equation}
+q(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) = \mathcal{N}(\boldsymbol{x}_{t-1}; \kappa_t \boldsymbol{x}_t + \lambda_t \boldsymbol{x}_0, \sigma_t^2 \boldsymbol{I})
 $$
 </div>
 <p><strong>回忆</strong></p>
@@ -647,7 +647,7 @@ $$
     <p>因为如果我们想要约束 $q(x_t|x_0)$，那么直觉上第一步是建立 $q(x_t|x_0)$ 和 $q(x_{t-1}|x_t, x_0)$ 的联系，这可以通过贝叶斯公式实现：</p>
 <div>
 $$
-q(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) \sim \begin{equation}p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) = \frac{p(\boldsymbol{x}_t|\boldsymbol{x}_{t-1})p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_0)}{p(\boldsymbol{x}_t|\boldsymbol{x}_0)}\end{equation}
+q(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) \sim p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) = \frac{p(\boldsymbol{x}_t|\boldsymbol{x}_{t-1})p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_0)}{p(\boldsymbol{x}_t|\boldsymbol{x}_0)}
 $$
 </div>
 <blockquote>
@@ -656,13 +656,13 @@ $$
 <p>首先进行一个等价变换</p>
 <div>
 $$
-\begin{equation}p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) p(\boldsymbol{x}_t|\boldsymbol{x}_0) = p(\boldsymbol{x}_t|\boldsymbol{x}_{t-1}) p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_0)\end{equation}
+p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) p(\boldsymbol{x}_t|\boldsymbol{x}_0) = p(\boldsymbol{x}_t|\boldsymbol{x}_{t-1}) p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_0)
 $$
 </div>
 <p>左右两边同时积分消掉 $p(x_t|x_{t-1})$ 得到</p>
 <div>
 $$
-\begin{equation}\int p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) p(\boldsymbol{x}_t|\boldsymbol{x}_0) d\boldsymbol{x}_t = p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_0)\label{eq:margin}\end{equation}
+\int p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) p(\boldsymbol{x}_t|\boldsymbol{x}_0) d\boldsymbol{x}_t = p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_0)\label{eq:margin}
 $$
 </div>
 <p>关于这个转换，概率论小白一开始表示非常难以理解，不过仔细想想，右边之所以能消掉是因为 $p(x_{t-1}|x_0)$ 跟 $x_t$ 无关，所以对右边积分，等价于 $p(x_{t-1}|x_0) \int p(x_t|x_{t-1}) dx_t = p(x_{t-1}|x_0) \times 1$。</p>
@@ -673,7 +673,7 @@ $$
 <p>可以看到，我们至此得到了 $p(x_{t-1}|x_0)$ 的表达式，我们只要把前面假设的更 general 的 $q(x_{t-1}|x_t, x_0)$（如下） 的代入等式，用待定系数法求解即可得到 $q(x_{t-1}|x_t, x_0)$ 的表达式。</p>
 <div>
 $$
-\begin{equation}q(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) = \mathcal{N}(\boldsymbol{x}_{t-1}; \kappa_t \boldsymbol{x}_t + \lambda_t \boldsymbol{x}_0, \sigma_t^2 \boldsymbol{I})\end{equation}
+q(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) = \mathcal{N}(\boldsymbol{x}_{t-1}; \kappa_t \boldsymbol{x}_t + \lambda_t \boldsymbol{x}_0, \sigma_t^2 \boldsymbol{I})
 $$
 </div>
 
@@ -688,7 +688,7 @@ $$
 
 </blockquote>
 
-<p>DDIM 里的原论文是先给出了 $p(x_{t-1}|x_t, x_0)$，然后基于条件 $p(x_{t}|x_0) = N(\sqrt{\alpha_{t}}, \sqrt{1-\alpha_{t}} I)$，通过 Bishop (2006) (2.115), 证明等式成立。</p>
+<p>DDIM 里的原论文是先给出了 $p(x_{t-1}|x_t, x_0)$，然后基于条件 $p(x_{t}|x_0) = N(\sqrt{\alpha_{t}}, (1-\alpha_{t}) I)$，通过 Bishop (2006) (2.115), 证明等式成立。</p>
 <blockquote>
 <p>Bishop(2006): Christopher M Bishop. Pattern recognition and machine learning. springer, 2006.</p>
 </blockquote>
@@ -703,32 +703,32 @@ $$
 <p>这里直接截图了，其实讲的就是当给定一个高斯的边缘分布 $p(x)$ 和条件高斯分布$p(y|x)$时，另一个边缘分布是 $p(y)$ 是怎么样的。利用这个性质(2.115)，我们可以把它套到之前的等式里。</p>
 <div>
 $$
-\begin{equation}\int p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) p(\boldsymbol{x}_t|\boldsymbol{x}_0) d\boldsymbol{x}_t = p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_0)\end{equation}
+\int p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) p(\boldsymbol{x}_t|\boldsymbol{x}_0) d\boldsymbol{x}_t = p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_0)
 $$
 </div>
 <p>不过直接套，还是有一些心理障碍，因为这个 $x_0$ 摆在上面看着实在憋屈，没法直接对应过来。直觉上，把 $x_0$ 直接去掉等式应该也是成立的，不过我不知道这种做法的出处是什么，如果有佬知道，还请麻烦留个言，不胜感激。</p>
 <p>当我们去掉$x_0$之后，那就简单了（第一个等号利用了全概率公式）</p>
 <div>
 $$
-\begin{equation}\int p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t) p(\boldsymbol{x}_t) d\boldsymbol{x}_t = p(\boldsymbol{x}_{t-1}) = p(\boldsymbol{x}_{t-1})\end{equation}
+\int p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t) p(\boldsymbol{x}_t) d\boldsymbol{x}_t = p(\boldsymbol{x}_{t-1}) = p(\boldsymbol{x}_{t-1})
 $$
 </div>
 <p>还原回来</p>
 <div>
 $$
-\begin{equation}\int p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) p(\boldsymbol{x}_t| \boldsymbol{x}_0) d\boldsymbol{x}_t = p(\boldsymbol{x}_{t-1}| \boldsymbol{x}_0) = p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_0)\end{equation}
+\int p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) p(\boldsymbol{x}_t| \boldsymbol{x}_0) d\boldsymbol{x}_t = p(\boldsymbol{x}_{t-1}| \boldsymbol{x}_0) = p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_0)
 $$
 </div>
 <p>结合 Bishop(2006) 2.115，以及</p>
 <blockquote class="book-hint info">
   <div>
 $$
-\begin{equation}p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) = \mathcal{N}(\boldsymbol{x}_{t-1}; \kappa_t \boldsymbol{x}_t + \lambda_t \boldsymbol{x}_0, \sigma_t^2 \boldsymbol{I})\end{equation}
+p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) = \mathcal{N}(\boldsymbol{x}_{t-1}; \kappa_t \boldsymbol{x}_t + \lambda_t \boldsymbol{x}_0, \sigma_t^2 \boldsymbol{I})
 $$
 </div>
 <div>
 $$
-\begin{equation}p(\boldsymbol{x}_{t}|\boldsymbol{x}_0) = \mathcal{N}(\sqrt{\alpha_{t}}x_0, (1-\alpha_{t}) \boldsymbol{I}) \end{equation}
+p(\boldsymbol{x}_{t}|\boldsymbol{x}_0) = \mathcal{N}(\sqrt{\alpha_{t}}x_0, (1-\alpha_{t}) \boldsymbol{I}) 
 $$
 </div>
 <p>其中 $A = \kappa_t$, $b=\lambda_t x_0$, $\mu=\sqrt{\alpha_{t}}x_0$
@@ -772,7 +772,7 @@ $$
 <p>代回</p>
 <div>
 $$
-\begin{equation}p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) = \mathcal{N}(\boldsymbol{x}_{t-1}; \kappa_t \boldsymbol{x}_t + \lambda_t \boldsymbol{x}_0, \sigma_t^2 \boldsymbol{I})\end{equation}
+p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) = \mathcal{N}(\boldsymbol{x}_{t-1}; \kappa_t \boldsymbol{x}_t + \lambda_t \boldsymbol{x}_0, \sigma_t^2 \boldsymbol{I})
 $$
 </div>
 <p>我们就可以得到</p>
@@ -819,9 +819,7 @@ $$
 <p>把这个式子往回代，我们就得到了最终的采样公式（对应原论文的公式 12）</p>
 <div>
 $$
-\begin{equation}
     \boldsymbol{x}_{t-1}=\sqrt{\alpha_{t-1}} \underbrace{\left(\frac{\boldsymbol{x}_{t}-\sqrt{1-\alpha_{t}} \epsilon_{\theta}^{(t)}\left(\boldsymbol{x}_{t}\right)}{\sqrt{\alpha_{t}}}\right)}_{\text {"predicted } \boldsymbol{x}_{0} "}+\underbrace{\sqrt{1-\alpha_{t-1}-\sigma_{t}^{2}} \cdot \epsilon_{\theta}^{(t)}\left(\boldsymbol{x}_{t}\right)}_{\text {"direction pointing to } \boldsymbol{x}_{t} \text { " }}+\underbrace{\sigma_{t} \epsilon_{t}}_{\text {random noise }}
-\end{equation}
 $$
 </div>
 <h2 id="快速采样">
