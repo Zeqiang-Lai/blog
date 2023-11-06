@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Hamming code，海明码，汉明码都是一个东西。它是一种编码方式，通常用在网络信息传输中，通过这种编码方式编码出来的二进制数据具有检测一位错误位的能力。">
+<meta name="description" content="">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="错误检测-海(汉)明码" />
-<meta property="og:description" content="Hamming code，海明码，汉明码都是一个东西。它是一种编码方式，通常用在网络信息传输中，通过这种编码方式编码出来的二进制数据具有检测一位错误位的能力。" />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="关于 DDIM 采样算法的推导" />
+<meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zeqiang-lai.github.io/blog/posts/algorithms/%E6%B5%B7%E6%98%8E%E7%A0%81/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2018-10-15T17:08:00+00:00" />
-<meta property="article:modified_time" content="2018-10-15T17:08:00+00:00" />
+<meta property="og:url" content="https://zeqiang-lai.github.io/blog/posts/ai/ddim/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-11-06T19:34:01+08:00" />
 
-<title>错误检测-海(汉)明码 | Ze&#39;s Blog</title>
+<title>关于 DDIM 采样算法的推导 | Ze&#39;s Blog</title>
 <link rel="manifest" href="/blog/manifest.json">
 <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/blog/book.min.6462353533c3f762fe6bb5be03366e305f85746754362ee2d02d32045005eef6.css" integrity="sha256-ZGI1NTPD92L&#43;a7W&#43;AzZuMF&#43;FdGdUNi7i0C0yBFAF7vY=" crossorigin="anonymous">
@@ -499,10 +499,13 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li>
       <ul>
-        <li><a href="#编码过程">编码过程</a></li>
-        <li><a href="#检错与纠错">检错与纠错</a></li>
-        <li><a href="#intuition">Intuition</a></li>
-        <li><a href="#参考资料">参考资料</a></li>
+        <li><a href="#写在前面">写在前面</a></li>
+        <li><a href="#ddim-出发点">DDIM 出发点</a></li>
+        <li><a href="#ddim-推导">DDIM 推导</a></li>
+        <li><a href="#ddim-论文的一些-typo">DDIM 论文的一些 typo</a></li>
+        <li><a href="#ddim-采样">DDIM 采样</a></li>
+        <li><a href="#快速采样">快速采样</a></li>
+        <li><a href="#讨论">讨论</a></li>
       </ul>
     </li>
   </ul>
@@ -519,105 +522,338 @@ https://github.com/alex-shpak/hugo-book
       
 <article class="markdown">
   <h1>
-    <a href="/blog/posts/algorithms/%E6%B5%B7%E6%98%8E%E7%A0%81/">错误检测-海(汉)明码</a>
+    <a href="/blog/posts/ai/ddim/">关于 DDIM 采样算法的推导</a>
   </h1>
   
-  <h5>October 15, 2018</h5>
+  <h5>November 5, 2023</h5>
 
 
 
   
-  <div>
-    
-      <a href="/blog/categories/%E7%AE%97%E6%B3%95/">算法</a>
+
+  
+
+
+
+<h5>作者: 赖泽强</h5>
+<h2 id="写在前面">
+  写在前面
+  <a class="anchor" href="#%e5%86%99%e5%9c%a8%e5%89%8d%e9%9d%a2">#</a>
+</h2>
+<p>DDIM 全称 【Denoising Diffusion Implict Model】，是一篇发表于 ICLR 2021 的论文，不过实际时间也就比 DDPM 晚几个月（2020 年 10 月）就挂在 arXiv 上了。作者呢，则是 Yang Song 博士（也就是 Score-based Diffusion Model 的奠基人）的同门，Jiaming Song 博士， Chenlin Meng 博士（她在Guided Diffusion 蒸馏领域的早期工作获得了 CVPR2023 的 Award Candidate），以及 Stefano Ermon 教授。</p>
+<p>老实说，这是一篇比较难懂的论文，一方面是里面涉及大量的推导以及概率论等相关背景知识，另一方面也是推导过程不太直观，以及刚接触的人难以获取到的 intutition，其他也包括一些 notation 的差异和 typo。但是没办法，项目需要，不得不啃。</p>
+<p>以下是个人对 DDIM 的一些理解（数学不好，记性也不行，也当是方便以后查阅的笔记），如果有理解上的错误，还请大佬们批评指正。</p>
+<p>撰写过程不仅参考了原论文，还包括了</p>
+<ul>
+<li>
+<p>苏剑林老师的
+  <a href="https://kexue.fm/archives/9181">《生成扩散模型漫谈（四）：DDIM = 高观点DDPM》</a></p>
+</li>
+<li>
+<p>张振虎的博客
+  <a href="https://www.zhangzhenhu.com/aigc/ddim.html">《去噪扩散隐式模型（Denoising Diffusion Implicit Models,DDIM）》</a></p>
+</li>
+</ul>
+<p>在此向互联网上热心分享的同僚表示敬意。</p>
+<hr>
+<h2 id="ddim-出发点">
+  DDIM 出发点
+  <a class="anchor" href="#ddim-%e5%87%ba%e5%8f%91%e7%82%b9">#</a>
+</h2>
+<p>DDIM 虽然是一个比较难的算法，但这并不意味着每一个从事扩散模型研究的人员都需要知道其具体的原理。对于大部分人来说，其实只需要知道</p>
+<blockquote>
+<p>DDIM 是 DDPM 的一种加速采样算法，它可以进行确定性采样（也即给定一个初始的随机噪声，通过DDIM 进行采样，不管采样多少次，最终的结果是一样的，而原始的 DDPM 采样是随机采样，即便初始噪声一致，最终结果也可能不一致），除此之外，DDIM 采样可以在 50 步左右达到 DDPM 1000 步的性能/图片质量。</p>
+</blockquote>
+<p>不过如果想要基于 DDIM 做一些进一步的研究，我们则必须更进一步：</p>
+<p>因为不是作者本人，所以我们也无从得知，DDIM 一开始怎么被想出来的。但是从论文以及个人理解来看，DDIM 的推导基石应该是发现了 DDPM 的训练目标实际上只跟 $q(x_t|x_0)$ 这个边缘分布有关，这意味着我们有一簇不同的生成模型可以与之对应，换言之，通过这个训练目标训练出来的模型可以用于不同生成模型的采样过程，如果我们能找到一个收敛更快的生成模型，那么我们实际上变相的加速了 DDPM 的采样（为什么说是变相呢，因为严格来说，这时候的生成模型应该不算是 DDPM 了）。</p>
+<details open><summary>那么为什么说 <strong>DDPM 的训练目标实际上只跟 $q(x_t|x_0)$ 这个边缘分布有关</strong> 呢 ？</summary>
+  <div class="markdown-inner">
+    <p>如果我们从 Latent variable model 的角度考虑 Diffusion Model，我们的隐变量是一个集合 $x_{1:T}$，我们在优化的时候，实际上是在优化下面的 变分下界（ELBO）：</p>
+<div>
+$$
+\begin{aligned}
+    log P(x) & = log\int P(x_0|x_{1:T})P(x_{1:T})dx_{1:T}                            \\
+                & \geq E_{x\sim Q}[log\frac{ P(x_0|x_{1:T})P(x_{1:T})}{Q(x_{1:T}|x_0)}] \\
+                & = E_{x\sim Q}[log\frac{ P(x_{0:T})}{Q(x_{1:T}|x_0)}]
+\end{aligned}
+$$
+</div>
+<p>乍一看，这个优化目标和联合分布 $P(x_{0:T})$ 和 $Q(x_{1:T}|x_0)$ 有关。</p>
+<p>但是如果我们把这个优化目标展开，参考 DDPM 原始论文，我们可以得到这么一个优化目标</p>
+<div>
+$$
+\mathbb{E}_q[\underbrace{D_{\mathrm{KL}}\left(q\left(\mathbf{x}_T \mid \mathbf{x}_0\right) \| p\left(\mathbf{x}_T\right)\right)}_{L_T}+\sum_{t>1} \underbrace{D_{\mathrm{KL}}\left(q\left(\mathbf{x}_{t-1} \mid \mathbf{x}_t, \mathbf{x}_0\right) \| p_\theta\left(\mathbf{x}_{t-1} \mid \mathbf{x}_t\right)\right)}_{L_{t-1}} \underbrace{-\log p_\theta\left(\mathbf{x}_0 \mid \mathbf{x}_1\right)}_{L_0}]
+$$
+</div>
+<p>其中 $L_0$ 和 $L_T$ 都是不训练的，所以实际 loss 里没有他们，对于 $L_{t-1}$，DDPM 的 formulation 是</p>
+<div>
+$$
+\mathbb{E}_{\mathbf{x}_0, \boldsymbol{\epsilon}}\left[\frac{\beta_t^2}{2 \sigma_t^2 \alpha_t\left(1-\bar{\alpha}_t\right)}\left\|\boldsymbol{\epsilon}-\boldsymbol{\epsilon}_\theta\left(\sqrt{\bar{\alpha}_t} \mathbf{x}_0+\sqrt{1-\bar{\alpha}_t} \boldsymbol{\epsilon}, t\right)\right\|^2\right]
+$$
+</div>
+<p>而 $\sqrt{\bar{\alpha}_t} \mathbf{x}_0+\sqrt{1-\bar{\alpha}_t} \boldsymbol{\epsilon}$ 对应的是 $q(x_t|x_0)$ 的采样过程。</p>
+<p>所以，实际上 DDPM 的优化目标实际上只与 $q(x_t|x_0)$ 有关，因此，通过这个优化目标训练出来的模型，可以用到任何具有相同 $q(x_t|x_0)$ 的生成模型。</p>
+
   </div>
-  
+</details>
 
-  
-
-
-
-<p>Hamming code，海明码，汉明码都是一个东西。它是一种编码方式，通常用在网络信息传输中，通过这种编码方式编码出来的二进制数据具有检测一位错误位的能力。</p>
-<p>例如：</p>
-<ul>
-<li>假设要传输的二进制数据为 <code>1011001</code> 。</li>
-<li>通过海明码编码后（如何编码后面会说），得到 <code>101 0100 1110</code> 。</li>
-<li>假设从右往左第<code>6</code>位从<code>0</code>变为了<code>1</code>。</li>
-<li>通过某种方法我们可以从产生变化后的数据 <code>101 0110 1110</code> 得知第六位发生改变。</li>
-</ul>
-<p>下面则将具体讲解这些过程。</p>
-<h2 id="编码过程">
-  编码过程
-  <a class="anchor" href="#%e7%bc%96%e7%a0%81%e8%bf%87%e7%a8%8b">#</a>
+<h2 id="ddim-推导">
+  DDIM 推导
+  <a class="anchor" href="#ddim-%e6%8e%a8%e5%af%bc">#</a>
 </h2>
-<p><strong>第一步是确定冗余位(bit)的数目</strong>，这些位将为检错提供必要的信息。</p>
-<p>根据算法要求，冗余位的数目(r)必须满足：
-$$
-2^r \geq m + r + 1
-$$
-其中m为原始数据位的数目。</p>
-<p><strong>第二步是确定冗余位的位置</strong></p>
-<p>同样根据算法设计，冗余位将放在<code>位置编号为2的幂次</code>的位置上。</p>
-<p>如：1,2,4,8&hellip;</p>
-<p>假设要传输的数据为 <code>1011001</code> ，则编码后各个数据位的排布应如下图所示：</p>
-<p>
-  <img src="https://ws2.sinaimg.cn/large/006tNbRwly1fw8zibntkdj30ed030jrj.jpg" alt="img" /></p>
-<p><strong>第三步是确定冗余位的值</strong></p>
-<p>计算方法如下：</p>
-<blockquote>
-<p>处于第$2^i$位的冗余位的值，将是所有位置编码(二进制表示)中第i位为1的那些位置的原始数据的偶校验。</p>
+<p>在理解出发点之后，我们的目标就很明确了，怎么找一个具有相同 $q(x_t|x_0)$ 的生成模型（论文里称之为 generative process）。这部分就是 DDIM 原论文第三章《Variational Inference for Non-Markovian Forward Processes》的内容。</p>
+<p>这一章作者提到他们使用了一个 non-Markovian 的 inference process 去替代 DDPM 的 Markovian inference process，至于二者的区别可以在后面再细究。</p>
+<blockquote class="book-hint info">
+  <p><strong>马尔科夫过程</strong></p>
+<p>每个状态转移到下一个状态的概率只与当前状态有关。</p>
+
 </blockquote>
-<p>如R1，它的值将是第1,3,5,7,9,11这些位置上的数据的偶校验，所以</p>
-<p>由于3，5，7，9，11中1的个数为偶数，故R1=0（偶校验～1的个数为偶数个）。</p>
-</br>
-<p>假设要传输的数据为 <code>1011001</code> ，则编码后结果如下：</p>
-<p>
-  <img src="https://ws2.sinaimg.cn/large/006tNbRwly1fw8zqyz9nxj30eu02kwem.jpg" alt="img" /></p>
-<h2 id="检错与纠错">
-  检错与纠错
-  <a class="anchor" href="#%e6%a3%80%e9%94%99%e4%b8%8e%e7%ba%a0%e9%94%99">#</a>
-</h2>
-<p>同上，假设要传输的数据为 <code>1011001</code> ，编码后为<code>1010 1001 110</code> 。</p>
-<p>假设实际传输过去的数据为 <code>1010 1101 110</code> ，即从右往左第6位由0变为了1。</p>
-<p>这时候，如果我们再用计算冗余位值的方法重新计算一遍冗余位的值，我们会发现：</p>
-<p>R4R3R2R1 = 0110 即十进制下的6。</p>
-<p>这表明从右往左第6位发生错误，这时候我们将其反转即可纠正。</p>
-<h2 id="intuition">
-  Intuition
-  <a class="anchor" href="#intuition">#</a>
-</h2>
-<p>实际上，我们的目标是得到一个数字，这个数字表示数据中出错那一位的位置。</p>
-<p>如果我们将其表示为二进制的形式，那么我们的任务即变为了确定各个bit位是0还是1。</p>
-<p>在前面我曾要求过这个表达式：</p>
-<p>$2^r \geq m + r + 1$</p>
-<p>它的含义即在于，如果我们利用r个冗余位确定这个二进制数字（r个冗余位确定r个数字中的bit位），那么我们必须保证这个数字的范围能够表示编码数据串中的所有位置。</p>
-<p>可能有人会问，既然如此，那满足这个表达式$2^r \geq m + r$  不就可以了吗，为什么要+1呢？</p>
+
+<p>原论文里 3.1 节是比较魔幻，容易让人莫名其妙的，因为作者这里直接给出来他们推导出来的结果，然后在附录里附上了证明过程，证明该 generative process 和 DDPM 具有相同的 $q(x_t|x_0)$，但这个结果肯定不是拍脑袋出来的，在苏剑林老师的博客里，他通过待定系数法，从约束出发呈现了该结果的推导过程，虽然这不一定是原作者的真实推导过程，但一定程度上也可以供参考：</p>
+<p>首先我们回顾一下 DDPM 的推导过程</p>
+<div>
+$$
+\begin{equation}p(\boldsymbol{x}_t|\boldsymbol{x}_{t-1})\xrightarrow{\text{推导}}p(\boldsymbol{x}_t|\boldsymbol{x}_0)\xrightarrow{\text{推导}}q(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0)\xrightarrow{\text{近似}}p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t)\end{equation}
+$$
+</div>
+<p>其中采样过程理论上需要用到 $p(x_{t-1}|x_t)$, 但实际上采用 $q(x_{t-1}|x_t, x_0)$ 做近似，因此我们需要做的就是推导一个不一样的 $q(x_{t-1}|x_t, x_0)$，在原论文里，作者直接写出了这个公式（原论文的公式 7）：</p>
+<div>
+$$
+q_\sigma\left(\boldsymbol{x}_{t-1} \mid \boldsymbol{x}_t, \boldsymbol{x}_0\right)=\mathcal{N}\left(\sqrt{\alpha_{t-1}} \boldsymbol{x}_0+\sqrt{1-\alpha_{t-1}-\sigma_t^2} \cdot \frac{\boldsymbol{x}_t-\sqrt{\alpha_t} \boldsymbol{x}_0}{\sqrt{1-\alpha_t}}, \sigma_t^2 \boldsymbol{I}\right) .
+$$
+</div>
+<p>那么怎么推导呢？在 DDPM 的论文里，我们有</p>
+<div>
+$$
+\begin{aligned}
+q\left(\mathbf{x}_{t-1} \mid \mathbf{x}_t, \mathbf{x}_0\right) & =\mathcal{N}\left(\mathbf{x}_{t-1} ; \tilde{\boldsymbol{\mu}}_t\left(\mathbf{x}_t, \mathbf{x}_0\right), \tilde{\beta}_t \mathbf{I}\right) \\
+\text { where } \quad \tilde{\boldsymbol{\mu}}_t\left(\mathbf{x}_t, \mathbf{x}_0\right) & :=\frac{\sqrt{\bar{\alpha}_{t-1}} \beta_t}{1-\bar{\alpha}_t} \mathbf{x}_0+\frac{\sqrt{\alpha_t}\left(1-\bar{\alpha}_{t-1}\right)}{1-\bar{\alpha}_t} \mathbf{x}_t \quad \text { and } \quad \tilde{\beta}_t:=\frac{1-\bar{\alpha}_{t-1}}{1-\bar{\alpha}_t} \beta_t
+\end{aligned}
+$$
+</div>
+<p>可以看到 $q(x_{t-1}|x_t, x_0)$ 这里是一个正态分布，基于此，我们可以假设一个更general的形式，我们假设：</p>
+<div>
+$$
+\begin{equation}q(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) = \mathcal{N}(\boldsymbol{x}_{t-1}; \kappa_t \boldsymbol{x}_t + \lambda_t \boldsymbol{x}_0, \sigma_t^2 \boldsymbol{I})\end{equation}
+$$
+</div>
+<p><strong>回忆</strong></p>
 <blockquote>
-<p>因为位置编码必须从1开始，从0开始没法纠错。因此位置编码的最大值位m+r+1。</p>
+<p>以下推导基于苏剑林的博客和原论文附录 B</p>
 </blockquote>
-</br>
-<p>海明码的巧妙之处就在于它偶校验的分组上，每个冗余位都对应了一个bit位为1的那些位置。</p>
-<ul>
-<li>
-<p>一开始将数据编码成海明码的时候，所有组都是满足偶校验的，即1的个数为偶数。</p>
-</li>
-<li>
-<p>如果某一位发生变化，不管是从0变为1还是从1变为0，它所在组对应的偶校验均会变为1。</p>
-</li>
-<li>
-<p>而且它只属于-它位置编码为1的那几位对应的那些组，也只有这些组的偶校验会变成1。</p>
-</li>
-<li>
-<p>这样，如果我们对所有组求一次偶校验，组成的二进制数表示的正好是发生变化那个位的位置。</p>
-</li>
-</ul>
-<p>换句话说，海明码将错误位置的确认分散到了各个组上，通过一次能偶校验，能够确定错误位置属不属于这个组，经过r次偶校验后，便能确定其具体位置。</p>
-<h2 id="参考资料">
-  参考资料
-  <a class="anchor" href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99">#</a>
+<p>我们的约束是和 DDPM 具有相同的 $q(x_t|x_0)$，那么根据归纳法，这等价于约束和 DDPM 具有相同的 $q(x_{t-1}|x_0)$。</p>
+<details open><summary>为什么要做这个转换呢？</summary>
+  <div class="markdown-inner">
+    <p>因为如果我们想要约束 $q(x_t|x_0)$，那么直觉上第一步是建立 $q(x_t|x_0)$ 和 $q(x_{t-1}|x_t, x_0)$ 的联系，这可以通过贝叶斯公式实现：</p>
+<div>
+$$
+q(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) \sim \begin{equation}p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) = \frac{p(\boldsymbol{x}_t|\boldsymbol{x}_{t-1})p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_0)}{p(\boldsymbol{x}_t|\boldsymbol{x}_0)}\end{equation}
+$$
+</div>
+<blockquote>
+<p>因为 q 分布是对 p 分布的等价近似，下面使用 p 分布进行推导。</p>
+</blockquote>
+<p>首先进行一个等价变换</p>
+<div>
+$$
+\begin{equation}p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) p(\boldsymbol{x}_t|\boldsymbol{x}_0) = p(\boldsymbol{x}_t|\boldsymbol{x}_{t-1}) p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_0)\end{equation}
+$$
+</div>
+<p>左右两边同时积分消掉 $p(x_t|x_{t-1})$ 得到</p>
+<div>
+$$
+\begin{equation}\int p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) p(\boldsymbol{x}_t|\boldsymbol{x}_0) d\boldsymbol{x}_t = p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_0)\label{eq:margin}\end{equation}
+$$
+</div>
+<p>关于这个转换，概率论小白一开始表示非常难以理解，不过仔细想想，右边之所以能消掉是因为 $p(x_{t-1}|x_0)$ 跟 $x_t$ 无关，所以对右边积分，等价于 $p(x_{t-1}|x_0) \int p(x_t|x_{t-1}) dx_t = p(x_{t-1}|x_0) \times 1$。</p>
+<blockquote>
+<p>另外，其实这玩意也怪怪的 $\int p(x_t|x_{t-1}) dx_t = 1$，因为我们一般见到的是边缘概率的形式 $\int p(x_t) dx_t = 1$，而非前面那种条件概率。不过等式左边积分实际上 $x_t$ 每个取值的和，但$x_t$ 本身是关于 $x_{t-1}$ 的函数，不过因为是概率密度函数，所以和自然也还是 1 。</p>
+</blockquote>
+<p>回到刚刚的积分，等式左边都包含有 $x_t$，自然是没法像右边一样消掉。</p>
+<p>可以看到，我们至此得到了 $p(x_{t-1}|x_0)$ 的表达式，我们只要把前面假设的更 general 的 $q(x_{t-1}|x_t, x_0)$（如下） 的代入等式，用待定系数法求解即可得到 $q(x_{t-1}|x_t, x_0)$ 的表达式。</p>
+<div>
+$$
+\begin{equation}q(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) = \mathcal{N}(\boldsymbol{x}_{t-1}; \kappa_t \boldsymbol{x}_t + \lambda_t \boldsymbol{x}_0, \sigma_t^2 \boldsymbol{I})\end{equation}
+$$
+</div>
+
+  </div>
+</details>
+
+<p><strong>待定系数法求解</strong></p>
+<p>那么问题来了，我们知道 $p(x_{t-1}|x_0) = N(\sqrt{\alpha_{t-1}}x_0, (1-\alpha_{t-1}) I)$，但等式里的积分怎么办？</p>
+<blockquote class="book-hint warning">
+  <p><strong>注意</strong></p>
+<p>这里的 $\alpha_{t-1}$ 等价于 DDPM 里的 $\bar{\alpha_{t-1}}$，作者在附录里有专门讲为什么他要用这套 notation。</p>
+
+</blockquote>
+
+<p>DDIM 里的原论文是先给出了 $p(x_{t-1}|x_t, x_0)$，然后基于条件 $p(x_{t}|x_0) = N(\sqrt{\alpha_{t}}, \sqrt{1-\alpha_{t}} I)$，通过 Bishop (2006) (2.115), 证明等式成立。</p>
+<blockquote>
+<p>Bishop(2006): Christopher M Bishop. Pattern recognition and machine learning. springer, 2006.</p>
+</blockquote>
+<p>那 Bishop(2006) 2.115 究竟讲了个什么呢，没有书的看
+  <a href="https://github.com/peteflorence/MachineLearning6.867/blob/master/Bishop/Bishop%20-%20Pattern%20Recognition%20and%20Machine%20Learning.pdf">这里</a>。</p>
+<figure><img src="image.png"
+         alt="Bishop(2006) 2.115"/><figcaption>
+            <p>Bishop(2006) 2.115</p>
+        </figcaption>
+</figure>
+
+<p>这里直接截图了，其实讲的就是当给定一个高斯的边缘分布 $p(x)$ 和条件高斯分布$p(y|x)$时，另一个边缘分布是 $p(y)$ 是怎么样的。利用这个性质(2.115)，我们可以把它套到之前的等式里。</p>
+<div>
+$$
+\begin{equation}\int p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) p(\boldsymbol{x}_t|\boldsymbol{x}_0) d\boldsymbol{x}_t = p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_0)\end{equation}
+$$
+</div>
+<p>不过直接套，还是有一些心理障碍，因为这个 $x_0$ 摆在上面看着实在憋屈，没法直接对应过来。直觉上，把 $x_0$ 直接去掉等式应该也是成立的，不过我不知道这种做法的出处是什么，如果有佬知道，还请麻烦留个言，不胜感激。</p>
+<p>当我们去掉$x_0$之后，那就简单了（第一个等号利用了全概率公式）</p>
+<div>
+$$
+\begin{equation}\int p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t) p(\boldsymbol{x}_t) d\boldsymbol{x}_t = p(\boldsymbol{x}_{t-1}) = p(\boldsymbol{x}_{t-1})\end{equation}
+$$
+</div>
+<p>还原回来</p>
+<div>
+$$
+\begin{equation}\int p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) p(\boldsymbol{x}_t| \boldsymbol{x}_0) d\boldsymbol{x}_t = p(\boldsymbol{x}_{t-1}| \boldsymbol{x}_0) = p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_0)\end{equation}
+$$
+</div>
+<p>结合 Bishop(2006) 2.115，以及</p>
+<blockquote class="book-hint info">
+  <div>
+$$
+\begin{equation}p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) = \mathcal{N}(\boldsymbol{x}_{t-1}; \kappa_t \boldsymbol{x}_t + \lambda_t \boldsymbol{x}_0, \sigma_t^2 \boldsymbol{I})\end{equation}
+$$
+</div>
+<div>
+$$
+\begin{equation}p(\boldsymbol{x}_{t}|\boldsymbol{x}_0) = \mathcal{N}(\sqrt{\alpha_{t}}x_0, (1-\alpha_{t}) \boldsymbol{I}) \end{equation}
+$$
+</div>
+<p>其中 $A = \kappa_t$, $b=\lambda_t x_0$, $\mu=\sqrt{\alpha_{t}}x_0$
+</blockquote>
+
+<p>我们可以推导出等式左边，也即 $p(x_{t-1}|x_0)$ 的均值为:</p>
+<div>
+$$
+A\mu + b = \kappa_t \sqrt{\alpha_{t}}x_0 + \lambda_t x_0
+$$
+</div>
+<p>方差为:</p>
+<div>
+$$
+\mathbf{L}^{-1}+\mathbf{A} \mathbf{\Lambda}^{-1} \mathbf{A}^{\mathrm{T}} = \sigma^2_t \boldsymbol{I} + \kappa_t  (1-\alpha_{t}) \boldsymbol{I} \kappa_t^T
+$$
+</div>
+<p>讲了半天终于把等式两边都求出来了，这下可以列方程求解了，回顾等式右边是 $p(x_{t-1}|x_0) = N(\sqrt{\alpha_{t-1}}x_0, (1-\alpha_{t-1}) I)$，那么我们有两个方程：</p>
+<div>
+$$
+\sqrt{\alpha_{t-1}}x_0 = \kappa_t \sqrt{\alpha_{t}}x_0 + \lambda_t x_0
+$$
+</div>
+<div>
+$$
+(1-\alpha_{t-1}) \boldsymbol{I} = \sigma^2_t \boldsymbol{I} + \kappa_t  (1-\alpha_{t}) \boldsymbol{I} \kappa_t^T
+$$
+</div>
+<p>由第二个方程，我们可以解出:</p>
+<div>
+$$
+\kappa_t = \sqrt{\frac{1-\alpha_{t-1} - \sigma^2_t}{1-\alpha_{t}}} 
+$$
+</div>
+<p>结合上述结果和第一个方程，我们可以解出：</p>
+<div>
+$$
+ \lambda_t =  \sqrt{\alpha_{t-1}} - \sqrt{\frac{1-\alpha_{t-1} - \sigma^2_t}{1-\alpha_{t}}}  \sqrt{\alpha_{t}}
+$$
+</div>
+<p>代回</p>
+<div>
+$$
+\begin{equation}p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) = \mathcal{N}(\boldsymbol{x}_{t-1}; \kappa_t \boldsymbol{x}_t + \lambda_t \boldsymbol{x}_0, \sigma_t^2 \boldsymbol{I})\end{equation}
+$$
+</div>
+<p>我们就可以得到</p>
+<div>
+\begin{aligned}
+p(\boldsymbol{x}_{t-1}|\boldsymbol{x}_t, \boldsymbol{x}_0) &= \mathcal{N}(\boldsymbol{x}_{t-1};  \kappa_t  \boldsymbol{x}_t + (\sqrt{\alpha_{t-1}}- \kappa_t \sqrt{\alpha_{t}}) \boldsymbol{x}_0, \sigma_t^2 \boldsymbol{I}) \\
+&=\mathcal{N}(\boldsymbol{x}_{t-1}; \sqrt{\alpha_{t-1}}  \boldsymbol{x}_0 +  \kappa_t (\boldsymbol{x}_t - \sqrt{\alpha_{t}} \boldsymbol{x}_0), \sigma_t^2 \boldsymbol{I}) \\ 
+&=\mathcal{N}(\boldsymbol{x}_{t-1}; \sqrt{\alpha_{t-1}}  \boldsymbol{x}_0 +  \sqrt{\frac{1-\alpha_{t-1} - \sigma^2_t}{1-\alpha_{t}}} (\boldsymbol{x}_t - \sqrt{\alpha_{t}} \boldsymbol{x}_0), \sigma_t^2 \boldsymbol{I}) 
+\end{aligned}
+</div>
+<p>🤗 至此我们就得到了 DDIM 论文里的直接给出的公式 7 了。</p>
+<h2 id="ddim-论文的一些-typo">
+  DDIM 论文的一些 typo
+  <a class="anchor" href="#ddim-%e8%ae%ba%e6%96%87%e7%9a%84%e4%b8%80%e4%ba%9b-typo">#</a>
 </h2>
-<p>
-  <a href="https://www.geeksforgeeks.org/computer-network-hamming-code/">https://www.geeksforgeeks.org/computer-network-hamming-code/</a></p></article>
+<p>附录 B 里的公式 22 和 23 应该是打错了, 方差不应该带根号，原论文多了个根号，应该是下面这个公式</p>
+<div>
+$$
+p(x_{t}|x_0) = N(\sqrt{\alpha_{t}}x_0, (1-\alpha_{t}) I)
+$$
+</div>
+<h2 id="ddim-采样">
+  DDIM 采样
+  <a class="anchor" href="#ddim-%e9%87%87%e6%a0%b7">#</a>
+</h2>
+<p>基于推导出来的 $p(x_{t-1}|x_t, x_0)$，我们可以很容易写出下面的采样公式（利用重参数化技巧）：</p>
+<div>
+$$
+x_{t-1} = \sqrt{\alpha_{t-1}}  \boldsymbol{x}_0 +  \sqrt{\frac{1-\alpha_{t-1} - \sigma^2_t}{1-\alpha_{t}}} (\boldsymbol{x}_t - \sqrt{\alpha_{t}} \boldsymbol{x}_0) + \sigma_t^2 \epsilon_t
+$$
+</div>
+<p>然后，我们需要用网络预测的 $x_0$ 替代上面的 $x_0$。对于 epsilon 参数化的网络 $ \epsilon_{\theta}^{(t)}$，即网络预测的是</p>
+<div>
+$$
+x_t = \sqrt{\alpha_{t}}x_0 + \sqrt{(1-\alpha_{t})} \epsilon_{\theta}^{(t)}(x_t)
+$$
+</div>
+<p>我们有</p>
+<div>
+$$
+x_0 = \frac{x_t - \sqrt{(1-\alpha_{t})} \epsilon_{\theta}^{(t)}(x_t)}{\sqrt{\alpha_{t}}}
+$$
+</div>
+<p>把这个式子往回代，我们就得到了最终的采样公式（对应原论文的公式 12）</p>
+<div>
+$$
+\begin{equation}
+    \boldsymbol{x}_{t-1}=\sqrt{\alpha_{t-1}} \underbrace{\left(\frac{\boldsymbol{x}_{t}-\sqrt{1-\alpha_{t}} \epsilon_{\theta}^{(t)}\left(\boldsymbol{x}_{t}\right)}{\sqrt{\alpha_{t}}}\right)}_{\text {"predicted } \boldsymbol{x}_{0} "}+\underbrace{\sqrt{1-\alpha_{t-1}-\sigma_{t}^{2}} \cdot \epsilon_{\theta}^{(t)}\left(\boldsymbol{x}_{t}\right)}_{\text {"direction pointing to } \boldsymbol{x}_{t} \text { " }}+\underbrace{\sigma_{t} \epsilon_{t}}_{\text {random noise }}
+\end{equation}
+$$
+</div>
+<h2 id="快速采样">
+  快速采样
+  <a class="anchor" href="#%e5%bf%ab%e9%80%9f%e9%87%87%e6%a0%b7">#</a>
+</h2>
+<p>事实上，DDIM 本身并不能带来加速效果，DDIM 快速采样的原理本质上就是 Stride Sampling，即间隔采样。而间隔采样的基石则是</p>
+<blockquote>
+<p>DDPM的训练结果实质上包含了它的任意子序列参数的训练结果。</p>
+</blockquote>
+<p>具体地，DDPM 的训练过程可以用一个 $\alpha_t$ 的序列定义，每个 step 都是随机采样一个 $\alpha_t$ 对样本进行加噪，然后训练一个去噪模型预测噪声。在训练阶段，t 最大取值为 T，一般为 1000。
+朴素的采样方式是 1000,999,998,997 一步一步采样。</p>
+<p>间隔采样则是取1000,980,960,940 一步一步采样（采样总步数为 50）。</p>
+<h2 id="讨论">
+  讨论
+  <a class="anchor" href="#%e8%ae%a8%e8%ae%ba">#</a>
+</h2>
+<p>事实上，通过 DDIM 的推导，我们得到了一个更加 general 的采样过程 $q(x_{t-1}|x_t, x_0)$，这个采样过程包含一个可以调节的参数 $\sigma_t$，通过选取的不同的值，我们可以得到一簇不同的采样过程。</p>
+<p>例如，如果选取 $\sigma_t = 0$，那么我们就得了一个确定性的采样过程。</p>
+<p>除此之外，我们还可以选取一个特殊的 $\sigma_t$ 得到 DDPM 的 $q(x_{t-1}|x_t, x_0)$，也就是说 DDPM 是 DDIM 的一个特例。事实上，这个也很好理解，因为我们在推导的时候是根据 DDPM 的形式，撰写了一个更 general 的表达式，那么推导出来必然有这个结果。</p>
+<p><strong>那么怎么选取$\sigma_t$才能获得最佳的加速效果呢？</strong></p>
+<p>为此，作者做了一些实验，作者选取的$\sigma_t$为，通过控制$\eta$可以控制其大小。</p>
+<div>
+$$
+\sigma_{\tau_i}(\eta)=\eta \sqrt{\left(1-\alpha_{\tau_{i-1}}\right) /\left(1-\alpha_{\tau_i}\right)} \sqrt{1-\alpha_{\tau_i} / \alpha_{\tau_{i-1}}}
+$$
+</div>
+<p>事实上，当$\eta=1$ 的时候我们就变成 DDPM 了，这也对应上我们刚刚提到的特殊的 $\sigma_t$。</p>
+<figure><img src="image-1.png"/>
+</figure>
+
+<p>可以看到当 $\eta = 0$ 的时候，快速采样效果是最好的。</p></article>
  
       
 
@@ -625,6 +861,12 @@ $$
         
   <div class="flex flex-wrap justify-between">
 
+
+  <div><a class="flex align-center" href="https://github.com/Zeqiang-Lai/blog/commit/12020539a9107fd2f25c86701e72520e10ccd6d0" title='最后修改者 Zeqiang Lai | November 6, 2023' target="_blank" rel="noopener">
+      <img src="/blog/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>November 6, 2023</span>
+    </a>
+  </div>
 
 
 
@@ -679,10 +921,13 @@ $$
   <ul>
     <li>
       <ul>
-        <li><a href="#编码过程">编码过程</a></li>
-        <li><a href="#检错与纠错">检错与纠错</a></li>
-        <li><a href="#intuition">Intuition</a></li>
-        <li><a href="#参考资料">参考资料</a></li>
+        <li><a href="#写在前面">写在前面</a></li>
+        <li><a href="#ddim-出发点">DDIM 出发点</a></li>
+        <li><a href="#ddim-推导">DDIM 推导</a></li>
+        <li><a href="#ddim-论文的一些-typo">DDIM 论文的一些 typo</a></li>
+        <li><a href="#ddim-采样">DDIM 采样</a></li>
+        <li><a href="#快速采样">快速采样</a></li>
+        <li><a href="#讨论">讨论</a></li>
       </ul>
     </li>
   </ul>
