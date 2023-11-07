@@ -17,17 +17,8 @@
     <loc>https://zeqiang-lai.github.io/blog/docs/matrix/</loc>
     <lastmod>2021-09-22T17:00:32+08:00</lastmod>
   </url><url>
-    <loc>https://zeqiang-lai.github.io/blog/posts/ai/ddim/</loc>
-    <lastmod>2023-11-06T19:34:01+08:00</lastmod>
-  </url><url>
-    <loc>https://zeqiang-lai.github.io/blog/posts/ai/drag_gan/</loc>
-    <lastmod>2023-05-28T12:06:33+08:00</lastmod>
-  </url><url>
-    <loc>https://zeqiang-lai.github.io/blog/posts/ai/detr/</loc>
-    <lastmod>2023-05-26T12:03:46+08:00</lastmod>
-  </url><url>
     <loc>https://zeqiang-lai.github.io/blog/categories/</loc>
-    <lastmod>2023-05-28T12:08:48+08:00</lastmod>
+    <lastmod>2023-11-07T18:31:11+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -38,6 +29,21 @@
                 hreflang="zh"
                 href="https://zeqiang-lai.github.io/blog/categories/"
                 />
+  </url><url>
+    <loc>https://zeqiang-lai.github.io/blog/categories/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/</loc>
+    <lastmod>2023-11-07T18:31:11+08:00</lastmod>
+  </url><url>
+    <loc>https://zeqiang-lai.github.io/blog/posts/ai/pndm/</loc>
+    <lastmod>2023-11-07T18:31:11+08:00</lastmod>
+  </url><url>
+    <loc>https://zeqiang-lai.github.io/blog/posts/ai/ddim/</loc>
+    <lastmod>2023-11-06T20:16:05+08:00</lastmod>
+  </url><url>
+    <loc>https://zeqiang-lai.github.io/blog/posts/ai/drag_gan/</loc>
+    <lastmod>2023-05-28T12:06:33+08:00</lastmod>
+  </url><url>
+    <loc>https://zeqiang-lai.github.io/blog/posts/ai/detr/</loc>
+    <lastmod>2023-05-26T12:03:46+08:00</lastmod>
   </url><url>
     <loc>https://zeqiang-lai.github.io/blog/posts/ai/sd_cg/</loc>
     <lastmod>2023-05-26T12:05:58+08:00</lastmod>
