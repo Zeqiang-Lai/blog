@@ -6,7 +6,34 @@
     <description>Recent content in 扩散模型 on Ze&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 07 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://zeqiang-lai.github.io/blog/categories/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://zeqiang-lai.github.io/blog/categories/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Analytic-DPM 速览</title>
+      <link>https://zeqiang-lai.github.io/blog/posts/ai/analytic_dpm/</link>
+      <pubDate>Wed, 08 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/posts/ai/analytic_dpm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DPM-Solver 解析</title>
+      <link>https://zeqiang-lai.github.io/blog/posts/ai/dpm_solver/</link>
+      <pubDate>Wed, 08 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/posts/ai/dpm_solver/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GGDM: Learnable Diffusion Model Sampler </title>
+      <link>https://zeqiang-lai.github.io/blog/posts/ai/ggdm/</link>
+      <pubDate>Wed, 08 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/posts/ai/ggdm/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>扩散模型中的 PNDM 采样</title>
       <link>https://zeqiang-lai.github.io/blog/posts/ai/pndm/</link>
