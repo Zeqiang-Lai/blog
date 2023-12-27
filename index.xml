@@ -7,6 +7,24 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language><atom:link href="https://zeqiang-lai.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Distribution Matching Distillation</title>
+      <link>https://zeqiang-lai.github.io/blog/posts/ai/dmd/</link>
+      <pubDate>Mon, 25 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/posts/ai/dmd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>扩散模型蒸馏之一致性模型</title>
+      <link>https://zeqiang-lai.github.io/blog/posts/ai/consistency_model/</link>
+      <pubDate>Thu, 21 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://zeqiang-lai.github.io/blog/posts/ai/consistency_model/</guid>
+      <description>&lt;p&gt;Latent Consistency Model（LCM）是近期非常流行的扩散模型蒸馏方法。本文将介绍其背后的基础模型 Consistency Model 以及 LCM 的原理。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Analytic-DPM 速览</title>
       <link>https://zeqiang-lai.github.io/blog/posts/ai/analytic_dpm/</link>
       <pubDate>Wed, 08 Nov 2023 00:00:00 +0000</pubDate>
